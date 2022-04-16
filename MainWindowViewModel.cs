@@ -9,9 +9,12 @@ namespace PTC_Management
         public MainWindowViewModel()
         {
             NavCommand = new MyICommand<string>(OnNav);
+            CurrentViewModel = employeeViewModel;
         }
 
         private MaintanceLogViewModel maintanceLogViewModel = new MaintanceLogViewModel();
+
+
         private EmployeeViewModel employeeViewModel = new EmployeeViewModel();
         private RouteViewModel routeViewModel = new RouteViewModel();
         private TransportViewModel transportViewModel = new TransportViewModel();

@@ -5,14 +5,20 @@
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
    xmlns:local = "clr-namespace:PTC_Management.Views" 
    mc:Ignorable = "d" 
-   d:DesignHeight = "300" d:DesignWidth = "300">
+   d:DesignHeight = "300" d:DesignWidth = "950">
 
     <UserControl.Resources>
         <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
 
-        <Style TargetType="Button" x:Key="GelButton">
+        <Style TargetType="Button" x:Key="BlackButton">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="Background" Value="black"/>
+            <Setter Property="Foreground" Value="White"/>
+            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -92,13 +98,23 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                <Button Name="create" Style="{StaticResource GelButton}" Background="black" Foreground="White" Content="Создать" Margin="0,0,10,0" Width="80" Height="24"  />
-                <Button Name="change" Style="{StaticResource GelButton}" Background="black" Foreground="White" Content="Изменить" Margin="0,0,10,0" Width="80"    />
-                <Button Name="delete" Style="{StaticResource GelButton}" Background="black" Foreground="White" Content="Удалить" Margin="0,0,10,0"  Width="80"   />
-                <Button Name="copy"   Style="{StaticResource GelButton}" Background="black" Foreground="White" Content="Копировать" Margin="0,0,10,0" Width="80"  />
+                <Button Name="create" Style="{StaticResource BlackButton}" Content="Создать"    />
+                <Button Name="change" Style="{StaticResource BlackButton}" Content="Изменить"   />
+                <Button Name="delete" Style="{StaticResource BlackButton}" Content="Удалить"    />
+                <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
+
+                <TextBlock Text="Фильтр:" Margin="5"/>
+                <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
             </StackPanel>
 
-            <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True"  CanUserAddRows="false" Name="MaintenanceLogGrid" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
+            <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" 
+                      CanUserReorderColumns="False" 
+                      IsReadOnly="True" 
+                      CanUserAddRows="false" 
+                      Name="MaintenanceLogGrid" 
+                      ItemsSource="{Binding Items}" 
+                      d:ItemsSource="{d:SampleData ItemCount=5}" 
+                      AutoGenerateColumns="False">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код" Binding="{Binding id}"/>

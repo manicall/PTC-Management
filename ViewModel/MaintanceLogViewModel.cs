@@ -1,10 +1,5 @@
 ﻿using PTC_Management.Model;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
@@ -15,15 +10,15 @@ namespace PTC_Management.ViewModel
         public MaintanceLogViewModel()
         {
             Items = CollectionViewSource.GetDefaultView(MaintanceLog.GetInfo());
-            Items.Filter = FilterPerson;
+            Items.Filter = FilterMaintanceLog;
         }
 
 
-        private bool FilterPerson(object obj)
+        private bool FilterMaintanceLog(object obj)
         {
             bool result = true;
             MaintanceLog current = obj as MaintanceLog;
-            if (!string.IsNullOrWhiteSpace(FilterText) && current != null && !current.id.ToString().Contains(FilterText) /*&& !current.LastName.Contains(FilterText)*/)
+            if (!string.IsNullOrWhiteSpace(FilterMaintanceLogText) && current != null && !current.idMaintanceLog.ToString().Contains(FilterMaintanceLogText) /*&& !current.LastName.Contains(FilterText)*/)
             {
                 result = false;
             }
@@ -35,12 +30,12 @@ namespace PTC_Management.ViewModel
             if (current != null)
             {
                 current.Items.Filter = null;
-                current.Items.Filter = current.FilterPerson;
+                current.Items.Filter = current.FilterMaintanceLog;
 
             }
         }
 
-        public string FilterText
+        public string FilterMaintanceLogText
         {
             get { return (string)GetValue(FilterTextProperty); }
             set { SetValue(FilterTextProperty, value); }
@@ -48,7 +43,7 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register("FilterText", typeof(string), typeof(MaintanceLogViewModel), new PropertyMetadata("", FilterText_Changed));
+            DependencyProperty.Register("FilterMaintanceLogText", typeof(string), typeof(MaintanceLogViewModel), new PropertyMetadata("", FilterText_Changed));
 
         public ICollectionView Items
         {
@@ -58,7 +53,7 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(ICollectionView), typeof(MaintanceLogViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("MaintanceLogItems", typeof(ICollectionView), typeof(MaintanceLogViewModel), new PropertyMetadata(null));
 
     }
 }

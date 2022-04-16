@@ -57,12 +57,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\EmployeeSchedule.cs" />
+    <Compile Include="Model\LogOfDepartureAndEntry.cs" />
     <Compile Include="Model\Route.cs" />
     <Compile Include="Model\MaintanceLog.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Transport.cs" />
+    <Compile Include="TransportInfo.xaml.cs">
+      <DependentUpon>TransportInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="ViewModel\EmployeeScheduleViewModel.cs" />
+    <Compile Include="ViewModel\LogOfDepartureAndEntryViewModel.cs" />
     <Compile Include="ViewModel\RouteViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\MaintanceLogViewModel.cs" />
@@ -70,6 +75,9 @@
     <Compile Include="ViewModel\TransportViewModel.cs" />
     <Compile Include="Views\EmployeeScheduleView.xaml.cs">
       <DependentUpon>EmployeeScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogOfDepartureAndEntryView.xaml.cs">
+      <DependentUpon>LogOfDepartureAndEntryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MaintanceLogView.xaml.cs">
       <DependentUpon>MaintanceLogView.xaml</DependentUpon>
@@ -95,7 +103,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TransportInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EmployeeScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LogOfDepartureAndEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

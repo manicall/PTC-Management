@@ -1,16 +1,11 @@
-﻿using PTC_Management.Model;
-using PTC_Management.ViewModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Data;
 
 namespace PTC_Management
 {
-
     class BindableBase : DependencyObject, INotifyPropertyChanged
     {
-
         protected virtual void SetProperty<T>(ref T member, T val,
            [CallerMemberName] string propertyName = null)
         {
@@ -26,11 +21,6 @@ namespace PTC_Management
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
-
-
-
-
 
     }
 }
