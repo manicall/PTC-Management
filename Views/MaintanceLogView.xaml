@@ -103,7 +103,7 @@
                 <Button Name="delete" Style="{StaticResource BlackButton}" Content="Удалить"    />
                 <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
 
-                <TextBlock Text="Фильтр:" Margin="5"/>
+                <TextBlock Text="Поиск:" Margin="5"/>
                 <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
             </StackPanel>
 

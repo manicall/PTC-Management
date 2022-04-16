@@ -19,16 +19,17 @@
         </DataTemplate>
 
         <DataTemplate DataType = "{x:Type viewModels:RouteViewModel}">
-            <views:MaintanceLogView/>
+            <views:RouteView/>
         </DataTemplate>
         
         <DataTemplate DataType = "{x:Type viewModels:TransportViewModel}">
-            <views:MaintanceLogView/>
+            <views:TransportView/>
         </DataTemplate>
 
-        <DataTemplate DataType = "{x:Type viewModels:EmployeeScheduleViewModel}">
-            <views:MaintanceLogView/>
+        <DataTemplate DataType = "{x:Type viewModels:ItineraryLogViewModel}">
+            <views:ItineraryLogView/>
         </DataTemplate>
+
     </Window.Resources>
 
     <Grid>
@@ -61,9 +62,9 @@
             CommandParameter = "transport" 
             Grid.Column = "2" />
 
-            <Button Content = "График сотрудников" 
+            <Button Content = "Журнал путевых листов" 
             Command = "{Binding NavCommand}" 
-            CommandParameter = "employeeSchedule" 
+            CommandParameter = "ItineraryLog" 
             Grid.Column = "3" />
 
         </Grid>

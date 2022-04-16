@@ -9,8 +9,8 @@ namespace PTC_Management.ViewModel
     {
         public MaintanceLogViewModel()
         {
-            Items = CollectionViewSource.GetDefaultView(MaintanceLog.GetInfo());
-            Items.Filter = FilterMaintanceLog;
+            MaintanceLogItems = CollectionViewSource.GetDefaultView(MaintanceLog.GetInfo());
+            MaintanceLogItems.Filter = FilterMaintanceLog;
         }
 
 
@@ -29,8 +29,8 @@ namespace PTC_Management.ViewModel
             var current = d as MaintanceLogViewModel;
             if (current != null)
             {
-                current.Items.Filter = null;
-                current.Items.Filter = current.FilterMaintanceLog;
+                current.MaintanceLogItems.Filter = null;
+                current.MaintanceLogItems.Filter = current.FilterMaintanceLog;
 
             }
         }
@@ -45,7 +45,7 @@ namespace PTC_Management.ViewModel
         public static readonly DependencyProperty FilterTextProperty =
             DependencyProperty.Register("FilterMaintanceLogText", typeof(string), typeof(MaintanceLogViewModel), new PropertyMetadata("", FilterText_Changed));
 
-        public ICollectionView Items
+        public ICollectionView MaintanceLogItems
         {
             get { return (ICollectionView)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }

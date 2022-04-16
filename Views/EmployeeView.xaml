@@ -5,7 +5,7 @@
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
    xmlns:local = "clr-namespace:PTC_Management.Views" 
    mc:Ignorable = "d" 
-   d:DesignHeight = "300" d:DesignWidth = "500">
+   d:DesignHeight = "300" d:DesignWidth = "650">
 
     <UserControl.Resources>
         <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
@@ -22,7 +22,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid x:Name="RootElement">
-                            <!-- drop shadow - needs to be blurred for correct effect -->
+
                             <Rectangle Fill="#40000000" Margin="1,1,0,0" RadiusX="6" RadiusY="6">
                                 <Rectangle.BitmapEffect>
                                     <BlurBitmapEffect Radius="3" />
@@ -102,11 +102,12 @@
                 <Button Name="delete" Style="{StaticResource BlackButton}" Background="black" Content="Удалить"    />
                 <Button Name="copy"   Style="{StaticResource BlackButton}" Background="black" Content="Копировать" />
 
-                <TextBlock Text="Фильтр:" Margin="5"/>
-                <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
+                <TextBlock Text="Поиск:" Margin="5"/>
+                <TextBox Text="{Binding FilterEmployeeText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
             </StackPanel>
 
-            <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" CanUserAddRows="false" Name="MaintenanceLogGrid" ItemsSource="{Binding Items}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
+            <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" CanUserAddRows="false"
+                      ItemsSource="{Binding EmployeeItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код" Binding="{Binding idEmployee}"/>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding surname }" />

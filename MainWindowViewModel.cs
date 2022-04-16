@@ -12,15 +12,12 @@ namespace PTC_Management
             CurrentViewModel = employeeViewModel;
         }
 
-        private MaintanceLogViewModel maintanceLogViewModel = new MaintanceLogViewModel();
-
+        private BindableBase _CurrentViewModel;
 
         private EmployeeViewModel employeeViewModel = new EmployeeViewModel();
         private RouteViewModel routeViewModel = new RouteViewModel();
         private TransportViewModel transportViewModel = new TransportViewModel();
-        private EmployeeScheduleViewModel employeeScheduleViewModel = new EmployeeScheduleViewModel();
-
-        private BindableBase _CurrentViewModel;
+        private ItineraryLogViewModel itineraryLogViewModel = new ItineraryLogViewModel();
 
         public BindableBase CurrentViewModel
         {
@@ -35,17 +32,17 @@ namespace PTC_Management
             
             switch (destination)
             {
-                case "routes":
-                    CurrentViewModel = routeViewModel;
-                    break;
                 case "employees":
                     CurrentViewModel = employeeViewModel;
                     break;
-                 case "transport":
+                case "routes":
+                    CurrentViewModel = routeViewModel;
+                    break;
+                case "transport":
                     CurrentViewModel = transportViewModel;
                     break;
-                 case "employeeSchedule":
-                    CurrentViewModel = employeeScheduleViewModel;
+                 case "ItineraryLog":
+                    CurrentViewModel = itineraryLogViewModel;
                     break;
                 default:
                     CurrentViewModel = null;

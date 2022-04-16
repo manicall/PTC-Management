@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\EmployeeSchedule.cs" />
+    <Compile Include="Model\ItineraryLog.cs" />
     <Compile Include="Model\LogOfDepartureAndEntry.cs" />
     <Compile Include="Model\Route.cs" />
     <Compile Include="Model\MaintanceLog.cs" />
@@ -67,6 +68,7 @@
     </Compile>
     <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="ViewModel\EmployeeScheduleViewModel.cs" />
+    <Compile Include="ViewModel\ItineraryLogViewModel.cs" />
     <Compile Include="ViewModel\LogOfDepartureAndEntryViewModel.cs" />
     <Compile Include="ViewModel\RouteViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
@@ -75,6 +77,9 @@
     <Compile Include="ViewModel\TransportViewModel.cs" />
     <Compile Include="Views\EmployeeScheduleView.xaml.cs">
       <DependentUpon>EmployeeScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ItineraryLogView.xaml.cs">
+      <DependentUpon>ItineraryLogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogOfDepartureAndEntryView.xaml.cs">
       <DependentUpon>LogOfDepartureAndEntryView.xaml</DependentUpon>
@@ -108,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EmployeeScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ItineraryLogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

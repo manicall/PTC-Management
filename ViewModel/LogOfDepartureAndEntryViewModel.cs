@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PTC_Management.ViewModel
 {
-    internal class LogOfDepartureAndEntryViewModel
+    internal class LogOfDepartureAndEntryViewModel : BindableBase
     {
     }
 }
