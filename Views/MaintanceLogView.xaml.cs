@@ -13,16 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PTC_Management
+using PTC_Management.Model;
+
+namespace PTC_Management.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для CustomerListView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MaintanceLogView : UserControl
     {
-        public MainWindow()
+
+        public MaintanceLogView()
         {
             InitializeComponent();
+
         }
     }
 }

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PTC_Management
+namespace PTC_Management.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для EmployeeListView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EmployeeView : UserControl
     {
-        public MainWindow()
+        public EmployeeView()
         {
             InitializeComponent();
         }
