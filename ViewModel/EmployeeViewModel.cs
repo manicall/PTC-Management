@@ -17,12 +17,19 @@ namespace PTC_Management.ViewModel
         {
             bool result = true;
             Employee current = obj as Employee;
-            if (!string.IsNullOrWhiteSpace(FilterEmployeeText) && current != null && !current.idEmployee.ToString().Contains(FilterEmployeeText))
+
+            if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
+                 && !current.idEmployee.ToString().Contains(FilterEmployeeText)
+                 && (current.surname == null || !current.surname.Contains(FilterEmployeeText))
+                 && (current.name == null || !current.name.Contains(FilterEmployeeText))
+                 && (current.middleName == null || !current.middleName.Contains(FilterEmployeeText)))
             {
                 result = false;
             }
             return result;
         }
+
+
         private static void FilterText_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var current = d as EmployeeViewModel;
