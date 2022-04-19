@@ -97,10 +97,10 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                <Button Name="create" Style="{StaticResource BlackButton}" Background="black" Content="Создать"    />
-                <Button Name="change" Style="{StaticResource BlackButton}" Background="black" Content="Изменить"   />
-                <Button Name="delete" Style="{StaticResource BlackButton}" Background="black" Content="Удалить"    />
-                <Button Name="copy"   Style="{StaticResource BlackButton}" Background="black" Content="Копировать" />
+                <Button Name="create" Style="{StaticResource BlackButton}" Content="Создать" Command = "{Binding CreateDialogCommand}" CommandParameter="Создать сотрудника"/>
+                <Button Name="change" Style="{StaticResource BlackButton}" Content="Изменить"   />
+                <Button Name="delete" Style="{StaticResource BlackButton}" Content="Удалить"    />
+                <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
 
                 <TextBlock Text="Поиск:" Margin="5"/>
                 <TextBox Text="{Binding FilterEmployeeText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>

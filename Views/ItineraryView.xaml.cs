@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PTC_Management.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ItineraryLogView.xaml
+    /// Логика взаимодействия для ItineraryView.xaml
     /// </summary>
-    public partial class ItineraryLogView : UserControl
+    public partial class ItineraryView : UserControl
     {
-        public ItineraryLogView()
+        public ItineraryView()
         {
             InitializeComponent();
         }

@@ -2,8 +2,10 @@ namespace PTC_Management
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity;
     using System.Data.Entity.Spatial;
 
     [Table("Route")]
@@ -15,16 +17,18 @@ namespace PTC_Management
             Itinerary = new HashSet<Itinerary>();
         }
 
-        public static Route[] GetInfo()
+        public static ObservableCollection<Route> GetInfo()
         {
-            var info = new Route[] {
-                new Route { idRoute = 25, name="Дом творчества (66 квартал) - Завод \"Амурсталь\" (ул.Заводская)", distant=18.8f }
-            };
-            return info;
+            AppContext db = new AppContext();
+            db.Route.Load();
+
+            return db.Route.Local;
         }
 
         [Key]
         public int idRoute { get; set; }
+
+        public int number { get; set; }
 
         [StringLength(255)]
         public string name { get; set; }

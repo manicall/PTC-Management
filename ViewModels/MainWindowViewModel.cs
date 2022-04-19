@@ -1,14 +1,17 @@
-﻿using PTC_Management.ViewModel;
+﻿using ChildWindowsDemo.SupportClass;
+using ChildWindowsDemo.ViewModel;
+using PTC_Management.ViewModel;
+using System;
 
 namespace PTC_Management
 {
 
-    class MainWindowViewModel : BindableBase
+    class MainWindowViewModel : ViewModelBase
     {
 
         public MainWindowViewModel()
         {
-            NavCommand = new MyICommand<string>(OnNav);
+            NavCommand = new ParameterizedCommand<string>(OnNav);
             CurrentViewModel = employeeViewModel;
         }
 
@@ -17,7 +20,7 @@ namespace PTC_Management
         private EmployeeViewModel employeeViewModel = new EmployeeViewModel();
         private RouteViewModel routeViewModel = new RouteViewModel();
         private TransportViewModel transportViewModel = new TransportViewModel();
-        private ItineraryLogViewModel itineraryLogViewModel = new ItineraryLogViewModel();
+        private ItineraryViewModel ItineraryViewModel = new ItineraryViewModel();
 
         public BindableBase CurrentViewModel
         {
@@ -25,7 +28,7 @@ namespace PTC_Management
             set { SetProperty(ref _CurrentViewModel, value); }
         }
 
-        public MyICommand<string> NavCommand { get; private set; }
+        public ParameterizedCommand<string> NavCommand { get; private set; }
 
         private void OnNav(string destination)
         {
@@ -41,8 +44,8 @@ namespace PTC_Management
                 case "transport":
                     CurrentViewModel = transportViewModel;
                     break;
-                 case "ItineraryLog":
-                    CurrentViewModel = itineraryLogViewModel;
+                 case "Itinerary":
+                    CurrentViewModel = ItineraryViewModel;
                     break;
                 default:
                     CurrentViewModel = null;

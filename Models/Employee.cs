@@ -41,9 +41,8 @@ namespace PTC_Management
 
         public static ObservableCollection<Employee> GetInfo()
         {
-            Model1 db = new Model1();
+            AppContext db = new AppContext();
             db.Employee.Load();
-
 
             return db.Employee.Local;
         }

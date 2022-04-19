@@ -1,5 +1,4 @@
-﻿using PTC_Management.Model;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 

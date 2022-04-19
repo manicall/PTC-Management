@@ -4,18 +4,18 @@ using System.Windows.Input;
 namespace PTC_Management
 {
 
-    public class MyICommand<T> : ICommand
+    public class ParameterizedCommand<T> : ICommand
     {
 
         Action<T> _TargetExecuteMethod;
         Func<T, bool> _TargetCanExecuteMethod;
 
-        public MyICommand(Action<T> executeMethod)
+        public ParameterizedCommand(Action<T> executeMethod)
         {
             _TargetExecuteMethod = executeMethod;
         }
 
-        public MyICommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
+        public ParameterizedCommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
         {
             _TargetExecuteMethod = executeMethod;
             _TargetCanExecuteMethod = canExecuteMethod;
@@ -55,6 +55,27 @@ namespace PTC_Management
             }
         }
 
+
+        private Action _action;
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            var handler = _action;
+            if (handler != null)
+            {
+                handler();
+            }
+        }
+
+        public ParameterizedCommand(Action action)
+        {
+            _action = action;
+        }
         #endregion
     }
 }

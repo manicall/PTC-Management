@@ -26,8 +26,8 @@
             <views:TransportView/>
         </DataTemplate>
 
-        <DataTemplate DataType = "{x:Type viewModels:ItineraryLogViewModel}">
-            <views:ItineraryLogView/>
+        <DataTemplate DataType = "{x:Type viewModels:ItineraryViewModel}">
+            <views:ItineraryView/>
         </DataTemplate>
 
     </Window.Resources>
@@ -60,11 +60,12 @@
             <Button Content = "Транспорт" 
             Command = "{Binding NavCommand}" 
             CommandParameter = "transport" 
+            
             Grid.Column = "2" />
 
             <Button Content = "Журнал путевых листов" 
             Command = "{Binding NavCommand}" 
-            CommandParameter = "ItineraryLog" 
+            CommandParameter = "Itinerary" 
             Grid.Column = "3" />
 
         </Grid>

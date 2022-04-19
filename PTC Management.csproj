@@ -68,40 +68,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Date.cs" />
-    <Compile Include="Date_has_Employee.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeSchedule.cs" />
-    <Compile Include="Itinerary.cs" />
-    <Compile Include="LogOfDepartureAndEntry.cs" />
-    <Compile Include="MaintanceLog.cs" />
-    <Compile Include="Model1.cs" />
-    <Compile Include="Model\EmployeeSchedule.cs" />
-    <Compile Include="Model\ItineraryLog.cs" />
-    <Compile Include="Model\LogOfDepartureAndEntry.cs" />
-    <Compile Include="Model\Route.cs" />
-    <Compile Include="Model\MaintanceLog.cs" />
-    <Compile Include="Model\Employee.cs" />
-    <Compile Include="Model\Transport.cs" />
-    <Compile Include="Route.cs" />
-    <Compile Include="Transport.cs" />
-    <Compile Include="TransportInfo.xaml.cs">
+    <Compile Include="Models\Date.cs" />
+    <Compile Include="Models\Date_has_Employee.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeSchedule.cs" />
+    <Compile Include="Models\Itinerary.cs" />
+    <Compile Include="Models\LogOfDepartureAndEntry.cs" />
+    <Compile Include="Models\MaintanceLog.cs" />
+    <Compile Include="Models\AppContext.cs" />
+    <Compile Include="Models\Route.cs" />
+    <Compile Include="Models\Transport.cs" />
+    <Compile Include="ViewModels\DemoViewModel.cs" />
+    <Compile Include="Commands\SimpleCommand.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\DemoView.xaml.cs">
+      <DependentUpon>DemoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CreateDialog.xaml.cs">
+      <DependentUpon>CreateDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TransportInfo.xaml.cs">
       <DependentUpon>TransportInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BindableBase.cs" />
-    <Compile Include="ViewModel\EmployeeScheduleViewModel.cs" />
-    <Compile Include="ViewModel\ItineraryLogViewModel.cs" />
-    <Compile Include="ViewModel\LogOfDepartureAndEntryViewModel.cs" />
-    <Compile Include="ViewModel\RouteViewModel.cs" />
-    <Compile Include="ViewModel\EmployeeViewModel.cs" />
-    <Compile Include="ViewModel\MaintanceLogViewModel.cs" />
-    <Compile Include="ViewModel\MyICommand.cs" />
-    <Compile Include="ViewModel\TransportViewModel.cs" />
+    <Compile Include="ViewModels\BindableBase.cs" />
+    <Compile Include="ViewModels\EmployeeScheduleViewModel.cs" />
+    <Compile Include="ViewModels\ItineraryViewModel.cs" />
+    <Compile Include="ViewModels\LogOfDepartureAndEntryViewModel.cs" />
+    <Compile Include="ViewModels\RouteViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\MaintanceLogViewModel.cs" />
+    <Compile Include="Commands\ParameterizedCommand.cs" />
+    <Compile Include="ViewModels\TransportViewModel.cs" />
     <Compile Include="Views\EmployeeScheduleView.xaml.cs">
       <DependentUpon>EmployeeScheduleView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ItineraryLogView.xaml.cs">
-      <DependentUpon>ItineraryLogView.xaml</DependentUpon>
+    <Compile Include="Views\ItineraryView.xaml.cs">
+      <DependentUpon>ItineraryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogOfDepartureAndEntryView.xaml.cs">
       <DependentUpon>LogOfDepartureAndEntryView.xaml</DependentUpon>
@@ -118,7 +120,15 @@
     <Compile Include="Views\TransportView.xaml.cs">
       <DependentUpon>TransportView.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\DemoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CreateDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -126,11 +136,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TransportInfo.xaml">
+    <Page Include="Windows\TransportInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,7 +148,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ItineraryLogView.xaml">
+    <Page Include="Views\ItineraryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,7 +174,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

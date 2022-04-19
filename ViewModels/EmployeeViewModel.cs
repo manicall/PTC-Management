@@ -1,14 +1,30 @@
-﻿using PTC_Management.Model;
+﻿using ChildWindowsDemo.SupportClass;
+using ChildWindowsDemo.ViewModel;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
 {
-    internal class EmployeeViewModel : BindableBase
+    internal class EmployeeViewModel : ViewModelBase
     {
+
+        public ICommand CreateDialogCommand { get; set; }
+
+        private void CreateDialog(string title)
+        {
+            var child = new DemoViewModel()
+            {
+                Title = title,
+                Date = DateTime.Now
+            };
+            Show(child);
+        }
         public EmployeeViewModel()
         {
+            CreateDialogCommand = new ParameterizedCommand<string>(CreateDialog);
             EmployeeItems = CollectionViewSource.GetDefaultView(Employee.GetInfo());
             EmployeeItems.Filter = FilterEmployee;
         }

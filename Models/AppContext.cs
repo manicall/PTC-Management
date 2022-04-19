@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace PTC_Management
 {
-    public partial class Model1 : DbContext
+    public partial class AppContext : DbContext
     {
-        public Model1()
-            : base("name=Model1")
+        public AppContext()
+            : base("name=AppContext")
         {
         }
 

@@ -2,8 +2,10 @@ namespace PTC_Management
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity;
     using System.Data.Entity.Spatial;
 
     [Table("Transport")]
@@ -34,17 +36,12 @@ namespace PTC_Management
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
-        public static Transport[] GetInfo()
+        public static ObservableCollection<Transport> GetInfo()
         {
-            var info = new Transport[] {
-                new Transport { idTransport = 1 },
-                new Transport { idTransport = 2 },
-                new Transport { idTransport = 3 },
-                new Transport { idTransport = 4 },
-                new Transport { idTransport = 5 },
-                new Transport { idTransport = 6 }
-            };
-            return info;
+            AppContext db = new AppContext();
+            db.Transport.Load();
+
+            return db.Transport.Local;
         }
     }
 

@@ -107,7 +107,7 @@
             <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" 
                       CanUserAddRows="false" ItemsSource="{Binding RouteItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код"       Binding="{Binding idRoute}"/>
+                    <DataGridTextColumn Header="Код"       Binding="{Binding number}"/>
                     <DataGridTextColumn Header="Название"  Binding="{Binding name}"/>
                     <DataGridTextColumn Header="Дистанция" Binding="{Binding distant}"/>
                 </DataGrid.Columns>

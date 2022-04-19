@@ -2,8 +2,10 @@ namespace PTC_Management
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity;
     using System.Data.Entity.Spatial;
 
     [Table("Itinerary")]
@@ -23,5 +25,13 @@ namespace PTC_Management
         public virtual Route Route { get; set; }
 
         public virtual Transport Transport { get; set; }
+
+        public static ObservableCollection<Itinerary> GetInfo()
+        {
+            AppContext db = new AppContext();
+            db.Itinerary.Load();
+
+            return db.Itinerary.Local;
+        }
     }
 }

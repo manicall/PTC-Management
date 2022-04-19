@@ -1,23 +1,22 @@
-﻿using PTC_Management.Model;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
-    internal class TransportViewModel : BindableBase
+    internal class ItineraryViewModel : BindableBase
     {
-        public TransportViewModel()
+        public ItineraryViewModel()
         {
-            TransportItems = CollectionViewSource.GetDefaultView(Transport.GetInfo());
-            TransportItems.Filter = FilterTransport;
+            ItineraryItems = CollectionViewSource.GetDefaultView(Itinerary.GetInfo());
+            ItineraryItems.Filter = FilterItinerary;
         }
 
-        private bool FilterTransport(object obj)
+        private bool FilterItinerary(object obj)
         {
             bool result = true;
-            Transport current = obj as Transport;
-            if (!string.IsNullOrWhiteSpace(FilterTransportText) && current != null && !current.idTransport.ToString().Contains(FilterTransportText))
+            Itinerary current = obj as Itinerary;
+            if (!string.IsNullOrWhiteSpace(FilterItineraryText) && current != null && !current.idItinerary.ToString().Contains(FilterItineraryText))
             {
                 result = false;
             }
@@ -25,16 +24,16 @@ namespace PTC_Management.ViewModel
         }
         private static void FilterText_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var current = d as TransportViewModel;
+            var current = d as ItineraryViewModel;
             if (current != null)
             {
-                current.TransportItems.Filter = null;
-                current.TransportItems.Filter = current.FilterTransport;
+                current.ItineraryItems.Filter = null;
+                current.ItineraryItems.Filter = current.FilterItinerary;
 
             }
         }
 
-        public string FilterTransportText
+        public string FilterItineraryText
         {
             get { return (string)GetValue(FilterTextProperty); }
             set { SetValue(FilterTextProperty, value); }
@@ -42,9 +41,9 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register("FilterTransportText", typeof(string), typeof(TransportViewModel), new PropertyMetadata("", FilterText_Changed));
+            DependencyProperty.Register("FilterItineraryText", typeof(string), typeof(ItineraryViewModel), new PropertyMetadata("", FilterText_Changed));
 
-        public ICollectionView TransportItems
+        public ICollectionView ItineraryItems
         {
             get { return (ICollectionView)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
@@ -52,7 +51,8 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("TransportItems", typeof(ICollectionView), typeof(TransportViewModel), new PropertyMetadata(null));
-       
+            DependencyProperty.Register("ItineraryItems", typeof(ICollectionView), typeof(ItineraryViewModel), new PropertyMetadata(null));
+
     }
 }
+
