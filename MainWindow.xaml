@@ -60,11 +60,12 @@
             <Button Content = "Транспорт" 
             Command = "{Binding NavCommand}" 
             CommandParameter = "transport" 
+            
             Grid.Column = "2" />
 
             <Button Content = "Журнал путевых листов" 
             Command = "{Binding NavCommand}" 
-            CommandParameter = "itinerary" 
+            CommandParameter = "Itinerary" 
             Grid.Column = "3" />
 
         </Grid>

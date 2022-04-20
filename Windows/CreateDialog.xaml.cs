@@ -17,9 +17,9 @@ namespace PTC_Management.Windows
     /// <summary>
     /// Логика взаимодействия для EmployeeCreateDialog.xaml
     /// </summary>
-    public partial class EmployeeDialog : Window
+    public partial class CreateDialog : Window
     {
-        public EmployeeDialog()
+        public CreateDialog()
         {
             InitializeComponent();
         }

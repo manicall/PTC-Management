@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ChildWindowsDemo.SupportClass
+namespace PTC_Management.SupportClass
 {
     class SimpleCommand : ICommand
     {

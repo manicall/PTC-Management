@@ -1,6 +1,4 @@
-﻿using ChildWindowsDemo.SupportClass;
-using ChildWindowsDemo.ViewModel;
-using PTC_Management.ViewModel;
+﻿using PTC_Management.ViewModel;
 using System;
 
 namespace PTC_Management
@@ -44,7 +42,7 @@ namespace PTC_Management
                 case "transport":
                     CurrentViewModel = transportViewModel;
                     break;
-                 case "Itinerary":
+                 case "itinerary":
                     CurrentViewModel = ItineraryViewModel;
                     break;
                 default:

@@ -7,14 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ChildWindowsDemo.ViewModel
+namespace PTC_Management.ViewModel
 {
     class ViewModelBase : BindableBase
     {
         /// <summary>
         /// Окно в котором показывается текущий ViewModel
         /// </summary>
-        private EmployeeDialog _wnd = null;
+        private CreateDialog _wnd = null;
 
         /// <summary>
         /// Заголовок окна
@@ -58,7 +58,7 @@ namespace ChildWindowsDemo.ViewModel
         /// <param name="viewModel"></param>
         protected void Show(ViewModelBase viewModel)
         {
-            viewModel._wnd = new EmployeeDialog();
+            viewModel._wnd = new CreateDialog();
             viewModel._wnd.DataContext = viewModel;
             viewModel._wnd.Closed += (sender, e) => Closed();
             viewModel._wnd.ShowDialog();

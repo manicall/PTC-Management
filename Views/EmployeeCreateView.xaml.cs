@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PTC_Management.Views
 {
     /// <summary>
-    /// Логика взаимодействия для DemoView.xaml
+    /// Логика взаимодействия для EmployeeCreateView.xaml
     /// </summary>
-    public partial class DemoView : UserControl
+    public partial class EmployeeCreateView : UserControl
     {
-        public DemoView()
+        public EmployeeCreateView()
         {
             InitializeComponent();
         }

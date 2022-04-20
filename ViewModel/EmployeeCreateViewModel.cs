@@ -1,4 +1,4 @@
-﻿using ChildWindowsDemo.SupportClass;
+﻿using PTC_Management.SupportClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ChildWindowsDemo.ViewModel
+namespace PTC_Management.ViewModel
 {
-    class DemoViewModel : ViewModelBase
+    class EmployeeCreateViewModel : ViewModelBase
     {
         public DateTime Date
         {
@@ -19,7 +19,7 @@ namespace ChildWindowsDemo.ViewModel
 
         // Using a DependencyProperty as the backing store for Date.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DateProperty =
-            DependencyProperty.Register("Date", typeof(DateTime), typeof(DemoViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("Date", typeof(DateTime), typeof(EmployeeCreateViewModel), new PropertyMetadata(null));
 
 
 
@@ -31,9 +31,9 @@ namespace ChildWindowsDemo.ViewModel
 
         // Using a DependencyProperty as the backing store for CloseCommand.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CloseCommandProperty =
-            DependencyProperty.Register("CloseCommand", typeof(ICommand), typeof(DemoViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("CloseCommand", typeof(ICommand), typeof(EmployeeCreateViewModel), new PropertyMetadata(null));
 
-        public DemoViewModel()
+        public EmployeeCreateViewModel()
         {
             CloseCommand = new SimpleCommand(() => Close());
         }

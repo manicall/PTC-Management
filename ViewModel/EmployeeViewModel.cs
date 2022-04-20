@@ -1,5 +1,5 @@
-﻿using ChildWindowsDemo.SupportClass;
-using ChildWindowsDemo.ViewModel;
+﻿using PTC_Management.SupportClass;
+using PTC_Management.ViewModel;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -15,13 +15,14 @@ namespace PTC_Management.ViewModel
 
         private void CreateDialog(string title)
         {
-            var child = new DemoViewModel()
+            var child = new EmployeeCreateViewModel()
             {
                 Title = title,
                 Date = DateTime.Now
             };
             Show(child);
         }
+
         public EmployeeViewModel()
         {
             CreateDialogCommand = new ParameterizedCommand<string>(CreateDialog);
