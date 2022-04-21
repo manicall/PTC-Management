@@ -1,23 +1,18 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
 
 namespace PTC_Management
 {
     public partial class AppContext : DbContext
     {
-        public AppContext()
-            : base("name=AppContext")
-        {
-        }
+        public AppContext() : base("name=AppContext") { }
 
         public virtual DbSet<Date> Date { get; set; }
         public virtual DbSet<Date_has_Employee> Date_has_Employee { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EmployeeSchedule> EmployeeSchedule { get; set; }
         public virtual DbSet<Itinerary> Itinerary { get; set; }
-        public virtual DbSet<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
+        public virtual DbSet<LogOfDepartureAndEntry> 
+            LogOfDepartureAndEntry { get; set; }
         public virtual DbSet<MaintanceLog> MaintanceLog { get; set; }
         public virtual DbSet<Route> Route { get; set; }
         public virtual DbSet<Transport> Transport { get; set; }

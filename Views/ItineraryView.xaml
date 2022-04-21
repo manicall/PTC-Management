@@ -6,11 +6,7 @@
              xmlns:local="clr-namespace:PTC_Management.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
-    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>

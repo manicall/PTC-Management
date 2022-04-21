@@ -52,6 +52,6 @@ namespace PTC_Management.ViewModel
         // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("TransportItems", typeof(ICollectionView), typeof(TransportViewModel), new PropertyMetadata(null));
-       
+
     }
 }

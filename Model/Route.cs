@@ -1,12 +1,10 @@
 namespace PTC_Management
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
-    using System.Data.Entity.Spatial;
 
     [Table("Route")]
     public partial class Route

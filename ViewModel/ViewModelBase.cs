@@ -1,10 +1,4 @@
-﻿using PTC_Management;
-using PTC_Management.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PTC_Management.Windows;
 using System.Windows;
 
 namespace PTC_Management.ViewModel
@@ -27,7 +21,7 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(ViewModelBase), new PropertyMetadata(""));        
+            DependencyProperty.Register("Title", typeof(string), typeof(ViewModelBase), new PropertyMetadata(""));
 
         /// <summary>
         /// Методы вызываемый окном при закрытии
@@ -47,7 +41,7 @@ namespace PTC_Management.ViewModel
             {
                 _wnd.Close();
                 _wnd = null;
-                result = true;                
+                result = true;
             }
             return result;
         }

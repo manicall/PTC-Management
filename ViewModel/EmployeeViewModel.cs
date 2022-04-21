@@ -1,6 +1,4 @@
-﻿using PTC_Management.SupportClass;
-using PTC_Management.ViewModel;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;

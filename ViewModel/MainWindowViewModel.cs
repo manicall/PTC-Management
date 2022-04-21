@@ -1,5 +1,4 @@
 ﻿using PTC_Management.ViewModel;
-using System;
 
 namespace PTC_Management
 {
@@ -30,7 +29,7 @@ namespace PTC_Management
 
         private void OnNav(string destination)
         {
-            
+
             switch (destination)
             {
                 case "employees":
@@ -42,7 +41,7 @@ namespace PTC_Management
                 case "transport":
                     CurrentViewModel = transportViewModel;
                     break;
-                 case "itinerary":
+                case "itinerary":
                     CurrentViewModel = ItineraryViewModel;
                     break;
                 default:
