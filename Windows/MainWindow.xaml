@@ -7,7 +7,7 @@
    xmlns:views = "clr-namespace:PTC_Management.Views" 
    xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
    mc:Ignorable = "d" 
-   Title = "MainWindow" Height = "400" Width = "1000">
+   Title = "Управление ПАТП" Height = "400" Width = "650">
 
     <Window.DataContext>
         <local:MainWindowViewModel/>
@@ -47,25 +47,29 @@
 
             </Grid.ColumnDefinitions>
 
-            <Button Content = "Сотрудники" 
-            Command = "{Binding NavCommand}" 
-            CommandParameter = "employees" 
-            Grid.Column = "0" />
+            <Button Name="buttonEmployee"
+                Content = "Сотрудники" 
+                Command = "{Binding NavCommand}" 
+                CommandParameter = "employees" 
+                Grid.Column = "0" />
 
-            <Button Content = "Маршруты" 
-            Command = "{Binding NavCommand}" 
-            CommandParameter = "routes" 
-            Grid.Column = "1" />
-            
-            <Button Content = "Транспорт" 
-            Command = "{Binding NavCommand}" 
-            CommandParameter = "transport" 
-            Grid.Column = "2" />
+            <Button Name="buttonRoute"
+                Content = "Маршруты" 
+                Command = "{Binding NavCommand}" 
+                CommandParameter = "routes" 
+                Grid.Column = "1" />
 
-            <Button Content = "Журнал путевых листов" 
-            Command = "{Binding NavCommand}" 
-            CommandParameter = "itinerary" 
-            Grid.Column = "3" />
+            <Button Name="buttonTransport"
+                Content = "Транспорт" 
+                Command = "{Binding NavCommand}" 
+                CommandParameter = "transport" 
+                Grid.Column = "2" />
+
+            <Button Name="buttonItinerary"
+                Content = "График сотрудников" 
+                Command = "{Binding NavCommand}" 
+                CommandParameter = "itinerary" 
+                Grid.Column = "3" />
 
         </Grid>
 

@@ -8,7 +8,7 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Окно в котором показывается текущий ViewModel
         /// </summary>
-        private CreateDialog _wnd = null;
+        private Dialog _wnd = null;
 
         /// <summary>
         /// Заголовок окна
@@ -52,7 +52,7 @@ namespace PTC_Management.ViewModel
         /// <param name="viewModel"></param>
         protected void Show(ViewModelBase viewModel)
         {
-            viewModel._wnd = new CreateDialog();
+            viewModel._wnd = new Dialog();
             viewModel._wnd.DataContext = viewModel;
             viewModel._wnd.Closed += (sender, e) => Closed();
             viewModel._wnd.ShowDialog();

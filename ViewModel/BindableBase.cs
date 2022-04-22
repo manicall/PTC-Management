@@ -4,6 +4,7 @@ using System.Windows;
 
 namespace PTC_Management
 {
+    /*реализует интерфейс INotifyPropertyChanged*/
     class BindableBase : DependencyObject, INotifyPropertyChanged
     {
         protected virtual void SetProperty<T>(ref T member, T val,

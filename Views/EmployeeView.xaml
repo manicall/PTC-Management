@@ -18,26 +18,32 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                <Button Name="create" Style="{StaticResource BlackButton}" Content="Создать" Command = "{Binding CreateDialogCommand}" CommandParameter="Создать сотрудника"/>
-                <Button Name="change" Style="{StaticResource BlackButton}" Content="Изменить"   />
+                <Button Name="create" Style="{StaticResource BlackButton}" Content="Создать"
+                        Command = "{Binding CreateDialogCommand}"
+                        CommandParameter="Создать сотрудника"/>
+                <Button Name="change" Style="{StaticResource BlackButton}" Content="Изменить"
+                        Command = "{Binding ChangeDialogCommand}"
+                        CommandParameter="Изменить сотрудника"/>
                 <Button Name="delete" Style="{StaticResource BlackButton}" Content="Удалить"    />
                 <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
 
                 <TextBlock Text="Поиск:" Margin="5"/>
-                <TextBox Text="{Binding FilterEmployeeText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
+                <TextBox Name="TextBoxSearch" Text="{Binding FilterEmployeeText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
             </StackPanel>
 
-            <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" CanUserAddRows="false"
+            <DataGrid SelectedItem="{Binding SelectedItem}" Name="dataGridEmployee"
+                      MinRowHeight="20" MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                      CanUserReorderColumns="False" IsReadOnly="True" CanUserAddRows="false"
                       ItemsSource="{Binding EmployeeItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код" Binding="{Binding idEmployee}"/>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding surname }" />
                     <DataGridTextColumn Header="Имя" Binding="{Binding name}"/>
                     <DataGridTextColumn Header="Отчество"  Binding="{Binding middleName}"/>
-                    <DataGridTextColumn Binding="{Binding driverLicence}" Width="*">
+                    <DataGridTextColumn Binding="{Binding driverLicense}" Width="*">
                         <DataGridTextColumn.Header>
                             <TextBlock TextAlignment="Center">
-                                    Водительское<LineBreak/>удостоверение
+                                    Водительское удостоверение
                             </TextBlock>
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>

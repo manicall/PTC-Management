@@ -9,7 +9,6 @@ namespace PTC_Management
     [Table("Employee")]
     public partial class Employee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
             Date_has_Employee = new HashSet<Date_has_Employee>();
@@ -31,10 +30,9 @@ namespace PTC_Management
         [StringLength(50)]
         public string driverLicense { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Date_has_Employee> Date_has_Employee { get; set; }
+        public virtual ICollection<Date_has_Employee>
+            Date_has_Employee { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
         public static ObservableCollection<Employee> GetInfo()

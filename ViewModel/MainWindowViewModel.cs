@@ -8,7 +8,9 @@ namespace PTC_Management
 
         public MainWindowViewModel()
         {
+            // создаем команду перехватывающую сообщения от кнопки
             NavCommand = new ParameterizedCommand<string>(OnNav);
+            // установка представления по умолчанию
             CurrentViewModel = employeeViewModel;
         }
 

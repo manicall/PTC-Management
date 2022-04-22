@@ -6,11 +6,9 @@ namespace PTC_Management
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
 
-
     [Table("Transport")]
     public partial class Transport
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Transport()
         {
             Itinerary = new HashSet<Itinerary>();
@@ -26,14 +24,12 @@ namespace PTC_Management
 
         [StringLength(9)]
         public string licensePlate { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+  
         public virtual ICollection<Itinerary> Itinerary { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
+        public virtual ICollection<LogOfDepartureAndEntry>
+            LogOfDepartureAndEntry { get; set; }
+     
         public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
         public static ObservableCollection<Transport> GetInfo()
         {

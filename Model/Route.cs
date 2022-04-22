@@ -9,7 +9,6 @@ namespace PTC_Management
     [Table("Route")]
     public partial class Route
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Route()
         {
             Itinerary = new HashSet<Itinerary>();
@@ -32,8 +31,7 @@ namespace PTC_Management
         public string name { get; set; }
 
         public float? distant { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+   
         public virtual ICollection<Itinerary> Itinerary { get; set; }
     }
 }

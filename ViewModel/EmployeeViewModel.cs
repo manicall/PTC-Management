@@ -9,24 +9,57 @@ namespace PTC_Management.ViewModel
     internal class EmployeeViewModel : ViewModelBase
     {
 
-        public ICommand CreateDialogCommand { get; set; }
+        private object selectedItem;
 
-        private void CreateDialog(string title)
+
+
+        public object SelectedItem
         {
-            var child = new EmployeeCreateViewModel()
+            get { return this.selectedItem; }
+            set
             {
-                Title = title,
-                Date = DateTime.Now
-            };
-            Show(child);
+                if (value != this.selectedItem)
+                {
+                    this.selectedItem = value;
+                    this.OnPropertyChanged("SelectedItem");
+                }
+            }
         }
+
+        public ICommand CreateDialogCommand { get; set; }
+        public ICommand ChangeDialogCommand { get; set; }
 
         public EmployeeViewModel()
         {
             CreateDialogCommand = new ParameterizedCommand<string>(CreateDialog);
+            ChangeDialogCommand = new ParameterizedCommand<string>(ChangeDialog);
             EmployeeItems = CollectionViewSource.GetDefaultView(Employee.GetInfo());
             EmployeeItems.Filter = FilterEmployee;
         }
+
+        private void CreateDialog(string title)
+        {
+            var child = new EmployeeDialogViewModel()
+            {
+                Title = title,
+            };
+           
+            Show(child);
+        }
+
+        private void ChangeDialog(string title)
+        {
+            var child = new EmployeeDialogViewModel()
+            {
+                Title = title,
+                SelectedEmployee = (Employee)selectedItem
+
+            };
+
+            Show(child);
+        }
+
+
 
         private bool FilterEmployee(object obj)
         {
@@ -44,8 +77,8 @@ namespace PTC_Management.ViewModel
             return result;
         }
 
-
-        private static void FilterText_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void FilterText_Changed(DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
         {
             var current = d as EmployeeViewModel;
             if (current != null)
@@ -62,9 +95,11 @@ namespace PTC_Management.ViewModel
             set { SetValue(FilterTextProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register("FilterEmployeeText", typeof(string), typeof(EmployeeViewModel), new PropertyMetadata("", FilterText_Changed));
+            DependencyProperty.Register("FilterEmployeeText", typeof(string), 
+                typeof(EmployeeViewModel), new PropertyMetadata("", FilterText_Changed));
+
+        
 
         public ICollectionView EmployeeItems
         {
@@ -72,9 +107,9 @@ namespace PTC_Management.ViewModel
             set { SetValue(ItemsProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("EmployeeItems", typeof(ICollectionView), typeof(EmployeeViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("EmployeeItems", typeof(ICollectionView),
+                typeof(EmployeeViewModel), new PropertyMetadata(null));
 
     }
 }

@@ -78,15 +78,14 @@
     <Compile Include="Model\AppContext.cs" />
     <Compile Include="Model\Route.cs" />
     <Compile Include="Model\Transport.cs" />
-    <Compile Include="ViewModel\CreateDialogViewModel.cs" />
-    <Compile Include="ViewModel\EmployeeCreateViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeDialogViewModel.cs" />
     <Compile Include="Commands\SimpleCommand.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="Views\EmployeeCreateView.xaml.cs">
-      <DependentUpon>EmployeeCreateView.xaml</DependentUpon>
+    <Compile Include="Views\EmployeeDialogView.xaml.cs">
+      <DependentUpon>EmployeeDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\CreateDialog.xaml.cs">
-      <DependentUpon>CreateDialog.xaml</DependentUpon>
+    <Compile Include="Windows\Dialog.xaml.cs">
+      <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\TransportInfo.xaml.cs">
       <DependentUpon>TransportInfo.xaml</DependentUpon>
@@ -121,15 +120,19 @@
     <Compile Include="Views\TransportView.xaml.cs">
       <DependentUpon>TransportView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Styles\Styles.xaml">
+    <Page Include="Styles\GeneralStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EmployeeCreateView.xaml">
+    <Page Include="Templates\MainWindowTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\CreateDialog.xaml">
+    <Page Include="Views\EmployeeDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,9 +209,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Templates\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
