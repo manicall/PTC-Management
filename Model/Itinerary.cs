@@ -15,7 +15,7 @@ namespace PTC_Management
 
         public int Transport_idTransport { get; set; }
 
-        public int Employee_idEmployee { get; set; }
+        public int Employee_IdEmployee { get; set; }
 
         public virtual Employee Employee { get; set; }
 

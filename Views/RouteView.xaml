@@ -31,7 +31,7 @@
                       CanUserAddRows="false" ItemsSource="{Binding RouteItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код"       Binding="{Binding number}"/>
-                    <DataGridTextColumn Header="Название"  Binding="{Binding name}"/>
+                    <DataGridTextColumn Header="Название"  Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Дистанция" Binding="{Binding distant}"/>
                 </DataGrid.Columns>
             </DataGrid>

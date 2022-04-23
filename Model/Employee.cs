@@ -9,38 +9,47 @@ namespace PTC_Management
     [Table("Employee")]
     public partial class Employee
     {
+        static AppContext db;
         public Employee()
         {
+            
+
             Date_has_Employee = new HashSet<Date_has_Employee>();
             Itinerary = new HashSet<Itinerary>();
         }
 
         [Key]
-        public int idEmployee { get; set; }
+        public int IdEmployee { get; set; }
 
         [StringLength(50)]
         public string surname { get; set; }
 
         [StringLength(50)]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [StringLength(50)]
-        public string middleName { get; set; }
+        public string Patronymic { get; set; }
 
         [StringLength(50)]
-        public string driverLicense { get; set; }
+        public string DriverLicense { get; set; }
 
         public virtual ICollection<Date_has_Employee>
             Date_has_Employee { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
-        public static ObservableCollection<Employee> GetInfo()
+        public ObservableCollection<Employee> GetInfo()
         {
-            AppContext db = new AppContext();
+            db = new AppContext();
             db.Employee.Load();
-
             return db.Employee.Local;
         }
+        public void Add()
+        {
+            db = new AppContext();
+            db.Employee.Load();
+            db.Employee.Add(new Employee { Name = "1", });
+        }
+
     }
 }

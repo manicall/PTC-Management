@@ -4,7 +4,7 @@ namespace PTC_Management
 {
     public partial class AppContext : DbContext
     {
-        public AppContext() : base("name=AppContext") { }
+        public AppContext() : base("Name=AppContext") { }
 
         public virtual DbSet<Date> Date { get; set; }
         public virtual DbSet<Date_has_Employee> Date_has_Employee { get; set; }
@@ -22,7 +22,7 @@ namespace PTC_Management
             modelBuilder.Entity<Date>()
                 .HasMany(e => e.Date_has_Employee)
                 .WithRequired(e => e.Date)
-                .HasForeignKey(e => e.Date_idDate)
+                .HasForeignKey(e => e.Date_IdDate)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Date>()
@@ -31,7 +31,7 @@ namespace PTC_Management
                 .Map(m => m.ToTable("EmployeeSchedule_for_Month"));
 
             modelBuilder.Entity<Date_has_Employee>()
-                .Property(e => e.status)
+                .Property(e => e.Status)
                 .IsFixedLength()
                 .IsUnicode(false);
 
@@ -40,35 +40,35 @@ namespace PTC_Management
                 .IsUnicode(false);
 
             modelBuilder.Entity<Employee>()
-                .Property(e => e.name)
+                .Property(e => e.Name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Employee>()
-                .Property(e => e.middleName)
+                .Property(e => e.Patronymic)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Employee>()
-                .Property(e => e.driverLicense)
+                .Property(e => e.DriverLicense)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Employee>()
                 .HasMany(e => e.Date_has_Employee)
                 .WithRequired(e => e.Employee)
-                .HasForeignKey(e => e.Employee_idEmployee)
+                .HasForeignKey(e => e.Employee_IdEmployee)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Employee>()
                 .HasMany(e => e.Itinerary)
                 .WithRequired(e => e.Employee)
-                .HasForeignKey(e => e.Employee_idEmployee)
+                .HasForeignKey(e => e.Employee_IdEmployee)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<EmployeeSchedule>()
-                .Property(e => e.name)
+                .Property(e => e.Name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Route>()
-                .Property(e => e.name)
+                .Property(e => e.Name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Route>()
@@ -78,7 +78,7 @@ namespace PTC_Management
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Transport>()
-                .Property(e => e.name)
+                .Property(e => e.Name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Transport>()

@@ -4,8 +4,7 @@
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
    xmlns:local = "clr-namespace:PTC_Management" 
-   xmlns:views = "clr-namespace:PTC_Management.Views" 
-   xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
+
    mc:Ignorable = "d" 
    Title = "Управление ПАТП" Height = "400" Width = "650">
 
@@ -14,22 +13,7 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <DataTemplate DataType = "{x:Type viewModels:EmployeeViewModel}">
-            <views:EmployeeView/>
-        </DataTemplate>
-
-        <DataTemplate DataType = "{x:Type viewModels:RouteViewModel}">
-            <views:RouteView/>
-        </DataTemplate>
-        
-        <DataTemplate DataType = "{x:Type viewModels:TransportViewModel}">
-            <views:TransportView/>
-        </DataTemplate>
-
-        <DataTemplate DataType = "{x:Type viewModels:ItineraryViewModel}">
-            <views:ItineraryView/>
-        </DataTemplate>
-
+        <ResourceDictionary Source="../Templates/MainWindowTemplates.xaml" />
     </Window.Resources>
 
     <Grid>
@@ -66,7 +50,7 @@
                 Grid.Column = "2" />
 
             <Button Name="buttonItinerary"
-                Content = "График сотрудников" 
+                Content = "Журнал путевых листов" 
                 Command = "{Binding NavCommand}" 
                 CommandParameter = "itinerary" 
                 Grid.Column = "3" />

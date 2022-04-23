@@ -31,8 +31,8 @@
                       CanUserAddRows="false" ItemsSource="{Binding TransportItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код"         Binding="{Binding idTransport}"/>
-                    <DataGridTextColumn Header="Название"    Binding="{Binding name}"/>
-                    <DataGridTextColumn Header="Гос. Номер"  Binding="{Binding middleName}"/>
+                    <DataGridTextColumn Header="Название"    Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Гос. Номер"  Binding="{Binding Patronymic}"/>
                 </DataGrid.Columns>
             </DataGrid>
 

@@ -45,12 +45,12 @@
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockName" Style="{StaticResource TextBlockStyle}">Имя</TextBlock>
             <TextBox Name="textBoxName" Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding SelectedEmployee.name, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding SelectedEmployee.Name, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockMiddleName" Style="{StaticResource TextBlockStyle}">Отчество</TextBlock>
             <TextBox Name="textBoxMiddleName" Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding SelectedEmployee.middleName, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding SelectedEmployee.Patronymic, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockDriverLicense" Style="{StaticResource TextBlockStyle}">Водительское удостоверение</TextBlock>

@@ -16,8 +16,8 @@ namespace PTC_Management
 
         private BindableBase _CurrentViewModel;
 
-        private EmployeeViewModel employeeViewModel = new EmployeeViewModel();
-        private RouteViewModel routeViewModel = new RouteViewModel();
+        private EmployeeViewModel  employeeViewModel  = new EmployeeViewModel();
+        private RouteViewModel     routeViewModel     = new RouteViewModel();
         private TransportViewModel transportViewModel = new TransportViewModel();
         private ItineraryViewModel ItineraryViewModel = new ItineraryViewModel();
 

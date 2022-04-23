@@ -13,10 +13,10 @@ namespace PTC_Management
         }
 
         [Key]
-        public int idEmployeeSchedule { get; set; }
+        public int IdEmployeeSchedule { get; set; }
 
         [StringLength(50)]
-        public string name { get; set; }
+        public string Name { get; set; }
     
         public virtual ICollection<Date> Date { get; set; }
     }

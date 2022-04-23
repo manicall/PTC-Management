@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
@@ -8,11 +9,8 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBase
     {
-
+        Employee employee = new Employee();
         private object selectedItem;
-
-
-
         public object SelectedItem
         {
             get { return this.selectedItem; }
@@ -25,6 +23,7 @@ namespace PTC_Management.ViewModel
                 }
             }
         }
+        
 
         public ICommand CreateDialogCommand { get; set; }
         public ICommand ChangeDialogCommand { get; set; }
@@ -33,7 +32,7 @@ namespace PTC_Management.ViewModel
         {
             CreateDialogCommand = new ParameterizedCommand<string>(CreateDialog);
             ChangeDialogCommand = new ParameterizedCommand<string>(ChangeDialog);
-            EmployeeItems = CollectionViewSource.GetDefaultView(Employee.GetInfo());
+            EmployeeItems = CollectionViewSource.GetDefaultView(employee.GetInfo());
             EmployeeItems.Filter = FilterEmployee;
         }
 
@@ -43,6 +42,7 @@ namespace PTC_Management.ViewModel
             {
                 Title = title,
             };
+
            
             Show(child);
         }
@@ -59,18 +59,17 @@ namespace PTC_Management.ViewModel
             Show(child);
         }
 
-
-
         private bool FilterEmployee(object obj)
         {
             bool result = true;
             Employee current = obj as Employee;
 
             if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
-                 && !current.idEmployee.ToString().Contains(FilterEmployeeText)
+                 && !current.IdEmployee.ToString().Contains(FilterEmployeeText)
                  && (current.surname == null || !current.surname.Contains(FilterEmployeeText))
-                 && (current.name == null || !current.name.Contains(FilterEmployeeText))
-                 && (current.middleName == null || !current.middleName.Contains(FilterEmployeeText)))
+                 && (current.Name == null || !current.Name.Contains(FilterEmployeeText))
+                 && (current.Patronymic == null || !current.Patronymic.Contains(FilterEmployeeText))
+                 && (current.DriverLicense == null || !current.DriverLicense.Contains(FilterEmployeeText)))
             {
                 result = false;
             }
@@ -85,7 +84,6 @@ namespace PTC_Management.ViewModel
             {
                 current.EmployeeItems.Filter = null;
                 current.EmployeeItems.Filter = current.FilterEmployee;
-
             }
         }
 
@@ -98,8 +96,6 @@ namespace PTC_Management.ViewModel
         public static readonly DependencyProperty FilterTextProperty =
             DependencyProperty.Register("FilterEmployeeText", typeof(string), 
                 typeof(EmployeeViewModel), new PropertyMetadata("", FilterText_Changed));
-
-        
 
         public ICollectionView EmployeeItems
         {

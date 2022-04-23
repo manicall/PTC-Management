@@ -20,7 +20,7 @@ namespace PTC_Management
         public int idTransport { get; set; }
 
         [StringLength(50)]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [StringLength(9)]
         public string licensePlate { get; set; }

@@ -28,7 +28,7 @@ namespace PTC_Management
         public int number { get; set; }
 
         [StringLength(255)]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         public float? distant { get; set; }
    

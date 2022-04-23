@@ -15,10 +15,10 @@ namespace PTC_Management
         }
 
         [Key]
-        public int idDate { get; set; }
+        public int IdDate { get; set; }
 
         [Column("date", TypeName = "date")]
-        public DateTime? date1 { get; set; }
+        public DateTime? date { get; set; }
 
         public virtual ICollection<Date_has_Employee>
             Date_has_Employee { get; set; }

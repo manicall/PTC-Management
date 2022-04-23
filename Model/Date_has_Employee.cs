@@ -8,15 +8,15 @@ namespace PTC_Management
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Employee_idEmployee { get; set; }
+        public int Employee_IdEmployee { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Date_idDate { get; set; }
+        public int Date_IdDate { get; set; }
 
         [StringLength(1)]
-        public string status { get; set; }
+        public string Status { get; set; }
 
         public virtual Date Date { get; set; }
 
