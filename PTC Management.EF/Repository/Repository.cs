@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace PTC_Management.EF
 {
@@ -32,6 +33,8 @@ namespace PTC_Management.EF
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
             _db.Entry(item).State = EntityState.Added;
+
+
             if (AutoSaveChanges)
                 _db.SaveChanges();
         }
@@ -40,6 +43,7 @@ namespace PTC_Management.EF
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
             _db.Entry(item).State = EntityState.Modified;
+
             if (AutoSaveChanges)
                 _db.SaveChanges();
         }

@@ -13,8 +13,6 @@ namespace PTC_Management
         static AppContext db;
         public Employee()
         {
-            
-
             Date_has_Employee = new HashSet<Date_has_Employee>();
             Itinerary = new HashSet<Itinerary>();
         }
@@ -36,19 +34,6 @@ namespace PTC_Management
             Date_has_Employee { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
-
-        public ObservableCollection<Employee> GetInfo()
-        {
-            db = new AppContext();
-            db.Employee.Load();
-            return db.Employee.Local;
-        }
-        public void Add()
-        {
-            db = new AppContext();
-            db.Employee.Load();
-            db.Employee.Add(new Employee { Name = "1", });
-        }
 
     }
 }

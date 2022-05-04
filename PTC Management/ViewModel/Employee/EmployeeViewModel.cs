@@ -26,7 +26,6 @@ namespace PTC_Management.ViewModel
                 }
             }
         }
-        
 
         public ICommand CreateDialogCommand { get; set; }
         public ICommand ChangeDialogCommand { get; set; }
@@ -68,7 +67,7 @@ namespace PTC_Management.ViewModel
             Employee current = obj as Employee;
 
             if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
-                 && !current.IdEmployee.ToString().Contains(FilterEmployeeText)
+                 && !current.Id.ToString().Contains(FilterEmployeeText)
                  && (current.surname == null || !current.surname.Contains(FilterEmployeeText))
                  && (current.Name == null || !current.Name.Contains(FilterEmployeeText))
                  && (current.Patronymic == null || !current.Patronymic.Contains(FilterEmployeeText))
