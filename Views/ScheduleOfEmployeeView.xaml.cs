@@ -5,9 +5,9 @@ namespace PTC_Management.Views
     /// <summary>
     /// Логика взаимодействия для EmployeeSchedule.xaml
     /// </summary>
-    public partial class EmployeeScheduleView : UserControl
+    public partial class ScheduleOfEmployeeView : UserControl
     {
-        public EmployeeScheduleView()
+        public ScheduleOfEmployeeView()
         {
             InitializeComponent();
         }

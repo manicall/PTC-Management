@@ -22,6 +22,12 @@
                 <Button Name="change" Style="{StaticResource BlackButton}" Content="Изменить"   />
                 <Button Name="delete" Style="{StaticResource BlackButton}" Content="Удалить"    />
                 <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
+                <TextBlock Text="Поиск:" Margin="5"/>
+                <TextBox Text="{Binding FilterTransportText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
+            </StackPanel>
+            <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                <Button Style="{StaticResource BlackButton}" Content="Журнал ТО" />
+                <Button Style="{StaticResource BlackButton}" Content="Журнал въезда и выезда" />
 
                 <TextBlock Text="Поиск:" Margin="5"/>
                 <TextBox Text="{Binding FilterTransportText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
@@ -32,7 +38,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код"         Binding="{Binding idTransport}"/>
                     <DataGridTextColumn Header="Название"    Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Гос. Номер"  Binding="{Binding Patronymic}"/>
+                    <DataGridTextColumn Header="Гос. Номер"  Binding="{Binding licensePlate}"/>
                 </DataGrid.Columns>
             </DataGrid>
 

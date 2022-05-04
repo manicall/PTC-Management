@@ -11,16 +11,6 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
 
-    <!--<Window.Resources>
-        <DataTemplate DataType = "{x:Type viewModels:MaintanceLogViewModel}">
-            <views:MaintanceLogView/>
-        </DataTemplate>
-
-        <DataTemplate DataType = "{x:Type viewModels:EmployeeViewModel}">
-            <views:EmployeeView/>
-        </DataTemplate>
-    </Window.Resources>-->
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height = "Auto" />

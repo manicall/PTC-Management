@@ -18,4 +18,9 @@
     <DataTemplate DataType = "{x:Type viewModels:ItineraryViewModel}">
         <views:ItineraryView/>
     </DataTemplate>
+    
+    <DataTemplate DataType = "{x:Type viewModels:ScheduleOfEmployeeViewModel}">
+        <views:ScheduleOfEmployeeView/>
+    </DataTemplate>
+    
 </ResourceDictionary>
