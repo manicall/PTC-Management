@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="PTC_Management.Views.EmployeeView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:PTC_Management.Views" 
+   mc:Ignorable = "d" 
+   d:DesignHeight = "300" d:DesignWidth = "650">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="217*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="192*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                <Button Name="create" Style="{StaticResource BlackButton}" 
+                        Content="Создать"
+                        Command = "{Binding CreateDialogCommand}"
+                        CommandParameter="Создать сотрудника"/>
+                <Button Name="change" Style="{StaticResource BlackButton}" 
+                        Content="Изменить"
+                        Command = "{Binding ChangeDialogCommand}"
+                        CommandParameter="Изменить сотрудника"/>
+                <Button Name="delete" Style="{StaticResource BlackButton}" 
+                        Content="Удалить"    />
+                <Button Name="copy" Style="{StaticResource BlackButton}" 
+                        Content="Копировать" />
+
+                <TextBlock Text="Поиск:" Margin="5"/>
+                <TextBox Name="TextBoxSearch" 
+                         Text="{Binding FilterEmployeeText, UpdateSourceTrigger=PropertyChanged}" 
+                         Width="200" Margin="5"/>
+            </StackPanel>
+
+            <DataGrid SelectedItem="{Binding SelectedItem}" 
+                      Name="dataGrIdEmployee"
+                      MinRowHeight="20" MaxHeight="400"
+                      ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                      CanUserReorderColumns="False" IsReadOnly="True" 
+                      CanUserAddRows="false"
+                      ItemsSource="{Binding EmployeeItems}"
+                      d:ItemsSource="{d:SampleData ItemCount=5}" 
+                      AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Код" Binding="{Binding IdEmployee}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding surname }" />
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Отчество"  Binding="{Binding Patronymic}"/>
+                    <DataGridTextColumn Binding="{Binding DriverLicense}" Width="*">
+                        <DataGridTextColumn.Header>
+                            <TextBlock TextAlignment="Center">
+                                    Водительское удостоверение
+                            </TextBlock>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

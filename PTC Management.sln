@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTC Management", "PTC Management.csproj", "{874587D3-F8F7-43C2-8DA2-D7A2A8F60316}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTC Management", "PTC Management\PTC Management.csproj", "{7FA1EF16-5003-413D-A372-311275D5728C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTC Management.EF", "PTC Management.EF\PTC Management.EF.csproj", "{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{874587D3-F8F7-43C2-8DA2-D7A2A8F60316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{874587D3-F8F7-43C2-8DA2-D7A2A8F60316}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{874587D3-F8F7-43C2-8DA2-D7A2A8F60316}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{874587D3-F8F7-43C2-8DA2-D7A2A8F60316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA1EF16-5003-413D-A372-311275D5728C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA1EF16-5003-413D-A372-311275D5728C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA1EF16-5003-413D-A372-311275D5728C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA1EF16-5003-413D-A372-311275D5728C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B512B605-8910-4CFA-9565-FB9B287EA3A2}
+		SolutionGuid = {A8F87D9C-C721-4785-9231-E0C671BD7DB6}
 	EndGlobalSection
 EndGlobal
