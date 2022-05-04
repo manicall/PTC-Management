@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
+using PTC_Management.EF;
 
 namespace PTC_Management.ViewModel
 {
     internal class TransportViewModel : BindableBase
     {
+        readonly Repository<Transport> _transport = new Repository<Transport>(new AppContext());
+
         public TransportViewModel()
         {
-            TransportItems = CollectionViewSource.GetDefaultView(Transport.GetInfo());
+            TransportItems = CollectionViewSource.GetDefaultView(_transport.GetAll());
             TransportItems.Filter = FilterTransport;
         }
 
@@ -16,7 +19,7 @@ namespace PTC_Management.ViewModel
         {
             bool result = true;
             Transport current = obj as Transport;
-            if (!string.IsNullOrWhiteSpace(FilterTransportText) && current != null && !current.idTransport.ToString().Contains(FilterTransportText))
+            if (!string.IsNullOrWhiteSpace(FilterTransportText) && current != null && !current.Id.ToString().Contains(FilterTransportText))
             {
                 result = false;
             }

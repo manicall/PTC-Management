@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
+using PTC_Management.EF;
 
 namespace PTC_Management.ViewModel
 {
     internal class RouteViewModel : BindableBase
     {
+        readonly Repository<Route> _route = new Repository<Route>(new AppContext());
+
         public RouteViewModel()
         {
-            RouteItems = CollectionViewSource.GetDefaultView(Route.GetInfo());
+            RouteItems = CollectionViewSource.GetDefaultView(_route.GetAll());
             RouteItems.Filter = FilterRoute;
         }
 
@@ -16,7 +19,7 @@ namespace PTC_Management.ViewModel
         {
             bool result = true;
             Route current = obj as Route;
-            if (!string.IsNullOrWhiteSpace(FilterRouteText) && current != null && !current.idRoute.ToString().Contains(FilterRouteText))
+            if (!string.IsNullOrWhiteSpace(FilterRouteText) && current != null && !current.Id.ToString().Contains(FilterRouteText))
             {
                 result = false;
             }

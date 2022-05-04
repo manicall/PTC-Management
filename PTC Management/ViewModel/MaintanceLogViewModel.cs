@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using PTC_Management.EF;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 
@@ -6,9 +7,11 @@ namespace PTC_Management.ViewModel
 {
     internal class MaintanceLogViewModel : BindableBase
     {
+        readonly Repository<MaintanceLog> _maintanceLog = new Repository<MaintanceLog>(new AppContext());
+
         public MaintanceLogViewModel()
         {
-            MaintanceLogItems = CollectionViewSource.GetDefaultView(MaintanceLog.GetInfo());
+            MaintanceLogItems = CollectionViewSource.GetDefaultView(_maintanceLog.GetAll());
             MaintanceLogItems.Filter = FilterMaintanceLog;
         }
 
@@ -17,7 +20,7 @@ namespace PTC_Management.ViewModel
         {
             bool result = true;
             MaintanceLog current = obj as MaintanceLog;
-            if (!string.IsNullOrWhiteSpace(FilterMaintanceLogText) && current != null && !current.idMaintanceLog.ToString().Contains(FilterMaintanceLogText) /*&& !current.LastName.Contains(FilterText)*/)
+            if (!string.IsNullOrWhiteSpace(FilterMaintanceLogText) && current != null && !current.Id.ToString().Contains(FilterMaintanceLogText) /*&& !current.LastName.Contains(FilterText)*/)
             {
                 result = false;
             }

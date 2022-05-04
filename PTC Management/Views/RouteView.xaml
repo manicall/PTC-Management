@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:PTC_Management.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="650">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
@@ -30,9 +29,9 @@
             <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" 
                       CanUserAddRows="false" ItemsSource="{Binding RouteItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код"       Binding="{Binding number}"/>
+                    <DataGridTextColumn Header="Код"       Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Название"  Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Дистанция" Binding="{Binding distant}"/>
+                    <DataGridTextColumn Header="Дистанция" Binding="{Binding Distant}"/>
                 </DataGrid.Columns>
             </DataGrid>
 

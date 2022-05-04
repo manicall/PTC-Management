@@ -1,8 +1,6 @@
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.AssemblyReference.cache
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.SuggestedBindingRedirects.cache
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Styles\GeneralStyles.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\EmployeeDialogView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\EmployeeView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ItineraryView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.g.cs
@@ -26,8 +24,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Managem
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.xml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\App.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\MainWindowTemplates.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\EmployeeDialogView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\EmployeeView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ItineraryView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.baml
@@ -46,3 +42,7 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Managem
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.pdb
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.baml

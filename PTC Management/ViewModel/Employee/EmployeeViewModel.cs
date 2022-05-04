@@ -1,5 +1,5 @@
 ﻿using PTC_Management.EF;
-using System;
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -11,7 +11,6 @@ namespace PTC_Management.ViewModel
     internal class EmployeeViewModel : ViewModelBase
     {
         Repository<Employee> employee = new Repository<Employee>(new AppContext());
-
 
         private object selectedItem;
         public object SelectedItem
@@ -68,7 +67,7 @@ namespace PTC_Management.ViewModel
 
             if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
                  && !current.Id.ToString().Contains(FilterEmployeeText)
-                 && (current.surname == null || !current.surname.Contains(FilterEmployeeText))
+                 && (current.Surname == null || !current.Surname.Contains(FilterEmployeeText))
                  && (current.Name == null || !current.Name.Contains(FilterEmployeeText))
                  && (current.Patronymic == null || !current.Patronymic.Contains(FilterEmployeeText))
                  && (current.DriverLicense == null || !current.DriverLicense.Contains(FilterEmployeeText)))

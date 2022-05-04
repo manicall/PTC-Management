@@ -1,37 +1,29 @@
-namespace PTC_Management
+namespace PTC_Management.EF
 {
+    using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity;
+    using System.Data.Entity.Spatial;
 
     [Table("Route")]
-    public partial class Route
+    public partial class Route : Entity
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Route()
         {
-            Itinerary = new HashSet<Itinerary>();
+            Itineraries = new HashSet<Itinerary>();
         }
 
-        public static ObservableCollection<Route> GetInfo()
-        {
-            AppContext db = new AppContext();
-            db.Route.Load();
+        public int Number { get; set; }
 
-            return db.Route.Local;
-        }
-
-        [Key]
-        public int idRoute { get; set; }
-
-        public int number { get; set; }
-
+        [Required]
         [StringLength(255)]
         public string Name { get; set; }
 
-        public float? distant { get; set; }
-   
-        public virtual ICollection<Itinerary> Itinerary { get; set; }
+        public float? Distant { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Itinerary> Itineraries { get; set; }
     }
 }

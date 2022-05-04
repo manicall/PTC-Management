@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,9 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\AppContext.cs" />
-    <Compile Include="Repository\Entity.cs" />
-    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Entityes\Date.cs" />
     <Compile Include="Entityes\Date_has_Employee.cs" />
     <Compile Include="Entityes\Employee.cs" />
@@ -61,10 +60,13 @@
     <Compile Include="Entityes\Itinerary.cs" />
     <Compile Include="Entityes\LogOfDepartureAndEntry.cs" />
     <Compile Include="Entityes\MaintanceLog.cs" />
-    <Compile Include="Entityes\Route.cs" />
-    <Compile Include="Entityes\Transport.cs" />
+    <Compile Include="Context\AppContext.cs" />
+    <Compile Include="Repository\Entity.cs" />
+    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entityes\Route.cs" />
+    <Compile Include="Entityes\Transport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -30,8 +30,8 @@
             <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" 
                       CanUserAddRows="false" ItemsSource="{Binding ItineraryItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№ Листа"         Binding="{Binding idItinerary}"/>
-                    <DataGridTextColumn Header="ФИО сотрудника"  Binding="{Binding Employee.surname}"/>
+                    <DataGridTextColumn Header="№ Листа"         Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="ФИО сотрудника"  Binding="{Binding Employee.Surname}"/>
 
                 </DataGrid.Columns>
             </DataGrid>

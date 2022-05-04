@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Data.Entity;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace PTC_Management.EF
 {

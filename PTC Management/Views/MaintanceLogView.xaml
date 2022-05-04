@@ -37,7 +37,7 @@
                       AutoGenerateColumns="False">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код" Binding="{Binding id}"/>
+                    <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Дата" Binding="{Binding date, StringFormat=\{0:dd.MM.yyyy\}}" />
                     <DataGridTextColumn Header="№ листа" Binding="{Binding idList}"/>
                     <DataGridTextColumn Header="Транспорт"  Binding="{Binding transport}"/>

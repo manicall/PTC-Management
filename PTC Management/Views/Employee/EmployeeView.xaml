@@ -48,8 +48,8 @@
                       d:ItemsSource="{d:SampleData ItemCount=5}" 
                       AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код" Binding="{Binding IdEmployee}"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding surname }" />
+                    <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" />
                     <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Отчество"  Binding="{Binding Patronymic}"/>
                     <DataGridTextColumn Binding="{Binding DriverLicense}" Width="*">

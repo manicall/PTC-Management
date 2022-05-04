@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
+using PTC_Management.EF;
 
 namespace PTC_Management.ViewModel
 {
     internal class ItineraryViewModel : BindableBase
     {
+        readonly Repository<Itinerary> _itinerary = new Repository<Itinerary>(new AppContext());
+
         public ItineraryViewModel()
         {
-            ItineraryItems = CollectionViewSource.GetDefaultView(Itinerary.GetInfo());
+            ItineraryItems = CollectionViewSource.GetDefaultView(_itinerary.GetAll());
             ItineraryItems.Filter = FilterItinerary;
         }
 
@@ -16,7 +19,7 @@ namespace PTC_Management.ViewModel
         {
             bool result = true;
             Itinerary current = obj as Itinerary;
-            if (!string.IsNullOrWhiteSpace(FilterItineraryText) && current != null && !current.idItinerary.ToString().Contains(FilterItineraryText))
+            if (!string.IsNullOrWhiteSpace(FilterItineraryText) && current != null && !current.Id.ToString().Contains(FilterItineraryText))
             {
                 result = false;
             }

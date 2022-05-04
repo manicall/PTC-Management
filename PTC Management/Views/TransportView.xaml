@@ -36,9 +36,9 @@
             <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" 
                       CanUserAddRows="false" ItemsSource="{Binding TransportItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код"         Binding="{Binding idTransport}"/>
+                    <DataGridTextColumn Header="Код"         Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Название"    Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Гос. Номер"  Binding="{Binding licensePlate}"/>
+                    <DataGridTextColumn Header="Гос. Номер"  Binding="{Binding LicensePlate}"/>
                 </DataGrid.Columns>
             </DataGrid>
 

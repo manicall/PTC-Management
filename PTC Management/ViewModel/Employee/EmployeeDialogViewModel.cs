@@ -1,4 +1,5 @@
-﻿using PTC_Management.SupportClass;
+﻿using PTC_Management.EF;
+using PTC_Management.SupportClass;
 using System;
 using System.Windows;
 using System.Windows.Input;

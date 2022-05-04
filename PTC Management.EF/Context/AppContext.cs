@@ -1,34 +1,41 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Linq;
 
-namespace PTC_Management
+namespace PTC_Management.EF
 {
     public partial class AppContext : DbContext
     {
-        public AppContext() : base("Name=AppContext") { }
+        public AppContext()
+            : base("name=AppContext")
+        {
+        }
 
-        public virtual DbSet<Date> Date { get; set; }
+        public virtual DbSet<Date> Dates { get; set; }
         public virtual DbSet<Date_has_Employee> Date_has_Employee { get; set; }
-        public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<EmployeeSchedule> EmployeeSchedule { get; set; }
-        public virtual DbSet<Itinerary> Itinerary { get; set; }
-        public virtual DbSet<LogOfDepartureAndEntry> 
-            LogOfDepartureAndEntry { get; set; }
-        public virtual DbSet<MaintanceLog> MaintanceLog { get; set; }
-        public virtual DbSet<Route> Route { get; set; }
-        public virtual DbSet<Transport> Transport { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<EmployeeSchedule> EmployeeSchedules { get; set; }
+        public virtual DbSet<Itinerary> Itineraries { get; set; }
+        public virtual DbSet<LogOfDepartureAndEntry> LogOfDepartureAndEntries { get; set; }
+        public virtual DbSet<MaintanceLog> MaintanceLogs { get; set; }
+        public virtual DbSet<Route> Routes { get; set; }
+        public virtual DbSet<Transport> Transports { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Date>()
                 .HasMany(e => e.Date_has_Employee)
                 .WithRequired(e => e.Date)
-                .HasForeignKey(e => e.Date_IdDate)
+                .HasForeignKey(e => e.IdDate)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Date>()
-                .HasMany(e => e.EmployeeSchedule)
-                .WithMany(e => e.Date)
-                .Map(m => m.ToTable("EmployeeSchedule_for_Month"));
+                .HasMany(e => e.EmployeeSchedules)
+                .WithMany(e => e.Dates)
+                .Map(m => m.ToTable("EmployeeSchedule_for_Month")
+                .MapLeftKey("IdDate")
+                .MapRightKey("IdEmployeeSchedule"));
 
             modelBuilder.Entity<Date_has_Employee>()
                 .Property(e => e.Status)
@@ -36,7 +43,7 @@ namespace PTC_Management
                 .IsUnicode(false);
 
             modelBuilder.Entity<Employee>()
-                .Property(e => e.surname)
+                .Property(e => e.Surname)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Employee>()
@@ -54,13 +61,13 @@ namespace PTC_Management
             modelBuilder.Entity<Employee>()
                 .HasMany(e => e.Date_has_Employee)
                 .WithRequired(e => e.Employee)
-                .HasForeignKey(e => e.Employee_IdEmployee)
+                .HasForeignKey(e => e.IdEmployee)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Employee>()
-                .HasMany(e => e.Itinerary)
+                .HasMany(e => e.Itineraries)
                 .WithRequired(e => e.Employee)
-                .HasForeignKey(e => e.Employee_IdEmployee)
+                .HasForeignKey(e => e.IdEmployee)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<EmployeeSchedule>()
@@ -72,9 +79,9 @@ namespace PTC_Management
                 .IsUnicode(false);
 
             modelBuilder.Entity<Route>()
-                .HasMany(e => e.Itinerary)
+                .HasMany(e => e.Itineraries)
                 .WithRequired(e => e.Route)
-                .HasForeignKey(e => e.Route_idRoute)
+                .HasForeignKey(e => e.IdRoute)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Transport>()
@@ -82,26 +89,26 @@ namespace PTC_Management
                 .IsUnicode(false);
 
             modelBuilder.Entity<Transport>()
-                .Property(e => e.licensePlate)
+                .Property(e => e.LicensePlate)
                 .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<Transport>()
-                .HasMany(e => e.Itinerary)
+                .HasMany(e => e.Itineraries)
                 .WithRequired(e => e.Transport)
-                .HasForeignKey(e => e.Transport_idTransport)
+                .HasForeignKey(e => e.IdTransport)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Transport>()
-                .HasMany(e => e.LogOfDepartureAndEntry)
+                .HasMany(e => e.LogOfDepartureAndEntries)
                 .WithRequired(e => e.Transport)
-                .HasForeignKey(e => e.Transport_idTransport)
+                .HasForeignKey(e => e.Transport_IdTransport)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Transport>()
-                .HasMany(e => e.MaintanceLog)
+                .HasMany(e => e.MaintanceLogs)
                 .WithRequired(e => e.Transport)
-                .HasForeignKey(e => e.Transport_idTransport)
+                .HasForeignKey(e => e.IdTransport)
                 .WillCascadeOnDelete(false);
         }
     }
