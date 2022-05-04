@@ -1,5 +1,6 @@
 namespace PTC_Management
 {
+    using PTC_Management.EF;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ namespace PTC_Management
     using System.Data.Entity;
 
     [Table("Employee")]
-    public partial class Employee
+    public partial class Employee : Entity
     {
         static AppContext db;
         public Employee()
@@ -18,8 +19,6 @@ namespace PTC_Management
             Itinerary = new HashSet<Itinerary>();
         }
 
-        [Key]
-        public int IdEmployee { get; set; }
 
         [StringLength(50)]
         public string surname { get; set; }

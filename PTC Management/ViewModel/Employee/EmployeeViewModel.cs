@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PTC_Management.EF;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -9,7 +10,9 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBase
     {
-        Employee employee = new Employee();
+        Repository<Employee> employee = new Repository<Employee>(new AppContext());
+
+
         private object selectedItem;
         public object SelectedItem
         {
@@ -32,7 +35,7 @@ namespace PTC_Management.ViewModel
         {
             CreateDialogCommand = new ParameterizedCommand<string>(CreateDialog);
             ChangeDialogCommand = new ParameterizedCommand<string>(ChangeDialog);
-            EmployeeItems = CollectionViewSource.GetDefaultView(employee.GetInfo());
+            EmployeeItems = CollectionViewSource.GetDefaultView(employee.GetAll());
             EmployeeItems.Filter = FilterEmployee;
         }
 

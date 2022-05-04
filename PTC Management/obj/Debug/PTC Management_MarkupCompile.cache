@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\App.xaml
-131287184631
+132015903264
 
-301287886867
-171305778051
+30-334559990
+17-522177364
 Styles\GeneralStyles.xaml;Templates\MainWindowTemplates.xaml;Views\EmployeeDialogView.xaml;Views\EmployeeView.xaml;Views\ItineraryView.xaml;Views\LogOfDepartureAndEntryView.xaml;Views\MaintanceLogView.xaml;Views\RouteView.xaml;Views\ScheduleOfEmployeeView.xaml;Views\TransportView.xaml;Views\Windows\Dialog.xaml;Views\Windows\MainWindow.xaml;Views\Windows\TransportInfo.xaml;
 
-False
+True
 

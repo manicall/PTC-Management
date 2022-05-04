@@ -52,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\AppContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repository\Entity.cs" />
+    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Entityes\Date.cs" />
     <Compile Include="Entityes\Date_has_Employee.cs" />
     <Compile Include="Entityes\Employee.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="Entityes\MaintanceLog.cs" />
     <Compile Include="Entityes\Route.cs" />
     <Compile Include="Entityes\Transport.cs" />
+    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
