@@ -9,7 +9,7 @@ namespace PTC_Management.EF
     [Table("Employee")]
     public partial class Employee : Entity
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        
         public Employee()
         {
             Date_has_Employee = new HashSet<Date_has_Employee>();
@@ -30,7 +30,7 @@ namespace PTC_Management.EF
 
         public virtual ICollection<Date_has_Employee> Date_has_Employee { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
         public virtual ICollection<Itinerary> Itineraries { get; set; }
     }
 }

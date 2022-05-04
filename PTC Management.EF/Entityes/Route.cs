@@ -9,7 +9,7 @@ namespace PTC_Management.EF
     [Table("Route")]
     public partial class Route : Entity
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        
         public Route()
         {
             Itineraries = new HashSet<Itinerary>();
@@ -23,7 +23,7 @@ namespace PTC_Management.EF
 
         public float? Distant { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
         public virtual ICollection<Itinerary> Itineraries { get; set; }
     }
 }

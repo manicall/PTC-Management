@@ -9,7 +9,7 @@ namespace PTC_Management.EF
     [Table("Date")]
     public partial class Date : Entity
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        
         public Date()
         {
             Date_has_Employee = new HashSet<Date_has_Employee>();
@@ -19,10 +19,10 @@ namespace PTC_Management.EF
         [Column("Date", TypeName = "date")]
         public DateTime? Date1 { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
         public virtual ICollection<Date_has_Employee> Date_has_Employee { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
         public virtual ICollection<EmployeeSchedule> EmployeeSchedules { get; set; }
     }
 }
