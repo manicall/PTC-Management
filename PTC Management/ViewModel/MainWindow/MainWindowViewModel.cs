@@ -10,10 +10,10 @@ namespace PTC_Management
     {
         #region поля и свойства
         private readonly Destinations _destinations = new Destinations();
-        internal Destinations Destinations => _destinations;
+        public Destinations Destinations => _destinations;
 
         private readonly Backup _Backup = new Backup();
-        internal Backup Backup => _Backup;
+        public Backup Backup => _Backup;
 
         public bool AutoSaveChanges
         {
@@ -39,13 +39,11 @@ namespace PTC_Management
             BackUpCommand = new ParameterizedCommand<string>(OnBackUp);
             // установка представления по умолчанию
             CurrentViewModel = ViewModels._employee;
-
-            Backup.RestoreBackup();
         }
 
 
-        internal ParameterizedCommand<string> NavigationCommand { get; private set; }
-        internal ParameterizedCommand<string> BackUpCommand { get; private set; }
+        public ParameterizedCommand<string> NavigationCommand { get; private set; }
+        public ParameterizedCommand<string> BackUpCommand { get; private set; }
 
         private void OnNavigation(string destination)
         {
