@@ -1,5 +1,7 @@
 ﻿using PTC_Management.EF;
+using PTC_Management.Model;
 using PTC_Management.Windows;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -7,6 +9,11 @@ namespace PTC_Management.ViewModel
 {
     class ViewModelBase : BindableBase
     {
+        Repository<Entity> entity = new Repository<Entity>(new PTC_ManagementContext());
+
+        private Actions _actions = new Actions();
+        public Actions Actions { get => _actions; }
+
         public ViewModelBase() {
             DialogCommand = new ParameterizedCommand<string>(OnDialog);
         }
@@ -21,13 +28,37 @@ namespace PTC_Management.ViewModel
         public ICommand DialogCommand { get; set; }
         private void OnDialog(string action)
         {
+            DialogViewModel dialog;
+            switch (action) {
+                case Actions._add:
+                    dialog = new DialogViewModel();
+                    Show(dialog);
+                    break;
 
-            var child = new DialogViewModel() {
-                SelectedItem = (Entity)_selectedItem
-            };
+                case Actions._update:
+                    dialog = new DialogViewModel() { SelectedItem = (Entity)_selectedItem };
+                    Show(dialog);
+                    break;
 
-            Show(child);
+                case Actions._remove:
+                    Remove(((Entity)_selectedItem).Id);
+                    break;
+
+                case Actions._copy:
+                    dialog = new DialogViewModel() { SelectedItem = (Entity)_selectedItem };
+                    Show(dialog);
+                    break;
+
+            }
         }
+
+        public virtual void Add() { }
+
+        public virtual void Update() { }
+
+        public virtual void Remove(int id) { Console.WriteLine("Вызвался базовый метод Remove"); }
+
+        public virtual void Copy() { }
 
         /// <summary>
         /// Окно в котором показывается текущий ViewModel

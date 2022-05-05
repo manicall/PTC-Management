@@ -22,6 +22,6 @@ namespace PTC_Management.EF
         void Update(T item);
         
         void Remove(int id);
-        
+
     }
 }

@@ -54,7 +54,7 @@ namespace PTC_Management.ViewModel
         }
 
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register(MyLiterals<Employee>.FilterText, typeof(string), 
+            DependencyProperty.Register(MyLiterals<Employee>.FilterText, typeof(string),
                 typeof(EmployeeViewModel), new PropertyMetadata("", FilterText_Changed));
 
         public ICollectionView EmployeeItems
@@ -67,5 +67,13 @@ namespace PTC_Management.ViewModel
             DependencyProperty.Register(MyLiterals<Employee>.Items, typeof(ICollectionView),
                 typeof(EmployeeViewModel), new PropertyMetadata(null));
 
+        void LoadItems() {
+            EmployeeItems = CollectionViewSource.GetDefaultView(employee.GetAll());
+        }
+
+        public override void Remove(int id) {
+            employee.Remove(id);
+            if (Repository<Employee>.AutoSaveChanges) LoadItems();
+        }
     }
 }

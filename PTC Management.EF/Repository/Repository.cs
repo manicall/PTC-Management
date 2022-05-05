@@ -46,14 +46,21 @@ namespace PTC_Management.EF
                 _db.SaveChanges();
         }
 
+        /// <summary>
+        /// Выполняет удаление из базы данных
+        /// </summary>
+        /// <param name="id">Ключ, по которому происходит
+        /// поиск записи в таблице</param>
         public void Remove(int id)
         {
             var item = Get(id);
             if (item is null) return;
             _db.Entry(item).State = EntityState.Deleted;
 
+            // TODO: Обработать исключение, если сущность имеет связь
             if (AutoSaveChanges)
                 _db.SaveChanges();
         }
+
     }
 }
