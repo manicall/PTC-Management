@@ -28,7 +28,7 @@
                         Command = "{Binding ChangeDialogCommand}"
                         CommandParameter="Изменить сотрудника"/>
                 <Button Name="delete" Style="{StaticResource BlackButton}" 
-                        Content="Удалить"    />
+                        Content="Удалить" />
                 <Button Name="copy" Style="{StaticResource BlackButton}" 
                         Content="Копировать" />
 

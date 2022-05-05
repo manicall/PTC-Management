@@ -7,7 +7,6 @@
 
    mc:Ignorable = "d" 
    Title = "Управление ПАТП" Height = "400" Width = "750">
-
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
