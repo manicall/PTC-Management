@@ -7,7 +7,7 @@ namespace PTC_Management.ViewModel
 {
     internal class ItineraryViewModel : BindableBase
     {
-        readonly Repository<Itinerary> _itinerary = new Repository<Itinerary>(new AppContext());
+        readonly Repository<Itinerary> _itinerary = new Repository<Itinerary>(new PTC_ManagementContext());
 
         public ItineraryViewModel()
         {

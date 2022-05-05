@@ -7,7 +7,7 @@ namespace PTC_Management.ViewModel
 {
     internal class MaintanceLogViewModel : BindableBase
     {
-        readonly Repository<MaintanceLog> _maintanceLog = new Repository<MaintanceLog>(new AppContext());
+        readonly Repository<MaintanceLog> _maintanceLog = new Repository<MaintanceLog>(new PTC_ManagementContext());
 
         public MaintanceLogViewModel()
         {

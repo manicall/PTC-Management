@@ -7,12 +7,12 @@ namespace PTC_Management.EF
 {
     public class Repository<T> : IRepository<T> where T : Entity, new()
     {
-        private readonly AppContext _db;
+        private readonly PTC_ManagementContext _db;
         private readonly DbSet<T> _Set;
 
-        public bool AutoSaveChanges { get; set; } = true;
+        public static bool AutoSaveChanges { get; set; } = true;
 
-        public Repository(AppContext db)
+        public Repository(PTC_ManagementContext db)
         {
             _db = db;
             _Set = db.Set<T>();
@@ -21,6 +21,8 @@ namespace PTC_Management.EF
         public virtual IQueryable<T> Items => _Set;
 
         public T Get(int id) => Items.SingleOrDefault(item => item.Id == id);
+        public T GetLast(int id) => Items.LastOrDefault(item => item.Id == id);
+
         public List<T> GetAll() {
             return Items.DefaultIfEmpty().ToList();
         }

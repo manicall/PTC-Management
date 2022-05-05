@@ -1,5 +1,5 @@
 ﻿using PTC_Management.EF;
-
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -10,7 +10,7 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBase
     {
-        Repository<Employee> employee = new Repository<Employee>(new AppContext());
+        Repository<Employee> employee = new Repository<Employee>(new PTC_ManagementContext());
 
         private object selectedItem;
         public object SelectedItem

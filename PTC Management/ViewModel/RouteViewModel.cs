@@ -7,7 +7,7 @@ namespace PTC_Management.ViewModel
 {
     internal class RouteViewModel : BindableBase
     {
-        readonly Repository<Route> _route = new Repository<Route>(new AppContext());
+        readonly Repository<Route> _route = new Repository<Route>(new PTC_ManagementContext());
 
         public RouteViewModel()
         {

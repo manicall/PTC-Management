@@ -14,60 +14,78 @@
     <Window.Resources>
         <ResourceDictionary Source="../../Templates/MainWindowTemplates.xaml" />
     </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" IsMainMenu="True">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Сохранить" Command="" />
+                <Separator />
+                <MenuItem IsCheckable="True" IsChecked="{Binding AutoSaveChanges}" Header="Автосохранение" Command="" />
+                <Separator />
+                <MenuItem Header="Выход" Command="" />
+            </MenuItem>
+            
+            <MenuItem Header="Управление базой данных">
+                <MenuItem Header="Создать бекап" Command="{Binding BackUpCommand}" CommandParameter="{Binding Backup.Create}" />
+                <MenuItem Header="Восстановить бекап" Command="{Binding BackUpCommand}" CommandParameter="{Binding Backup.Restore}" />
+            </MenuItem>
+        </Menu>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height = "50" />
-            <RowDefinition Height = "*" />
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "50" />
+                <RowDefinition Height = "*" />
+            </Grid.RowDefinitions>
+            <Grid>
 
-        <Grid x:Name = "NavBar">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "*" />
+            </Grid>
+            <Grid x:Name = "NavBar">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width = "*" />
+                    <ColumnDefinition Width = "*" />
+                    <ColumnDefinition Width = "*" />
+                    <ColumnDefinition Width = "*" />
+                    <ColumnDefinition Width = "*" />
 
-            </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+                
+                <Button Name="buttonEmployee"
+                    Content = "Сотрудники" 
+                    Command = "{Binding NavigationCommand}" 
+                    CommandParameter = "{Binding Destinations.Employee}"
+                    Grid.Column = "0" />
 
-            <Button Name="buttonEmployee"
-                Content = "Сотрудники" 
-                Command = "{Binding NavCommand}" 
-                CommandParameter = "{Binding Destinations.Employee}"
-                Grid.Column = "0" />
+                <Button Name="buttonRoute"
+                    Content = "Маршруты" 
+                    Command = "{Binding NavigationCommand}" 
+                    CommandParameter = "{Binding Destinations.Routes}" 
+                    Grid.Column = "1" />
 
-            <Button Name="buttonRoute"
-                Content = "Маршруты" 
-                Command = "{Binding NavCommand}" 
-                CommandParameter = "{Binding Destinations.Routes}" 
-                Grid.Column = "1" />
+                <Button Name="buttonTransport"
+                    Content = "Транспорт" 
+                    Command = "{Binding NavigationCommand}" 
+                    CommandParameter = "{Binding Destinations.Transport}" 
+                    Grid.Column = "2" />
 
-            <Button Name="buttonTransport"
-                Content = "Транспорт" 
-                Command = "{Binding NavCommand}" 
-                CommandParameter = "{Binding Destinations.Transport}" 
-                Grid.Column = "2" />
-
-            <Button Name="buttonItinerary"
-                Content = "Журнал путевых листов" 
-                Command = "{Binding NavCommand}" 
-                CommandParameter = "{Binding Destinations.Itinerary}" 
-                Grid.Column = "3" />
+                <Button Name="buttonItinerary"
+                    Content = "Журнал путевых листов" 
+                    Command = "{Binding NavigationCommand}" 
+                    CommandParameter = "{Binding Destinations.Itinerary}" 
+                    Grid.Column = "3" />
 
 
-            <Button Name="buttonSchedule"
-                Content = "Расписание" 
-                Command = "{Binding NavCommand}" 
-                CommandParameter = "{Binding Destinations.Schedule}" 
-                Grid.Column = "4" />
+                <Button Name="buttonSchedule"
+                    Content = "Расписание" 
+                    Command = "{Binding NavigationCommand}" 
+                    CommandParameter = "{Binding Destinations.Schedule}" 
+                    Grid.Column = "4" />
+
+            </Grid>
+
+            <Grid x:Name = "MainContent" Grid.Row = "1">
+                <ContentControl Content = "{Binding CurrentViewModel}" />
+            </Grid>
 
         </Grid>
-
-        <Grid x:Name = "MainContent" Grid.Row = "1">
-            <ContentControl Content = "{Binding CurrentViewModel}" />
-        </Grid>
-
-    </Grid>
+    </DockPanel>
 
 </Window>

@@ -1,11 +1,7 @@
-﻿using PTC_Management.Model.MainWindow;
+﻿using PTC_Management.EF;
+using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel;
-using System.Configuration;
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Data.SqlClient;
-using System.Data;
+
 
 namespace PTC_Management
 {
@@ -13,8 +9,17 @@ namespace PTC_Management
     class MainWindowViewModel : ViewModelBase
     {
         #region поля и свойства
-        private Destinations _destinations = new Destinations();
-        public Destinations Destinations => _destinations;
+        private readonly Destinations _destinations = new Destinations();
+        internal Destinations Destinations => _destinations;
+
+        private readonly Backup _Backup = new Backup();
+        internal Backup Backup => _Backup;
+
+        public bool AutoSaveChanges
+        {
+            get { return Repository<Entity>.AutoSaveChanges; }
+            set { Repository<Entity>.AutoSaveChanges = value; }
+        }
 
 
         private BindableBase _CurrentViewModel;
@@ -29,67 +34,20 @@ namespace PTC_Management
         public MainWindowViewModel()
         {
             // создаем команду перехватывающую сообщения от кнопки
-            NavCommand = new ParameterizedCommand<string>(OnNav);
+            NavigationCommand = new ParameterizedCommand<string>(OnNavigation);
+
+            BackUpCommand = new ParameterizedCommand<string>(OnBackUp);
             // установка представления по умолчанию
             CurrentViewModel = ViewModels._employee;
 
             Backup.RestoreBackup();
         }
 
-        class Backup
-        {
-            // подключение к базе данных через строку подключения 
-            static readonly string connectionString = ConfigurationManager.ConnectionStrings["AppContext"].ConnectionString;
 
-            public static void CreateBackup(string backupFile = @"D:\test.bak")
-            {
-                string connectionString = ConfigurationManager
-                    .ConnectionStrings["AppContext"]
-                    .ConnectionString;
+        internal ParameterizedCommand<string> NavigationCommand { get; private set; }
+        internal ParameterizedCommand<string> BackUpCommand { get; private set; }
 
-                string stringCommands = $"BACKUP DATABASE[PTC Management] " +
-                    $"TO DISK = N'{backupFile}' WITH init;";
-
-                SqlConnection connection = new SqlConnection(connectionString);
-                SqlCommand command = new SqlCommand(stringCommands, connection);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-
-            public static void RestoreBackup(string backupFile = @"D:\test.bak")
-            {
-                SqlConnection connection = new SqlConnection(connectionString);
-                connection.Open();
-
-                string[] stringCommands = new string[3];
-
-                // устанавливает однопользовательский режим базы данных
-                stringCommands[0] = "ALTER DATABASE [PTC Management]" +
-                    " SET SINGLE_USER WITH ROLLBACK IMMEDIATE";
-                // восстанавливает базу данных из файла бекапа
-                stringCommands[1] = $"USE MASTER " +
-                    $"RESTORE DATABASE [PTC Management] " +
-                    $"FROM DISK='{backupFile}'";
-                // устанавливает многопользовательский режим базы данных
-                stringCommands[2] = "ALTER DATABASE [PTC Management] " +
-                    "SET MULTI_USER";
-
-                foreach (var stringCommand in stringCommands)
-                {
-                    new SqlCommand(stringCommand, connection).ExecuteNonQuery();
-                }
-
-                connection.Close();
-            }
-        }
-
-
-
-        public ParameterizedCommand<string> NavCommand { get; private set; }
-
-        private void OnNav(string destination)
+        private void OnNavigation(string destination)
         {
             switch (destination)
             {
@@ -111,6 +69,23 @@ namespace PTC_Management
                 default:
                     CurrentViewModel = null;
                     break;
+            }
+        }
+
+
+
+        private void OnBackUp(string command)
+        {
+            switch (command)
+            {
+                case Backup._create: 
+                    Backup.CreateBackup();
+                    break;                 
+                case Backup._restore: 
+                    Backup.RestoreBackup();
+                    break;
+
+                default: break;
             }
         }
     }

@@ -7,7 +7,7 @@ namespace PTC_Management.ViewModel
 {
     internal class TransportViewModel : BindableBase
     {
-        readonly Repository<Transport> _transport = new Repository<Transport>(new AppContext());
+        readonly Repository<Transport> _transport = new Repository<Transport>(new PTC_ManagementContext());
 
         public TransportViewModel()
         {

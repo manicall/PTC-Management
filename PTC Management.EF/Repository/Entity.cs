@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PTC_Management.EF
 {
-    public abstract class Entity
+    public class Entity
     {
         public int Id { get; set; }
     }
