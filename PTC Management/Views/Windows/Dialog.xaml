@@ -8,12 +8,19 @@
         xmlns:local="clr-namespace:PTC_Management.Windows"
         mc:Ignorable="d"
         Title="{Binding Title}" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <viewModels:DialogViewModel/>
+    </Window.DataContext>
+    
     <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModels:EmployeeDialogViewModel}">
+        <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
             <views:EmployeeDialogView />
         </DataTemplate>
     </Window.Resources>
 
+
+    
     <Grid>
         <ContentControl Content="{Binding }" />
     </Grid>

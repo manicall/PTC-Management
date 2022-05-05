@@ -6,7 +6,7 @@ using PTC_Management.ViewModel;
 namespace PTC_Management
 {
 
-    class MainWindowViewModel : ViewModelBase
+    class MainWindowViewModel : BindableBase
     {
         #region Поля и свойства
         private readonly Destinations _destinations = new Destinations();

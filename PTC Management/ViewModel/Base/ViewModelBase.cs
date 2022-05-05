@@ -1,14 +1,38 @@
-﻿using PTC_Management.Windows;
+﻿using PTC_Management.EF;
+using PTC_Management.Windows;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
 {
     class ViewModelBase : BindableBase
     {
+        public ViewModelBase() {
+            DialogCommand = new ParameterizedCommand<string>(OnDialog);
+        }
+
+        private object _selectedItem;
+        public object SelectedItem
+        {
+            get => _selectedItem;
+            set => _selectedItem = value;  
+        }
+
+        public ICommand DialogCommand { get; set; }
+        private void OnDialog(string action)
+        {
+
+            var child = new DialogViewModel() {
+                SelectedItem = (Entity)_selectedItem
+            };
+
+            Show(child);
+        }
+
         /// <summary>
         /// Окно в котором показывается текущий ViewModel
         /// </summary>
-        private Dialog _wnd = null;
+        private Dialog _window = null;
 
         /// <summary>
         /// Заголовок окна
@@ -37,10 +61,10 @@ namespace PTC_Management.ViewModel
         public bool Close()
         {
             var result = false;
-            if (_wnd != null)
+            if (_window != null)
             {
-                _wnd.Close();
-                _wnd = null;
+                _window.Close();
+                _window = null;
                 result = true;
             }
             return result;
@@ -52,10 +76,10 @@ namespace PTC_Management.ViewModel
         /// <param name="viewModel"></param>
         protected void Show(ViewModelBase viewModel)
         {
-            viewModel._wnd = new Dialog();
-            viewModel._wnd.DataContext = viewModel;
-            viewModel._wnd.Closed += (sender, e) => Closed();
-            viewModel._wnd.ShowDialog();
+            viewModel._window = new Dialog();
+            viewModel._window.DataContext = viewModel;
+            viewModel._window.Closed += (sender, e) => Closed();
+            viewModel._window.ShowDialog();
         }
     }
 }

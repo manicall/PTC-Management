@@ -11,7 +11,7 @@
 
     <UserControl.Resources>
 
-        <DataTemplate DataType="{x:Type viewModels:EmployeeDialogViewModel}">
+        <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
             <views:EmployeeDialogView />
         </DataTemplate>
 
@@ -42,22 +42,22 @@
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockSurname" Style="{StaticResource TextBlockStyle}">Фамилия</TextBlock>
             <TextBox Name="textBoxSurname" Style="{StaticResource TextBoxStyle}" 
-                     Text="{Binding SelectedEmployee.surname, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding SelectedItem.Surname, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockName" Style="{StaticResource TextBlockStyle}">Имя</TextBlock>
             <TextBox Name="textBoxName" Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding SelectedEmployee.Name, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding SelectedItem.Name, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockMiddleName" Style="{StaticResource TextBlockStyle}">Отчество</TextBlock>
             <TextBox Name="textBoxMiddleName" Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding SelectedEmployee.Patronymic, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding SelectedItem.Patronymic, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockDriverLicense" Style="{StaticResource TextBlockStyle}">Водительское удостоверение</TextBlock>
             <TextBox Name="textBoxDriverLicense" Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding SelectedEmployee.driverLicense, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding SelectedItem.DriverLicense, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         
         

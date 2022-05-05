@@ -21,11 +21,11 @@
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
                 <Button Name="create" Style="{StaticResource BlackButton}" 
                         Content="Создать"
-                        Command = "{Binding CreateDialogCommand}"
+                        Command = "{Binding DialogCommand}"
                         CommandParameter="Создать сотрудника"/>
-                <Button Name="change" Style="{StaticResource BlackButton}" 
+                <Button Name="update" Style="{StaticResource BlackButton}" 
                         Content="Изменить"
-                        Command = "{Binding ChangeDialogCommand}"
+                        Command = "{Binding DialogCommand}"
                         CommandParameter="Изменить сотрудника"/>
                 <Button Name="delete" Style="{StaticResource BlackButton}" 
                         Content="Удалить" />

@@ -13,50 +13,10 @@ namespace PTC_Management.ViewModel
     {
         Repository<Employee> employee = new Repository<Employee>(new PTC_ManagementContext());
 
-        private object _selectedItem;
-        public object SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                if (value != _selectedItem)
-                {
-                    _selectedItem = value;
-                  
-                }
-            }
-        }
-
-        public ICommand CreateDialogCommand { get; set; }
-        public ICommand ChangeDialogCommand { get; set; }
-
         public EmployeeViewModel()
         {
-            CreateDialogCommand = new ParameterizedCommand<string>(CreateDialog);
-            ChangeDialogCommand = new ParameterizedCommand<string>(ChangeDialog);
             EmployeeItems = CollectionViewSource.GetDefaultView(employee.GetAll());
             EmployeeItems.Filter = FilterEmployee;
-        }
-
-        private void CreateDialog(string title)
-        {
-            var child = new EmployeeDialogViewModel()
-            {
-                Title = title,
-            };
-
-            Show(child);
-        }
-
-        private void ChangeDialog(string title)
-        {
-            var child = new EmployeeDialogViewModel()
-            {
-                Title = title,
-                SelectedEmployee = (Employee)_selectedItem
-            };
-
-            Show(child);
         }
 
         private bool FilterEmployee(object obj)
