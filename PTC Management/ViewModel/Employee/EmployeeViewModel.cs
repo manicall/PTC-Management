@@ -1,4 +1,5 @@
 ﻿using PTC_Management.EF;
+using PTC_Management.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,16 +13,16 @@ namespace PTC_Management.ViewModel
     {
         Repository<Employee> employee = new Repository<Employee>(new PTC_ManagementContext());
 
-        private object selectedItem;
+        private object _selectedItem;
         public object SelectedItem
         {
-            get { return this.selectedItem; }
+            get { return _selectedItem; }
             set
             {
-                if (value != this.selectedItem)
+                if (value != _selectedItem)
                 {
-                    this.selectedItem = value;
-                    this.OnPropertyChanged("SelectedItem");
+                    _selectedItem = value;
+                  
                 }
             }
         }
@@ -44,7 +45,6 @@ namespace PTC_Management.ViewModel
                 Title = title,
             };
 
-           
             Show(child);
         }
 
@@ -53,8 +53,7 @@ namespace PTC_Management.ViewModel
             var child = new EmployeeDialogViewModel()
             {
                 Title = title,
-                SelectedEmployee = (Employee)selectedItem
-
+                SelectedEmployee = (Employee)_selectedItem
             };
 
             Show(child);
@@ -95,7 +94,7 @@ namespace PTC_Management.ViewModel
         }
 
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register("FilterEmployeeText", typeof(string), 
+            DependencyProperty.Register(MyLiterals<Employee>.FilterText, typeof(string), 
                 typeof(EmployeeViewModel), new PropertyMetadata("", FilterText_Changed));
 
         public ICollectionView EmployeeItems
@@ -105,7 +104,7 @@ namespace PTC_Management.ViewModel
         }
 
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("EmployeeItems", typeof(ICollectionView),
+            DependencyProperty.Register(MyLiterals<Employee>.Items, typeof(ICollectionView),
                 typeof(EmployeeViewModel), new PropertyMetadata(null));
 
     }

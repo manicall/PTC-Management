@@ -8,7 +8,7 @@ namespace PTC_Management
 
     class MainWindowViewModel : ViewModelBase
     {
-        #region поля и свойства
+        #region Поля и свойства
         private readonly Destinations _destinations = new Destinations();
         public Destinations Destinations => _destinations;
 
@@ -28,23 +28,26 @@ namespace PTC_Management
             get => _CurrentViewModel;
             set => SetProperty(ref _CurrentViewModel, value);
         }
-        #endregion
 
+        #endregion
 
         public MainWindowViewModel()
         {
-            // создаем команду перехватывающую сообщения от кнопки
+            // создание команды перехватывающей сообщения от кнопки
             NavigationCommand = new ParameterizedCommand<string>(OnNavigation);
-
+            // создание команды работы с бекапом базы данных
             BackUpCommand = new ParameterizedCommand<string>(OnBackUp);
             // установка представления по умолчанию
             CurrentViewModel = ViewModels._employee;
         }
 
-
+        #region Команды
         public ParameterizedCommand<string> NavigationCommand { get; private set; }
         public ParameterizedCommand<string> BackUpCommand { get; private set; }
 
+        #endregion
+
+        #region Методы
         private void OnNavigation(string destination)
         {
             switch (destination)
@@ -70,8 +73,6 @@ namespace PTC_Management
             }
         }
 
-
-
         private void OnBackUp(string command)
         {
             switch (command)
@@ -86,5 +87,7 @@ namespace PTC_Management
                 default: break;
             }
         }
+
+        #endregion
     }
 }

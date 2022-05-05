@@ -33,9 +33,11 @@
         </Style>
     </UserControl.Resources>
     
-    <StackPanel Margin="10,0,0,0">
+    <StackPanel Margin="10,0,10,10">
         <StackPanel Style="{StaticResource StackPanelStyle}">
-            <Button Name="buttonWrite" Style="{StaticResource BlackButton }" Click="buttonWrite_Click">Записать</Button>
+            <Button Name="buttonWriteAndClose" Style="{StaticResource BlackButton }" Margin="0 0 35 0" Width="auto" Click="buttonWrite_Click">Записать и закрыть</Button>
+            <Button Name="buttonWrite" Style="{StaticResource BlackButton }" >Записать</Button>
+            <Button Name="buttonClose" Style="{StaticResource BlackButton }" >Закрыть</Button>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockSurname" Style="{StaticResource TextBlockStyle}">Фамилия</TextBlock>

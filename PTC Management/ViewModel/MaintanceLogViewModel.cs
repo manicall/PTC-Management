@@ -1,4 +1,5 @@
 ﻿using PTC_Management.EF;
+using PTC_Management.Model;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
@@ -20,7 +21,7 @@ namespace PTC_Management.ViewModel
         {
             bool result = true;
             MaintanceLog current = obj as MaintanceLog;
-            if (!string.IsNullOrWhiteSpace(FilterMaintanceLogText) && current != null && !current.Id.ToString().Contains(FilterMaintanceLogText) /*&& !current.LastName.Contains(FilterText)*/)
+            if (!string.IsNullOrWhiteSpace(FilterMaintanceLogText) && current != null && !current.Id.ToString().Contains(FilterMaintanceLogText));
             {
                 result = false;
             }
@@ -45,7 +46,7 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register("FilterMaintanceLogText", typeof(string), typeof(MaintanceLogViewModel), new PropertyMetadata("", FilterText_Changed));
+            DependencyProperty.Register(MyLiterals<MaintanceLog>.Items, typeof(string), typeof(MaintanceLogViewModel), new PropertyMetadata("", FilterText_Changed));
 
         public ICollectionView MaintanceLogItems
         {
@@ -55,7 +56,7 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("MaintanceLogItems", typeof(ICollectionView), typeof(MaintanceLogViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register(MyLiterals<MaintanceLog>.FilterText, typeof(ICollectionView), typeof(MaintanceLogViewModel), new PropertyMetadata(null));
 
     }
 }

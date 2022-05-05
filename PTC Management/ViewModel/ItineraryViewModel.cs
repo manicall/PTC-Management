@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Data;
 using PTC_Management.EF;
+using PTC_Management.Model;
 
 namespace PTC_Management.ViewModel
 {
@@ -25,6 +26,7 @@ namespace PTC_Management.ViewModel
             }
             return result;
         }
+
         private static void FilterText_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var current = d as ItineraryViewModel;
@@ -44,7 +46,7 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register("FilterItineraryText", typeof(string), typeof(ItineraryViewModel), new PropertyMetadata("", FilterText_Changed));
+            DependencyProperty.Register(MyLiterals<Itinerary>.FilterText, typeof(string), typeof(ItineraryViewModel), new PropertyMetadata("", FilterText_Changed));
 
         public ICollectionView ItineraryItems
         {
@@ -54,7 +56,7 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("ItineraryItems", typeof(ICollectionView), typeof(ItineraryViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register(MyLiterals<Itinerary>.Items, typeof(ICollectionView), typeof(ItineraryViewModel), new PropertyMetadata(null));
 
     }
 }

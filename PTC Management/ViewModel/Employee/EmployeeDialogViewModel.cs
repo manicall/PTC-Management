@@ -14,7 +14,6 @@ namespace PTC_Management.ViewModel
             set { SetValue(SelectedEmployeeProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for SelectedEmployee.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedEmployeeProperty =
             DependencyProperty.Register("SelectedEmployee", typeof(Employee), typeof(EmployeeDialogViewModel), new PropertyMetadata(null));
 
@@ -25,7 +24,7 @@ namespace PTC_Management.ViewModel
             set { SetValue(CloseCommandProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for CloseCommand.  This enables animation, styling, binding, etc...
+        
         public static readonly DependencyProperty CloseCommandProperty =
             DependencyProperty.Register("CloseCommand", typeof(ICommand), typeof(EmployeeDialogViewModel), new PropertyMetadata(null));
 

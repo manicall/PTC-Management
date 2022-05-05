@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Data;
 using PTC_Management.EF;
+using PTC_Management.Model;
 
 namespace PTC_Management.ViewModel
 {
@@ -44,7 +45,7 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register("FilterTransportText", typeof(string), typeof(TransportViewModel), new PropertyMetadata("", FilterText_Changed));
+            DependencyProperty.Register(MyLiterals<Transport>.FilterText, typeof(string), typeof(TransportViewModel), new PropertyMetadata("", FilterText_Changed));
 
         public ICollectionView TransportItems
         {
@@ -54,7 +55,7 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("TransportItems", typeof(ICollectionView), typeof(TransportViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register(MyLiterals<Transport>.Items, typeof(ICollectionView), typeof(TransportViewModel), new PropertyMetadata(null));
 
     }
 }
