@@ -31,40 +31,7 @@ namespace PTC_Management.ViewModel
         }
 
         public ICommand DialogCommand { get; set; }
-        private void OnDialog(string action)
-        {
-            CurrentAction = action;
-            DialogViewModel dialog;
-            switch (action) {
-                case Actions._add:
-                    dialog = new DialogViewModel() { Title = Title, CurrentAction=action };
-                    Show(dialog);
-                    break;
-
-                case Actions._update:
-                    dialog = new DialogViewModel() { Title = Title, DialogItem = (Entity)_selectedItem, CurrentAction = action };
-                    Show(dialog);
-                    break;
-
-                case Actions._remove:
-                    Remove(((Entity)_selectedItem).Id);
-                    break;
-
-                case Actions._copy:
-                    dialog = new DialogViewModel() { Title = Title, DialogItem = (Entity)_selectedItem, CurrentAction = action };
-                    Show(dialog);
-                    break;
-            }
-        }
-
-        //public virtual void Add(Entity item) { }
-
-        public virtual void Update() { }
-
-        public virtual void Remove(int id) { }
-
-        public virtual void Copy() { }
-
+        public virtual void OnDialog(string action) { }
 
         /// <summary>
         /// Окно в котором показывается текущий ViewModel
@@ -90,6 +57,21 @@ namespace PTC_Management.ViewModel
         protected virtual void Closed()
         {
 
+        }
+
+        /// <summary>
+        /// Методы вызываемый для закрытия окна связанного с ViewModel
+        /// </summary>
+        public bool Close()
+        {
+            var result = false;
+            if (_window != null)
+            {
+                _window.Close();
+                _window = null;
+                result = true;
+            }
+            return result;
         }
 
         /// <summary>

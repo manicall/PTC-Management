@@ -9,14 +9,14 @@ using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
 {
-    internal class EmployeeViewModel : DialogViewModel
+    internal class EmployeeViewModel : ViewModelBase
     {
-        Repository<Employee> employee = new Repository<Employee>(new PTC_ManagementContext());
+        Repository<Employee> _employee = new Repository<Employee>(new PTC_ManagementContext());
 
         public EmployeeViewModel()
         {
             Title = "Окно сотрудников";
-            EmployeeItems = CollectionViewSource.GetDefaultView(employee.GetAll());
+            EmployeeItems = CollectionViewSource.GetDefaultView(_employee.GetAll());
             EmployeeItems.Filter = FilterEmployee;
         }
 
@@ -51,11 +51,11 @@ namespace PTC_Management.ViewModel
 
         public string FilterEmployeeText
         {
-            get { return (string)GetValue(FilterTextProperty); }
-            set { SetValue(FilterTextProperty, value); }
+            get { return (string)GetValue(_filterTextProperty); }
+            set { SetValue(_filterTextProperty, value); }
         }
 
-        public static readonly DependencyProperty FilterTextProperty =
+        public static readonly DependencyProperty _filterTextProperty =
             DependencyProperty.Register(MyLiterals<Employee>.FilterText, typeof(string),
                 typeof(EmployeeViewModel), new PropertyMetadata("", FilterText_Changed));
 
@@ -64,35 +64,48 @@ namespace PTC_Management.ViewModel
         #region Items
         public ICollectionView EmployeeItems
         {
-            get { return (ICollectionView)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
+            get { return (ICollectionView)GetValue(_itemsProperty); }
+            set { SetValue(_itemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty =
+        public static readonly DependencyProperty _itemsProperty =
             DependencyProperty.Register(MyLiterals<Employee>.Items, typeof(ICollectionView),
                 typeof(EmployeeViewModel), new PropertyMetadata(null));
 
         #endregion
 
-        void LoadItems() {
-            EmployeeItems = CollectionViewSource.GetDefaultView(employee.GetAll());
-        }
+ 
 
-
-        public override void Add(Entity item)
+        public override void OnDialog(string action)
         {
-            employee.Add((Employee)item);
-            if (Repository<Employee>.AutoSaveChanges) LoadItems();
+            DialogViewModel dialog;
+            switch (action)
+            {
+                case Actions._add:
+                    dialog = new DialogViewModel() { DialogItem = new Employee(), Title = Title, CurrentAction = action };
+                    Show(dialog);
+                    break;
+
+                case Actions._update:
+                    if (SelectedItem is null) return;
+                    dialog = new DialogViewModel() { Title = Title, DialogItem = (Employee)SelectedItem, CurrentAction = action };
+                    Show(dialog);
+                    break;
+
+                case Actions._remove:
+                    if (SelectedItem is null) return;
+                    ((Employee)SelectedItem).Remove();
+                    break;
+
+                case Actions._copy:
+                    if (SelectedItem is null) return;
+                    dialog = new DialogViewModel() { Title = Title, DialogItem = (Employee)SelectedItem, CurrentAction = action };
+                    Show(dialog);
+                    break;
+            }
+
+            EmployeeItems = CollectionViewSource.GetDefaultView(_employee.GetAll());
         }
 
-        public override void Update() { }
-
-        public override void Remove(int id)
-        {
-            employee.Remove(id);
-            if (Repository<Employee>.AutoSaveChanges) LoadItems();
-        }
-
-        public override void Copy() { }
     }
 }

@@ -28,8 +28,27 @@ namespace PTC_Management.EF
         public string DriverLicense { get; set; }
 
         public virtual ICollection<Date_has_Employee> Date_has_Employee { get; set; }
-
         
         public virtual ICollection<Itinerary> Itineraries { get; set; }
+
+        Repository<Employee> _employee = new Repository<Employee>(new PTC_ManagementContext());
+
+        public override void Add() { _employee.Add(this);  }
+        public override void Update() {
+            var employee = _employee.Get(this.Id);
+            employee.SetFields(this);
+            _employee.Update(employee); 
+        }
+        public override void Remove() { _employee.Remove(this); }
+        public override void Copy() { }
+
+        public void SetFields(Employee employee)
+        {
+            Id = employee.Id;
+            Surname = employee.Surname;
+            Name = employee.Name;
+            Patronymic = employee.Patronymic;
+            DriverLicense = employee.DriverLicense;
+        }
     }
 }

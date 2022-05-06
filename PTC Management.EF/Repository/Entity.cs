@@ -10,6 +10,11 @@ namespace PTC_Management.EF
     {
         public int Id { get; set; }
 
+        public virtual void Add() { }
+        public virtual void Update() { }
+        public virtual void Remove() { }
+        public virtual void Copy() { }
 
+        public virtual void SetFields(Entity entity) { }
     }
 }

@@ -37,16 +37,15 @@ namespace PTC_Management.ViewModel
             DialogActionCommand = new ParameterizedCommand<string>(OnDialogActionCommand);
         }
 
-        public virtual void Add(Entity item) { }
-
         private void OnDialogActionCommand(string action)
         {
             switch (action) {
                 case Actions._writeAndClose:
-                    //Close();
+                    DoAction(CurrentAction);
+                    Close();
                     break;          
                 case Actions._write:
-                    doAction(CurrentAction);
+                    DoAction(CurrentAction);
                     break;
                 case Actions._close:
                     Close();
@@ -54,14 +53,14 @@ namespace PTC_Management.ViewModel
             }
         }
 
-        private void doAction(string action) {
+        private void DoAction(string action) {
             switch (action)
             {
                 case Actions._add:
-                    Add(DialogItem);
+                    DialogItem.Add();
                     break;
                 case Actions._update:
-
+                    DialogItem.Update();
                     break;
                 case Actions._copy:
 
@@ -72,5 +71,7 @@ namespace PTC_Management.ViewModel
 
             }
         }
+
+
     }
 }

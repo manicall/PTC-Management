@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PTC_Management.EF
 {
-    public class Repository<T> : IRepository<T> where T : Entity, new()
+    public class Repository<T> where T : Entity, new()
     {
         private readonly PTC_ManagementContext _db;
         private readonly DbSet<T> _Set;
@@ -51,11 +51,11 @@ namespace PTC_Management.EF
         /// </summary>
         /// <param name="id">Ключ, по которому происходит
         /// поиск записи в таблице</param>
-        public void Remove(int id)
+        public void Remove(T item)
         {
-            var item = Get(id);
-            if (item is null) return;
-            _db.Entry(item).State = EntityState.Deleted;
+            if (item is null) throw new ArgumentNullException(nameof(item));
+            var newItem = Get(item.Id);
+            _db.Entry(newItem).State = EntityState.Deleted;
 
             // TODO: Обработать исключение, если сущность имеет связь
             if (AutoSaveChanges)
