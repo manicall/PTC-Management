@@ -78,6 +78,7 @@
     <Compile Include="Model\Dialog\Actions.cs" />
     <Compile Include="Model\MyLiterals.cs" />
     <Compile Include="Model\MainWindow\BackUp.cs" />
+    <Compile Include="RunTime.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="ViewModel\Employee\DialogViewModel.cs" />

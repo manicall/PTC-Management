@@ -39,6 +39,7 @@ namespace PTC_Management
             BackUpCommand = new ParameterizedCommand<string>(OnBackUp);
             // установка представления по умолчанию
             CurrentViewModel = ViewModels._employee;
+            RunTime.Stop();
         }
 
         #region Команды
