@@ -9,5 +9,7 @@ namespace PTC_Management.EF
     public class Entity
     {
         public int Id { get; set; }
+
+
     }
 }

@@ -8,8 +8,7 @@ namespace PTC_Management.EF
 
     [Table("Employee")]
     public partial class Employee : Entity
-    {
-        
+    {    
         public Employee()
         {
             Date_has_Employee = new HashSet<Date_has_Employee>();

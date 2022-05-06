@@ -16,11 +16,9 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
             <views:EmployeeDialogView />
-        </DataTemplate>
+        </DataTemplate>    
     </Window.Resources>
 
-
-    
     <Grid>
         <ContentControl Content="{Binding }" />
     </Grid>

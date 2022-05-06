@@ -35,29 +35,30 @@
     
     <StackPanel Margin="10,0,10,10">
         <StackPanel Style="{StaticResource StackPanelStyle}">
-            <Button Name="buttonWriteAndClose" Style="{StaticResource BlackButton }" Margin="0 0 35 0" Width="auto" Click="buttonWrite_Click">Записать и закрыть</Button>
-            <Button Name="buttonWrite" Style="{StaticResource BlackButton }" >Записать</Button>
-            <Button Name="buttonClose" Style="{StaticResource BlackButton }" >Закрыть</Button>
+            <Button Name="buttonWriteAndClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.WriteAndClose}" Margin="0 0 35 0" Width="auto"
+                    Click="buttonWrite_Click">Записать и закрыть</Button>
+            <Button Name="buttonWrite" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Write}" >Записать</Button>
+            <Button Name="buttonClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockSurname" Style="{StaticResource TextBlockStyle}">Фамилия</TextBlock>
             <TextBox Name="textBoxSurname" Style="{StaticResource TextBoxStyle}" 
-                     Text="{Binding SelectedItem.Surname, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding DialogItem.Surname, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockName" Style="{StaticResource TextBlockStyle}">Имя</TextBlock>
             <TextBox Name="textBoxName" Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding SelectedItem.Name, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding DialogItem.Name, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockMiddleName" Style="{StaticResource TextBlockStyle}">Отчество</TextBlock>
             <TextBox Name="textBoxMiddleName" Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding SelectedItem.Patronymic, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding DialogItem.Patronymic, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}">
             <TextBlock Name="textBlockDriverLicense" Style="{StaticResource TextBlockStyle}">Водительское удостоверение</TextBlock>
             <TextBox Name="textBoxDriverLicense" Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding SelectedItem.DriverLicense, UpdateSourceTrigger=Explicit}"></TextBox>
+                     Text="{Binding DialogItem.DriverLicense, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         
         

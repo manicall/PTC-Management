@@ -9,16 +9,18 @@ using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
 {
-    internal class EmployeeViewModel : ViewModelBase
+    internal class EmployeeViewModel : DialogViewModel
     {
         Repository<Employee> employee = new Repository<Employee>(new PTC_ManagementContext());
 
         public EmployeeViewModel()
         {
+            Title = "Окно сотрудников";
             EmployeeItems = CollectionViewSource.GetDefaultView(employee.GetAll());
             EmployeeItems.Filter = FilterEmployee;
         }
 
+        #region Filter
         private bool FilterEmployee(object obj)
         {
             bool result = true;
@@ -57,6 +59,9 @@ namespace PTC_Management.ViewModel
             DependencyProperty.Register(MyLiterals<Employee>.FilterText, typeof(string),
                 typeof(EmployeeViewModel), new PropertyMetadata("", FilterText_Changed));
 
+        #endregion
+
+        #region Items
         public ICollectionView EmployeeItems
         {
             get { return (ICollectionView)GetValue(ItemsProperty); }
@@ -67,13 +72,27 @@ namespace PTC_Management.ViewModel
             DependencyProperty.Register(MyLiterals<Employee>.Items, typeof(ICollectionView),
                 typeof(EmployeeViewModel), new PropertyMetadata(null));
 
+        #endregion
+
         void LoadItems() {
             EmployeeItems = CollectionViewSource.GetDefaultView(employee.GetAll());
         }
 
-        public override void Remove(int id) {
+
+        public override void Add(Entity item)
+        {
+            employee.Add((Employee)item);
+            if (Repository<Employee>.AutoSaveChanges) LoadItems();
+        }
+
+        public override void Update() { }
+
+        public override void Remove(int id)
+        {
             employee.Remove(id);
             if (Repository<Employee>.AutoSaveChanges) LoadItems();
         }
+
+        public override void Copy() { }
     }
 }

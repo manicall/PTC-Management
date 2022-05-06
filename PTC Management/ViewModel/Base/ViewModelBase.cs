@@ -9,7 +9,12 @@ namespace PTC_Management.ViewModel
 {
     class ViewModelBase : BindableBase
     {
-        Repository<Entity> entity = new Repository<Entity>(new PTC_ManagementContext());
+        private string _currentAction;
+        public string CurrentAction
+        { 
+            get => _currentAction; 
+            set => _currentAction=value; 
+        }
 
         private Actions _actions = new Actions();
         public Actions Actions { get => _actions; }
@@ -28,15 +33,16 @@ namespace PTC_Management.ViewModel
         public ICommand DialogCommand { get; set; }
         private void OnDialog(string action)
         {
+            CurrentAction = action;
             DialogViewModel dialog;
             switch (action) {
                 case Actions._add:
-                    dialog = new DialogViewModel();
+                    dialog = new DialogViewModel() { Title = Title, CurrentAction=action };
                     Show(dialog);
                     break;
 
                 case Actions._update:
-                    dialog = new DialogViewModel() { SelectedItem = (Entity)_selectedItem };
+                    dialog = new DialogViewModel() { Title = Title, DialogItem = (Entity)_selectedItem, CurrentAction = action };
                     Show(dialog);
                     break;
 
@@ -45,20 +51,20 @@ namespace PTC_Management.ViewModel
                     break;
 
                 case Actions._copy:
-                    dialog = new DialogViewModel() { SelectedItem = (Entity)_selectedItem };
+                    dialog = new DialogViewModel() { Title = Title, DialogItem = (Entity)_selectedItem, CurrentAction = action };
                     Show(dialog);
                     break;
-
             }
         }
 
-        public virtual void Add() { }
+        //public virtual void Add(Entity item) { }
 
         public virtual void Update() { }
 
-        public virtual void Remove(int id) { Console.WriteLine("Вызвался базовый метод Remove"); }
+        public virtual void Remove(int id) { }
 
         public virtual void Copy() { }
+
 
         /// <summary>
         /// Окно в котором показывается текущий ViewModel
@@ -84,21 +90,6 @@ namespace PTC_Management.ViewModel
         protected virtual void Closed()
         {
 
-        }
-
-        /// <summary>
-        /// Методы вызываемый для закрытия окна связанного с ViewModel
-        /// </summary>
-        public bool Close()
-        {
-            var result = false;
-            if (_window != null)
-            {
-                _window.Close();
-                _window = null;
-                result = true;
-            }
-            return result;
         }
 
         /// <summary>
