@@ -1,11 +1,10 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model;
-using System;
-using System.Collections.ObjectModel;
+using PTC_Management.Model.Dialog;
+using PTC_Management.ViewModel.DialogViewModels;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
 {
@@ -15,7 +14,7 @@ namespace PTC_Management.ViewModel
 
         public EmployeeViewModel()
         {
-            Title = "Окно сотрудников";
+
             EmployeeItems = CollectionViewSource.GetDefaultView(_employee.GetAll());
             EmployeeItems.Filter = FilterEmployee;
         }
@@ -74,21 +73,19 @@ namespace PTC_Management.ViewModel
 
         #endregion
 
- 
-
         public override void OnDialog(string action)
         {
             DialogViewModel dialog;
             switch (action)
             {
                 case Actions._add:
-                    dialog = new DialogViewModel() { DialogItem = new Employee(), Title = Title, CurrentAction = action };
+                    dialog = new EmployeeDialogViewModel(action);
                     Show(dialog);
                     break;
 
                 case Actions._update:
                     if (SelectedItem is null) return;
-                    dialog = new DialogViewModel() { Title = Title, DialogItem = (Employee)SelectedItem, CurrentAction = action };
+                    dialog = new EmployeeDialogViewModel((Employee)SelectedItem, action);
                     Show(dialog);
                     break;
 
@@ -99,12 +96,12 @@ namespace PTC_Management.ViewModel
 
                 case Actions._copy:
                     if (SelectedItem is null) return;
-                    dialog = new DialogViewModel() { Title = Title, DialogItem = (Employee)SelectedItem, CurrentAction = action };
+                    dialog = new EmployeeDialogViewModel((Employee)SelectedItem, action, true);
                     Show(dialog);
                     break;
             }
 
-            EmployeeItems = CollectionViewSource.GetDefaultView(_employee.GetAll());
+           
         }
 
     }

@@ -3,10 +3,12 @@ using System.Windows;
 using System.Windows.Data;
 using PTC_Management.EF;
 using PTC_Management.Model;
+using PTC_Management.Model.Dialog;
+using PTC_Management.ViewModel.DialogViewModels;
 
 namespace PTC_Management.ViewModel
 {
-    internal class TransportViewModel : BindableBase
+    internal class TransportViewModel : ViewModelBase
     {
         readonly Repository<Transport> _transport = new Repository<Transport>(new PTC_ManagementContext());
 
@@ -57,5 +59,36 @@ namespace PTC_Management.ViewModel
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register(MyLiterals<Transport>.Items, typeof(ICollectionView), typeof(TransportViewModel), new PropertyMetadata(null));
 
+
+        public override void OnDialog(string action)
+        {
+            DialogViewModel dialog;
+            switch (action)
+            {
+                case Actions._add:
+                    dialog = new TransportDialogViewModel(action);
+                    Show(dialog);
+                    break;
+
+                case Actions._update:
+                    if (SelectedItem is null) return;
+                    dialog = new TransportDialogViewModel((Transport)SelectedItem, action);
+                    Show(dialog);
+                    break;
+
+                case Actions._remove:
+                    if (SelectedItem is null) return;
+                    ((Transport)SelectedItem).Remove();
+                    break;
+
+                case Actions._copy:
+                    if (SelectedItem is null) return;
+                    dialog = new TransportDialogViewModel((Transport)SelectedItem, action);
+                    Show(dialog);
+                    break;
+            }
+
+            TransportItems = CollectionViewSource.GetDefaultView(_transport.GetAll());
+        }
     }
 }

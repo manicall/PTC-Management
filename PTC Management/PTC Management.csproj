@@ -76,20 +76,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Dialog\Actions.cs" />
+    <Compile Include="Model\Dialog\ViewModels.cs" />
     <Compile Include="Model\MyLiterals.cs" />
     <Compile Include="Model\MainWindow\BackUp.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
-    <Compile Include="ViewModel\Employee\DialogViewModel.cs" />
-    <Compile Include="ViewModel\Employee\EmployeeViewModel.cs" />
-    <Compile Include="ViewModel\ItineraryViewModel.cs" />
-    <Compile Include="ViewModel\LogOfDepartureAndEntryViewModel.cs" />
-    <Compile Include="ViewModel\MaintanceLogViewModel.cs" />
+    <Compile Include="ViewModel\DialogViewModels\DialogViewModel.cs" />
+    <Compile Include="ViewModel\DialogViewModels\EmployeeDialogViewModel.cs" />
+    <Compile Include="ViewModel\DialogViewModels\TransportDialogViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModels\ItineraryViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModels\LogOfDepartureAndEntryViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModels\MaintanceLogViewModel.cs" />
     <Compile Include="ViewModel\MainWindow\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\RouteViewModel.cs" />
-    <Compile Include="ViewModel\ScheduleOfEmployeeViewModel.cs" />
-    <Compile Include="ViewModel\TransportViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModels\RouteViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModels\ScheduleOfEmployeeViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModels\TransportViewModel.cs" />
     <Compile Include="Views\Employee\EmployeeDialogView.xaml.cs">
       <DependentUpon>EmployeeDialogView.xaml</DependentUpon>
     </Compile>
@@ -111,7 +114,10 @@
     <Compile Include="Views\ScheduleOfEmployeeView.xaml.cs">
       <DependentUpon>ScheduleOfEmployeeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TransportView.xaml.cs">
+    <Compile Include="Views\Transport\TransportDialogView.xaml.cs">
+      <DependentUpon>TransportDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Transport\TransportView.xaml.cs">
       <DependentUpon>TransportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\Dialog.xaml.cs">
@@ -165,7 +171,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\TransportView.xaml">
+    <Page Include="Views\Transport\TransportDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Transport\TransportView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -183,7 +193,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\MainWindow\Destinations.cs" />
+    <Compile Include="Model\Destinations.cs" />
     <Compile Include="Model\MainWindow\ViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

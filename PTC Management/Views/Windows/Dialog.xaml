@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views = "clr-namespace:PTC_Management.Views" 
         xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
+        xmlns:dialogViewModels = "clr-namespace:PTC_Management.ViewModel.DialogViewModels" 
         xmlns:local="clr-namespace:PTC_Management.Windows"
         mc:Ignorable="d"
         Title="{Binding Title}" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
@@ -14,12 +15,16 @@
     </Window.DataContext>
     
     <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
+        <DataTemplate DataType="{x:Type dialogViewModels:EmployeeDialogViewModel}">
             <views:EmployeeDialogView />
-        </DataTemplate>    
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type dialogViewModels:TransportDialogViewModel}">
+            <views:TransportDialogView />
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
-        <ContentControl Content="{Binding }" />
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

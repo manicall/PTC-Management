@@ -18,19 +18,28 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                <Button Name="create" Style="{StaticResource BlackButton}" Content="Создать"    />
-                <Button Name="change" Style="{StaticResource BlackButton}" Content="Изменить"   />
-                <Button Name="delete" Style="{StaticResource BlackButton}" Content="Удалить"    />
-                <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
+                <Button Name="create" Style="{StaticResource BlackButton}" 
+                        Content="Создать"
+                        Command = "{Binding DialogCommand}"
+                        CommandParameter="{Binding Actions.Add}"/>
+                <Button Name="update" Style="{StaticResource BlackButton}" 
+                        Content="Изменить"
+                        Command = "{Binding DialogCommand}"
+                        CommandParameter="{Binding Actions.Update}"/>
+                <Button Name="delete" Style="{StaticResource BlackButton}" 
+                        Content="Удалить" 
+                        Command = "{Binding DialogCommand}"
+                        CommandParameter="{Binding Actions.Remove}"/>
+                <Button Name="copy" Style="{StaticResource BlackButton}" 
+                        Content="Копировать" 
+                        Command = "{Binding DialogCommand}"
+                        CommandParameter="{Binding Actions.Copy}"/>
                 <TextBlock Text="Поиск:" Margin="5"/>
                 <TextBox Text="{Binding FilterTransportText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
             </StackPanel>
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
                 <Button Style="{StaticResource BlackButton}" Content="Журнал ТО" />
-                <Button Style="{StaticResource BlackButton}" Content="Журнал въезда и выезда" />
-
-                <TextBlock Text="Поиск:" Margin="5"/>
-                <TextBox Text="{Binding FilterTransportText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
+                <Button Width="auto" Style="{StaticResource BlackButton}" Content="Журнал въезда и выезда" />
             </StackPanel>
 
             <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" 

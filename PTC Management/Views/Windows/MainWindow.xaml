@@ -29,7 +29,10 @@
                 <MenuItem Header="Восстановить бекап" Command="{Binding BackUpCommand}" CommandParameter="{Binding Backup.Restore}" />
             </MenuItem>
         </Menu>
-
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock Text="Сообщение: " />
+        </StatusBar>
+        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height = "50" />
@@ -84,8 +87,8 @@
             <Grid x:Name = "MainContent" Grid.Row = "1">
                 <ContentControl Content = "{Binding CurrentViewModel}" />
             </Grid>
-
         </Grid>
+
     </DockPanel>
 
 </Window>

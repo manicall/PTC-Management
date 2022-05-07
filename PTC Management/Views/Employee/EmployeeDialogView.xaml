@@ -7,6 +7,7 @@
              xmlns:views = "clr-namespace:PTC_Management.Views" 
              xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
              mc:Ignorable="d" 
+
              d:DesignHeight="200" d:DesignWidth="350">
 
     <UserControl.Resources>
@@ -15,49 +16,50 @@
             <views:EmployeeDialogView />
         </DataTemplate>
 
-        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
-
-        <Style TargetType="TextBlock" x:Key="TextBlockStyle">
+        <Style TargetType="TextBlock" >
             <Setter Property="Width" Value="170"/>
         </Style>
 
-        <Style TargetType="TextBox" x:Key="TextBoxStyle">
+        <Style TargetType="TextBox" >
             <Setter Property="Width" Value="150"/>
         </Style>
 
-        <Style TargetType="StackPanel" x:Key="StackPanelStyle">
+        <Style TargetType="StackPanel" >
             <Setter Property="Margin" Value="0,0,0,10"/>
             <Setter Property="Orientation" Value="Horizontal"/>
         </Style>
     </UserControl.Resources>
     
-    <StackPanel Margin="10,0,10,10">
-        <StackPanel Style="{StaticResource StackPanelStyle}">
+    <StackPanel Orientation="Vertical" Margin="10,0,10,10">
+        <StackPanel >
             <Button Name="buttonWriteAndClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.WriteAndClose}" Margin="0 0 35 0" Width="auto"
                     Click="buttonWrite_Click">Записать и закрыть</Button>
             <Button Name="buttonWrite" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Write}" >Записать</Button>
             <Button Name="buttonClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
         </StackPanel>
-        <StackPanel Style="{StaticResource StackPanelStyle}">
-            <TextBlock Name="textBlockSurname" Style="{StaticResource TextBlockStyle}">Фамилия</TextBlock>
-            <TextBox Name="textBoxSurname" Style="{StaticResource TextBoxStyle}" 
+        <StackPanel Visibility="{Binding CopyCountVisibility}" >
+            <TextBlock Name="textBlockCountCopy" >Количество копий</TextBlock>
+            <TextBox Name="textBoxCountCopy" Width="50"  
+                     Text="{Binding CopyCount, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <StackPanel >
+            <TextBlock Name="textBlockSurname" >Фамилия</TextBlock>
+            <TextBox Name="textBoxSurname"  
                      Text="{Binding DialogItem.Surname, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
-        <StackPanel Style="{StaticResource StackPanelStyle}">
-            <TextBlock Name="textBlockName" Style="{StaticResource TextBlockStyle}">Имя</TextBlock>
-            <TextBox Name="textBoxName" Style="{StaticResource TextBoxStyle}"
+        <StackPanel >
+            <TextBlock Name="textBlockName" >Имя</TextBlock>
+            <TextBox Name="textBoxName" 
                      Text="{Binding DialogItem.Name, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
-        <StackPanel Style="{StaticResource StackPanelStyle}">
-            <TextBlock Name="textBlockMiddleName" Style="{StaticResource TextBlockStyle}">Отчество</TextBlock>
-            <TextBox Name="textBoxMiddleName" Style="{StaticResource TextBoxStyle}"
+        <StackPanel >
+            <TextBlock Name="textBlockMiddleName" >Отчество</TextBlock>
+            <TextBox Name="textBoxMiddleName" 
                      Text="{Binding DialogItem.Patronymic, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
-        <StackPanel Style="{StaticResource StackPanelStyle}">
-            <TextBlock Name="textBlockDriverLicense" Style="{StaticResource TextBlockStyle}">Водительское удостоверение</TextBlock>
-            <TextBox Name="textBoxDriverLicense" Style="{StaticResource TextBoxStyle}"
+        <StackPanel >
+            <TextBlock Name="textBlockDriverLicense" >Водительское удостоверение</TextBlock>
+            <TextBox Name="textBoxDriverLicense" 
                      Text="{Binding DialogItem.DriverLicense, UpdateSourceTrigger=Explicit}"></TextBox>
         </StackPanel>
         

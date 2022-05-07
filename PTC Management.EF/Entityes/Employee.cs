@@ -40,7 +40,10 @@ namespace PTC_Management.EF
             _employee.Update(employee); 
         }
         public override void Remove() { _employee.Remove(this); }
-        public override void Copy() { }
+        public override void Copy(int count) {
+            var employee = _employee.Get(this.Id);
+            employee.SetFields(this); 
+            _employee.Copy(employee, count); }
 
         public void SetFields(Employee employee)
         {

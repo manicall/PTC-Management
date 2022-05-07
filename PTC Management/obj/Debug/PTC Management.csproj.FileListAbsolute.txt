@@ -6,7 +6,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOf
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\RouteView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\TransportView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\Dialog.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\MainWindow.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfo.g.cs
@@ -29,7 +28,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOf
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\RouteView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\TransportView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\Dialog.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\MainWindow.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfo.baml
@@ -46,3 +44,7 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Emplo
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportDialogView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportDialogView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.baml
