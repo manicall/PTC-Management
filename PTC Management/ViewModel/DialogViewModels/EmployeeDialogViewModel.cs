@@ -50,12 +50,15 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         protected override void OnDialogActionCommand(string mainWindowAction)
         {
+            Console.WriteLine(DialogItem.Id);
             // выполнение метода базового класса
             base.OnDialogActionCommand(mainWindowAction);
-            FillEmployeeObservableCollection(mainWindowAction);
-        }
+            Console.WriteLine(DialogItem.Id);
+            FillEmployeeObservableCollection();
 
-        private void FillEmployeeObservableCollection(string mainWindowAction) {
+        } 
+
+        private void FillEmployeeObservableCollection() {
             List<Employee> List = null;
             switch (CurrentAction)
             {

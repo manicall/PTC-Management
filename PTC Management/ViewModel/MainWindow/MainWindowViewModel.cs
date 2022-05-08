@@ -2,7 +2,6 @@
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel;
 
-
 namespace PTC_Management
 {
 

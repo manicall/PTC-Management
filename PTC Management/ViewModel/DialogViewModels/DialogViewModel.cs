@@ -88,22 +88,25 @@ namespace PTC_Management.ViewModel
         #endregion
 
         protected void DoAction(string action) {
+            Entity entity = DialogItem.Clone();
             switch (action)
             {
                 case Actions._add:
-                    DialogItem.Add();
+                    entity.Add();
+                    DialogItem.Id = entity.Id;
                     break;
                 case Actions._update:
                     DialogItem.Update();
                     break;
                 case Actions._copy:
-                    DialogItem.Copy(CopyCount);
+                    entity.Copy(CopyCount);
                     break;
                 default: 
                     Console.WriteLine("Неизвестное действие"); 
                     break;
 
             }
+            
         }
 
 

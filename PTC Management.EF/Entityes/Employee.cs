@@ -57,6 +57,7 @@ namespace PTC_Management.EF
         public override Entity Clone() {
             Employee employee = new Employee();
 
+            employee.Id = Id;
             employee.Surname = Surname;
             employee.Name = Name;
             employee.Patronymic = Patronymic;

@@ -12,7 +12,6 @@ namespace PTC_Management.Views
         {
             InitializeComponent();
         }
-
         private void buttonWrite_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             changeText(textBoxSurname);
@@ -20,7 +19,8 @@ namespace PTC_Management.Views
             changeText(textBoxMiddleName);
             changeText(textBoxDriverLicense);
         }
-        private void changeText(TextBox textBox) {
+        private void changeText(TextBox textBox)
+        {
             if (textBox == null) return;
             textBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
