@@ -18,6 +18,7 @@ namespace PTC_Management.ViewModel
             set => SetProperty(ref _currentViewModel, value);
         }
 
+        public int SelectedIndex { get; set; }
 
         #region CopyCount
         public int CopyCount
@@ -93,7 +94,6 @@ namespace PTC_Management.ViewModel
             {
                 case Actions._add:
                     entity.Add();
-                    DialogItem.Id = entity.Id;
                     break;
                 case Actions._update:
                     DialogItem.Update();
@@ -101,12 +101,13 @@ namespace PTC_Management.ViewModel
                 case Actions._copy:
                     entity.Copy(CopyCount);
                     break;
-                default: 
-                    Console.WriteLine("Неизвестное действие"); 
-                    break;
+                default:
+                    throw new ArgumentException("Действие не обработано");
+                   
 
             }
-            
+            DialogItem.Id = entity.Id;
+
         }
 
 

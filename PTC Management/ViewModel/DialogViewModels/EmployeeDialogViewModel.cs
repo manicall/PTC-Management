@@ -4,6 +4,7 @@ using PTC_Management.Model.Dialog;
 using System.Collections.ObjectModel;
 
 using System.Collections.Generic;
+using System.Windows.Data;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
@@ -28,6 +29,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             Title = $"Окно {Actions.GetGenetiveName(action)} сотрудника";
             CurrentViewModel = this;
             DialogItem = new Employee();
+
             CurrentAction = action;
             CopyCountVisibility = "Collapsed";
             EmployeeObservableCollection = employees;
@@ -37,10 +39,10 @@ namespace PTC_Management.ViewModel.DialogViewModels
         public EmployeeDialogViewModel(
             Employee employee, 
             ObservableCollection<Employee> employees, 
-            string action, 
+            string action,
             bool visibleCopyCount = false) : this(employees, action) 
         {
-            DialogItem = employee;
+            DialogItem = employee.Clone();
 
             if (visibleCopyCount)
             {
@@ -50,21 +52,24 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         protected override void OnDialogActionCommand(string mainWindowAction)
         {
-            Console.WriteLine(DialogItem.Id);
             // выполнение метода базового класса
             base.OnDialogActionCommand(mainWindowAction);
-            Console.WriteLine(DialogItem.Id);
-            FillEmployeeObservableCollection();
 
+            if (mainWindowAction != Actions._close)
+                FillEmployeeObservableCollection();
         } 
 
         private void FillEmployeeObservableCollection() {
             List<Employee> List = null;
+
             switch (CurrentAction)
             {
                 case Actions._add:
                     List = GetAddedEmployee();
                     break;
+                case Actions._update:
+                    UpdateEmployeeObservableCollection();
+                    return; // выход из функции
                 case Actions._copy:
                     List = GetCopiedEmployees();
                     break;
@@ -74,13 +79,20 @@ namespace PTC_Management.ViewModel.DialogViewModels
             foreach (var employee in List) EmployeeObservableCollection.Add(employee);
         }
 
-        private List<Employee> GetCopiedEmployees() { 
-            return RepositoryEmployee.GetFrom(DialogItem.Id);
-        }
-
         private List<Employee> GetAddedEmployee()
         {
             return new List<Employee> { RepositoryEmployee.GetSingle(DialogItem.Id) };
+        }
+
+        private void UpdateEmployeeObservableCollection()
+        {
+            EmployeeObservableCollection[SelectedIndex].SetFields((Employee)DialogItem);
+            CollectionViewSource.GetDefaultView(EmployeeObservableCollection).Refresh();
+        }
+
+        private List<Employee> GetCopiedEmployees()
+        {
+            return RepositoryEmployee.GetFrom(DialogItem.Id);
         }
     }
 }

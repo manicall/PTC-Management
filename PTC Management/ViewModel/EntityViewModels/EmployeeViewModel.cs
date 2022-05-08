@@ -122,7 +122,8 @@ namespace PTC_Management.ViewModel
                 new EmployeeDialogViewModel(
                 (Employee)SelectedItem, employeeObservableCollection, action) 
                 { 
-                    RepositoryEmployee = repositoryEmployee
+                    RepositoryEmployee = repositoryEmployee, 
+                    SelectedIndex = SelectedIndex,
                 };
             Show(dialog);
         }
