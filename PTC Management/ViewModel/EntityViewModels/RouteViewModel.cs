@@ -12,7 +12,7 @@ namespace PTC_Management.ViewModel
 
         public RouteViewModel()
         {
-            RouteItems = CollectionViewSource.GetDefaultView(_route.GetAll());
+            RouteItems = CollectionViewSource.GetDefaultView(_route.GetObservableCollection());
             RouteItems.Filter = FilterRoute;
         }
 

@@ -14,7 +14,7 @@ namespace PTC_Management.ViewModel
 
         public TransportViewModel()
         {
-            TransportItems = CollectionViewSource.GetDefaultView(_transport.GetAll());
+            TransportItems = CollectionViewSource.GetDefaultView(_transport.GetObservableCollection());
             TransportItems.Filter = FilterTransport;
         }
 
@@ -88,7 +88,7 @@ namespace PTC_Management.ViewModel
                     break;
             }
 
-            TransportItems = CollectionViewSource.GetDefaultView(_transport.GetAll());
+            TransportItems = CollectionViewSource.GetDefaultView(_transport.GetObservableCollection());
         }
     }
 }

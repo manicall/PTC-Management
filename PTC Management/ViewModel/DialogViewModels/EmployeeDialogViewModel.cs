@@ -1,22 +1,27 @@
-﻿using PTC_Management.EF;
+﻿using System;
+using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
-using System;
 using System.Collections.ObjectModel;
-using System.Windows.Data;
-using System.Windows.Threading;
+
+using System.Collections.Generic;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class EmployeeDialogViewModel : DialogViewModel
     {
-        private ObservableCollection<Employee> _employees;
-        public ObservableCollection<Employee> Employees
+        private ObservableCollection<Employee> employeeObservableCollection;
+        public ObservableCollection<Employee> EmployeeObservableCollection
         {
-            get => _employees;
-            set => _employees = value;
+            get => employeeObservableCollection;
+            set => employeeObservableCollection = value;
         }
-        Repository<Employee> _employee = new Repository<Employee>(new PTC_ManagementContext());
 
+        private Repository<Employee> repositoryEmployee;
+        public Repository<Employee> RepositoryEmployee
+        {
+            get => repositoryEmployee;
+            set => repositoryEmployee = value;
+        }
 
         public EmployeeDialogViewModel(ObservableCollection<Employee> employees, string action) 
         {
@@ -25,8 +30,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
             DialogItem = new Employee();
             CurrentAction = action;
             CopyCountVisibility = "Collapsed";
-            Employees = employees;
-            CopyCount = 3;
+            EmployeeObservableCollection = employees;
+            CopyCount = 1;
         }        
 
         public EmployeeDialogViewModel(
@@ -43,12 +48,36 @@ namespace PTC_Management.ViewModel.DialogViewModels
             }
         }
 
-        protected override void OnDialogActionCommand(string action)
+        protected override void OnDialogActionCommand(string mainWindowAction)
         {
-            base.OnDialogActionCommand(action);
-            //var List = _employee.GetFrom(DialogItem.Id);
-            //foreach (var employee in List)
-            //    Employees.Add(employee);
+            // выполнение метода базового класса
+            base.OnDialogActionCommand(mainWindowAction);
+            FillEmployeeObservableCollection(mainWindowAction);
+        }
+
+        private void FillEmployeeObservableCollection(string mainWindowAction) {
+            List<Employee> List = null;
+            switch (CurrentAction)
+            {
+                case Actions._add:
+                    List = GetAddedEmployee();
+                    break;
+                case Actions._copy:
+                    List = GetCopiedEmployees();
+                    break;
+                default: return;
+            }
+
+            foreach (var employee in List) EmployeeObservableCollection.Add(employee);
+        }
+
+        private List<Employee> GetCopiedEmployees() { 
+            return RepositoryEmployee.GetFrom(DialogItem.Id);
+        }
+
+        private List<Employee> GetAddedEmployee()
+        {
+            return new List<Employee> { RepositoryEmployee.GetSingle(DialogItem.Id) };
         }
     }
 }

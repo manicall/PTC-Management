@@ -12,7 +12,7 @@ namespace PTC_Management.ViewModel
 
         public ItineraryViewModel()
         {
-            ItineraryItems = CollectionViewSource.GetDefaultView(_itinerary.GetAll());
+            ItineraryItems = CollectionViewSource.GetDefaultView(_itinerary.GetObservableCollection());
             ItineraryItems.Filter = FilterItinerary;
         }
 

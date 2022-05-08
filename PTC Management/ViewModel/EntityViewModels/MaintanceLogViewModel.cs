@@ -12,7 +12,7 @@ namespace PTC_Management.ViewModel
 
         public MaintanceLogViewModel()
         {
-            MaintanceLogItems = CollectionViewSource.GetDefaultView(_maintanceLog.GetAll());
+            MaintanceLogItems = CollectionViewSource.GetDefaultView(_maintanceLog.GetObservableCollection());
             MaintanceLogItems.Filter = FilterMaintanceLog;
         }
 

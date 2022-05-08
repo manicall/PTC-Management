@@ -80,6 +80,7 @@
     <Compile Include="Model\MyLiterals.cs" />
     <Compile Include="Model\MainWindow\BackUp.cs" />
     <Compile Include="RunTime.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="ViewModel\DialogViewModels\DialogViewModel.cs" />

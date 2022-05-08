@@ -14,6 +14,8 @@ namespace PTC_Management.Model.MainWindow
         public static readonly BindableBase _transport = new TransportViewModel();
         public static readonly BindableBase _itinerary = new ItineraryViewModel();
         public static readonly BindableBase _scheduleOfEmployee = new ScheduleOfEmployeeViewModel();
+
+
     }
 
 }

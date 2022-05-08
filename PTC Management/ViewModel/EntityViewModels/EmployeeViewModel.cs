@@ -11,13 +11,14 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBase
     {
-        private ObservableCollection<Employee> employees;
-        Repository<Employee> _employee = new Repository<Employee>(new PTC_ManagementContext());
+
+        private ObservableCollection<Employee> employeeObservableCollection;
+        private Repository<Employee> repositoryEmployee = Employee.repositoryEmployee; 
 
         public EmployeeViewModel()
         {
-            employees = _employee.GetAll();
-            EmployeeItems = CollectionViewSource.GetDefaultView(employees);
+            employeeObservableCollection = repositoryEmployee.GetObservableCollection();
+            EmployeeItems = CollectionViewSource.GetDefaultView(employeeObservableCollection);
             EmployeeItems.Filter = FilterEmployee;
         }
 
@@ -52,11 +53,11 @@ namespace PTC_Management.ViewModel
 
         public string FilterEmployeeText
         {
-            get { return (string)GetValue(_filterTextProperty); }
-            set { SetValue(_filterTextProperty, value); }
+            get { return (string)GetValue(filterTextProperty); }
+            set { SetValue(filterTextProperty, value); }
         }
 
-        public static readonly DependencyProperty _filterTextProperty =
+        public static readonly DependencyProperty filterTextProperty =
             DependencyProperty.Register(MyLiterals<Employee>.FilterText, typeof(string),
                 typeof(EmployeeViewModel), new PropertyMetadata("", FilterText_Changed));
 
@@ -90,56 +91,56 @@ namespace PTC_Management.ViewModel
 
         public override void OnDialog(string action)
         {
-            DialogViewModel dialog = null;
             switch (action)
             {
-                case Actions._add:
-                    Add(dialog, action);
-                    break;
-
+                case Actions._add: Add(action); break;
                 case Actions._update:
-                    Update(dialog, action);
+                    Update(action);
                     break;
-
                 case Actions._remove:
                     if (SelectedItem is null) return;
                     Remove();
                     break;
-
                 case Actions._copy:
-                    Copy(dialog, action);
+                    Copy(action);
                     break;
             }
 
-            EmployeeItems = CollectionViewSource.GetDefaultView(_employee.GetAll());
+            //EmployeeItems = CollectionViewSource.GetDefaultView(_employee.GetObservableCollection());
         }
 
-        private void Add(DialogViewModel dialog, string action) {
-            dialog = new EmployeeDialogViewModel(employees, action);
+        private void Add(string action)
+        {
+            DialogViewModel dialog = new EmployeeDialogViewModel(employeeObservableCollection, action) { RepositoryEmployee = repositoryEmployee };
             Show(dialog);
         }
 
-        private void Update(DialogViewModel dialog, string action)
+        private void Update(string action)
         {
             if (SelectedItem is null) return;
-            dialog = new EmployeeDialogViewModel((Employee)SelectedItem, employees, action);
+            DialogViewModel dialog = 
+                new EmployeeDialogViewModel(
+                (Employee)SelectedItem, employeeObservableCollection, action) 
+                { 
+                    RepositoryEmployee = repositoryEmployee
+                };
             Show(dialog);
         }
 
         private void Remove()
         {
             int temp = SelectedIndex;
-            Employee employee = (Employee)SelectedItem;
-            employees.Remove(employee);
-            employee.Remove();
+            Employee selectedEmployee = (Employee)SelectedItem;
+            employeeObservableCollection.Remove(selectedEmployee);
+            selectedEmployee.Remove();
             SelectedIndex = temp;
         }
 
 
-        private void Copy(DialogViewModel dialog, string action)
+        private void Copy(string action)
         {
             if (SelectedItem is null) return;
-            dialog = new EmployeeDialogViewModel((Employee)SelectedItem, employees, action, true);
+            DialogViewModel dialog = new EmployeeDialogViewModel((Employee)SelectedItem, employeeObservableCollection, action, true) { RepositoryEmployee = repositoryEmployee };
             Show(dialog);
         }
 
