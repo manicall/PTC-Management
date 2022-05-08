@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace PTC_Management.EF
 {
@@ -23,8 +24,11 @@ namespace PTC_Management.EF
         public T Get(int id) => Items.SingleOrDefault(item => item.Id == id);
         public T GetLast(int id) => Items.LastOrDefault(item => item.Id == id);
 
-        public List<T> GetAll() {
-            return Items.DefaultIfEmpty().ToList();
+        public List<T> GetFrom(int id) => Items.Where(items => items.Id > id).ToList();
+
+        public ObservableCollection<T> GetAll() {
+            _set.Load();
+            return _set.Local;
         }
 
         public void Add(T item)
@@ -68,13 +72,17 @@ namespace PTC_Management.EF
         public void Copy(T item, int Count) {
             if (item is null) throw new ArgumentNullException(nameof(item));
 
-            List<T> Items = Enumerable.Range(1, Count).Select(i => item).ToList();
+            List<T> Items = Enumerable.Range(1, Count).Select(i => (T)item.Clone()).ToList();
+
+            Console.WriteLine(Items);
 
             _set.AddRange(Items);
 
             if (AutoSaveChanges)
                 _db.SaveChanges();
         }
+
+ 
 
     }
 }

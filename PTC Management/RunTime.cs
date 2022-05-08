@@ -19,6 +19,7 @@ namespace PTC_Management
         {
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
+            stopWatch.Reset();
 
             // Format and display the TimeSpan value.
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",

@@ -61,7 +61,7 @@
     <Compile Include="Entityes\LogOfDepartureAndEntry.cs" />
     <Compile Include="Entityes\MaintanceLog.cs" />
     <Compile Include="Context\AppContext.cs" />
-    <Compile Include="Repository\Entity.cs" />
+    <Compile Include="Entityes\Base\Entity.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entityes\Route.cs" />

@@ -18,42 +18,40 @@ namespace PTC_Management.ViewModel
             set => SetProperty(ref _currentViewModel, value);
         }
 
-        private int _copyCount;
+
+        #region CopyCount
         public int CopyCount
         {
-            get => _copyCount;
-            set => _copyCount = value;
+            get { return (int)GetValue(copyCount); }
+            set { SetValue(copyCount, value); }
         }
 
+        public static readonly DependencyProperty copyCount =
+            DependencyProperty.Register("CopyCount", typeof(int), typeof(DialogViewModel), new PropertyMetadata(null));
+        #endregion
+
+        #region CopyCountVisibility
         private string _copyCountVisibility;
         public string CopyCountVisibility
         {
             get => _copyCountVisibility;
             set => _copyCountVisibility = value;
         }
+        #endregion
 
         #region DialogItem
         public Entity DialogItem
         {
-            get { return (Entity)GetValue(DialogItemProperty); }
-            set { SetValue(DialogItemProperty, value); }
+            get { return (Entity)GetValue(dialogItem); }
+            set { SetValue(dialogItem, value); }
         }
-
-
-        public static readonly DependencyProperty DialogItemProperty =
+        
+        public static readonly DependencyProperty dialogItem =
             DependencyProperty.Register("DialogItem", typeof(Entity), typeof(DialogViewModel), new PropertyMetadata(null));
         #endregion
 
-        #region CloseCommandDependencyProperty
-        public ICommand DialogActionCommand
-        {
-            get { return (ICommand)GetValue(DialogActionCommandProperty); }
-            set { SetValue(DialogActionCommandProperty, value); }
-        }
-    
-        public static readonly DependencyProperty DialogActionCommandProperty =
-            DependencyProperty.Register("DialogActionCommand", typeof(ICommand), typeof(DialogViewModel), new PropertyMetadata(null));
-        #endregion
+
+        public ParameterizedCommand<string> DialogActionCommand { get; private set; }
 
         public DialogViewModel()
         {
@@ -61,6 +59,21 @@ namespace PTC_Management.ViewModel
             _currentViewModel = null;
         }
 
+        protected virtual void OnDialogActionCommand(string action) {
+            switch (action)
+            {
+                case Actions._writeAndClose:
+                    DoAction(CurrentAction);
+                    Close();
+                    break;
+                case Actions._write:
+                    DoAction(CurrentAction);
+                    break;
+                case Actions._close:
+                    Close();
+                    break;
+            }
+        }
 
         #region Items
         public ICollectionView Items
@@ -74,38 +87,7 @@ namespace PTC_Management.ViewModel
 
         #endregion
 
-
-        #region Repository
-        public Repository<Entity> Repository
-        {
-            get { return (Repository<Entity>)GetValue(RepositoryProperty); }
-            set { SetValue(RepositoryProperty, value); }
-        }
-
-
-        public static readonly DependencyProperty RepositoryProperty =
-            DependencyProperty.Register("Repository", typeof(Repository<Entity>), typeof(DialogViewModel), new PropertyMetadata(null));
-        #endregion
-
-        private void OnDialogActionCommand(string action)
-        {
-            switch (action) {
-                case Actions._writeAndClose:
-                    DoAction(CurrentAction);
-                    Close();
-                    break;          
-                case Actions._write:
-                    DoAction(CurrentAction);
-                    break;
-                case Actions._close:
-                    Close();
-                    break;
-            }
-
-            Items = CollectionViewSource.GetDefaultView(Repository.GetAll());
-        }
-
-        private void DoAction(string action) {
+        protected void DoAction(string action) {
             switch (action)
             {
                 case Actions._add:

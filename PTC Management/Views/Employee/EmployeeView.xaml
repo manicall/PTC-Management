@@ -44,12 +44,16 @@
             </StackPanel>
 
             <DataGrid SelectedItem="{Binding SelectedItem}" 
-                      Name="dataGrIdEmployee"
-                      MinRowHeight="20" MaxHeight="400"
+                      SelectedIndex="{Binding SelectedIndex}"
+                      ItemsSource="{Binding EmployeeItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Name="dataGridEmployee"
+                      MinRowHeight="20" MaxHeight="200"
                       ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
-                      CanUserReorderColumns="False" IsReadOnly="True" 
+                      
+                      CanUserReorderColumns="False"
+                      IsReadOnly="True" 
                       CanUserAddRows="false"
-                      ItemsSource="{Binding EmployeeItems, UpdateSourceTrigger=PropertyChanged}"
+
                       d:ItemsSource="{d:SampleData ItemCount=5}" 
                       AutoGenerateColumns="False">
                 <DataGrid.Columns>

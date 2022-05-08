@@ -2,6 +2,7 @@
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.DialogViewModels;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
@@ -10,12 +11,13 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBase
     {
+        private ObservableCollection<Employee> employees;
         Repository<Employee> _employee = new Repository<Employee>(new PTC_ManagementContext());
 
         public EmployeeViewModel()
         {
-
-            EmployeeItems = CollectionViewSource.GetDefaultView(_employee.GetAll());
+            employees = _employee.GetAll();
+            EmployeeItems = CollectionViewSource.GetDefaultView(employees);
             EmployeeItems.Filter = FilterEmployee;
         }
 
@@ -73,35 +75,72 @@ namespace PTC_Management.ViewModel
 
         #endregion
 
+
+        public int SelectedIndex
+        {
+            get { return (int)GetValue(SelectedIndexProperty); }
+            set { SetValue(SelectedIndexProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedIndexProperty =
+            DependencyProperty.Register("SelectedIndex", typeof(int),
+                typeof(EmployeeViewModel), new PropertyMetadata(null));
+
+
+
         public override void OnDialog(string action)
         {
-            DialogViewModel dialog;
+            DialogViewModel dialog = null;
             switch (action)
             {
                 case Actions._add:
-                    dialog = new EmployeeDialogViewModel(action);
-                    Show(dialog);
+                    Add(dialog, action);
                     break;
 
                 case Actions._update:
-                    if (SelectedItem is null) return;
-                    dialog = new EmployeeDialogViewModel((Employee)SelectedItem, action);
-                    Show(dialog);
+                    Update(dialog, action);
                     break;
 
                 case Actions._remove:
                     if (SelectedItem is null) return;
-                    ((Employee)SelectedItem).Remove();
+                    Remove();
                     break;
 
                 case Actions._copy:
-                    if (SelectedItem is null) return;
-                    dialog = new EmployeeDialogViewModel((Employee)SelectedItem, action, true);
-                    Show(dialog);
+                    Copy(dialog, action);
                     break;
             }
 
-           
+            EmployeeItems = CollectionViewSource.GetDefaultView(_employee.GetAll());
+        }
+
+        private void Add(DialogViewModel dialog, string action) {
+            dialog = new EmployeeDialogViewModel(employees, action);
+            Show(dialog);
+        }
+
+        private void Update(DialogViewModel dialog, string action)
+        {
+            if (SelectedItem is null) return;
+            dialog = new EmployeeDialogViewModel((Employee)SelectedItem, employees, action);
+            Show(dialog);
+        }
+
+        private void Remove()
+        {
+            int temp = SelectedIndex;
+            Employee employee = (Employee)SelectedItem;
+            employees.Remove(employee);
+            employee.Remove();
+            SelectedIndex = temp;
+        }
+
+
+        private void Copy(DialogViewModel dialog, string action)
+        {
+            if (SelectedItem is null) return;
+            dialog = new EmployeeDialogViewModel((Employee)SelectedItem, employees, action, true);
+            Show(dialog);
         }
 
     }

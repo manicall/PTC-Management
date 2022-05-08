@@ -31,27 +31,35 @@ namespace PTC_Management.EF
         
         public virtual ICollection<Itinerary> Itineraries { get; set; }
 
-        Repository<Employee> _employee = new Repository<Employee>(new PTC_ManagementContext());
+         Repository<Employee> _employee = new Repository<Employee>(new PTC_ManagementContext());
 
         public override void Add() { _employee.Add(this);  }
         public override void Update() {
-            var employee = _employee.Get(this.Id);
+            var employee = _employee.Get(Id);
             employee.SetFields(this);
             _employee.Update(employee); 
         }
         public override void Remove() { _employee.Remove(this); }
         public override void Copy(int count) {
-            var employee = _employee.Get(this.Id);
-            employee.SetFields(this); 
+            var employee = new Employee();
+            employee.SetFields(_employee.Get(Id)); 
             _employee.Copy(employee, count); }
 
         public void SetFields(Employee employee)
         {
-            Id = employee.Id;
             Surname = employee.Surname;
             Name = employee.Name;
             Patronymic = employee.Patronymic;
             DriverLicense = employee.DriverLicense;
+        }
+
+        public override Entity Clone() {
+            Employee employee = new Employee();
+            employee.Surname = Surname;
+            employee.Name = Name;
+            employee.Patronymic = Patronymic;
+            employee.DriverLicense = DriverLicense;
+            return employee;
         }
     }
 }
