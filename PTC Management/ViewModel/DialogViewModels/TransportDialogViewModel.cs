@@ -14,7 +14,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             Title = $"Окно {Actions.GetGenetiveName(action)} транспорта";
             CurrentViewModel = this;
             DialogItem = new Employee();
-            CurrentAction = action;
+            MainWindowAction = action;
         }
 
         public TransportDialogViewModel(Transport employee, string action) : this(action)

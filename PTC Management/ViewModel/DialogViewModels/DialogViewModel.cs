@@ -63,14 +63,14 @@ namespace PTC_Management.ViewModel
         protected virtual void OnDialogActionCommand(string action) {
             switch (action)
             {
-                case Actions._writeAndClose:
-                    DoAction(CurrentAction);
+                case Actions.writeAndClose:
+                    DoAction(MainWindowAction);
                     Close();
                     break;
-                case Actions._write:
-                    DoAction(CurrentAction);
+                case Actions.write:
+                    DoAction(MainWindowAction);
                     break;
-                case Actions._close:
+                case Actions.close:
                     Close();
                     break;
             }
@@ -92,13 +92,13 @@ namespace PTC_Management.ViewModel
             Entity entity = DialogItem.Clone();
             switch (action)
             {
-                case Actions._add:
+                case Actions.add:
                     entity.Add();
                     break;
-                case Actions._update:
+                case Actions.update:
                     DialogItem.Update();
                     break;
-                case Actions._copy:
+                case Actions.copy:
                     entity.Copy(CopyCount);
                     break;
                 default:

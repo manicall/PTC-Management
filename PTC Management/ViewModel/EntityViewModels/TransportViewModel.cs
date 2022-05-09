@@ -65,23 +65,23 @@ namespace PTC_Management.ViewModel
             DialogViewModel dialog;
             switch (action)
             {
-                case Actions._add:
+                case Actions.add:
                     dialog = new TransportDialogViewModel(action);
                     Show(dialog);
                     break;
 
-                case Actions._update:
+                case Actions.update:
                     if (SelectedItem is null) return;
                     dialog = new TransportDialogViewModel((Transport)SelectedItem, action);
                     Show(dialog);
                     break;
 
-                case Actions._remove:
+                case Actions.remove:
                     if (SelectedItem is null) return;
                     ((Transport)SelectedItem).Remove();
                     break;
 
-                case Actions._copy:
+                case Actions.copy:
                     if (SelectedItem is null) return;
                     dialog = new TransportDialogViewModel((Transport)SelectedItem, action);
                     Show(dialog);

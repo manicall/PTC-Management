@@ -93,15 +93,15 @@ namespace PTC_Management.ViewModel
         {
             switch (action)
             {
-                case Actions._add: Add(action); break;
-                case Actions._update:
+                case Actions.add: Add(action); break;
+                case Actions.update:
                     Update(action);
                     break;
-                case Actions._remove:
+                case Actions.remove:
                     if (SelectedItem is null) return;
                     Remove();
                     break;
-                case Actions._copy:
+                case Actions.copy:
                     Copy(action);
                     break;
             }

@@ -1,8 +1,5 @@
-﻿using PTC_Management.EF;
-using PTC_Management.Model;
-using PTC_Management.Model.Dialog;
+﻿using PTC_Management.Model.Dialog;
 using PTC_Management.Windows;
-using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,15 +7,15 @@ namespace PTC_Management.ViewModel
 {
     class ViewModelBase : BindableBase
     {
-        private string _currentAction;
-        public string CurrentAction
+        private string mainWindowAction;
+        public string MainWindowAction
         { 
-            get => _currentAction; 
-            set => _currentAction=value; 
+            get => mainWindowAction; 
+            set => mainWindowAction=value; 
         }
 
-        private Actions _actions = new Actions();
-        public Actions Actions { get => _actions; }
+        private Actions actions = new Actions();
+        public Actions Actions { get => actions; }
 
         public ViewModelBase() {
             DialogCommand = new ParameterizedCommand<string>(OnDialog);
@@ -37,54 +34,49 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Окно в котором показывается текущий ViewModel
         /// </summary>
-        private Dialog _window = null;
+        private Dialog window = null;
 
-        /// <summary>
-        /// Заголовок окна
-        /// </summary>
+        #region title
+        /// <summary> Заголовок окна </summary>
         public string Title
         {
-            get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
+            get { return (string)GetValue(title); }
+            set { SetValue(title, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TitleProperty =
+        public static readonly DependencyProperty title =
             DependencyProperty.Register("Title", typeof(string), typeof(ViewModelBase), new PropertyMetadata(""));
+        #endregion
+
+        /// <summary> Методы вызываемый окном при закрытии </summary>
+        protected virtual void Closed() { }
 
         /// <summary>
-        /// Методы вызываемый окном при закрытии
-        /// </summary>
-        protected virtual void Closed()
-        {
-
-        }
-
-        /// <summary>
-        /// Методы вызываемый для закрытия окна связанного с ViewModel
+        /// Метод вызываемый для закрытия окна связанного с ViewModel
         /// </summary>
         public bool Close()
         {
             var result = false;
-            if (_window != null)
+            if (window != null)
             {
-                _window.Close();
-                _window = null;
+                window.Close();
+                window = null;
                 result = true;
             }
             return result;
         }
 
-        /// <summary>
-        /// Метод показа ViewModel в окне
-        /// </summary>
-        /// <param name="viewModel"></param>
+        /// <summary> Метод показа ViewModel в окне </summary>
+        /// <param name="viewModel">
+        /// Указывает какое представление 
+        /// будет отображаться в диалоговом окне
+        /// </param>
         protected void Show(ViewModelBase viewModel)
         {
-            viewModel._window = new Dialog();
-            viewModel._window.DataContext = viewModel;
-            viewModel._window.Closed += (sender, e) => Closed();
-            viewModel._window.ShowDialog();
+            viewModel.window = new Dialog();
+            viewModel.window.DataContext = viewModel;
+            viewModel.window.Closed += (sender, e) => Closed();
+            viewModel.window.ShowDialog();
         }
     }
 }
