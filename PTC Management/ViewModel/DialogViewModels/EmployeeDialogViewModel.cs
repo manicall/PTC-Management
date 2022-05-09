@@ -9,6 +9,7 @@ using System.Windows.Data;
 namespace PTC_Management.ViewModel.DialogViewModels
 {
     /// <summary>
+    /// ViewModel Для представления EmployeeDialogView
     /// </summary>
     internal class EmployeeDialogViewModel : DialogViewModel
     {
@@ -24,7 +25,9 @@ namespace PTC_Management.ViewModel.DialogViewModels
         #endregion
 
         #region repositoryEmployee
-        /// <summary> Поле, обеспечивающее взаимодействие с таблицей в базе данных. </summary>            
+        /// <summary>
+        /// Поле, обеспечивающее взаимодействие с таблицей в базе данных.
+        /// </summary>            
         private Repository<Employee> repositoryEmployee;
 
         public Repository<Employee> RepositoryEmployee
@@ -34,35 +37,31 @@ namespace PTC_Management.ViewModel.DialogViewModels
         }
         #endregion
 
-        #region конструкторы
-        public EmployeeDialogViewModel(ObservableCollection<Employee> employees, string action) => CurrentViewModel = this;
-
-        #endregion
+        public EmployeeDialogViewModel() => CurrentViewModel = this;
 
         #region методы
         /// <summary>
         /// Вызывается при нажатии на кнопку на диалоговом окне
         /// </summary>
         /// <remarks> 
-        /// Примечание: Для вызова данного метода, 
-        /// кнопка диалогового окна должна быть 
-        /// привязанна к команде DialogActionCommand
+        /// Примечание: Для вызова данного метода, кнопка диалогового окна 
+        /// должна быть привязанна к команде DialogActionCommand
         /// </remarks>
         /// <param name="dialogAction">                                         
-        /// Действие которое следует выполнить,
-        /// для вызывающей кнопки. 
+        /// Действие которое следует выполнить, для вызывающей кнопки. 
         /// </param>
         protected override void OnDialogActionCommand(string dialogAction)
         {
             // выполнение метода базового класса
             base.OnDialogActionCommand(dialogAction);
-
+                
             if (dialogAction != Actions.close)
                 FillEmployeeObservableCollection();
         }
 
         /// <summary>
-        /// Выполняет изменнение employeeObservableCollection, на основе заданного действия                             
+        /// Выполняет изменнение employeeObservableCollection,
+        /// на основе заданного действия                             
         /// </summary>
         private void FillEmployeeObservableCollection() {
             List<Employee> List = null;
@@ -81,7 +80,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
                 default: return;
             }
 
-            foreach (var employee in List) EmployeeObservableCollection.Add(employee);
+            foreach (var employee in List)
+                EmployeeObservableCollection.Add(employee);
         }
 
         /// <summary>
@@ -90,8 +90,9 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// <returns> Сотрудник, ключ которого совпадает с заданным. </returns>
         private List<Employee> GetAddedEmployee()
         {
-            
-            return new List<Employee> { RepositoryEmployee.GetSingle(DialogItem.Id) };
+            return new List<Employee> {
+                RepositoryEmployee.GetSingle(DialogItem.Id)
+            };
         }
 
         /// <summary>
@@ -100,8 +101,10 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// </summary>
         private void UpdateEmployeeObservableCollection()
         {
-            EmployeeObservableCollection[SelectedIndex].SetFields((Employee)DialogItem);
-            CollectionViewSource.GetDefaultView(EmployeeObservableCollection).Refresh();
+            EmployeeObservableCollection[SelectedIndex]
+                .SetFields((Employee)DialogItem);
+            CollectionViewSource
+                .GetDefaultView(EmployeeObservableCollection).Refresh();
         }
 
         /// <summary>
