@@ -1,18 +1,17 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
-using PTC_Management.SupportClass;
+using PTC_Management.ViewModel.Base;
 using System;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
 {
-    class DialogViewModel : ViewModelBase {
+    class DialogViewModel : ViewModelBaseDialog
+    {
 
-        private ViewModelBase _currentViewModel;
-        public ViewModelBase CurrentViewModel
+        private ViewModelBaseDialog _currentViewModel;
+        public ViewModelBaseDialog CurrentViewModel
         {
             get => _currentViewModel;
             set => SetProperty(ref _currentViewModel, value);
@@ -46,7 +45,7 @@ namespace PTC_Management.ViewModel
             get { return (Entity)GetValue(dialogItem); }
             set { SetValue(dialogItem, value); }
         }
-        
+
         public static readonly DependencyProperty dialogItem =
             DependencyProperty.Register("DialogItem", typeof(Entity), typeof(DialogViewModel), new PropertyMetadata(null));
         #endregion
@@ -60,7 +59,8 @@ namespace PTC_Management.ViewModel
             _currentViewModel = null;
         }
 
-        protected virtual void OnDialogActionCommand(string action) {
+        protected virtual void OnDialogActionCommand(string action)
+        {
             switch (action)
             {
                 case Actions.writeAndClose:
@@ -88,7 +88,8 @@ namespace PTC_Management.ViewModel
 
         #endregion
 
-        protected void DoAction(string action) {
+        protected void DoAction(string action)
+        {
             Entity entity = DialogItem.Clone();
             switch (action)
             {
@@ -103,7 +104,7 @@ namespace PTC_Management.ViewModel
                     break;
                 default:
                     throw new ArgumentException("Действие не обработано");
-                   
+
 
             }
             DialogItem.Id = entity.Id;

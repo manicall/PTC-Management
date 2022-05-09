@@ -1,8 +1,10 @@
-﻿using System.ComponentModel;
+﻿using PTC_Management.EF;
+using PTC_Management.Model;
+using PTC_Management.ViewModel.Base;
+
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
-using PTC_Management.EF;
-using PTC_Management.Model;
 
 namespace PTC_Management.ViewModel
 {

@@ -1,5 +1,7 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model;
+using PTC_Management.ViewModel.Base;
+
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
@@ -21,7 +23,7 @@ namespace PTC_Management.ViewModel
         {
             bool result = true;
             MaintanceLog current = obj as MaintanceLog;
-            if (!string.IsNullOrWhiteSpace(FilterMaintanceLogText) && current != null && !current.Id.ToString().Contains(FilterMaintanceLogText));
+            if (!string.IsNullOrWhiteSpace(FilterMaintanceLogText) && current != null && !current.Id.ToString().Contains(FilterMaintanceLogText)) ;
             {
                 result = false;
             }

@@ -1,8 +1,7 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
-using System.Collections.ObjectModel;
-
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Data;
 
 namespace PTC_Management.ViewModel.DialogViewModels
@@ -53,7 +52,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
         {
             // выполнение метода базового класса
             base.OnDialogActionCommand(dialogAction);
-                
+
             if (dialogAction != Actions.close)
                 FillEmployeeObservableCollection();
         }
@@ -62,7 +61,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// Выполняет изменнение employeeObservableCollection,
         /// на основе заданного действия                             
         /// </summary>
-        private void FillEmployeeObservableCollection() {
+        private void FillEmployeeObservableCollection()
+        {
             List<Employee> List = null;
 
             switch (MainWindowAction)

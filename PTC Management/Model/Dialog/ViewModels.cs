@@ -1,9 +1,5 @@
 ﻿using PTC_Management.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PTC_Management.ViewModel.Base;
 
 namespace PTC_Management.Model.Dialog
 {

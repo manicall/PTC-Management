@@ -1,14 +1,15 @@
-﻿using System.ComponentModel;
-using System.Windows;
-using System.Windows.Data;
-using PTC_Management.EF;
+﻿using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
+using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
-    internal class TransportViewModel : ViewModelBase
+    internal class TransportViewModel : ViewModelBaseEntity
     {
         readonly Repository<Transport> _transport = new Repository<Transport>(new PTC_ManagementContext());
 
@@ -49,6 +50,8 @@ namespace PTC_Management.ViewModel
         public static readonly DependencyProperty FilterTextProperty =
             DependencyProperty.Register(MyLiterals<Transport>.FilterText, typeof(string), typeof(TransportViewModel), new PropertyMetadata("", FilterText_Changed));
 
+
+
         public ICollectionView TransportItems
         {
             get { return (ICollectionView)GetValue(ItemsProperty); }
@@ -67,13 +70,13 @@ namespace PTC_Management.ViewModel
             {
                 case Actions.add:
                     dialog = new TransportDialogViewModel(action);
-                    Show(dialog);
+                    dialog.Show();
                     break;
 
                 case Actions.update:
                     if (SelectedItem is null) return;
                     dialog = new TransportDialogViewModel((Transport)SelectedItem, action);
-                    Show(dialog);
+                    dialog.Show();
                     break;
 
                 case Actions.remove:
@@ -84,7 +87,7 @@ namespace PTC_Management.ViewModel
                 case Actions.copy:
                     if (SelectedItem is null) return;
                     dialog = new TransportDialogViewModel((Transport)SelectedItem, action);
-                    Show(dialog);
+                    dialog.Show();
                     break;
             }
 

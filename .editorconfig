@@ -4,10 +4,6 @@
 [*]
 indent_style = space
 
-# Xml files
-[*.{xml, xaml}]
-indent_size = 2
-
 # C# or VB files
 [*.{cs, xaml, vb}]
 guidelines = 80 1px solid 0b9cbb

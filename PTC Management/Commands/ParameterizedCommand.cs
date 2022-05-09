@@ -15,7 +15,7 @@ namespace PTC_Management
             _TargetExecuteMethod = executeMethod;
         }
 
-        public ParameterizedCommand(Action<T> executeMethod, 
+        public ParameterizedCommand(Action<T> executeMethod,
             Func<T, bool> canExecuteMethod)
         {
             _TargetExecuteMethod = executeMethod;

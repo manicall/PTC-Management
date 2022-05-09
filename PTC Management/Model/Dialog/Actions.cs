@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PTC_Management.Model.Dialog
+﻿namespace PTC_Management.Model.Dialog
 {
     /// <summary>
     /// Список контстант для выбора действия, которое необходимо выполнить
@@ -15,7 +9,7 @@ namespace PTC_Management.Model.Dialog
         internal const string add = "add";
         internal const string update = "update";
         internal const string remove = "remove";
-        internal const string copy   = "copy";
+        internal const string copy = "copy";
 
         internal const string writeAndClose = "writeAndClose";
         internal const string write = "write";
@@ -24,18 +18,20 @@ namespace PTC_Management.Model.Dialog
         public string Add => add;
         public string Update => update;
         public string Remove => remove;
-        public string Copy   => copy;    
-        
+        public string Copy => copy;
+
         public string WriteAndClose => writeAndClose;
         public string Write => write;
         public string Close => close;
 
-        public string GetGenetiveName(string action) {
-            switch (action) {
-                case add:    return "добавления";
+        public string GetGenetiveName(string action)
+        {
+            switch (action)
+            {
+                case add: return "добавления";
                 case update: return "изменения";
-                case copy:   return "копирования";
-                default:     return null;
+                case copy: return "копирования";
+                default: return null;
             }
         }
     }

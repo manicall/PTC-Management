@@ -1,9 +1,5 @@
 ﻿using PTC_Management.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PTC_Management.ViewModel.Base;
 
 namespace PTC_Management.Model.MainWindow
 {
@@ -15,9 +11,9 @@ namespace PTC_Management.Model.MainWindow
         public readonly BindableBase itinerary;
         public readonly BindableBase scheduleOfEmployee;
 
-        public ViewModels(ref int MainWindowHeight)
+        public ViewModels(Size mainWindowSize)
         {
-            employee = new EmployeeViewModel();
+            employee = new EmployeeViewModel() { MainWidowSize = mainWindowSize };
             route = new RouteViewModel();
             transport = new TransportViewModel();
             itinerary = new ItineraryViewModel();

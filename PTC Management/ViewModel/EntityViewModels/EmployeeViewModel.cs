@@ -1,6 +1,7 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
+using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
-    internal class EmployeeViewModel : ViewModelBase
+    internal class EmployeeViewModel : ViewModelBaseEntity
     {
 
         private ObservableCollection<Employee> employeeObservableCollection;
@@ -23,22 +24,11 @@ namespace PTC_Management.ViewModel
             EmployeeItems = GetEmployeeItems();
 
             EmployeeItems.Filter = FilterEmployee;
-
-            maxHeight = 100;
-
         }
 
-  
+        private Size mainWidowSize;
+        public Size MainWidowSize { get => mainWidowSize; set => mainWidowSize = value; }
 
-        private int mainWindowHeight;
-        private int maxHeight;
-        public int MaxHeight
-        {
-            get => maxHeight;
-            set => SetProperty(ref maxHeight, value);
-        }
-
-        
 
         #region FilterText
         public string FilterEmployeeText
@@ -50,7 +40,7 @@ namespace PTC_Management.ViewModel
         public static readonly DependencyProperty filterTextProperty =
             DependencyProperty.Register(
                 MyLiterals<Employee>.FilterText, typeof(string),
-                typeof(EmployeeViewModel), 
+                typeof(EmployeeViewModel),
                 new PropertyMetadata("", FilterText_Changed)
                 );
 
@@ -171,7 +161,8 @@ namespace PTC_Management.ViewModel
         /// было выбрано в главном окне.</param>
         /// <returns>Диалоговое окно, 
         /// имеющее тип EmployeeDialogViewModel.</returns>
-        private DialogViewModel GetDialogViewModel(string action) {
+        private DialogViewModel GetDialogViewModel(string action)
+        {
             return new EmployeeDialogViewModel()
             {
                 Title = $"Окно {Actions.GetGenetiveName(action)} сотрудника",
@@ -192,7 +183,7 @@ namespace PTC_Management.ViewModel
         /// которое должно быть запущено.</param>
         private void Add(DialogViewModel dialog)
         {
-            Show(dialog);
+            dialog.Show();
         }
 
         /// <summary>
@@ -208,7 +199,7 @@ namespace PTC_Management.ViewModel
             dialog.SelectedIndex = SelectedIndex;
             dialog.DialogItem = ((Employee)SelectedItem).Clone();
 
-            Show(dialog);
+            dialog.Show();
         }
 
         /// <summary>
@@ -238,7 +229,7 @@ namespace PTC_Management.ViewModel
             dialog.DialogItem = ((Employee)SelectedItem).Clone();
             dialog.CopyCountVisibility = "Visible";
 
-            Show(dialog);
+            dialog.Show();
         }
         #endregion
     }

@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 
-namespace PTC_Management
+namespace PTC_Management.ViewModel.Base
 {
     /// <summary>
     /// реализует интерфейс INotifyPropertyChanged
@@ -23,7 +23,7 @@ namespace PTC_Management
         {
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-        
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
     }

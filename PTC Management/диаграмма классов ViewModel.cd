@@ -8,11 +8,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="PTC_Management.ViewModel.ViewModelBase">
+  <Class Name="PTC_Management.ViewModel.ViewModelBaseDialog">
     <Position X="6" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABYAAAAAIgEAAEAAAACABAAIAwAEBAgAABAAAACAAAA=</HashCode>
-      <FileName>ViewModel\Base\ViewModelBase.cs</FileName>
+      <FileName>ViewModel\Base\ViewModelBaseDialog.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.DialogViewModel">

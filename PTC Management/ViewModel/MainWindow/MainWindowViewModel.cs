@@ -1,7 +1,6 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model.MainWindow;
-using PTC_Management.ViewModel;
-using System.Windows;
+using PTC_Management.ViewModel.Base;
 
 namespace PTC_Management
 {
@@ -42,8 +41,8 @@ namespace PTC_Management
             // создание команды работы с бекапом базы данных
             BackUpCommand = new ParameterizedCommand<string>(OnBackUp);
 
-            height = 500;
-            viewModels = new ViewModels(ref height);
+            size = new Size(500);
+            viewModels = new ViewModels(size);
 
             // установка представления по умолчанию
             CurrentViewModel = viewModels.employee;
@@ -52,14 +51,14 @@ namespace PTC_Management
         }
 
 
-        
 
-        private int height;
-        public int Height
+        private Size size;
+        public Size Size
         {
-            get => height;
-            set => SetProperty(ref height, value - 100);
+            get => size;
+            set => SetProperty(ref size, value);
         }
+
 
         #region Команды
         public ParameterizedCommand<string> NavigationCommand { get; private set; }
@@ -110,4 +109,16 @@ namespace PTC_Management
 
         #endregion
     }
+
+    internal class Size
+    {
+        public Size(int height) { this.height = height; }
+        private int height;
+        public int Height
+        {
+            get => height;
+            set => height = value - 170;
+        }
+    }
+
 }

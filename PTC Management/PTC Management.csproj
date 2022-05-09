@@ -82,7 +82,8 @@
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
-    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBaseDialog.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBaseEntity.cs" />
     <Compile Include="ViewModel\DialogViewModels\DialogViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModels\EmployeeDialogViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModels\TransportDialogViewModel.cs" />

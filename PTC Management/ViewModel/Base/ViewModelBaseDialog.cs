@@ -3,40 +3,26 @@ using PTC_Management.Windows;
 using System.Windows;
 using System.Windows.Input;
 
-namespace PTC_Management.ViewModel
+namespace PTC_Management.ViewModel.Base
 {
-    class ViewModelBase : BindableBase
+    class ViewModelBaseDialog : BindableBase
     {
         private string mainWindowAction;
         public string MainWindowAction
-        { 
-            get => mainWindowAction; 
-            set => mainWindowAction=value; 
+        {
+            get => mainWindowAction;
+            set => mainWindowAction = value;
         }
 
         private Actions actions = new Actions();
         public Actions Actions { get => actions; }
-
-        public ViewModelBase() {
-            DialogCommand = new ParameterizedCommand<string>(OnDialog);
-        }
-
-        private object _selectedItem;
-        public object SelectedItem
-        {
-            get => _selectedItem;
-            set => _selectedItem = value;  
-        }
-
-        public ICommand DialogCommand { get; set; }
-        public virtual void OnDialog(string action) { }
 
         /// <summary>
         /// Окно в котором показывается текущий ViewModel
         /// </summary>
         private Dialog window = null;
 
-        #region title
+        #region Title
         /// <summary> Заголовок окна </summary>
         public string Title
         {
@@ -45,7 +31,8 @@ namespace PTC_Management.ViewModel
         }
 
         public static readonly DependencyProperty title =
-            DependencyProperty.Register("Title", typeof(string), typeof(ViewModelBase), new PropertyMetadata(""));
+            DependencyProperty.Register("Title", typeof(string), 
+                typeof(ViewModelBaseDialog), new PropertyMetadata(""));
         #endregion
 
         /// <summary> Методы вызываемый окном при закрытии </summary>
@@ -71,12 +58,12 @@ namespace PTC_Management.ViewModel
         /// Указывает какое представление 
         /// будет отображаться в диалоговом окне
         /// </param>
-        protected void Show(ViewModelBase viewModel)
+        public void Show()
         {
-            viewModel.window = new Dialog();
-            viewModel.window.DataContext = viewModel;
-            viewModel.window.Closed += (sender, e) => Closed();
-            viewModel.window.ShowDialog();
+            window = new Dialog();
+            window.DataContext = this;
+            window.Closed += (sender, e) => Closed();
+            window.ShowDialog();
         }
     }
 }
