@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace PTC_Management.EF
 {
-    public class Repository<T> where T : Entity, new()
+    public class Repository<T> where T : Entity
     {
         private readonly PTC_ManagementContext _db;
         private readonly DbSet<T> _set;

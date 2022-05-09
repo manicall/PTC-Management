@@ -106,8 +106,10 @@ namespace PTC_Management.ViewModel
         /// было выбрано в главном окне.</param>
         public override void OnDialog(string action)
         {
-            ActionPerformer<EmployeeDialogViewModel> actionPerformer = 
-                new ActionPerformer<EmployeeDialogViewModel>(this, GetDialogViewModel(action), action);
+           var actionPerformer = 
+                new ActionPerformer<Employee, ObservableCollection<Employee>>
+                (this, GetDialogViewModel(action) ,action, 
+                employeeObservableCollection);
 
             switch (action)
             {
@@ -119,7 +121,7 @@ namespace PTC_Management.ViewModel
                     break;
                 case Actions.remove:
                     if (SelectedItem is null) return;
-                    Remove();
+                    actionPerformer.Remove();
                     break;
                 case Actions.copy:
                     actionPerformer.Copy();
@@ -148,19 +150,7 @@ namespace PTC_Management.ViewModel
             };
         }
 
-        /// <summary>
-        /// Выполняет удаление выбранной записи в таблице.
-        /// </summary>
-        private void Remove()
-        {
-            int temp = SelectedIndex;
 
-            Employee selectedEmployee = (Employee)SelectedItem;
-            employeeObservableCollection.Remove(selectedEmployee);
-            selectedEmployee.Remove();
-
-            SelectedIndex = temp;
-        }
 
         #endregion
     }

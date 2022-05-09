@@ -10,6 +10,10 @@ namespace PTC_Management.EF
     {
         public int Id { get; set; }
 
+        public Entity()
+        {
+
+        }
 
         // методы созданы для переопределения в дочерних классах
         public virtual void Add() { throw new NotImplementedException(); }

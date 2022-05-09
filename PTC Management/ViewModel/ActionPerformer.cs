@@ -12,17 +12,22 @@ using System.Threading.Tasks;
 
 namespace PTC_Management.ViewModel
 {
-    class ActionPerformer<T>
+    class ActionPerformer<T, T1>
+        where T : Entity
+        where T1 : ObservableCollection<T> 
     {
         private ViewModelBaseEntity entityVM;
         private DialogViewModel dialogVM;
         private string action;
+        private T1 observableCollection;
 
-        public ActionPerformer(ViewModelBaseEntity entityVM, DialogViewModel dialogVM, string action)
+        public ActionPerformer(ViewModelBaseEntity entityVM, 
+            DialogViewModel dialogVM, string action, T1 observableCollection)
         {
             this.entityVM = entityVM;
             this.dialogVM = dialogVM;
             this.action = action;
+            this.observableCollection = observableCollection;
         }
 
 
@@ -53,7 +58,19 @@ namespace PTC_Management.ViewModel
             dialogVM.Show();
         }
 
+        /// <summary>
+        /// Выполняет удаление выбранной записи в таблице.
+        /// </summary>
+        public void Remove()
+        {
+            int temp = entityVM.SelectedIndex;
 
+            T selectedEmployee = (T)entityVM.SelectedItem;
+            observableCollection.Remove(selectedEmployee);
+            selectedEmployee.Remove();
+
+            entityVM.SelectedIndex = temp;
+        }
 
         /// <summary>
         /// Выполняет запуск диалогового окна, 
