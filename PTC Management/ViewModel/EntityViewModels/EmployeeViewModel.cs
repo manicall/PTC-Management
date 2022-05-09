@@ -13,31 +13,59 @@ namespace PTC_Management.ViewModel
     {
 
         private ObservableCollection<Employee> employeeObservableCollection;
-        private Repository<Employee> repositoryEmployee = Employee.repositoryEmployee; 
+        private Repository<Employee> repositoryEmployee;
 
         public EmployeeViewModel()
         {
-            employeeObservableCollection = repositoryEmployee.GetObservableCollection();
-            EmployeeItems = CollectionViewSource.GetDefaultView(employeeObservableCollection);
+            repositoryEmployee = Employee.repositoryEmployee;
+            employeeObservableCollection = GetEmployeeObservableCollection();
+
+            EmployeeItems = GetEmployeeItems();
+
             EmployeeItems.Filter = FilterEmployee;
         }
 
-        #region Filter
+        /// <summary> Возвращает записи из таблицы Employee. </summary>
+        /// <returns>записи из таблицы Employee.</returns>
+        private ObservableCollection<Employee> GetEmployeeObservableCollection() 
+        {
+            return repositoryEmployee.GetObservableCollection();
+        }
+
+        /// <summary> Возвращает представление </summary>
+        /// <returns> Преставление на основе объекта 
+        /// employeeObservableCollection</returns>
+        private ICollectionView GetEmployeeItems()
+        {
+            return 
+                CollectionViewSource
+                .GetDefaultView(employeeObservableCollection);
+        }
+
+        /// <summary>
+        /// Проверка подходит заданный текст под фильтр
+        /// </summary>
+        /// <param name="obj">Объект, который
+        /// будет проверяться фильтром</param>
+        /// <returns>Подхоидт ли заданная запись под фильтр</returns>
         private bool FilterEmployee(object obj)
         {
-            bool result = true;
             Employee current = obj as Employee;
 
             if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
                  && !current.Id.ToString().Contains(FilterEmployeeText)
-                 && (current.Surname == null || !current.Surname.Contains(FilterEmployeeText))
-                 && (current.Name == null || !current.Name.Contains(FilterEmployeeText))
-                 && (current.Patronymic == null || !current.Patronymic.Contains(FilterEmployeeText))
-                 && (current.DriverLicense == null || !current.DriverLicense.Contains(FilterEmployeeText)))
+                 && (current.Surname == null || 
+                     !current.Surname.Contains(FilterEmployeeText))
+                 && (current.Name == null ||
+                     !current.Name.Contains(FilterEmployeeText))
+                 && (current.Patronymic == null || 
+                     !current.Patronymic.Contains(FilterEmployeeText))
+                 && (current.DriverLicense == null || 
+                     !current.DriverLicense.Contains(FilterEmployeeText)))
             {
-                result = false;
+               return false;
             }
-            return result;
+            return true;
         }
 
         private static void FilterText_Changed(DependencyObject d,
@@ -51,6 +79,7 @@ namespace PTC_Management.ViewModel
             }
         }
 
+        #region FilterText
         public string FilterEmployeeText
         {
             get { return (string)GetValue(filterTextProperty); }
@@ -58,8 +87,11 @@ namespace PTC_Management.ViewModel
         }
 
         public static readonly DependencyProperty filterTextProperty =
-            DependencyProperty.Register(MyLiterals<Employee>.FilterText, typeof(string),
-                typeof(EmployeeViewModel), new PropertyMetadata("", FilterText_Changed));
+            DependencyProperty.Register(
+                MyLiterals<Employee>.FilterText, typeof(string),
+                typeof(EmployeeViewModel), 
+                new PropertyMetadata("", FilterText_Changed)
+                );
 
         #endregion
 
@@ -71,11 +103,13 @@ namespace PTC_Management.ViewModel
         }
 
         public static readonly DependencyProperty _itemsProperty =
-            DependencyProperty.Register(MyLiterals<Employee>.Items, typeof(ICollectionView),
+            DependencyProperty.Register(
+                MyLiterals<Employee>.Items, typeof(ICollectionView),
                 typeof(EmployeeViewModel), new PropertyMetadata(null));
 
         #endregion
 
+        #region SelectedIndex
         public int SelectedIndex
         {
             get { return (int)GetValue(SelectedIndexProperty); }
@@ -85,20 +119,16 @@ namespace PTC_Management.ViewModel
         public static readonly DependencyProperty SelectedIndexProperty =
             DependencyProperty.Register("SelectedIndex", typeof(int),
                 typeof(EmployeeViewModel), new PropertyMetadata(null));
+        #endregion
 
+        /// <summary>
+        /// Выполняет заданное действие для вызывающей кнопки.
+        /// </summary>
+        /// <param name="action">Действие, которое 
+        /// было выбрано в главном окне.</param>
         public override void OnDialog(string action)
         {
-            DialogViewModel dialog = new EmployeeDialogViewModel()
-            {
-                Title = $"Окно {Actions.GetGenetiveName(action)} сотрудника",
-                DialogItem = new Employee(),
-
-                MainWindowAction = action,
-                CopyCountVisibility = "Collapsed",
-                EmployeeObservableCollection = employeeObservableCollection,
-                CopyCount = 1,
-                RepositoryEmployee = repositoryEmployee
-            };
+            DialogViewModel dialog = GetDialogViewModel(action);
 
             switch (action)
             {
@@ -116,11 +146,43 @@ namespace PTC_Management.ViewModel
             }
         }
 
+        /// <summary>
+        /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
+        /// </summary>
+        /// <param name="action">Действие, которое 
+        /// было выбрано в главном окне.</param>
+        /// <returns>Диалоговое окно, 
+        /// имеющее тип EmployeeDialogViewModel.</returns>
+        private DialogViewModel GetDialogViewModel(string action) {
+            return new EmployeeDialogViewModel()
+            {
+                Title = $"Окно {Actions.GetGenetiveName(action)} сотрудника",
+                DialogItem = new Employee(),
+                MainWindowAction = action,
+                CopyCount = 1,
+                CopyCountVisibility = "Collapsed",
+                EmployeeObservableCollection = employeeObservableCollection,
+                RepositoryEmployee = repositoryEmployee
+            };
+        }
+
+        /// <summary>
+        /// Выполняет запуск диалогового окна, 
+        /// для добавления записи в таблицу.
+        /// </summary>
+        /// <param name="dialog"> Объект диалогового окна,
+        /// которое должно быть запущено.</param>
         private void Add(DialogViewModel dialog)
         {
             Show(dialog);
         }
 
+        /// <summary>
+        /// Выполняет запуск диалогового окна, 
+        /// для изменения записи в таблице.
+        /// </summary>
+        /// <param name="dialog"> Объект диалогового окна,
+        /// которое должно быть запущено.</param>
         private void Update(DialogViewModel dialog)
         {
             if (SelectedItem is null) return;
@@ -131,6 +193,9 @@ namespace PTC_Management.ViewModel
             Show(dialog);
         }
 
+        /// <summary>
+        /// Выполняет удаление выбранной записи в таблице.
+        /// </summary>
         private void Remove()
         {
             int temp = SelectedIndex;
@@ -142,7 +207,12 @@ namespace PTC_Management.ViewModel
             SelectedIndex = temp;
         }
 
-
+        /// <summary>
+        /// Выполняет запуск диалогового окна, 
+        /// для копирования записи в таблицу.
+        /// </summary>
+        /// <param name="dialog"> Объект диалогового окна,
+        /// которое должно быть запущено.</param>
         private void Copy(DialogViewModel dialog)
         {
             if (SelectedItem is null) return;

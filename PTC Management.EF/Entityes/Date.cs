@@ -20,9 +20,13 @@ namespace PTC_Management.EF
         public DateTime? Date1 { get; set; }
 
         
-        public virtual ICollection<Date_has_Employee> Date_has_Employee { get; set; }
+        public virtual ICollection<Date_has_Employee> Date_has_Employee { 
+            get; set; 
+        }
 
         
-        public virtual ICollection<EmployeeSchedule> EmployeeSchedules { get; set; }
+        public virtual ICollection<EmployeeSchedule> EmployeeSchedules {
+            get; set;
+        }
     }
 }
