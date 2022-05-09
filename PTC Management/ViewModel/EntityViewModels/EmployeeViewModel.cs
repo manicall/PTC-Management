@@ -5,6 +5,7 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IdentityModel.Metadata;
 using System.Windows;
 using System.Windows.Data;
 
@@ -105,20 +106,23 @@ namespace PTC_Management.ViewModel
         /// было выбрано в главном окне.</param>
         public override void OnDialog(string action)
         {
-            DialogViewModel dialog = GetDialogViewModel(action);
+            ActionPerformer<EmployeeDialogViewModel> actionPerformer = 
+                new ActionPerformer<EmployeeDialogViewModel>(this, GetDialogViewModel(action), action);
 
             switch (action)
             {
-                case Actions.add: Add(dialog); break;
+                case Actions.add: 
+                    actionPerformer.Add();
+                    break;
                 case Actions.update:
-                    Update(dialog);
+                    actionPerformer.Update();
                     break;
                 case Actions.remove:
                     if (SelectedItem is null) return;
                     Remove();
                     break;
                 case Actions.copy:
-                    Copy(dialog);
+                    actionPerformer.Copy();
                     break;
             }
         }
@@ -133,7 +137,7 @@ namespace PTC_Management.ViewModel
         private DialogViewModel GetDialogViewModel(string action)
         {
             return new EmployeeDialogViewModel()
-            {
+{
                 Title = $"Окно {Actions.GetGenetiveName(action)} сотрудника",
                 DialogItem = new Employee(),
                 MainWindowAction = action,
@@ -142,33 +146,6 @@ namespace PTC_Management.ViewModel
                 EmployeeObservableCollection = employeeObservableCollection,
                 RepositoryEmployee = repositoryEmployee
             };
-        }
-
-        /// <summary>
-        /// Выполняет запуск диалогового окна, 
-        /// для добавления записи в таблицу.
-        /// </summary>
-        /// <param name="dialog"> Объект диалогового окна,
-        /// которое должно быть запущено.</param>
-        private void Add(DialogViewModel dialog)
-        {
-            dialog.Show();
-        }
-
-        /// <summary>
-        /// Выполняет запуск диалогового окна, 
-        /// для изменения записи в таблице.
-        /// </summary>
-        /// <param name="dialog"> Объект диалогового окна,
-        /// которое должно быть запущено.</param>
-        private void Update(DialogViewModel dialog)
-        {
-            if (SelectedItem is null) return;
-
-            dialog.SelectedIndex = SelectedIndex;
-            dialog.DialogItem = ((Employee)SelectedItem).Clone();
-
-            dialog.Show();
         }
 
         /// <summary>
@@ -185,21 +162,6 @@ namespace PTC_Management.ViewModel
             SelectedIndex = temp;
         }
 
-        /// <summary>
-        /// Выполняет запуск диалогового окна, 
-        /// для копирования записи в таблицу.
-        /// </summary>
-        /// <param name="dialog"> Объект диалогового окна,
-        /// которое должно быть запущено.</param>
-        private void Copy(DialogViewModel dialog)
-        {
-            if (SelectedItem is null) return;
-
-            dialog.DialogItem = ((Employee)SelectedItem).Clone();
-            dialog.CopyCountVisibility = "Visible";
-
-            dialog.Show();
-        }
         #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using PTC_Management.Model.Dialog;
+﻿using PTC_Management.EF;
+using PTC_Management.Model.Dialog;
 
 using System.ComponentModel;
 using System.Windows;
@@ -43,9 +44,9 @@ namespace PTC_Management.ViewModel.Base
             DialogCommand = new ParameterizedCommand<string>(OnDialog);
         } 
 
-        private object _selectedItem;
+        private Entity _selectedItem;
 
-        public object SelectedItem
+        public Entity SelectedItem
         {
             get => _selectedItem;
             set => _selectedItem = value;

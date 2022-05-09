@@ -75,12 +75,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Dialog\Actions.cs" />
-    <Compile Include="Model\Dialog\ViewModels.cs" />
+    <Compile Include="Model\Actions.cs" />
     <Compile Include="Model\MyLiterals.cs" />
     <Compile Include="Model\MainWindow\BackUp.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ViewModel\ActionPerformer.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseDialog.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseEntity.cs" />
@@ -234,7 +234,9 @@
       <Name>PTC Management.EF</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Dialog\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
