@@ -5,13 +5,10 @@
 indent_style = space
 
 # Xml files
-[*.xml]
+[*.{xml, xaml}]
 indent_size = 2
 
-# All files
-[*]
-guidelines = 80
 
 # C# or VB files
-[*.{cs,vb}]
-guidelines = 80, 120
+[*.{cs, xaml, vb}]
+guidelines = 80 1px solid 0b9cbb

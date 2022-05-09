@@ -69,9 +69,9 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// <remarks> 
         /// Примечание: Для вызова данного метода, 
         /// кнопка диалогового окна должна быть 
-        /// привязанна к данной команде
+        /// привязанна к команде DialogActionCommand
         /// </remarks>
-        /// <param name="dialogAction"> 
+        /// <param name="dialogAction">                                         
         /// Действие которое следует выполнить,
         /// для вызывающей кнопки. 
         /// </param>
@@ -85,7 +85,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
         }
 
         /// <summary>
-        /// Выполняет изменнение employeeObservableCollection, на основе заданного действия
+        /// Выполняет изменнение employeeObservableCollection, на основе заданного действия                             
         /// </summary>
         private void FillEmployeeObservableCollection() {
             List<Employee> List = null;
