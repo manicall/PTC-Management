@@ -76,18 +76,6 @@ namespace PTC_Management.ViewModel
             }
         }
 
-        #region Items
-        public ICollectionView Items
-        {
-            get { return (ICollectionView)GetValue(_itemsProperty); }
-            set { SetValue(_itemsProperty, value); }
-        }
-
-        public static readonly DependencyProperty _itemsProperty =
-            DependencyProperty.Register("Items", typeof(ICollectionView), typeof(DialogViewModel), new PropertyMetadata(null));
-
-        #endregion
-
         protected void DoAction(string action)
         {
             Entity entity = DialogItem.Clone();

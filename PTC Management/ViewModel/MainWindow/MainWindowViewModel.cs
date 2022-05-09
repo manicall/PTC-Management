@@ -7,8 +7,6 @@ namespace PTC_Management
 
     class MainWindowViewModel : BindableBase
     {
-
-
         #region Поля и свойства
         private ViewModels viewModels;
 

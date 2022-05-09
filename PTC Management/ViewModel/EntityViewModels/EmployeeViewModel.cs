@@ -12,7 +12,6 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
     {
-
         private ObservableCollection<Employee> employeeObservableCollection;
         private Repository<Employee> repositoryEmployee;
 
@@ -21,13 +20,9 @@ namespace PTC_Management.ViewModel
             repositoryEmployee = Employee.repositoryEmployee;
             employeeObservableCollection = GetEmployeeObservableCollection();
 
-            EmployeeItems = GetEmployeeItems();
-
-            EmployeeItems.Filter = FilterEmployee;
+            Items = GetEmployeeItems();
+            Items.Filter = FilterEmployee;
         }
-
-        private Size mainWidowSize;
-        public Size MainWidowSize { get => mainWidowSize; set => mainWidowSize = value; }
 
 
         #region FilterText
@@ -44,53 +39,6 @@ namespace PTC_Management.ViewModel
                 new PropertyMetadata("", FilterText_Changed)
                 );
 
-        #endregion
-
-        #region Items
-        public ICollectionView EmployeeItems
-        {
-            get { return (ICollectionView)GetValue(_itemsProperty); }
-            set { SetValue(_itemsProperty, value); }
-        }
-
-        public static readonly DependencyProperty _itemsProperty =
-            DependencyProperty.Register(
-                MyLiterals<Employee>.Items, typeof(ICollectionView),
-                typeof(EmployeeViewModel), new PropertyMetadata(null));
-
-        #endregion
-
-        #region SelectedIndex
-        public int SelectedIndex
-        {
-            get { return (int)GetValue(SelectedIndexProperty); }
-            set { SetValue(SelectedIndexProperty, value); }
-        }
-
-        public static readonly DependencyProperty SelectedIndexProperty =
-            DependencyProperty.Register("SelectedIndex", typeof(int),
-                typeof(EmployeeViewModel), new PropertyMetadata(null));
-        #endregion
-
-
-        #region Методы
-
-        /// <summary> Возвращает записи из таблицы Employee. </summary>
-        /// <returns>записи из таблицы Employee.</returns>
-        private ObservableCollection<Employee> GetEmployeeObservableCollection()
-        {
-            return repositoryEmployee.GetObservableCollection();
-        }
-
-        /// <summary> Возвращает представление </summary>
-        /// <returns> Преставление на основе объекта 
-        /// employeeObservableCollection</returns>
-        private ICollectionView GetEmployeeItems()
-        {
-            return
-                CollectionViewSource
-                .GetDefaultView(employeeObservableCollection);
-        }
 
         /// <summary>
         /// Проверка подходит заданный текст под фильтр
@@ -124,9 +72,30 @@ namespace PTC_Management.ViewModel
             var current = d as EmployeeViewModel;
             if (current != null)
             {
-                current.EmployeeItems.Filter = null;
-                current.EmployeeItems.Filter = current.FilterEmployee;
+                current.Items.Filter = null;
+                current.Items.Filter = current.FilterEmployee;
             }
+        }
+
+        #endregion 
+
+        #region Методы
+
+        /// <summary> Возвращает записи из таблицы Employee. </summary>
+        /// <returns>записи из таблицы Employee.</returns>
+        private ObservableCollection<Employee> GetEmployeeObservableCollection()
+        {
+            return repositoryEmployee.GetObservableCollection();
+        }
+
+        /// <summary> Возвращает представление </summary>
+        /// <returns> Преставление на основе объекта 
+        /// employeeObservableCollection</returns>
+        private ICollectionView GetEmployeeItems()
+        {
+            return
+                CollectionViewSource
+                .GetDefaultView(employeeObservableCollection);
         }
 
         /// <summary>

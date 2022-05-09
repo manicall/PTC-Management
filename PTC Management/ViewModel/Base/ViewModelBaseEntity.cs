@@ -1,11 +1,38 @@
 ﻿using PTC_Management.Model.Dialog;
 
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PTC_Management.ViewModel.Base
 {
     class ViewModelBaseEntity : BindableBase
     {
+        private Size mainWidowSize;
+        public Size MainWidowSize { 
+            get => mainWidowSize;
+            set => mainWidowSize = value; 
+        }
+
+        private ICollectionView items;
+        public ICollectionView Items
+        {
+            get => items;
+            set => items = value;
+        }
+
+        #region SelectedIndex
+        public int SelectedIndex
+        {
+            get { return (int)GetValue(SelectedIndexProperty); }
+            set { SetValue(SelectedIndexProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedIndexProperty =
+            DependencyProperty.Register("SelectedIndex", typeof(int),
+                typeof(EmployeeViewModel), new PropertyMetadata(null));
+        #endregion
+
         private Actions actions = new Actions();
         public Actions Actions { get => actions; }
 
@@ -17,6 +44,7 @@ namespace PTC_Management.ViewModel.Base
         } 
 
         private object _selectedItem;
+
         public object SelectedItem
         {
             get => _selectedItem;

@@ -24,15 +24,12 @@ namespace PTC_Management.ViewModel.Base
 
         #region Title
         /// <summary> Заголовок окна </summary>
+        private string title;
         public string Title
         {
-            get { return (string)GetValue(title); }
-            set { SetValue(title, value); }
+            get => title;
+            set => title = value;
         }
-
-        public static readonly DependencyProperty title =
-            DependencyProperty.Register("Title", typeof(string), 
-                typeof(ViewModelBaseDialog), new PropertyMetadata(""));
         #endregion
 
         /// <summary> Методы вызываемый окном при закрытии </summary>
