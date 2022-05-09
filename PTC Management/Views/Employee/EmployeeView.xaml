@@ -47,14 +47,14 @@
                       SelectedIndex="{Binding SelectedIndex}"
                       ItemsSource="{Binding EmployeeItems, UpdateSourceTrigger=PropertyChanged}"
                       Name="dataGridEmployee"
-                      MinRowHeight="20" MaxHeight="200"
+                      MinRowHeight="20" MaxHeight="{Binding MaxHeight}"
                       ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
                       
                       CanUserReorderColumns="False"
                       IsReadOnly="True" 
                       CanUserAddRows="false"
 
-                      d:ItemsSource="{d:SampleData ItemCount=5}" 
+                      
                       AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>

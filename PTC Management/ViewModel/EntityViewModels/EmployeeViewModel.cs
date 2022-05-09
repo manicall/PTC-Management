@@ -23,61 +23,22 @@ namespace PTC_Management.ViewModel
             EmployeeItems = GetEmployeeItems();
 
             EmployeeItems.Filter = FilterEmployee;
+
+            maxHeight = 100;
+
         }
 
-        /// <summary> Возвращает записи из таблицы Employee. </summary>
-        /// <returns>записи из таблицы Employee.</returns>
-        private ObservableCollection<Employee> GetEmployeeObservableCollection() 
+  
+
+        private int mainWindowHeight;
+        private int maxHeight;
+        public int MaxHeight
         {
-            return repositoryEmployee.GetObservableCollection();
+            get => maxHeight;
+            set => SetProperty(ref maxHeight, value);
         }
 
-        /// <summary> Возвращает представление </summary>
-        /// <returns> Преставление на основе объекта 
-        /// employeeObservableCollection</returns>
-        private ICollectionView GetEmployeeItems()
-        {
-            return 
-                CollectionViewSource
-                .GetDefaultView(employeeObservableCollection);
-        }
-
-        /// <summary>
-        /// Проверка подходит заданный текст под фильтр
-        /// </summary>
-        /// <param name="obj">Объект, который
-        /// будет проверяться фильтром</param>
-        /// <returns>Подхоидт ли заданная запись под фильтр</returns>
-        private bool FilterEmployee(object obj)
-        {
-            Employee current = obj as Employee;
-
-            if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
-                 && !current.Id.ToString().Contains(FilterEmployeeText)
-                 && (current.Surname == null || 
-                     !current.Surname.Contains(FilterEmployeeText))
-                 && (current.Name == null ||
-                     !current.Name.Contains(FilterEmployeeText))
-                 && (current.Patronymic == null || 
-                     !current.Patronymic.Contains(FilterEmployeeText))
-                 && (current.DriverLicense == null || 
-                     !current.DriverLicense.Contains(FilterEmployeeText)))
-            {
-               return false;
-            }
-            return true;
-        }
-
-        private static void FilterText_Changed(DependencyObject d,
-            DependencyPropertyChangedEventArgs e)
-        {
-            var current = d as EmployeeViewModel;
-            if (current != null)
-            {
-                current.EmployeeItems.Filter = null;
-                current.EmployeeItems.Filter = current.FilterEmployee;
-            }
-        }
+        
 
         #region FilterText
         public string FilterEmployeeText
@@ -120,6 +81,63 @@ namespace PTC_Management.ViewModel
             DependencyProperty.Register("SelectedIndex", typeof(int),
                 typeof(EmployeeViewModel), new PropertyMetadata(null));
         #endregion
+
+
+        #region Методы
+
+        /// <summary> Возвращает записи из таблицы Employee. </summary>
+        /// <returns>записи из таблицы Employee.</returns>
+        private ObservableCollection<Employee> GetEmployeeObservableCollection()
+        {
+            return repositoryEmployee.GetObservableCollection();
+        }
+
+        /// <summary> Возвращает представление </summary>
+        /// <returns> Преставление на основе объекта 
+        /// employeeObservableCollection</returns>
+        private ICollectionView GetEmployeeItems()
+        {
+            return
+                CollectionViewSource
+                .GetDefaultView(employeeObservableCollection);
+        }
+
+        /// <summary>
+        /// Проверка подходит заданный текст под фильтр
+        /// </summary>
+        /// <param name="obj">Объект, который
+        /// будет проверяться фильтром</param>
+        /// <returns>Подхоидт ли заданная запись под фильтр</returns>
+        private bool FilterEmployee(object obj)
+        {
+            Employee current = obj as Employee;
+
+            if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
+                 && !current.Id.ToString().Contains(FilterEmployeeText)
+                 && (current.Surname == null ||
+                     !current.Surname.Contains(FilterEmployeeText))
+                 && (current.Name == null ||
+                     !current.Name.Contains(FilterEmployeeText))
+                 && (current.Patronymic == null ||
+                     !current.Patronymic.Contains(FilterEmployeeText))
+                 && (current.DriverLicense == null ||
+                     !current.DriverLicense.Contains(FilterEmployeeText)))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private static void FilterText_Changed(DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as EmployeeViewModel;
+            if (current != null)
+            {
+                current.EmployeeItems.Filter = null;
+                current.EmployeeItems.Filter = current.FilterEmployee;
+            }
+        }
 
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
@@ -222,6 +240,6 @@ namespace PTC_Management.ViewModel
 
             Show(dialog);
         }
-
+        #endregion
     }
 }

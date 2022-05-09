@@ -9,12 +9,20 @@ namespace PTC_Management.Model.MainWindow
 {
     class ViewModels : BindableBase
     {
-        public static readonly BindableBase _employee = new EmployeeViewModel();
-        public static readonly BindableBase _route = new RouteViewModel();
-        public static readonly BindableBase _transport = new TransportViewModel();
-        public static readonly BindableBase _itinerary = new ItineraryViewModel();
-        public static readonly BindableBase _scheduleOfEmployee = new ScheduleOfEmployeeViewModel();
+        public readonly BindableBase employee;
+        public readonly BindableBase route;
+        public readonly BindableBase transport;
+        public readonly BindableBase itinerary;
+        public readonly BindableBase scheduleOfEmployee;
 
+        public ViewModels(ref int MainWindowHeight)
+        {
+            employee = new EmployeeViewModel();
+            route = new RouteViewModel();
+            transport = new TransportViewModel();
+            itinerary = new ItineraryViewModel();
+            scheduleOfEmployee = new ScheduleOfEmployeeViewModel();
+        }
 
     }
 

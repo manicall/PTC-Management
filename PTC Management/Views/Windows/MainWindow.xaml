@@ -6,7 +6,7 @@
    xmlns:local = "clr-namespace:PTC_Management" 
 
    mc:Ignorable = "d" 
-   Title = "Управление ПАТП" Height = "400" Width = "750">
+   Title = "Управление ПАТП" Height = "{Binding Height, Mode=TwoWay}" Width = "750">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>

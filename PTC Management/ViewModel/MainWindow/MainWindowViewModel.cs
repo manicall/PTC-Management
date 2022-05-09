@@ -1,13 +1,18 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel;
+using System.Windows;
 
 namespace PTC_Management
 {
 
     class MainWindowViewModel : BindableBase
     {
+
+
         #region Поля и свойства
+        private ViewModels viewModels;
+
         private readonly Destinations _destinations = new Destinations();
         public Destinations Destinations => _destinations;
 
@@ -36,9 +41,24 @@ namespace PTC_Management
             NavigationCommand = new ParameterizedCommand<string>(OnNavigation);
             // создание команды работы с бекапом базы данных
             BackUpCommand = new ParameterizedCommand<string>(OnBackUp);
+
+            height = 500;
+            viewModels = new ViewModels(ref height);
+
             // установка представления по умолчанию
-            CurrentViewModel = ViewModels._employee;
+            CurrentViewModel = viewModels.employee;
+
             RunTime.Stop();
+        }
+
+
+        
+
+        private int height;
+        public int Height
+        {
+            get => height;
+            set => SetProperty(ref height, value - 100);
         }
 
         #region Команды
@@ -53,19 +73,19 @@ namespace PTC_Management
             switch (destination)
             {
                 case Destinations._employee:
-                    CurrentViewModel = ViewModels._employee;
+                    CurrentViewModel = viewModels.employee;
                     break;
                 case Destinations._routes:
-                    CurrentViewModel = ViewModels._route;
+                    CurrentViewModel = viewModels.route;
                     break;
                 case Destinations._transport:
-                    CurrentViewModel = ViewModels._transport;
+                    CurrentViewModel = viewModels.transport;
                     break;
                 case Destinations._itinerary:
-                    CurrentViewModel = ViewModels._itinerary;
+                    CurrentViewModel = viewModels.itinerary;
                     break;
                 case Destinations._schedule:
-                    CurrentViewModel = ViewModels._scheduleOfEmployee;
+                    CurrentViewModel = viewModels.scheduleOfEmployee;
                     break;
                 default:
                     CurrentViewModel = null;
@@ -77,10 +97,10 @@ namespace PTC_Management
         {
             switch (command)
             {
-                case Backup._create: 
+                case Backup._create:
                     Backup.CreateBackup();
-                    break;                 
-                case Backup._restore: 
+                    break;
+                case Backup._restore:
                     Backup.RestoreBackup();
                     break;
 
