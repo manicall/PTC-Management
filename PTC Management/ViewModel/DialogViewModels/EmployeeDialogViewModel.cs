@@ -35,31 +35,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
         #endregion
 
         #region конструкторы
-        public EmployeeDialogViewModel(ObservableCollection<Employee> employees, string action) 
-        {
-            Title = $"Окно {Actions.GetGenetiveName(action)} сотрудника";
-            CurrentViewModel = this;
-            DialogItem = new Employee();
+        public EmployeeDialogViewModel(ObservableCollection<Employee> employees, string action) => CurrentViewModel = this;
 
-            MainWindowAction = action;
-            CopyCountVisibility = "Collapsed";
-            EmployeeObservableCollection = employees;
-            CopyCount = 1;
-        }        
-
-        public EmployeeDialogViewModel(
-            Employee employee, 
-            ObservableCollection<Employee> employees, 
-            string action,
-            bool visibleCopyCount = false) : this(employees, action) 
-        {
-            DialogItem = employee.Clone();
-
-            if (visibleCopyCount)
-            {
-                CopyCountVisibility = "Visible";
-            }
-        }
         #endregion
 
         #region методы

@@ -1,31 +1,21 @@
 {
   "Version": 1,
   "ProjectMap": {
-    "7fa1ef16-5003-413d-a372-311275d5728c": {
-      "ProjectGuid": "7fa1ef16-5003-413d-a372-311275d5728c",
+    "874587d3-f8f7-43c2-8da2-d7a2a8f60316": {
+      "ProjectGuid": "874587d3-f8f7-43c2-8da2-d7a2a8f60316",
       "DisplayName": "PTC Management",
       "ColorIndex": 0
-    },
-    "06e06efb-ef34-4805-b523-1a74b8daaaf5": {
-      "ProjectGuid": "06e06efb-ef34-4805-b523-1a74b8daaaf5",
-      "DisplayName": "PTC Management.EF",
-      "ColorIndex": 1
     },
     "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Прочие файлы",
       "ColorIndex": -1
     },
-    "f8619245-1254-4b60-a0b7-cbf009742b64": {
-      "ProjectGuid": "f8619245-1254-4b60-a0b7-cbf009742b64",
-      "DisplayName": "UnitTests",
-      "ColorIndex": 2
-    },
-    "be85dde5-2a2f-4614-b621-294a6840bc0c": {
-      "ProjectGuid": "be85dde5-2a2f-4614-b621-294a6840bc0c",
-      "DisplayName": "UnitTests",
-      "ColorIndex": 3
+    "7fa1ef16-5003-413d-a372-311275d5728c": {
+      "ProjectGuid": "7fa1ef16-5003-413d-a372-311275d5728c",
+      "DisplayName": "PTC Management",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 2
 }

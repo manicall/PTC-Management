@@ -1,0 +1,38 @@
+C:\Users\maxim\source\repos\manicall\PTC-Management\bin\Debug\PTC Management.exe.config
+C:\Users\maxim\source\repos\manicall\PTC-Management\bin\Debug\PTC Management.exe
+C:\Users\maxim\source\repos\manicall\PTC-Management\bin\Debug\PTC Management.pdb
+C:\Users\maxim\source\repos\manicall\PTC-Management\bin\Debug\EntityFramework.dll
+C:\Users\maxim\source\repos\manicall\PTC-Management\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\maxim\source\repos\manicall\PTC-Management\bin\Debug\EntityFramework.xml
+C:\Users\maxim\source\repos\manicall\PTC-Management\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management.csproj.AssemblyReference.cache
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management.csproj.SuggestedBindingRedirects.cache
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\MainWindow.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\TransportInfo.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\EmployeeScheduleView.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\ItineraryLogView.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\LogOfDepartureAndEntryView.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\MaintanceLogView.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\EmployeeView.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\RouteView.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\TransportView.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\App.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management_MarkupCompile.cache
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management_MarkupCompile.lref
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\MainWindow.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\TransportInfo.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\EmployeeScheduleView.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\ItineraryLogView.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\LogOfDepartureAndEntryView.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\MaintanceLogView.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\EmployeeView.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\RouteView.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\Views\TransportView.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management.g.resources
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC_Management.Properties.Resources.resources
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management.csproj.GenerateResource.cache
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management.csproj.CoreCompileInputs.cache
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management.csproj.CopyComplete
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management.exe
+C:\Users\maxim\source\repos\manicall\PTC-Management\obj\Debug\PTC Management.pdb

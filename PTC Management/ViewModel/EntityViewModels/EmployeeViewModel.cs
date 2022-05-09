@@ -76,7 +76,6 @@ namespace PTC_Management.ViewModel
 
         #endregion
 
-
         public int SelectedIndex
         {
             get { return (int)GetValue(SelectedIndexProperty); }
@@ -87,61 +86,70 @@ namespace PTC_Management.ViewModel
             DependencyProperty.Register("SelectedIndex", typeof(int),
                 typeof(EmployeeViewModel), new PropertyMetadata(null));
 
-
-
         public override void OnDialog(string action)
         {
+            DialogViewModel dialog = new EmployeeDialogViewModel()
+            {
+                Title = $"Окно {Actions.GetGenetiveName(action)} сотрудника",
+                DialogItem = new Employee(),
+
+                MainWindowAction = action,
+                CopyCountVisibility = "Collapsed",
+                EmployeeObservableCollection = employeeObservableCollection,
+                CopyCount = 1,
+                RepositoryEmployee = repositoryEmployee
+            };
+
             switch (action)
             {
-                case Actions.add: Add(action); break;
+                case Actions.add: Add(dialog); break;
                 case Actions.update:
-                    Update(action);
+                    Update(dialog);
                     break;
                 case Actions.remove:
                     if (SelectedItem is null) return;
                     Remove();
                     break;
                 case Actions.copy:
-                    Copy(action);
+                    Copy(dialog);
                     break;
             }
-
-            //EmployeeItems = CollectionViewSource.GetDefaultView(_employee.GetObservableCollection());
         }
 
-        private void Add(string action)
+        private void Add(DialogViewModel dialog)
         {
-            DialogViewModel dialog = new EmployeeDialogViewModel(employeeObservableCollection, action) { RepositoryEmployee = repositoryEmployee };
             Show(dialog);
         }
 
-        private void Update(string action)
+        private void Update(DialogViewModel dialog)
         {
             if (SelectedItem is null) return;
-            DialogViewModel dialog = 
-                new EmployeeDialogViewModel(
-                (Employee)SelectedItem, employeeObservableCollection, action) 
-                { 
-                    RepositoryEmployee = repositoryEmployee, 
-                    SelectedIndex = SelectedIndex,
-                };
+
+            dialog.SelectedIndex = SelectedIndex;
+            dialog.DialogItem = ((Employee)SelectedItem).Clone();
+
             Show(dialog);
         }
 
         private void Remove()
         {
             int temp = SelectedIndex;
+
             Employee selectedEmployee = (Employee)SelectedItem;
             employeeObservableCollection.Remove(selectedEmployee);
             selectedEmployee.Remove();
+
             SelectedIndex = temp;
         }
 
 
-        private void Copy(string action)
+        private void Copy(DialogViewModel dialog)
         {
             if (SelectedItem is null) return;
-            DialogViewModel dialog = new EmployeeDialogViewModel((Employee)SelectedItem, employeeObservableCollection, action, true) { RepositoryEmployee = repositoryEmployee };
+
+            dialog.DialogItem = ((Employee)SelectedItem).Clone();
+            dialog.CopyCountVisibility = "Visible";
+
             Show(dialog);
         }
 
