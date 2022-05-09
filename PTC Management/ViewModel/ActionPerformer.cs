@@ -18,18 +18,15 @@ namespace PTC_Management.ViewModel
     {
         private ViewModelBaseEntity entityVM;
         private DialogViewModel dialogVM;
-        private string action;
         private T1 observableCollection;
 
         public ActionPerformer(ViewModelBaseEntity entityVM, 
-            DialogViewModel dialogVM, string action, T1 observableCollection)
+            DialogViewModel dialogVM, T1 observableCollection)
         {
             this.entityVM = entityVM;
             this.dialogVM = dialogVM;
-            this.action = action;
             this.observableCollection = observableCollection;
         }
-
 
         /// <summary>
         /// Выполняет запуск диалогового окна, 

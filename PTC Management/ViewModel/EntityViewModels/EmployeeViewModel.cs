@@ -108,7 +108,7 @@ namespace PTC_Management.ViewModel
         {
            var actionPerformer = 
                 new ActionPerformer<Employee, ObservableCollection<Employee>>
-                (this, GetDialogViewModel(action) ,action, 
+                (this, GetDialogViewModel(action) , 
                 employeeObservableCollection);
 
             switch (action)
@@ -149,9 +149,6 @@ namespace PTC_Management.ViewModel
                 RepositoryEmployee = repositoryEmployee
             };
         }
-
-
-
         #endregion
     }
 }
