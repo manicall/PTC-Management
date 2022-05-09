@@ -1,5 +1,4 @@
-﻿using System;
-using PTC_Management.EF;
+﻿using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
 using System.Collections.ObjectModel;
 

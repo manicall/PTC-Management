@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views = "clr-namespace:PTC_Management.Views" 
         xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
-        xmlns:dialogViewModels = "clr-namespace:PTC_Management.ViewModel.DialogViewModels" 
+
         xmlns:local="clr-namespace:PTC_Management.Windows"
         mc:Ignorable="d"
         Title="{Binding Title}" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
@@ -13,15 +12,9 @@
     <Window.DataContext>
         <viewModels:DialogViewModel/>
     </Window.DataContext>
-    
-    <Window.Resources>
-        <DataTemplate DataType="{x:Type dialogViewModels:EmployeeDialogViewModel}">
-            <views:EmployeeDialogView />
-        </DataTemplate>
 
-        <DataTemplate DataType="{x:Type dialogViewModels:TransportDialogViewModel}">
-            <views:TransportDialogView />
-        </DataTemplate>
+    <Window.Resources>
+        <ResourceDictionary Source="../../Templates/DialogTemplates.xaml" />
     </Window.Resources>
 
     <Grid>

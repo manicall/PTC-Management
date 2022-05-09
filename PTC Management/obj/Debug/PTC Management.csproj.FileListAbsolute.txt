@@ -1,5 +1,4 @@
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.AssemblyReference.cache
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.SuggestedBindingRedirects.cache
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Styles\GeneralStyles.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ItineraryView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.g.cs
@@ -98,3 +97,4 @@ C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.GenerateResource.cache
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.CoreCompileInputs.cache
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.CopyComplete
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\DialogTemplates.baml

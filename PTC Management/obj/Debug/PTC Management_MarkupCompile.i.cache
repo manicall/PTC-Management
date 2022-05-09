@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\
 PTC_Management
 none
 false
 DEBUG;TRACE
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\App.xaml
-14-1538860043
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\App.xaml
+151159473172
 
-40-1044592517
-271978507306
-Styles\GeneralStyles.xaml;Templates\MainWindowTemplates.xaml;Views\Employee\EmployeeDialogView.xaml;Views\Employee\EmployeeView.xaml;Views\ItineraryView.xaml;Views\LogOfDepartureAndEntryView.xaml;Views\MaintanceLogView.xaml;Views\RouteView.xaml;Views\ScheduleOfEmployeeView.xaml;Views\Transport\TransportDialogView.xaml;Views\Transport\TransportView.xaml;Views\Windows\Dialog.xaml;Views\Windows\MainWindow.xaml;Views\Windows\TransportInfo.xaml;
+40-1831135822
+27-915861513
+Styles\GeneralStyles.xaml;Templates\DialogTemplates.xaml;Templates\MainWindowTemplates.xaml;Views\Employee\EmployeeDialogView.xaml;Views\Employee\EmployeeView.xaml;Views\ItineraryView.xaml;Views\LogOfDepartureAndEntryView.xaml;Views\MaintanceLogView.xaml;Views\RouteView.xaml;Views\ScheduleOfEmployeeView.xaml;Views\Transport\TransportDialogView.xaml;Views\Transport\TransportView.xaml;Views\Windows\Dialog.xaml;Views\Windows\MainWindow.xaml;Views\Windows\TransportInfo.xaml;
 
-False
+True
 
