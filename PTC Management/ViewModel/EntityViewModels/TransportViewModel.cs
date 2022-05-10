@@ -10,6 +10,7 @@ using System.Windows.Data;
 namespace PTC_Management.ViewModel
 {
     internal class TransportViewModel : ViewModelBaseEntity
+   
     {
         readonly Repository<Transport> _transport = new Repository<Transport>(new PTC_ManagementContext());
 

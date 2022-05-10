@@ -85,18 +85,18 @@ namespace PTC_Management
                 case Destinations._employee:
                     CurrentViewModel = viewModels.employee;
                     break;
-                //case Destinations._routes:
-                //    CurrentViewModel = viewModels.route;
-                //    break;
-                //case Destinations._transport:
-                //    CurrentViewModel = viewModels.transport;
-                //    break;
-                //case Destinations._itinerary:
-                //    CurrentViewModel = viewModels.itinerary;
-                //    break;
-                //case Destinations._schedule:
-                //    CurrentViewModel = viewModels.scheduleOfEmployee;
-                //    break;
+                case Destinations._routes:
+                    CurrentViewModel = viewModels.route;
+                    break;
+                case Destinations._transport:
+                    CurrentViewModel = viewModels.transport;
+                    break;
+                case Destinations._itinerary:
+                    CurrentViewModel = viewModels.itinerary;
+                    break;
+                case Destinations._schedule:
+                    CurrentViewModel = viewModels.scheduleOfEmployee;
+                    break;
                 default:
                     CurrentViewModel = null;
                     break;

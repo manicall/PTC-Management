@@ -42,11 +42,6 @@ namespace PTC_Management.EF
             return Items.Where(items => items.Id > id).ToList();
         }
 
-        public async Task LoadAsync()
-        {
-            await _set.LoadAsync();
-        }
-
         /// <summary>
         /// Инициализация и возврат всех записей из таблицы.
         /// </summary>

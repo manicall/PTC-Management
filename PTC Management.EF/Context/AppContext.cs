@@ -7,25 +7,22 @@ using System.Linq;
 
 namespace PTC_Management.EF
 {
+    //public class MyDbConfiguration : DbConfiguration
+    //{
+    //    public MyDbConfiguration() : base()
+    //    {
+    //        var path = Path.GetDirectoryName(GetType().Assembly.Location);
+    //        SetModelStore(new DefaultDbModelStore(path));
+    //    }
+    //}
+
+    //[DbConfigurationType(typeof(MyDbConfiguration))]
     public partial class PTC_ManagementContext : DbContext
     {
-
-        //public class MyDbConfiguration : DbConfiguration
-        //{
-        //    public MyDbConfiguration() : base()
-        //    {
-        //        var path = Path.GetDirectoryName(this.GetType().Assembly.Location);
-        //        SetModelStore(new DefaultDbModelStore(path));
-        //    }
-        //}
-
-        //[DbConfigurationType(typeof(MyDbConfiguration))]
-        public class MyContextContext : DbContext
-        {
-        }
         public PTC_ManagementContext()
             : base("name=PTC_ManagementConnection")
         {
+
         }
 
         public virtual DbSet<Date> Dates { get; set; }
