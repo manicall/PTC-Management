@@ -5,8 +5,16 @@
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
    xmlns:local = "clr-namespace:PTC_Management.Views" 
    xmlns:m = "clr-namespace:PTC_Management.Model" 
+   xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
    mc:Ignorable = "d" 
    d:DesignHeight = "300" d:DesignWidth = "650">
+
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Grid>
         <Grid.RowDefinitions>

@@ -1,52 +1,3 @@
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.AssemblyReference.cache
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Styles\GeneralStyles.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ItineraryView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\RouteView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\Dialog.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\MainWindow.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfo.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\App.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management_MarkupCompile.cache
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management_MarkupCompile.lref
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.exe.config
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.exe
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.pdb
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.EF.dll
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.dll
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.EF.pdb
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.EF.dll.config
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.xml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\App.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\MainWindowTemplates.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ItineraryView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\RouteView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\Dialog.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\MainWindow.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfo.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.g.resources
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC_Management.Properties.Resources.resources
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.GenerateResource.cache
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.CoreCompileInputs.cache
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.CopyComplete
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.exe
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.pdb
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportDialogView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportDialogView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.AssemblyReference.cache
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.SuggestedBindingRedirects.cache
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Styles\GeneralStyles.baml
@@ -97,4 +48,56 @@ C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.GenerateResource.cache
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.CoreCompileInputs.cache
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.CopyComplete
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.AssemblyReference.cache
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Styles\GeneralStyles.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ItineraryView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\RouteView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportDialogView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\Dialog.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\MainWindow.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfo.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\App.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management_MarkupCompile.cache
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management_MarkupCompile.lref
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.exe.config
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.exe
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.pdb
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.dll
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.EF.dll
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.EF.pdb
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.EF.dll.config
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.xml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\App.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\DialogTemplates.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\MainWindowTemplates.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ItineraryView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\RouteView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportDialogView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\Dialog.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\MainWindow.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfo.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.g.resources
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC_Management.Properties.Resources.resources
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.GenerateResource.cache
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.CoreCompileInputs.cache
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.CopyComplete
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.exe
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.pdb

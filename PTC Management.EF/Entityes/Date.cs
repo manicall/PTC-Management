@@ -7,26 +7,24 @@ namespace PTC_Management.EF
     using System.Data.Entity.Spatial;
 
     [Table("Date")]
-    public partial class Date : Entity
+    public partial class Date
     {
-        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Date()
         {
             Date_has_Employee = new HashSet<Date_has_Employee>();
-            EmployeeSchedules = new HashSet<EmployeeSchedule>();
+            EmployeeSchedule = new HashSet<EmployeeSchedule>();
         }
+
+        public int Id { get; set; }
 
         [Column("Date", TypeName = "date")]
         public DateTime? Date1 { get; set; }
 
-        
-        public virtual ICollection<Date_has_Employee> Date_has_Employee { 
-            get; set; 
-        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Date_has_Employee> Date_has_Employee { get; set; }
 
-        
-        public virtual ICollection<EmployeeSchedule> EmployeeSchedules {
-            get; set;
-        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeSchedule> EmployeeSchedule { get; set; }
     }
 }

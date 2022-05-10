@@ -9,6 +9,8 @@ namespace PTC_Management.EF
     [Table("Itinerary")]
     public partial class Itinerary : Entity
     {
+        public int Id { get; set; }
+
         public int IdRoute { get; set; }
 
         public int IdTransport { get; set; }

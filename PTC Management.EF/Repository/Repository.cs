@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace PTC_Management.EF
 {
@@ -40,6 +41,12 @@ namespace PTC_Management.EF
         {
             return Items.Where(items => items.Id > id).ToList();
         }
+
+        public async Task LoadAsync()
+        {
+            await _set.LoadAsync();
+        }
+
         /// <summary>
         /// Инициализация и возврат всех записей из таблицы.
         /// </summary>
@@ -100,14 +107,6 @@ namespace PTC_Management.EF
             if (AutoSaveChanges)
                 _db.SaveChanges();
         }
-
-        /// <summary> Находит элемент в базе данных и возвращает его. </summary>
-        /// <param name="item">
-        /// Объект, по ключу которого необходимо 
-        /// произвести поиск элемента в базе данных
-        /// </param>
-        /// <returns> Элемент в базе данных. </returns>
-        T GetItemFromDB(T item) => GetSingle(item.Id);
 
         /// <summary>
         /// Выполняет добавление заданного числа копий в базу данных

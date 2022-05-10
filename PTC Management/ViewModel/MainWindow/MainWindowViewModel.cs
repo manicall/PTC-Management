@@ -1,6 +1,9 @@
-﻿using PTC_Management.EF;
+﻿using PTC_Management.Commands;
+using PTC_Management.EF;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
+
+using System.Windows.Input;
 
 namespace PTC_Management
 {
@@ -32,6 +35,19 @@ namespace PTC_Management
 
         #endregion
 
+
+        public ICommand LoadCommand { get; }
+
+        public async void Load()
+        {
+            viewModels = new ViewModels(size);
+
+            // установка представления по умолчанию
+            CurrentViewModel = viewModels.employee;
+
+            RunTime.Stop();
+        }
+
         public MainWindowViewModel()
         {
             // создание команды перехватывающей сообщения от кнопки
@@ -40,12 +56,9 @@ namespace PTC_Management
             BackUpCommand = new ParameterizedCommand<string>(OnBackUp);
 
             size = new Size(500);
-            viewModels = new ViewModels(size);
 
-            // установка представления по умолчанию
-            CurrentViewModel = viewModels.employee;
+            LoadCommand = new SimpleCommand(Load);
 
-            RunTime.Stop();
         }
 
 
@@ -72,18 +85,18 @@ namespace PTC_Management
                 case Destinations._employee:
                     CurrentViewModel = viewModels.employee;
                     break;
-                case Destinations._routes:
-                    CurrentViewModel = viewModels.route;
-                    break;
-                case Destinations._transport:
-                    CurrentViewModel = viewModels.transport;
-                    break;
-                case Destinations._itinerary:
-                    CurrentViewModel = viewModels.itinerary;
-                    break;
-                case Destinations._schedule:
-                    CurrentViewModel = viewModels.scheduleOfEmployee;
-                    break;
+                //case Destinations._routes:
+                //    CurrentViewModel = viewModels.route;
+                //    break;
+                //case Destinations._transport:
+                //    CurrentViewModel = viewModels.transport;
+                //    break;
+                //case Destinations._itinerary:
+                //    CurrentViewModel = viewModels.itinerary;
+                //    break;
+                //case Destinations._schedule:
+                //    CurrentViewModel = viewModels.scheduleOfEmployee;
+                //    break;
                 default:
                     CurrentViewModel = null;
                     break;

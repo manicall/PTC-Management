@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace PTC_Management.SupportClass
+namespace PTC_Management.Commands
 {
     class SimpleCommand : ICommand
     {

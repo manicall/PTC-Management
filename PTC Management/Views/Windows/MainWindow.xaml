@@ -3,6 +3,7 @@
    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
    xmlns:local = "clr-namespace:PTC_Management" 
 
    mc:Ignorable = "d" 
@@ -14,6 +15,13 @@
     <Window.Resources>
         <ResourceDictionary Source="../../Templates/MainWindowTemplates.xaml" />
     </Window.Resources>
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <DockPanel>
         <Menu DockPanel.Dock="Top" IsMainMenu="True">
             <MenuItem Header="Файл">

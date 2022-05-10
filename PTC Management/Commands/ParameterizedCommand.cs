@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace PTC_Management
+namespace PTC_Management.Commands
 {
 
     public class ParameterizedCommand<T> : ICommand

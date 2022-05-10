@@ -9,13 +9,15 @@ namespace PTC_Management.EF
     [Table("Transport")]
     public partial class Transport : Entity
     {
-        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Transport()
         {
-            Itineraries = new HashSet<Itinerary>();
-            LogOfDepartureAndEntries = new HashSet<LogOfDepartureAndEntry>();
-            MaintanceLogs = new HashSet<MaintanceLog>();
+            Itinerary = new HashSet<Itinerary>();
+            LogOfDepartureAndEntry = new HashSet<LogOfDepartureAndEntry>();
+            MaintanceLog = new HashSet<MaintanceLog>();
         }
+
+        public int Id { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
@@ -23,13 +25,13 @@ namespace PTC_Management.EF
         [StringLength(9)]
         public string LicensePlate { get; set; }
 
-        
-        public virtual ICollection<Itinerary> Itineraries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Itinerary> Itinerary { get; set; }
 
-        
-        public virtual ICollection<LogOfDepartureAndEntry> LogOfDepartureAndEntries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
 
-        
-        public virtual ICollection<MaintanceLog> MaintanceLogs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
     }
 }

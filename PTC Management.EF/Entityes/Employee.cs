@@ -8,12 +8,15 @@ namespace PTC_Management.EF
 
     [Table("Employee")]
     public partial class Employee : Entity
-    {    
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
             Date_has_Employee = new HashSet<Date_has_Employee>();
-            Itineraries = new HashSet<Itinerary>();
+            Itinerary = new HashSet<Itinerary>();
         }
+
+        public int Id { get; set; }
 
         [StringLength(50)]
         public string Surname { get; set; }
@@ -27,9 +30,11 @@ namespace PTC_Management.EF
         [StringLength(50)]
         public string DriverLicense { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Date_has_Employee> Date_has_Employee { get; set; }
-        
-        public virtual ICollection<Itinerary> Itineraries { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Itinerary> Itinerary { get; set; }
 
         public static readonly Repository<Employee> repositoryEmployee = 
             new Repository<Employee>(new PTC_ManagementContext());

@@ -16,7 +16,7 @@ namespace PTC_Management.EF
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Transport_IdTransport { get; set; }
+        public int IdTransport { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? Date { get; set; }

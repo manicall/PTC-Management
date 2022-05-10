@@ -1,12 +1,28 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 
 namespace PTC_Management.EF
 {
     public partial class PTC_ManagementContext : DbContext
     {
+
+        //public class MyDbConfiguration : DbConfiguration
+        //{
+        //    public MyDbConfiguration() : base()
+        //    {
+        //        var path = Path.GetDirectoryName(this.GetType().Assembly.Location);
+        //        SetModelStore(new DefaultDbModelStore(path));
+        //    }
+        //}
+
+        //[DbConfigurationType(typeof(MyDbConfiguration))]
+        public class MyContextContext : DbContext
+        {
+        }
         public PTC_ManagementContext()
             : base("name=PTC_ManagementConnection")
         {
@@ -31,11 +47,9 @@ namespace PTC_Management.EF
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Date>()
-                .HasMany(e => e.EmployeeSchedules)
-                .WithMany(e => e.Dates)
-                .Map(m => m.ToTable("EmployeeSchedule_for_Month")
-                .MapLeftKey("IdDate")
-                .MapRightKey("IdEmployeeSchedule"));
+                .HasMany(e => e.EmployeeSchedule)
+                .WithMany(e => e.Date)
+                .Map(m => m.ToTable("EmployeeSchedule_for_Month").MapLeftKey("IdDate").MapRightKey("IdEmployeeSchedule"));
 
             modelBuilder.Entity<Date_has_Employee>()
                 .Property(e => e.Status)
@@ -65,7 +79,7 @@ namespace PTC_Management.EF
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Employee>()
-                .HasMany(e => e.Itineraries)
+                .HasMany(e => e.Itinerary)
                 .WithRequired(e => e.Employee)
                 .HasForeignKey(e => e.IdEmployee)
                 .WillCascadeOnDelete(false);
@@ -79,7 +93,7 @@ namespace PTC_Management.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Route>()
-                .HasMany(e => e.Itineraries)
+                .HasMany(e => e.Itinerary)
                 .WithRequired(e => e.Route)
                 .HasForeignKey(e => e.IdRoute)
                 .WillCascadeOnDelete(false);
@@ -94,19 +108,19 @@ namespace PTC_Management.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Transport>()
-                .HasMany(e => e.Itineraries)
+                .HasMany(e => e.Itinerary)
                 .WithRequired(e => e.Transport)
                 .HasForeignKey(e => e.IdTransport)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Transport>()
-                .HasMany(e => e.LogOfDepartureAndEntries)
+                .HasMany(e => e.LogOfDepartureAndEntry)
                 .WithRequired(e => e.Transport)
-                .HasForeignKey(e => e.Transport_IdTransport)
+                .HasForeignKey(e => e.IdTransport)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Transport>()
-                .HasMany(e => e.MaintanceLogs)
+                .HasMany(e => e.MaintanceLog)
                 .WithRequired(e => e.Transport)
                 .HasForeignKey(e => e.IdTransport)
                 .WillCascadeOnDelete(false);

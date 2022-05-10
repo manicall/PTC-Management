@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Edmx Version="3.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <Runtime>
+    <ConceptualModels>
+      <Schema Namespace="PTC_Management.EF" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Date_has_Employee" customannotation:ClrType="PTC_Management.EF.Date_has_Employee, PTC Management.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="IdEmployee" />
+            <PropertyRef Name="IdDate" />
+          </Key>
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="IdDate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Date" Relationship="Self.Date_Date_has_Employee" FromRole="Date_Date_has_Employee_Target" ToRole="Date_Date_has_Employee_Source" />
+          <NavigationProperty Name="Employee" Relationship="Self.Employee_Date_has_Employee" FromRole="Employee_Date_has_Employee_Target" ToRole="Employee_Date_has_Employee_Source" />
+        </EntityType>
+        <EntityType Name="Date" customannotation:ClrType="PTC_Management.EF.Date, PTC Management.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date1" Type="DateTime" />
+          <NavigationProperty Name="Date_has_Employee" Relationship="Self.Date_Date_has_Employee" FromRole="Date_Date_has_Employee_Source" ToRole="Date_Date_has_Employee_Target" />
+          <NavigationProperty Name="EmployeeSchedule" Relationship="Self.Date_EmployeeSchedule" FromRole="Date_EmployeeSchedule_Source" ToRole="Date_EmployeeSchedule_Target" />
+        </EntityType>
+        <EntityType Name="EmployeeSchedule" customannotation:ClrType="PTC_Management.EF.EmployeeSchedule, PTC Management.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Date" Relationship="Self.Date_EmployeeSchedule" FromRole="Date_EmployeeSchedule_Target" ToRole="Date_EmployeeSchedule_Source" />
+        </EntityType>
+        <EntityType Name="Employee" customannotation:ClrType="PTC_Management.EF.Employee, PTC Management.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DriverLicense" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Date_has_Employee" Relationship="Self.Employee_Date_has_Employee" FromRole="Employee_Date_has_Employee_Source" ToRole="Employee_Date_has_Employee_Target" />
+          <NavigationProperty Name="Itinerary" Relationship="Self.Employee_Itinerary" FromRole="Employee_Itinerary_Source" ToRole="Employee_Itinerary_Target" />
+        </EntityType>
+        <EntityType Name="Itinerary" customannotation:ClrType="PTC_Management.EF.Itinerary, PTC Management.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRoute" Type="Int32" Nullable="false" />
+          <Property Name="IdTransport" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.Employee_Itinerary" FromRole="Employee_Itinerary_Target" ToRole="Employee_Itinerary_Source" />
+          <NavigationProperty Name="Route" Relationship="Self.Route_Itinerary" FromRole="Route_Itinerary_Target" ToRole="Route_Itinerary_Source" />
+          <NavigationProperty Name="Transport" Relationship="Self.Transport_Itinerary" FromRole="Transport_Itinerary_Target" ToRole="Transport_Itinerary_Source" />
+        </EntityType>
+        <EntityType Name="Route" customannotation:ClrType="PTC_Management.EF.Route, PTC Management.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Distant" Type="Single" />
+          <NavigationProperty Name="Itinerary" Relationship="Self.Route_Itinerary" FromRole="Route_Itinerary_Source" ToRole="Route_Itinerary_Target" />
+        </EntityType>
+        <EntityType Name="Transport" customannotation:ClrType="PTC_Management.EF.Transport, PTC Management.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LicensePlate" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Itinerary" Relationship="Self.Transport_Itinerary" FromRole="Transport_Itinerary_Source" ToRole="Transport_Itinerary_Target" />
+          <NavigationProperty Name="LogOfDepartureAndEntry" Relationship="Self.Transport_LogOfDepartureAndEntry" FromRole="Transport_LogOfDepartureAndEntry_Source" ToRole="Transport_LogOfDepartureAndEntry_Target" />
+          <NavigationProperty Name="MaintanceLog" Relationship="Self.Transport_MaintanceLog" FromRole="Transport_MaintanceLog_Source" ToRole="Transport_MaintanceLog_Target" />
+        </EntityType>
+        <EntityType Name="LogOfDepartureAndEntry" customannotation:ClrType="PTC_Management.EF.LogOfDepartureAndEntry, PTC Management.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTransport" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdTransport" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="TimeOnDeparture" Type="Time" />
+          <Property Name="TimeWhenReturning" Type="Time" />
+          <NavigationProperty Name="Transport" Relationship="Self.Transport_LogOfDepartureAndEntry" FromRole="Transport_LogOfDepartureAndEntry_Target" ToRole="Transport_LogOfDepartureAndEntry_Source" />
+        </EntityType>
+        <EntityType Name="MaintanceLog" customannotation:ClrType="PTC_Management.EF.MaintanceLog, PTC Management.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTransport" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdTransport" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="TimeOnDeparture" Type="Time" />
+          <Property Name="TimeWhenReturning" Type="Time" />
+          <Property Name="SpeedometerInfoOnDeparture" Type="Int32" />
+          <Property Name="SpeedometerInfoWhenReturning" Type="Int32" />
+          <Property Name="Mileage" Type="Int32" />
+          <NavigationProperty Name="Transport" Relationship="Self.Transport_MaintanceLog" FromRole="Transport_MaintanceLog_Target" ToRole="Transport_MaintanceLog_Source" />
+        </EntityType>
+        <Association Name="Date_Date_has_Employee">
+          <End Role="Date_Date_has_Employee_Source" Type="Self.Date" Multiplicity="1" />
+          <End Role="Date_Date_has_Employee_Target" Type="Self.Date_has_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Date_Date_has_Employee_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Date_Date_has_Employee_Target">
+              <PropertyRef Name="IdDate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Date_EmployeeSchedule">
+          <End Role="Date_EmployeeSchedule_Source" Type="Self.Date" Multiplicity="*" />
+          <End Role="Date_EmployeeSchedule_Target" Type="Self.EmployeeSchedule" Multiplicity="*" />
+        </Association>
+        <Association Name="Employee_Date_has_Employee">
+          <End Role="Employee_Date_has_Employee_Source" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee_Date_has_Employee_Target" Type="Self.Date_has_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_Date_has_Employee_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee_Date_has_Employee_Target">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Route_Itinerary">
+          <End Role="Route_Itinerary_Source" Type="Self.Route" Multiplicity="1" />
+          <End Role="Route_Itinerary_Target" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route_Itinerary_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Route_Itinerary_Target">
+              <PropertyRef Name="IdRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Transport_Itinerary">
+          <End Role="Transport_Itinerary_Source" Type="Self.Transport" Multiplicity="1" />
+          <End Role="Transport_Itinerary_Target" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport_Itinerary_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transport_Itinerary_Target">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Transport_LogOfDepartureAndEntry">
+          <End Role="Transport_LogOfDepartureAndEntry_Source" Type="Self.Transport" Multiplicity="1" />
+          <End Role="Transport_LogOfDepartureAndEntry_Target" Type="Self.LogOfDepartureAndEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport_LogOfDepartureAndEntry_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transport_LogOfDepartureAndEntry_Target">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Transport_MaintanceLog">
+          <End Role="Transport_MaintanceLog_Source" Type="Self.Transport" Multiplicity="1" />
+          <End Role="Transport_MaintanceLog_Target" Type="Self.MaintanceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport_MaintanceLog_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transport_MaintanceLog_Target">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Employee_Itinerary">
+          <End Role="Employee_Itinerary_Source" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee_Itinerary_Target" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_Itinerary_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee_Itinerary_Target">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PTC_ManagementContext" customannotation:UseClrTypes="true">
+          <EntitySet Name="Date_has_Employee" EntityType="Self.Date_has_Employee" />
+          <EntitySet Name="Dates" EntityType="Self.Date" />
+          <EntitySet Name="EmployeeSchedules" EntityType="Self.EmployeeSchedule" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Itineraries" EntityType="Self.Itinerary" />
+          <EntitySet Name="Routes" EntityType="Self.Route" />
+          <EntitySet Name="Transports" EntityType="Self.Transport" />
+          <EntitySet Name="LogOfDepartureAndEntries" EntityType="Self.LogOfDepartureAndEntry" />
+          <EntitySet Name="MaintanceLogs" EntityType="Self.MaintanceLog" />
+          <AssociationSet Name="Date_Date_has_Employee" Association="Self.Date_Date_has_Employee">
+            <End Role="Date_Date_has_Employee_Source" EntitySet="Dates" />
+            <End Role="Date_Date_has_Employee_Target" EntitySet="Date_has_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="Date_EmployeeSchedule" Association="Self.Date_EmployeeSchedule">
+            <End Role="Date_EmployeeSchedule_Source" EntitySet="Dates" />
+            <End Role="Date_EmployeeSchedule_Target" EntitySet="EmployeeSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="Employee_Date_has_Employee" Association="Self.Employee_Date_has_Employee">
+            <End Role="Employee_Date_has_Employee_Source" EntitySet="Employees" />
+            <End Role="Employee_Date_has_Employee_Target" EntitySet="Date_has_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="Route_Itinerary" Association="Self.Route_Itinerary">
+            <End Role="Route_Itinerary_Source" EntitySet="Routes" />
+            <End Role="Route_Itinerary_Target" EntitySet="Itineraries" />
+          </AssociationSet>
+          <AssociationSet Name="Transport_Itinerary" Association="Self.Transport_Itinerary">
+            <End Role="Transport_Itinerary_Source" EntitySet="Transports" />
+            <End Role="Transport_Itinerary_Target" EntitySet="Itineraries" />
+          </AssociationSet>
+          <AssociationSet Name="Transport_LogOfDepartureAndEntry" Association="Self.Transport_LogOfDepartureAndEntry">
+            <End Role="Transport_LogOfDepartureAndEntry_Source" EntitySet="Transports" />
+            <End Role="Transport_LogOfDepartureAndEntry_Target" EntitySet="LogOfDepartureAndEntries" />
+          </AssociationSet>
+          <AssociationSet Name="Transport_MaintanceLog" Association="Self.Transport_MaintanceLog">
+            <End Role="Transport_MaintanceLog_Source" EntitySet="Transports" />
+            <End Role="Transport_MaintanceLog_Target" EntitySet="MaintanceLogs" />
+          </AssociationSet>
+          <AssociationSet Name="Employee_Itinerary" Association="Self.Employee_Itinerary">
+            <End Role="Employee_Itinerary_Source" EntitySet="Employees" />
+            <End Role="Employee_Itinerary_Target" EntitySet="Itineraries" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </ConceptualModels>
+    <Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CodeFirstDatabase" CdmEntityContainer="PTC_ManagementContext">
+          <EntitySetMapping Name="Date_has_Employee">
+            <EntityTypeMapping TypeName="PTC_Management.EF.Date_has_Employee">
+              <MappingFragment StoreEntitySet="Date_has_Employee">
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="IdDate" ColumnName="IdDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dates">
+            <EntityTypeMapping TypeName="PTC_Management.EF.Date">
+              <MappingFragment StoreEntitySet="Date">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date1" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeSchedules">
+            <EntityTypeMapping TypeName="PTC_Management.EF.EmployeeSchedule">
+              <MappingFragment StoreEntitySet="EmployeeSchedule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="PTC_Management.EF.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="DriverLicense" ColumnName="DriverLicense" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Itineraries">
+            <EntityTypeMapping TypeName="PTC_Management.EF.Itinerary">
+              <MappingFragment StoreEntitySet="Itinerary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
+                <ScalarProperty Name="IdTransport" ColumnName="IdTransport" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Routes">
+            <EntityTypeMapping TypeName="PTC_Management.EF.Route">
+              <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Distant" ColumnName="Distant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transports">
+            <EntityTypeMapping TypeName="PTC_Management.EF.Transport">
+              <MappingFragment StoreEntitySet="Transport">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogOfDepartureAndEntries">
+            <EntityTypeMapping TypeName="PTC_Management.EF.LogOfDepartureAndEntry">
+              <MappingFragment StoreEntitySet="LogOfDepartureAndEntry">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTransport" ColumnName="IdTransport" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TimeOnDeparture" ColumnName="TimeOnDeparture" />
+                <ScalarProperty Name="TimeWhenReturning" ColumnName="TimeWhenReturning" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaintanceLogs">
+            <EntityTypeMapping TypeName="PTC_Management.EF.MaintanceLog">
+              <MappingFragment StoreEntitySet="MaintanceLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTransport" ColumnName="IdTransport" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TimeOnDeparture" ColumnName="TimeOnDeparture" />
+                <ScalarProperty Name="TimeWhenReturning" ColumnName="TimeWhenReturning" />
+                <ScalarProperty Name="SpeedometerInfoOnDeparture" ColumnName="SpeedometerInfoOnDeparture" />
+                <ScalarProperty Name="SpeedometerInfoWhenReturning" ColumnName="SpeedometerInfoWhenReturning" />
+                <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Date_EmployeeSchedule" TypeName="PTC_Management.EF.Date_EmployeeSchedule" StoreEntitySet="DateEmployeeSchedule">
+            <EndProperty Name="Date_EmployeeSchedule_Source">
+              <ScalarProperty Name="Id" ColumnName="IdDate" />
+            </EndProperty>
+            <EndProperty Name="Date_EmployeeSchedule_Target">
+              <ScalarProperty Name="Id" ColumnName="IdEmployeeSchedule" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </Mappings>
+    <StorageModels>
+      <Schema Namespace="CodeFirstDatabaseSchema" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Date_has_Employee">
+          <Key>
+            <PropertyRef Name="IdEmployee" />
+            <PropertyRef Name="IdDate" />
+          </Key>
+          <Property Name="IdEmployee" Type="int" customannotation:Index="{ Name: IX_IdEmployee, Order: 0 }" Nullable="false" />
+          <Property Name="IdDate" Type="int" customannotation:Index="{ Name: IX_IdDate, Order: 0 }" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Date">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="true" />
+        </EntityType>
+        <EntityType Name="EmployeeSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="true" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="true" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="50" Nullable="true" />
+          <Property Name="DriverLicense" Type="varchar" MaxLength="50" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Itinerary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRoute" Type="int" customannotation:Index="{ Name: IX_IdRoute, Order: 0 }" Nullable="false" />
+          <Property Name="IdTransport" Type="int" customannotation:Index="{ Name: IX_IdTransport, Order: 0 }" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" customannotation:Index="{ Name: IX_IdEmployee, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Distant" Type="real" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="true" />
+          <Property Name="LicensePlate" Type="char" MaxLength="9" Nullable="true" />
+        </EntityType>
+        <EntityType Name="LogOfDepartureAndEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTransport" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdTransport" Type="int" customannotation:Index="{ Name: IX_IdTransport, Order: 0 }" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="true" />
+          <Property Name="TimeOnDeparture" Type="time" Precision="7" Nullable="true" />
+          <Property Name="TimeWhenReturning" Type="time" Precision="7" Nullable="true" />
+        </EntityType>
+        <EntityType Name="MaintanceLog">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTransport" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdTransport" Type="int" customannotation:Index="{ Name: IX_IdTransport, Order: 0 }" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="true" />
+          <Property Name="TimeOnDeparture" Type="time" Precision="7" Nullable="true" />
+          <Property Name="TimeWhenReturning" Type="time" Precision="7" Nullable="true" />
+          <Property Name="SpeedometerInfoOnDeparture" Type="int" Nullable="true" />
+          <Property Name="SpeedometerInfoWhenReturning" Type="int" Nullable="true" />
+          <Property Name="Mileage" Type="int" Nullable="true" />
+        </EntityType>
+        <EntityType Name="DateEmployeeSchedule">
+          <Key>
+            <PropertyRef Name="IdDate" />
+            <PropertyRef Name="IdEmployeeSchedule" />
+          </Key>
+          <Property Name="IdDate" Type="int" customannotation:Index="{ Name: IX_IdDate, Order: 0 }" Nullable="false" />
+          <Property Name="IdEmployeeSchedule" Type="int" customannotation:Index="{ Name: IX_IdEmployeeSchedule, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <Association Name="Date_Date_has_Employee">
+          <End Role="Date" Type="Self.Date" Multiplicity="1" />
+          <End Role="Date_has_Employee" Type="Self.Date_has_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Date">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Date_has_Employee">
+              <PropertyRef Name="IdDate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Date_EmployeeSchedule_Source">
+          <End Role="Date" Type="Self.Date" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DateEmployeeSchedule" Type="Self.DateEmployeeSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Date">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DateEmployeeSchedule">
+              <PropertyRef Name="IdDate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Date_EmployeeSchedule_Target">
+          <End Role="EmployeeSchedule" Type="Self.EmployeeSchedule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DateEmployeeSchedule" Type="Self.DateEmployeeSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeSchedule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DateEmployeeSchedule">
+              <PropertyRef Name="IdEmployeeSchedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Employee_Date_has_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Date_has_Employee" Type="Self.Date_has_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Date_has_Employee">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Route_Itinerary">
+          <End Role="Route" Type="Self.Route" Multiplicity="1" />
+          <End Role="Itinerary" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Itinerary">
+              <PropertyRef Name="IdRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Transport_Itinerary">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+          <End Role="Itinerary" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Itinerary">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Transport_LogOfDepartureAndEntry">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+          <End Role="LogOfDepartureAndEntry" Type="Self.LogOfDepartureAndEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogOfDepartureAndEntry">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Transport_MaintanceLog">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+          <End Role="MaintanceLog" Type="Self.MaintanceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaintanceLog">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Employee_Itinerary">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Itinerary" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Itinerary">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CodeFirstDatabase">
+          <EntitySet Name="Date_has_Employee" EntityType="Self.Date_has_Employee" Schema="dbo" Table="Date_has_Employee" />
+          <EntitySet Name="Date" EntityType="Self.Date" Schema="dbo" Table="Date" />
+          <EntitySet Name="EmployeeSchedule" EntityType="Self.EmployeeSchedule" Schema="dbo" Table="EmployeeSchedule" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" Table="Employee" />
+          <EntitySet Name="Itinerary" EntityType="Self.Itinerary" Schema="dbo" Table="Itinerary" />
+          <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" Table="Route" />
+          <EntitySet Name="Transport" EntityType="Self.Transport" Schema="dbo" Table="Transport" />
+          <EntitySet Name="LogOfDepartureAndEntry" EntityType="Self.LogOfDepartureAndEntry" Schema="dbo" Table="LogOfDepartureAndEntry" />
+          <EntitySet Name="MaintanceLog" EntityType="Self.MaintanceLog" Schema="dbo" Table="MaintanceLog" />
+          <EntitySet Name="DateEmployeeSchedule" EntityType="Self.DateEmployeeSchedule" Schema="dbo" Table="EmployeeSchedule_for_Month" />
+          <AssociationSet Name="Date_Date_has_Employee" Association="Self.Date_Date_has_Employee">
+            <End Role="Date" EntitySet="Date" />
+            <End Role="Date_has_Employee" EntitySet="Date_has_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="Date_EmployeeSchedule_Source" Association="Self.Date_EmployeeSchedule_Source">
+            <End Role="Date" EntitySet="Date" />
+            <End Role="DateEmployeeSchedule" EntitySet="DateEmployeeSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="Date_EmployeeSchedule_Target" Association="Self.Date_EmployeeSchedule_Target">
+            <End Role="EmployeeSchedule" EntitySet="EmployeeSchedule" />
+            <End Role="DateEmployeeSchedule" EntitySet="DateEmployeeSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="Employee_Date_has_Employee" Association="Self.Employee_Date_has_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Date_has_Employee" EntitySet="Date_has_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="Route_Itinerary" Association="Self.Route_Itinerary">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="Itinerary" EntitySet="Itinerary" />
+          </AssociationSet>
+          <AssociationSet Name="Transport_Itinerary" Association="Self.Transport_Itinerary">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="Itinerary" EntitySet="Itinerary" />
+          </AssociationSet>
+          <AssociationSet Name="Transport_LogOfDepartureAndEntry" Association="Self.Transport_LogOfDepartureAndEntry">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="LogOfDepartureAndEntry" EntitySet="LogOfDepartureAndEntry" />
+          </AssociationSet>
+          <AssociationSet Name="Transport_MaintanceLog" Association="Self.Transport_MaintanceLog">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="MaintanceLog" EntitySet="MaintanceLog" />
+          </AssociationSet>
+          <AssociationSet Name="Employee_Itinerary" Association="Self.Employee_Itinerary">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Itinerary" EntitySet="Itinerary" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </StorageModels>
+  </Runtime>
+  <Designer>
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="ProcessDependentTemplatesOnSave" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <Diagrams />
+  </Designer>
+</Edmx>

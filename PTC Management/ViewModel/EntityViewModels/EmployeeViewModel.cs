@@ -1,13 +1,22 @@
-﻿using PTC_Management.EF;
+﻿using PTC_Management.Commands;
+using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
+using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.IdentityModel.Metadata;
+using System.Security.Policy;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace PTC_Management.ViewModel
 {
@@ -15,6 +24,8 @@ namespace PTC_Management.ViewModel
     {
         private ObservableCollection<Employee> employeeObservableCollection;
         private Repository<Employee> repositoryEmployee;
+
+        public ICommand LoadCommand { get; }
 
         public EmployeeViewModel()
         {
