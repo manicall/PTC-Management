@@ -34,15 +34,24 @@ namespace PTC_Management.EF
         public static readonly Repository<Employee> repositoryEmployee = 
             new Repository<Employee>(new PTC_ManagementContext());
 
-        public override void Add() { repositoryEmployee.Add(this);  }
-        public override void Update() {
-            Employee item = repositoryEmployee.GetSingle(Id);
-            item.SetFields(this);
-            repositoryEmployee.Update(item);
+        public override void Add() 
+        { 
+            repositoryEmployee.Add(this);  
         }
 
-        public override void Remove() { repositoryEmployee.Remove(this); }
-        public override void Copy(int count) { repositoryEmployee.Copy(this, count);
+        public override void Update() 
+        { 
+            repositoryEmployee.Update(this); 
+        }
+
+        public override void Remove() 
+        {
+            repositoryEmployee.Remove(this); 
+        }
+
+        public override void Copy(int count) 
+        {
+            repositoryEmployee.Copy(this, count);
         }
 
         public override void SetFields(Entity entity)

@@ -80,7 +80,6 @@ namespace PTC_Management.EF
 
             if (AutoSaveChanges)
                 _db.SaveChanges();
-
         }
 
         /// <summary>
