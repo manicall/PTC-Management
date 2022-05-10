@@ -28,13 +28,32 @@ namespace PTC_Management.ViewModel
             this.observableCollection = observableCollection;
         }
 
+        public void doAction(string action)
+        {
+            switch (action)
+            {
+                case Actions.add:
+                    Add();
+                    break;
+                case Actions.update:
+                    Update();
+                    break;
+                case Actions.remove:
+                    Remove();
+                    break;
+                case Actions.copy:
+                    Copy();
+                    break;
+            }
+        }
+
         /// <summary>
         /// Выполняет запуск диалогового окна, 
         /// для добавления записи в таблицу.
         /// </summary>
         /// <param name="dialog"> Объект диалогового окна,
         /// которое должно быть запущено.</param>
-        public void Add()
+        private void Add()
         {
             dialogVM.Show();
         }
@@ -45,12 +64,12 @@ namespace PTC_Management.ViewModel
         /// </summary>
         /// <param name="dialog"> Объект диалогового окна,
         /// которое должно быть запущено.</param>
-        public void Update()
+        private void Update()
         {
             if (entityVM.SelectedItem is null) return;
 
             dialogVM.SelectedIndex = entityVM.SelectedIndex;
-            dialogVM.DialogItem = ((Employee)entityVM.SelectedItem);
+            dialogVM.DialogItem = (T)entityVM.SelectedItem;
 
             dialogVM.Show();
         }
@@ -58,8 +77,13 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет удаление выбранной записи в таблице.
         /// </summary>
-        public void Remove()
+        private void Remove()
         {
+            if (entityVM.SelectedItem is null) return;
+
+            // хранит значение индекса, чтобы заново его присвоить, 
+            // так как во время удаления записи в observableCollection
+            // выбранный индекс сбрасывается
             int temp = entityVM.SelectedIndex;
 
             T selectedEmployee = (T)entityVM.SelectedItem;
@@ -75,11 +99,11 @@ namespace PTC_Management.ViewModel
         /// </summary>
         /// <param name="dialog"> Объект диалогового окна,
         /// которое должно быть запущено.</param>
-        public void Copy()
+        private void Copy()
         {
             if (entityVM.SelectedItem is null) return;
 
-            dialogVM.DialogItem = ((Employee)entityVM.SelectedItem).Clone();
+            dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
             dialogVM.CopyCountVisibility = "Visible";
 
             dialogVM.Show();

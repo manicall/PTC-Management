@@ -1,5 +1,7 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
@@ -35,7 +37,18 @@ namespace PTC_Management.ViewModel.DialogViewModels
         }
         #endregion
 
-        public EmployeeDialogViewModel() => CurrentViewModel = this;
+        public EmployeeDialogViewModel()
+        {
+            Title = "Окно " +
+                Actions.GetGenetiveName(MainWindowAction) +
+                " сотрудника";
+
+            CopyCount = 1;
+            CopyCountVisibility = "Collapsed";
+
+            DialogItem = new Employee();
+            CurrentViewModel = this;
+        }
 
         #region методы
         /// <summary>
@@ -63,8 +76,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// </summary>
         private void FillEmployeeObservableCollection()
         {
-            List<Employee> List = null;
-
+            List<Employee> List;
             switch (MainWindowAction)
             {
                 case Actions.add:
@@ -100,10 +112,10 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// </summary>
         private void UpdateEmployeeObservableCollection()
         {
-            EmployeeObservableCollection[SelectedIndex]
-                .SetFields((Employee)DialogItem);
-            CollectionViewSource
-                .GetDefaultView(EmployeeObservableCollection).Refresh();
+            ObservableCollection<Employee> ob = EmployeeObservableCollection;
+
+            ob[SelectedIndex].SetFields((Employee)DialogItem);
+            CollectionViewSource.GetDefaultView(ob).Refresh();
         }
 
         /// <summary>

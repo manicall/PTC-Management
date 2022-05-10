@@ -96,8 +96,8 @@ namespace PTC_Management.ViewModel
 
 
             }
-            DialogItem.Id = entity.Id;
 
+            DialogItem.Id = entity.Id;
         }
 
 

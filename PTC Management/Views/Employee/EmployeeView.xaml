@@ -61,7 +61,6 @@
                       CanUserReorderColumns="False"
                       IsReadOnly="True" 
                       CanUserAddRows="false"
-
                       
                       AutoGenerateColumns="False">
                 <DataGrid.Columns>

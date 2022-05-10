@@ -2,6 +2,7 @@
 using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
 
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -54,5 +55,35 @@ namespace PTC_Management.ViewModel.Base
         }
 
         public virtual void OnDialog(string action) { }
+
+        public string FilterEmployeeText
+        {
+            get { return (string)GetValue(filterTextProperty); }
+            set { SetValue(filterTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty filterTextProperty =
+            DependencyProperty.Register(
+                "Filter", typeof(string),
+                typeof(EmployeeViewModel),
+                new PropertyMetadata("", FilterText_Changed)
+                );
+
+        private static void FilterText_Changed(DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as EmployeeViewModel;
+            if (current != null)
+            {
+                current.Items.Filter = null;
+                current.Items.Filter = current.Filter;
+            }
+        }
+
+        protected virtual bool Filter(object entity) { 
+            throw new NotImplementedException();
+        }
+
+
     }
 }

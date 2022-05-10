@@ -49,7 +49,11 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register(MyLiterals<Transport>.FilterText, typeof(string), typeof(TransportViewModel), new PropertyMetadata("", FilterText_Changed));
+            DependencyProperty.Register(
+                MyLiterals<Transport>.FilterText,
+                typeof(string), 
+                typeof(TransportViewModel),
+                new PropertyMetadata("", FilterText_Changed));
 
 
 
@@ -61,7 +65,11 @@ namespace PTC_Management.ViewModel
 
         // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register(MyLiterals<Transport>.Items, typeof(ICollectionView), typeof(TransportViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register(
+                MyLiterals<Transport>.Items, 
+                typeof(ICollectionView), 
+                typeof(TransportViewModel),
+                new PropertyMetadata(null));
 
 
         public override void OnDialog(string action)

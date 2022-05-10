@@ -1,66 +1,46 @@
-﻿using PTC_Management.Commands;
-using PTC_Management.EF;
+﻿using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
-using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.IdentityModel.Metadata;
-using System.Security.Policy;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
     {
-        private ObservableCollection<Employee> employeeObservableCollection;
-        private Repository<Employee> repositoryEmployee;
+        // TODO: Можно вынести в отдельный класс
+        private ObservableCollection<Employee> observableCollection;
+        private Repository<Employee> repository;
 
         public ICommand LoadCommand { get; }
 
         public EmployeeViewModel()
         {
-            repositoryEmployee = Employee.repositoryEmployee;
-            employeeObservableCollection = GetEmployeeObservableCollection();
+            repository = Employee.repositoryEmployee;
+            observableCollection = GetEmployeeObservableCollection();
 
             Items = GetEmployeeItems();
-            Items.Filter = FilterEmployee;
+            Items.Filter = Filter;
         }
-
 
         #region FilterText
-        public string FilterEmployeeText
-        {
-            get { return (string)GetValue(filterTextProperty); }
-            set { SetValue(filterTextProperty, value); }
-        }
-
-        public static readonly DependencyProperty filterTextProperty =
-            DependencyProperty.Register(
-                MyLiterals<Employee>.FilterText, typeof(string),
-                typeof(EmployeeViewModel),
-                new PropertyMetadata("", FilterText_Changed)
-                );
-
+       
 
         /// <summary>
         /// Проверка подходит заданный текст под фильтр
         /// </summary>
-        /// <param name="obj">Объект, который
+        /// <param name="entity">Объект, который
         /// будет проверяться фильтром</param>
         /// <returns>Подхоидт ли заданная запись под фильтр</returns>
-        private bool FilterEmployee(object obj)
+        protected override bool Filter(object entity)
         {
-            Employee current = obj as Employee;
+            Employee current = entity as Employee;
 
             if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
                  && !current.Id.ToString().Contains(FilterEmployeeText)
@@ -78,16 +58,7 @@ namespace PTC_Management.ViewModel
             return true;
         }
 
-        private static void FilterText_Changed(DependencyObject d,
-            DependencyPropertyChangedEventArgs e)
-        {
-            var current = d as EmployeeViewModel;
-            if (current != null)
-            {
-                current.Items.Filter = null;
-                current.Items.Filter = current.FilterEmployee;
-            }
-        }
+
 
         #endregion 
 
@@ -95,9 +66,10 @@ namespace PTC_Management.ViewModel
 
         /// <summary> Возвращает записи из таблицы Employee. </summary>
         /// <returns>записи из таблицы Employee.</returns>
-        private ObservableCollection<Employee> GetEmployeeObservableCollection()
+        private ObservableCollection<Employee>
+            GetEmployeeObservableCollection()
         {
-            return repositoryEmployee.GetObservableCollection();
+            return repository.GetObservableCollection();
         }
 
         /// <summary> Возвращает представление </summary>
@@ -107,7 +79,7 @@ namespace PTC_Management.ViewModel
         {
             return
                 CollectionViewSource
-                .GetDefaultView(employeeObservableCollection);
+                .GetDefaultView(observableCollection);
         }
 
         /// <summary>
@@ -119,25 +91,10 @@ namespace PTC_Management.ViewModel
         {
            var actionPerformer = 
                 new ActionPerformer<Employee, ObservableCollection<Employee>>
-                (this, GetDialogViewModel(action) , 
-                employeeObservableCollection);
+                (this, GetDialogViewModel(action), 
+                observableCollection);
 
-            switch (action)
-            {
-                case Actions.add: 
-                    actionPerformer.Add();
-                    break;
-                case Actions.update:
-                    actionPerformer.Update();
-                    break;
-                case Actions.remove:
-                    if (SelectedItem is null) return;
-                    actionPerformer.Remove();
-                    break;
-                case Actions.copy:
-                    actionPerformer.Copy();
-                    break;
-            }
+            actionPerformer.doAction(action);
         }
 
         /// <summary>
@@ -150,14 +107,10 @@ namespace PTC_Management.ViewModel
         private DialogViewModel GetDialogViewModel(string action)
         {
             return new EmployeeDialogViewModel()
-{
-                Title = $"Окно {Actions.GetGenetiveName(action)} сотрудника",
-                DialogItem = new Employee(),
+            {
                 MainWindowAction = action,
-                CopyCount = 1,
-                CopyCountVisibility = "Collapsed",
-                EmployeeObservableCollection = employeeObservableCollection,
-                RepositoryEmployee = repositoryEmployee
+                EmployeeObservableCollection = observableCollection,
+                RepositoryEmployee = repository
             };
         }
         #endregion

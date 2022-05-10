@@ -16,8 +16,6 @@ namespace PTC_Management.EF
             Itinerary = new HashSet<Itinerary>();
         }
 
-        public int Id { get; set; }
-
         [StringLength(50)]
         public string Surname { get; set; }
 
