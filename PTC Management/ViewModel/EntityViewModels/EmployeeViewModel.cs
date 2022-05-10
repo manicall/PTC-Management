@@ -14,11 +14,8 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
     {
-        // TODO: Можно вынести в отдельный класс
         private ObservableCollection<Employee> observableCollection;
         private Repository<Employee> repository;
-
-        public ICommand LoadCommand { get; }
 
         public EmployeeViewModel()
         {
@@ -31,7 +28,6 @@ namespace PTC_Management.ViewModel
 
         #region FilterText
        
-
         /// <summary>
         /// Проверка подходит заданный текст под фильтр
         /// </summary>
@@ -57,13 +53,9 @@ namespace PTC_Management.ViewModel
             }
             return true;
         }
-
-
-
         #endregion 
 
         #region Методы
-
         /// <summary> Возвращает записи из таблицы Employee. </summary>
         /// <returns>записи из таблицы Employee.</returns>
         private ObservableCollection<Employee>
@@ -109,8 +101,8 @@ namespace PTC_Management.ViewModel
             return new EmployeeDialogViewModel()
             {
                 MainWindowAction = action,
-                EmployeeObservableCollection = observableCollection,
-                RepositoryEmployee = repository
+                ObservableCollection = observableCollection,
+                Repository = repository
             };
         }
         #endregion

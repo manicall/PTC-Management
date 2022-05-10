@@ -13,27 +13,27 @@ namespace PTC_Management.ViewModel.DialogViewModels
     /// </summary>
     internal class EmployeeDialogViewModel : DialogViewModel
     {
-        #region employeeObservableCollection
+        #region ObservableCollection
         /// <summary> Поле, содержащее коллекцию объектов класса. </summary>
-        private ObservableCollection<Employee> employeeObservableCollection;
+        private ObservableCollection<Employee> observableCollection;
 
-        public ObservableCollection<Employee> EmployeeObservableCollection
+        public ObservableCollection<Employee> ObservableCollection
         {
-            get => employeeObservableCollection;
-            set => employeeObservableCollection = value;
+            get => observableCollection;
+            set => observableCollection = value;
         }
         #endregion
 
-        #region repositoryEmployee
+        #region repository
         /// <summary>
         /// Поле, обеспечивающее взаимодействие с таблицей в базе данных.
         /// </summary>            
-        private Repository<Employee> repositoryEmployee;
+        private Repository<Employee> repository;
 
-        public Repository<Employee> RepositoryEmployee
+        public Repository<Employee> Repository
         {
-            get => repositoryEmployee;
-            set => repositoryEmployee = value;
+            get => repository;
+            set => repository = value;
         }
         #endregion
 
@@ -67,42 +67,45 @@ namespace PTC_Management.ViewModel.DialogViewModels
             base.OnDialogActionCommand(dialogAction);
 
             if (dialogAction != Actions.close)
-                FillEmployeeObservableCollection();
+            {
+                DoActionForObservableCollection();
+            }
         }
 
         /// <summary>
         /// Выполняет изменнение employeeObservableCollection,
         /// на основе заданного действия                             
         /// </summary>
-        private void FillEmployeeObservableCollection()
+        private void DoActionForObservableCollection()
         {
             List<Employee> List;
             switch (MainWindowAction)
             {
                 case Actions.add:
-                    List = GetAddedEmployee();
+                    List = GetAdded();
                     break;
                 case Actions.update:
-                    UpdateEmployeeObservableCollection();
+                    UpdateObservableCollection();
                     return; // выход из функции
                 case Actions.copy:
-                    List = GetCopiedEmployees();
+                    List = GetCopied();
                     break;
                 default: return;
             }
 
             foreach (var employee in List)
-                EmployeeObservableCollection.Add(employee);
+                ObservableCollection.Add(employee);
         }
 
         /// <summary>
         /// Выполняет поиск записи в базе данных по ключу. 
         /// </summary>        
         /// <returns> Сотрудник, ключ которого совпадает с заданным. </returns>
-        private List<Employee> GetAddedEmployee()
+        private List<Employee> GetAdded()
         {
-            return new List<Employee> {
-                RepositoryEmployee.GetSingle(DialogItem.Id)
+            return new List<Employee> 
+            {
+                Repository.GetSingle(DialogItem.Id)
             };
         }
 
@@ -110,9 +113,9 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// Выполняет обновление записи в employeeObservableCollection
         /// и обновляет представление, используещее данную коллекцию.
         /// </summary>
-        private void UpdateEmployeeObservableCollection()
+        private void UpdateObservableCollection()
         {
-            ObservableCollection<Employee> ob = EmployeeObservableCollection;
+            ObservableCollection<Employee> ob = ObservableCollection;
 
             ob[SelectedIndex].SetFields((Employee)DialogItem);
             CollectionViewSource.GetDefaultView(ob).Refresh();
@@ -122,9 +125,9 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// Возвращает записи из таблицы,
         /// значение ключа которых больше заданного параметра. 
         /// </summary>
-        private List<Employee> GetCopiedEmployees()
+        private List<Employee> GetCopied()
         {
-            return RepositoryEmployee.GetFrom(DialogItem.Id);
+            return Repository.GetFrom(DialogItem.Id);
         }
         #endregion
     }
