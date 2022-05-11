@@ -34,16 +34,30 @@
                         Content="Копировать" 
                         Command = "{Binding DialogCommand}"
                         CommandParameter="{Binding Actions.Copy}"/>
+
                 <TextBlock Text="Поиск:" Margin="5"/>
-                <TextBox Text="{Binding FilterTransportText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
+                <TextBox Name="TextBoxSearch" 
+                         Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
+                         Width="200" Margin="5"/>
             </StackPanel>
+            
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
                 <Button Style="{StaticResource BlackButton}" Content="Журнал ТО" />
                 <Button Width="auto" Style="{StaticResource BlackButton}" Content="Журнал въезда и выезда" />
             </StackPanel>
 
-            <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" 
-                      CanUserAddRows="false" ItemsSource="{Binding TransportItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
+            <DataGrid SelectedItem="{Binding SelectedItem}" 
+                      SelectedIndex="{Binding SelectedIndex}"
+                      ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+                      Name="dataGridEmployee"
+                      MinRowHeight="20" MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+                      ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                      
+                      CanUserReorderColumns="False"
+                      IsReadOnly="True" 
+                      CanUserAddRows="false"
+                      
+                      AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Код"         Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Название"    Binding="{Binding Name}"/>

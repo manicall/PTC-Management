@@ -27,8 +27,8 @@ namespace PTC_Management.ViewModel.Base
         #region SelectedIndex
         public int SelectedIndex
         {
-            get { return (int)GetValue(SelectedIndexProperty); }
-            set { SetValue(SelectedIndexProperty, value); }
+            get => (int)GetValue(SelectedIndexProperty);
+            set => SetValue(SelectedIndexProperty, value);
         }
 
         public static readonly DependencyProperty SelectedIndexProperty =
@@ -56,7 +56,7 @@ namespace PTC_Management.ViewModel.Base
 
         public virtual void OnDialog(string action) { }
 
-        public string FilterEmployeeText
+        public string FilterText
         {
             get { return (string)GetValue(filterTextProperty); }
             set { SetValue(filterTextProperty, value); }
@@ -64,7 +64,7 @@ namespace PTC_Management.ViewModel.Base
 
         public static readonly DependencyProperty filterTextProperty =
             DependencyProperty.Register(
-                "Filter", typeof(string),
+                "FilterText", typeof(string),
                 typeof(EmployeeViewModel),
                 new PropertyMetadata("", FilterText_Changed)
                 );
@@ -72,7 +72,7 @@ namespace PTC_Management.ViewModel.Base
         private static void FilterText_Changed(DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
-            var current = d as EmployeeViewModel;
+            EmployeeViewModel current = d as EmployeeViewModel;
             if (current != null)
             {
                 current.Items.Filter = null;
@@ -80,7 +80,8 @@ namespace PTC_Management.ViewModel.Base
             }
         }
 
-        protected virtual bool Filter(object entity) { 
+        protected virtual bool Filter(object entity)
+        {
             throw new NotImplementedException();
         }
 

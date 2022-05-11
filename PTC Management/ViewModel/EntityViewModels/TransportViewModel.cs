@@ -1,106 +1,106 @@
 ﻿using PTC_Management.EF;
-using PTC_Management.Model;
-using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
+
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
     internal class TransportViewModel : ViewModelBaseEntity
-   
     {
-        readonly Repository<Transport> _transport = new Repository<Transport>(new PTC_ManagementContext());
+        private ObservableCollection<Transport> observableCollection;
+        private Repository<Transport> repository;
 
         public TransportViewModel()
         {
-            TransportItems = CollectionViewSource.GetDefaultView(_transport.GetObservableCollection());
-            TransportItems.Filter = FilterTransport;
+            repository = Transport.repository;
+            observableCollection = GetObservableCollection();
+
+            Items = GetItems();
+            Items.Filter = Filter;
         }
 
-        private bool FilterTransport(object obj)
+        #region FilterText
+
+        /// <summary>
+        /// Проверка подходит заданный текст под фильтр.
+        /// </summary>
+        /// <param name="entity">Объект, который
+        /// будет проверяться фильтром</param>
+        /// <returns>Подхоидт ли заданная запись под фильтр. </returns>
+        protected override bool Filter(object entity)
         {
-            bool result = true;
-            Transport current = obj as Transport;
-            if (!string.IsNullOrWhiteSpace(FilterTransportText) && current != null && !current.Id.ToString().Contains(FilterTransportText))
-            {
-                result = false;
-            }
-            return result;
+            Transport current = entity as Transport;
+
+            //if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
+            //     && !current.Id.ToString().Contains(FilterEmployeeText)
+            //     && (current.Surname == null ||
+            //         !current.Surname.Contains(FilterEmployeeText))
+            //     && (current.Name == null ||
+            //         !current.Name.Contains(FilterEmployeeText))
+            //     && (current.Patronymic == null ||
+            //         !current.Patronymic.Contains(FilterEmployeeText))
+            //     && (current.DriverLicense == null ||
+            //         !current.DriverLicense.Contains(FilterEmployeeText)))
+            //{
+            //    return false;
+            //}
+            return true;
         }
-        private static void FilterText_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        #endregion 
+
+        #region Методы
+        /// <summary> Возвращает записи из таблицы. </summary>
+        /// <returns>записи из таблицы. </returns>
+        private ObservableCollection<Transport>
+            GetObservableCollection()
         {
-            var current = d as TransportViewModel;
-            if (current != null)
-            {
-                current.TransportItems.Filter = null;
-                current.TransportItems.Filter = current.FilterTransport;
-
-            }
+            return repository.GetObservableCollection();
         }
 
-        public string FilterTransportText
+        /// <summary> Возвращает представление. </summary>
+        /// <returns> Преставление на основе объекта 
+        /// ObservableCollection. </returns>
+        private ICollectionView GetItems()
         {
-            get { return (string)GetValue(FilterTextProperty); }
-            set { SetValue(FilterTextProperty, value); }
+            return
+                CollectionViewSource
+                .GetDefaultView(observableCollection);
         }
 
-        // Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register(
-                MyLiterals<Transport>.FilterText,
-                typeof(string), 
-                typeof(TransportViewModel),
-                new PropertyMetadata("", FilterText_Changed));
-
-
-
-        public ICollectionView TransportItems
-        {
-            get { return (ICollectionView)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register(
-                MyLiterals<Transport>.Items, 
-                typeof(ICollectionView), 
-                typeof(TransportViewModel),
-                new PropertyMetadata(null));
-
-
+        /// <summary>
+        /// Выполняет заданное действие для вызывающей кнопки.
+        /// </summary>
+        /// <param name="action">Действие, которое 
+        /// было выбрано в главном окне.</param>
         public override void OnDialog(string action)
         {
-            DialogViewModel dialog;
-            switch (action)
-            {
-                case Actions.add:
-                    dialog = new TransportDialogViewModel(action);
-                    dialog.Show();
-                    break;
+            var actionPerformer =
+                 new ActionPerformer<Transport, ObservableCollection<Transport>>
+                 (this, GetDialogViewModel(action),
+                 observableCollection);
 
-                case Actions.update:
-                    if (SelectedItem is null) return;
-                    dialog = new TransportDialogViewModel((Transport)SelectedItem, action);
-                    dialog.Show();
-                    break;
-
-                case Actions.remove:
-                    if (SelectedItem is null) return;
-                    ((Transport)SelectedItem).Remove();
-                    break;
-
-                case Actions.copy:
-                    if (SelectedItem is null) return;
-                    dialog = new TransportDialogViewModel((Transport)SelectedItem, action);
-                    dialog.Show();
-                    break;
-            }
-
-            TransportItems = CollectionViewSource.GetDefaultView(_transport.GetObservableCollection());
+            actionPerformer.doAction(action);
         }
+
+        /// <summary>
+        /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
+        /// </summary>
+        /// <param name="action">Действие, которое 
+        /// было выбрано в главном окне.</param>
+        /// <returns>Диалоговое окно, 
+        /// для текущей ViewModel. </returns>
+        private DialogViewModel GetDialogViewModel(string action)
+        {
+            return new TransportDialogViewModel()
+            {
+                MainWindowAction = action,
+                ObservableCollection = observableCollection,
+                Repository = repository
+            };
+        }
+        #endregion
     }
 }

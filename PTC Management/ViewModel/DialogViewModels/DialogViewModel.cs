@@ -28,7 +28,11 @@ namespace PTC_Management.ViewModel
         }
 
         public static readonly DependencyProperty copyCount =
-            DependencyProperty.Register("CopyCount", typeof(int), typeof(DialogViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register(
+                "CopyCount",
+                typeof(int),
+                typeof(DialogViewModel),
+                new PropertyMetadata(null));
         #endregion
 
         #region CopyCountVisibility
@@ -48,7 +52,11 @@ namespace PTC_Management.ViewModel
         }
 
         public static readonly DependencyProperty dialogItem =
-            DependencyProperty.Register("DialogItem", typeof(Entity), typeof(DialogViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register(
+                "DialogItem",
+                typeof(Entity),
+                typeof(DialogViewModel),
+                new PropertyMetadata(null));
         #endregion
 
 
@@ -93,13 +101,9 @@ namespace PTC_Management.ViewModel
                     break;
                 default:
                     throw new ArgumentException("Действие не обработано");
-
-
             }
 
             DialogItem.Id = entity.Id;
         }
-
-
     }
 }

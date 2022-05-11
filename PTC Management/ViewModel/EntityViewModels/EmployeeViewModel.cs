@@ -1,14 +1,10 @@
 ﻿using PTC_Management.EF;
-using PTC_Management.Model;
-using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Data;
-using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
 {
@@ -19,35 +15,35 @@ namespace PTC_Management.ViewModel
 
         public EmployeeViewModel()
         {
-            repository = Employee.repositoryEmployee;
-            observableCollection = GetEmployeeObservableCollection();
+            repository = Employee.repository;
+            observableCollection = GetObservableCollection();
 
-            Items = GetEmployeeItems();
+            Items = GetItems();
             Items.Filter = Filter;
         }
 
         #region FilterText
        
         /// <summary>
-        /// Проверка подходит заданный текст под фильтр
+        /// Проверка подходит заданный текст под фильтр.
         /// </summary>
         /// <param name="entity">Объект, который
         /// будет проверяться фильтром</param>
-        /// <returns>Подхоидт ли заданная запись под фильтр</returns>
+        /// <returns>Подхоидт ли заданная запись под фильтр. </returns>
         protected override bool Filter(object entity)
         {
             Employee current = entity as Employee;
 
-            if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
-                 && !current.Id.ToString().Contains(FilterEmployeeText)
+            if (!string.IsNullOrWhiteSpace(FilterText)
+                 && !current.Id.ToString().Contains(FilterText)
                  && (current.Surname == null ||
-                     !current.Surname.Contains(FilterEmployeeText))
+                     !current.Surname.Contains(FilterText))
                  && (current.Name == null ||
-                     !current.Name.Contains(FilterEmployeeText))
+                     !current.Name.Contains(FilterText))
                  && (current.Patronymic == null ||
-                     !current.Patronymic.Contains(FilterEmployeeText))
+                     !current.Patronymic.Contains(FilterText))
                  && (current.DriverLicense == null ||
-                     !current.DriverLicense.Contains(FilterEmployeeText)))
+                     !current.DriverLicense.Contains(FilterText)))
             {
                 return false;
             }
@@ -56,18 +52,18 @@ namespace PTC_Management.ViewModel
         #endregion 
 
         #region Методы
-        /// <summary> Возвращает записи из таблицы Employee. </summary>
-        /// <returns>записи из таблицы Employee.</returns>
+        /// <summary> Возвращает записи из таблицы. </summary>
+        /// <returns>записи из таблицы. </returns>
         private ObservableCollection<Employee>
-            GetEmployeeObservableCollection()
+            GetObservableCollection()
         {
             return repository.GetObservableCollection();
         }
 
-        /// <summary> Возвращает представление </summary>
+        /// <summary> Возвращает представление. </summary>
         /// <returns> Преставление на основе объекта 
-        /// employeeObservableCollection</returns>
-        private ICollectionView GetEmployeeItems()
+        /// ObservableCollection. </returns>
+        private ICollectionView GetItems()
         {
             return
                 CollectionViewSource
@@ -95,7 +91,7 @@ namespace PTC_Management.ViewModel
         /// <param name="action">Действие, которое 
         /// было выбрано в главном окне.</param>
         /// <returns>Диалоговое окно, 
-        /// имеющее тип EmployeeDialogViewModel.</returns>
+        /// для текущей ViewModel. </returns>
         private DialogViewModel GetDialogViewModel(string action)
         {
             return new EmployeeDialogViewModel()

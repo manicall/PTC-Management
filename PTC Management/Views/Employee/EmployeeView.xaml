@@ -8,14 +8,7 @@
    xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
    mc:Ignorable = "d" 
    d:DesignHeight = "300" d:DesignWidth = "650">
-
-
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="ContentRendered">
-            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
@@ -47,7 +40,7 @@
 
                 <TextBlock Text="Поиск:" Margin="5"/>
                 <TextBox Name="TextBoxSearch" 
-                         Text="{Binding FilterEmployeeText, UpdateSourceTrigger=PropertyChanged}" 
+                         Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
                          Width="200" Margin="5"/>
             </StackPanel>
 

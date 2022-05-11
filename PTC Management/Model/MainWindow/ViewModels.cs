@@ -13,12 +13,16 @@ namespace PTC_Management.Model.MainWindow
 
         public ViewModels(Size mainWindowSize)
         {
-            employee = new EmployeeViewModel() { 
+            employee = new EmployeeViewModel()
+            {
                 MainWidowSize = mainWindowSize
             };
 
             route = new RouteViewModel();
-            transport = new TransportViewModel();
+            transport = new TransportViewModel()
+            {
+                MainWidowSize = mainWindowSize
+            };
             itinerary = new ItineraryViewModel();
             scheduleOfEmployee = new ScheduleOfEmployeeViewModel();
         }

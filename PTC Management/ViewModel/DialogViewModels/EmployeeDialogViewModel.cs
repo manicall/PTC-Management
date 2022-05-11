@@ -1,7 +1,5 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
-
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
@@ -52,14 +50,16 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         #region методы
         /// <summary>
-        /// Вызывается при нажатии на кнопку на диалоговом окне
+        /// Вызывается при нажатии на кнопку на диалоговом окне.
         /// </summary>
         /// <remarks> 
         /// Примечание: Для вызова данного метода, кнопка диалогового окна 
-        /// должна быть привязанна к команде DialogActionCommand
+        /// должна быть привязанна к команде DialogActionCommand.
         /// </remarks>
         /// <param name="dialogAction">                                         
-        /// Действие которое следует выполнить, для вызывающей кнопки. 
+        /// Действие которое следует выполнить, для вызывающей кнопки.
+        /// Значение определяется нажатой кнопкой на диалоговом окне, 
+        /// через CommandParameter в xaml файле.
         /// </param>
         protected override void OnDialogActionCommand(string dialogAction)
         {
@@ -73,8 +73,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
         }
 
         /// <summary>
-        /// Выполняет изменнение employeeObservableCollection,
-        /// на основе заданного действия                             
+        /// Выполняет изменнение observableCollection,
+        /// на основе заданного действия.                     
         /// </summary>
         private void DoActionForObservableCollection()
         {
@@ -94,28 +94,30 @@ namespace PTC_Management.ViewModel.DialogViewModels
             }
 
             foreach (var employee in List)
-                ObservableCollection.Add(employee);
+                observableCollection.Add(employee);
         }
 
         /// <summary>
         /// Выполняет поиск записи в базе данных по ключу. 
         /// </summary>        
-        /// <returns> Сотрудник, ключ которого совпадает с заданным. </returns>
+        /// <returns> 
+        /// Сотрудник, ключ которого совпадает с заданным. 
+        /// </returns>
         private List<Employee> GetAdded()
         {
             return new List<Employee> 
             {
-                Repository.GetSingle(DialogItem.Id)
+                repository.GetSingle(DialogItem.Id)
             };
         }
 
         /// <summary>
-        /// Выполняет обновление записи в employeeObservableCollection
+        /// Выполняет обновление записи в observableCollection
         /// и обновляет представление, используещее данную коллекцию.
         /// </summary>
         private void UpdateObservableCollection()
         {
-            ObservableCollection<Employee> ob = ObservableCollection;
+            ObservableCollection<Employee> ob = observableCollection;
 
             ob[SelectedIndex].SetFields((Employee)DialogItem);
             CollectionViewSource.GetDefaultView(ob).Refresh();
@@ -127,7 +129,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// </summary>
         private List<Employee> GetCopied()
         {
-            return Repository.GetFrom(DialogItem.Id);
+            return repository.GetFrom(DialogItem.Id);
         }
         #endregion
     }
