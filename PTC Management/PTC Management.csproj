@@ -83,7 +83,7 @@
     <Compile Include="Model\MainWindow\BackUp.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ViewModel\ActionPerformer.cs" />
+    <Compile Include="ViewModel\EntityViewModels\Helpers\ActionPerformer.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseDialog.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseEntity.cs" />
@@ -91,6 +91,7 @@
     <Compile Include="ViewModel\DialogViewModels\EmployeeDialogViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModels\TransportDialogViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModels\Helpers\GridViewColumns.cs" />
     <Compile Include="ViewModel\EntityViewModels\ItineraryViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\LogOfDepartureAndEntryViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\MaintanceLogViewModel.cs" />

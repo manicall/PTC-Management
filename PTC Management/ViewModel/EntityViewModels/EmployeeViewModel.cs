@@ -23,12 +23,12 @@ namespace PTC_Management.ViewModel
         }
 
         #region FilterText
-       
+
         /// <summary>
         /// Проверка подходит заданный текст под фильтр.
         /// </summary>
         /// <param name="entity">Объект, который
-        /// будет проверяться фильтром</param>
+        /// будет проверяться фильтром.</param>
         /// <returns>Подхоидт ли заданная запись под фильтр. </returns>
         protected override bool Filter(object entity)
         {
@@ -77,10 +77,10 @@ namespace PTC_Management.ViewModel
         /// было выбрано в главном окне.</param>
         public override void OnDialog(string action)
         {
-           var actionPerformer = 
-                new ActionPerformer<Employee, ObservableCollection<Employee>>
-                (this, GetDialogViewModel(action), 
-                observableCollection);
+            var actionPerformer =
+                 new ActionPerformer<Employee, ObservableCollection<Employee>>
+                 (this, GetDialogViewModel(action),
+                 observableCollection);
 
             actionPerformer.doAction(action);
         }

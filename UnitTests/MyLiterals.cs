@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using PTC_Management.EF;
 using PTC_Management.Model;
+
 using System;
 
 namespace UnitTests
@@ -16,8 +18,8 @@ namespace UnitTests
             string actual = MyLiterals<Employee>.FilterText;
 
             Assert.AreEqual(expected, actual);
-        }   
-        
+        }
+
         [TestMethod]
         public void Items_Test()
         {

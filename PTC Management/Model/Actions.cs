@@ -4,6 +4,8 @@
     /// Список контстант для выбора действия, которое необходимо выполнить
     /// на основе параметра, передаваемого кнопкой
     /// </summary>
+    
+    // TODO: можно сделать статическим
     internal class Actions
     {
         internal const string add = "add";
@@ -20,7 +22,7 @@
         public string Remove => remove;
         public string Copy => copy;
 
-        public string WriteAndClose => writeAndClose;
+        public static string WriteAndClose => writeAndClose;
         public string Write => write;
         public string Close => close;
 

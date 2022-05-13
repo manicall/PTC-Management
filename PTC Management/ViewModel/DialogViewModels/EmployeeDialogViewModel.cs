@@ -1,5 +1,6 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
+
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
@@ -105,7 +106,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// </returns>
         private List<Employee> GetAdded()
         {
-            return new List<Employee> 
+            return new List<Employee>
             {
                 repository.GetSingle(DialogItem.Id)
             };

@@ -14,13 +14,13 @@ namespace PTC_Management.ViewModel
 {
     class ActionPerformer<T, T1>
         where T : Entity
-        where T1 : ObservableCollection<T> 
+        where T1 : ObservableCollection<T>
     {
         private ViewModelBaseEntity entityVM;
         private DialogViewModel dialogVM;
         private T1 observableCollection;
 
-        public ActionPerformer(ViewModelBaseEntity entityVM, 
+        public ActionPerformer(ViewModelBaseEntity entityVM,
             DialogViewModel dialogVM, T1 observableCollection)
         {
             this.entityVM = entityVM;

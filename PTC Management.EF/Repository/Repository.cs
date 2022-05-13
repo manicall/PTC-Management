@@ -46,7 +46,8 @@ namespace PTC_Management.EF
         /// Инициализация и возврат всех записей из таблицы.
         /// </summary>
         /// <returns> Все записи из таблицы. </returns>
-        public ObservableCollection<T> GetObservableCollection() {
+        public ObservableCollection<T> GetObservableCollection()
+        {
             _set.Load();
             return _set.Local;
         }
@@ -113,7 +114,8 @@ namespace PTC_Management.EF
         /// <exception cref="ArgumentNullException">
         /// Если аргумент имеет null значение.
         /// </exception>
-        public void Copy(T item, int Count) {
+        public void Copy(T item, int Count)
+        {
             if (item is null) throw new ArgumentNullException(nameof(item));
 
             // Инициализация списка копий

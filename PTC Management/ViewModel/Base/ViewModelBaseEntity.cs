@@ -12,9 +12,10 @@ namespace PTC_Management.ViewModel.Base
     class ViewModelBaseEntity : BindableBase
     {
         private Size mainWidowSize;
-        public Size MainWidowSize { 
+        public Size MainWidowSize
+        {
             get => mainWidowSize;
-            set => mainWidowSize = value; 
+            set => mainWidowSize = value;
         }
 
         private ICollectionView items;
@@ -44,7 +45,7 @@ namespace PTC_Management.ViewModel.Base
         public ViewModelBaseEntity()
         {
             DialogCommand = new ParameterizedCommand<string>(OnDialog);
-        } 
+        }
 
         private Entity _selectedItem;
 

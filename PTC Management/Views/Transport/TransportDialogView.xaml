@@ -1,59 +1,59 @@
 ﻿<UserControl x:Class="PTC_Management.Views.TransportDialogView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PTC_Management.Views"
-             xmlns:views = "clr-namespace:PTC_Management.Views" 
-             xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
-             mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="350">
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:local="clr-namespace:PTC_Management.Views"
+       xmlns:views = "clr-namespace:PTC_Management.Views" 
+       xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
+       mc:Ignorable="d" 
+       d:DesignHeight="200" d:DesignWidth="350">
 
-    <UserControl.Resources>
+  <UserControl.Resources>
 
-        <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
-            <views:EmployeeDialogView />
-        </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
+      <views:EmployeeDialogView />
+    </DataTemplate>
 
-        <Style TargetType="TextBlock" >
-            <Setter Property="Width" Value="170"/>
-        </Style>
+    <Style TargetType="TextBlock" >
+      <Setter Property="Width" Value="170"/>
+    </Style>
 
-        <Style TargetType="TextBox" >
-            <Setter Property="Width" Value="150"/>
-        </Style>
+    <Style TargetType="TextBox" >
+      <Setter Property="Width" Value="150"/>
+    </Style>
 
-        <Style TargetType="StackPanel" >
-            <Setter Property="Margin" Value="0,0,0,10"/>
-            <Setter Property="Orientation" Value="Horizontal"/>
-        </Style>
-    </UserControl.Resources>
+    <Style TargetType="StackPanel" >
+      <Setter Property="Margin" Value="0,0,0,10"/>
+      <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+  </UserControl.Resources>
 
 
-    <StackPanel Orientation="Vertical" Margin="10,0,10,10">
-        <StackPanel >
-            <Button Name="buttonWriteAndClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.WriteAndClose}" Margin="0 0 35 0" Width="auto"
-                    >Записать и закрыть</Button>
-            <Button Name="buttonWrite" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Write}" 
-                   >Записать</Button>
-            <Button Name="buttonClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
-        </StackPanel>
-        <StackPanel Visibility="{Binding CopyCountVisibility}" >
-            <TextBlock Name="textBlockCountCopy" >Количество копий</TextBlock>
-            <TextBox Name="textBoxCountCopy" Width="50"  
-                     Text="{Binding CopyCount}" />
-        </StackPanel>
-        <StackPanel >
-            <TextBlock Name="textBlockName" >Имя</TextBlock>
-            <TextBox Name="textBoxName" 
-                     Text="{Binding DialogItem.Name}"></TextBox>
-        </StackPanel>
-        <StackPanel >
-            <TextBlock Name="textBlockSurname" >Гос. номер</TextBlock>
-            <TextBox Name="textBoxSurname"  
-                     Text="{Binding DialogItem.LicensePlate}"></TextBox>
-        </StackPanel>
-       
+  <StackPanel Orientation="Vertical" Margin="10,0,10,10">
+    <StackPanel >
+      <Button Name="buttonWriteAndClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.WriteAndClose}" Margin="0 0 35 0" Width="auto"
+          >Записать и закрыть</Button>
+      <Button Name="buttonWrite" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Write}" 
+           >Записать</Button>
+      <Button Name="buttonClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
     </StackPanel>
+    <StackPanel Visibility="{Binding CopyCountVisibility}" >
+      <TextBlock Name="textBlockCountCopy" >Количество копий</TextBlock>
+      <TextBox Name="textBoxCountCopy" Width="50"  
+           Text="{Binding CopyCount}" />
+    </StackPanel>
+    <StackPanel >
+      <TextBlock Name="textBlockName" >Имя</TextBlock>
+      <TextBox Name="textBoxName" 
+           Text="{Binding DialogItem.Name}"></TextBox>
+    </StackPanel>
+    <StackPanel >
+      <TextBlock Name="textBlockSurname" >Гос. номер</TextBlock>
+      <TextBox Name="textBoxSurname"  
+           Text="{Binding DialogItem.LicensePlate}"></TextBox>
+    </StackPanel>
+     
+  </StackPanel>
 
 </UserControl>

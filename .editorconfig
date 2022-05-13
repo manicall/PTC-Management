@@ -4,6 +4,6 @@
 [*]
 indent_style = space
 
-# C# or VB files
-[*.{cs, xaml, vb}]
+# C# or xaml files
+[*.{xaml, cs}]
 guidelines = 80 1px solid 0b9cbb

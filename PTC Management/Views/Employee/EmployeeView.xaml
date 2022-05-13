@@ -8,68 +8,68 @@
    xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
    mc:Ignorable = "d" 
    d:DesignHeight = "300" d:DesignWidth = "650">
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="217*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="192*"/>
-        </Grid.ColumnDefinitions>
+  
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="8*"/>
+      <RowDefinition Height="217*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="7*"/>
+      <ColumnDefinition Width="192*"/>
+    </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                <Button Name="create" Style="{StaticResource BlackButton}" 
-                        Content="Создать"
-                        Command = "{Binding DialogCommand}"
-                        CommandParameter="{Binding Actions.Add}"/>
-                <Button Name="update" Style="{StaticResource BlackButton}" 
-                        Content="Изменить"
-                        Command = "{Binding DialogCommand}"
-                        CommandParameter="{Binding Actions.Update}"/>
-                <Button Name="delete" Style="{StaticResource BlackButton}" 
-                        Content="Удалить" 
-                        Command = "{Binding DialogCommand}"
-                        CommandParameter="{Binding Actions.Remove}"/>
-                <Button Name="copy" Style="{StaticResource BlackButton}" 
-                        Content="Копировать" 
-                        Command = "{Binding DialogCommand}"
-                        CommandParameter="{Binding Actions.Copy}"/>
+    <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
+      <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+        <Button Name="create" Style="{StaticResource BlackButton}" 
+            Content="Создать"
+            Command = "{Binding DialogCommand}"
+            CommandParameter="{Binding Actions.Add}"/>
+        <Button Name="update" Style="{StaticResource BlackButton}" 
+            Content="Изменить"
+            Command = "{Binding DialogCommand}"
+            CommandParameter="{Binding Actions.Update}"/>
+        <Button Name="delete" Style="{StaticResource BlackButton}" 
+            Content="Удалить" 
+            Command = "{Binding DialogCommand}"
+            CommandParameter="{Binding Actions.Remove}"/>
+        <Button Name="copy" Style="{StaticResource BlackButton}" 
+            Content="Копировать" 
+            Command = "{Binding DialogCommand}"
+            CommandParameter="{Binding Actions.Copy}"/>
 
-                <TextBlock Text="Поиск:" Margin="5"/>
-                <TextBox Name="TextBoxSearch" 
-                         Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
-                         Width="200" Margin="5"/>
-            </StackPanel>
+        <TextBlock Text="Поиск:" Margin="5"/>
+        <TextBox Name="TextBoxSearch" 
+             Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
+             Width="200" Margin="5"/>
+      </StackPanel>
 
-            <DataGrid SelectedItem="{Binding SelectedItem}" 
-                      SelectedIndex="{Binding SelectedIndex}"
-                      ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
-                      Name="dataGridEmployee"
-                      MinRowHeight="20" MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
-                      ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
-                      
-                      CanUserReorderColumns="False"
-                      IsReadOnly="True" 
-                      CanUserAddRows="false"
-                      
-                      AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" />
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Отчество"  Binding="{Binding Patronymic}"/>
-                    <DataGridTextColumn Binding="{Binding DriverLicense}" Width="*">
-                        <DataGridTextColumn.Header>
-                            <TextBlock TextAlignment="Center">
-                                    Водительское удостоверение
-                            </TextBlock>
-                        </DataGridTextColumn.Header>
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
-    </Grid>
+      <DataGrid SelectedItem="{Binding SelectedItem}" 
+            SelectedIndex="{Binding SelectedIndex}"
+            ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+            Name="dataGridEmployee"
+            MinRowHeight="20" MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
+            
+            CanUserReorderColumns="False"
+            IsReadOnly="True" 
+            CanUserAddRows="false"
+            
+            AutoGenerateColumns="False">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
+          <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" />
+          <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+          <DataGridTextColumn Header="Отчество"  Binding="{Binding Patronymic}"/>
+          <DataGridTextColumn Binding="{Binding DriverLicense}" Width="*">
+            <DataGridTextColumn.Header>
+              <TextBlock TextAlignment="Center">
+                  Водительское удостоверение
+              </TextBlock>
+            </DataGridTextColumn.Header>
+          </DataGridTextColumn>
+        </DataGrid.Columns>
+      </DataGrid>
+    </StackPanel>
+  </Grid>
 </UserControl>
