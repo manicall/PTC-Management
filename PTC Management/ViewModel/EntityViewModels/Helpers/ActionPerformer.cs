@@ -104,7 +104,7 @@ namespace PTC_Management.ViewModel
             if (entityVM.SelectedItem is null) return;
 
             dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
-            dialogVM.CopyCountVisibility = "Visible";
+            dialogVM.CopyParameters.CountVisibility = "Visible";
 
             dialogVM.Show();
         }

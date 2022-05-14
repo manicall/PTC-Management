@@ -1,4 +1,5 @@
 ﻿using PTC_Management.EF;
+using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 
 using System.Collections.Generic;
@@ -42,9 +43,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
                 Actions.GetGenetiveName(MainWindowAction) +
                 " сотрудника";
 
-            CopyCount = 1;
-            CopyCountVisibility = "Collapsed";
-
+            CopyParameters = new CopyParameters();
             DialogItem = new Employee();
             CurrentViewModel = this;
         }

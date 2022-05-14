@@ -1,11 +1,13 @@
 ﻿using PTC_Management.Commands;
 using PTC_Management.EF;
+using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using Size = PTC_Management.Model.MainWindow.Size;
 
 namespace PTC_Management.ViewModel.Base
 {
@@ -46,13 +48,12 @@ namespace PTC_Management.ViewModel.Base
         }
 
 
-
-        private Entity _selectedItem;
+        private Entity selectedItem;
 
         public Entity SelectedItem
         {
-            get => _selectedItem;
-            set => _selectedItem = value;
+            get => selectedItem;
+            set => selectedItem = value;
         }
 
         public virtual void OnDialog(string action) { }

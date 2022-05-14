@@ -11,7 +11,6 @@ namespace PTC_Management
 
     class MainWindowViewModel : BindableBase
     {
-        Repository<Entity> repository = new Repository<Entity>(new PTC_ManagementContext());
         #region Поля и свойства
         private ViewModels viewModels;
 
@@ -62,8 +61,6 @@ namespace PTC_Management
             LoadCommand = new Command(Load);
             
         }
-
-
 
         private Size size;
         public Size Size
@@ -121,17 +118,6 @@ namespace PTC_Management
         }
 
         #endregion
-    }
-
-    internal class Size
-    {
-        public Size(int height) { this.height = height; }
-        private int height;
-        public int Height
-        {
-            get => height;
-            set => height = value - 170;
-        }
     }
 
 }

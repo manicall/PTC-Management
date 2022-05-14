@@ -38,15 +38,18 @@
       <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="BlackConditionButton" BasedOn="{StaticResource BlackButton}">
+    <Style TargetType="Button" x:Key="BlackConditionButton"
+           BasedOn="{StaticResource BlackButton}">
       <Setter Property="IsEnabled" Value="False"/>
       <Style.Triggers>
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
             <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxCountCopy}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxSurname}" Value="False"/>
             <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBlockName}" Value="False"/>
+              ElementName=textBoxName}" Value="False"/>
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxDriverLicense}" Value="False"/>
           </MultiDataTrigger.Conditions>
@@ -60,7 +63,8 @@
   
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
-      <Button Name="buttonWriteAndClose" Style="{StaticResource BlackConditionButton }" 
+      <Button Name="buttonWriteAndClose" 
+              Style="{StaticResource BlackConditionButton }" 
               Command="{Binding DialogActionCommand }"
               CommandParameter="{Binding Actions.WriteAndClose}" 
               Margin="0 0 35 0" Width="auto"
@@ -73,46 +77,52 @@
               Command="{Binding DialogActionCommand }" 
               CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
     </StackPanel>
-    <StackPanel Visibility="{Binding CopyCountVisibility}" >
-      <TextBlock Name="textBlockCountCopy" >Количество копий</TextBlock>
-      <TextBox Name="textBoxCountCopy" Width="50"  
-           Text="{Binding CopyCount}" />
+    <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
+      <TextBlock Name="textBlockCountCopy" Text="Количество копий" />
+      <TextBox Name ="textBoxCountCopy" Width="50"  
+           Text="{
+        Binding CopyParameters.Count,
+        ValidatesOnDataErrors=True, 
+        NotifyOnValidationError=True, 
+        UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel >
-      <TextBlock Name="textBlockSurname" >Фамилия</TextBlock>
+      <TextBlock Name="textBlockSurname" Text="Фамилия" />
       <TextBox 
         Name="textBoxSurname"  
-        Text="{Binding DialogItem.Surname, 
-        ValidatesOnDataErrors=true, 
-        NotifyOnValidationError=true, 
-        UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        Text="{
+        Binding DialogItem.Surname, 
+        ValidatesOnDataErrors=True, 
+        NotifyOnValidationError=True, 
+        UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel >
-      <TextBlock Name="textBlockName" >Имя</TextBlock>
+      <TextBlock Name="textBlockName" Text="Имя" />
       <TextBox Name="textBoxName" 
         Text="{
         Binding DialogItem.Name,
-        ValidatesOnDataErrors=true, 
-        NotifyOnValidationError=true, 
-        UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        ValidatesOnDataErrors=True, 
+        NotifyOnValidationError=True, 
+        UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel >
-      <TextBlock Name="textBlockPatronymic" >Отчество</TextBlock>
+      <TextBlock Name="textBlockPatronymic" Text="Отчество" />
       <TextBox Name="textBoxPatronymic" 
         Text="{
         Binding DialogItem.Patronymic,
-        ValidatesOnDataErrors=true, 
-        NotifyOnValidationError=true, 
-        UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        ValidatesOnDataErrors=True, 
+        NotifyOnValidationError=True, 
+        UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel >
-      <TextBlock Name="textBlockDriverLicense" >Водительское удостоверение</TextBlock>
+      <TextBlock Name="textBlockDriverLicense"
+                 Text="Водительское удостоверение" />
       <TextBox Name="textBoxDriverLicense" 
         Text="{
         Binding DialogItem.DriverLicense,
-        ValidatesOnDataErrors=true, 
-        NotifyOnValidationError=true, 
-        UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        ValidatesOnDataErrors=True, 
+        NotifyOnValidationError=True, 
+        UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     
     

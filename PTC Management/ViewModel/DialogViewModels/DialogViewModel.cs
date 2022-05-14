@@ -1,5 +1,6 @@
 ﻿using PTC_Management.Commands;
 using PTC_Management.EF;
+using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.Base;
 
@@ -13,63 +14,35 @@ namespace PTC_Management.ViewModel
     class DialogViewModel : ViewModelBaseDialog
     {
 
-        private ViewModelBaseDialog _currentViewModel;
+        private CopyParameters copyParameters;
+        public CopyParameters CopyParameters
+        {
+            get => copyParameters;
+            set => SetProperty(ref copyParameters, value);
+        }
+
+        private ViewModelBaseDialog currentViewModel;
         public ViewModelBaseDialog CurrentViewModel
         {
-            get => _currentViewModel;
-            set => SetProperty(ref _currentViewModel, value);
+            get => currentViewModel;
+            set => SetProperty(ref currentViewModel, value);
+        }
+
+
+        private Entity dialogItem;
+        public Entity DialogItem
+        {
+            get => dialogItem;
+            set => SetProperty(ref dialogItem, value);
         }
 
         public int SelectedIndex { get; set; }
-
-        #region CopyCount
-        public int CopyCount
-        {
-            get { return (int)GetValue(copyCount); }
-            set { SetValue(copyCount, value); }
-        }
-
-        public static readonly DependencyProperty copyCount =
-            DependencyProperty.Register(
-                "CopyCount",
-                typeof(int),
-                typeof(DialogViewModel),
-                new PropertyMetadata(null));
-        #endregion
-
-        
-
-        #region CopyCountVisibility
-        private string _copyCountVisibility;
-        public string CopyCountVisibility
-        {
-            get => _copyCountVisibility;
-            set => _copyCountVisibility = value;
-        }
-        #endregion
-
-        #region DialogItem
-        public Entity DialogItem
-        {
-            get { return (Entity)GetValue(dialogItem); }
-            set { SetValue(dialogItem, value); }
-        }
-
-        public static readonly DependencyProperty dialogItem =
-            DependencyProperty.Register(
-                "DialogItem",
-                typeof(Entity),
-                typeof(DialogViewModel),
-                new PropertyMetadata(null));
-        #endregion
-
-
         public Command<string> DialogActionCommand { get; private set; }
 
         public DialogViewModel()
         {
             DialogActionCommand = new Command<string>(OnDialogActionCommand);
-            _currentViewModel = null;
+            currentViewModel = null;
         }
 
         protected virtual void OnDialogActionCommand(string action)
@@ -101,7 +74,7 @@ namespace PTC_Management.ViewModel
                     DialogItem.Update();
                     break;
                 case Actions.copy:
-                    entity.Copy(CopyCount);
+                    entity.Copy(CopyParameters.Count);
                     break;
                 default:
                     throw new ArgumentException("Действие не обработано");

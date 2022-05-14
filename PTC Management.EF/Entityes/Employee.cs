@@ -94,19 +94,26 @@ namespace PTC_Management.EF
                 {
                     case "Surname":
                         if (string.IsNullOrEmpty(Surname))
-                            error = "Поле с фамилией не может быть пустым";
+                            error = "Поле не может быть пустым";
+                        else if (Surname.Contains(" ")) 
+                            error = "Поле не должно содержать пробелы";
                         break;
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
-                            error = "Поле с именем не может быть пустым";
+                            error = "Поле не может быть пустым";
+                        else if (Name.Contains(" "))
+                            error = "Поле не должно содержать пробелы";
                         break;
                     case "Patronymic":
-                       
+                        if (!string.IsNullOrEmpty(Patronymic)
+                            && Patronymic.Contains(" "))
+                            error = "Поле не должно содержать пробелы";
                         break;
                     case "DriverLicense":
                         if (string.IsNullOrEmpty(DriverLicense))
-                            error = "Поле с водительским удостоверением" +
-                                    " не может быть пустым";
+                            error = "Поле не может быть пустым";
+                        else if (DriverLicense.Contains(" "))
+                            error = "Поле не должно содержать пробелы";
                         break;
                 }
                 return error;
