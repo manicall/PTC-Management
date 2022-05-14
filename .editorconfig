@@ -2,8 +2,8 @@
 
 # All files
 [*]
-indent_style = space
+guidelines = 80 1px solid 0b9cbb
 
 # C# or xaml files
-[*.{xaml, cs}]
-guidelines = 80 1px solid 0b9cbb
+#[*.{cs, xaml}]
+#guidelines = 80 1px solid 0b9cbb

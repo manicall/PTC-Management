@@ -4,60 +4,48 @@
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
        xmlns:local="clr-namespace:PTC_Management.Views"
-       xmlns:fa="http://schemas.fontawesome.com/icons/"
+       xmlns:h="clr-namespace:PTC_Management.ViewModel.EntityViewModels.Helpers"
        mc:Ignorable="d" 
        d:DesignHeight="450" d:DesignWidth="800">
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="200" MinWidth="200"/>
-      <ColumnDefinition/>
-    </Grid.ColumnDefinitions>
+  
+  
+  <DockPanel>
+
+    <GroupBox DockPanel.Dock="Top" Grid.Column="2" Header="График">
+      <StackPanel Orientation="Horizontal">
+        <DatePicker 
+          Text="{Binding DataPickerValue, Mode=TwoWay}"
+          h:DatePickerCalendar.IsMonthYear="True"    
+          h:DatePickerDateFormat.DateFormat="MM/yyyy"/>
+
+        <TextBox Text="{Binding DataPickerValue }"></TextBox>
+      </StackPanel>
+    </GroupBox>
+
     <GroupBox Grid.Column="0" Header="Смены">
       <DockPanel>
-        <Button DockPanel.Dock="Bottom" Content="Тестовая кнопка" Margin="5"
-            Command="{Binding TestCommand}"/>
-        <ListBox ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup}" SelectedIndex="0">
-          <ListBox.ItemContainerStyle>
-            <Style TargetType="ListBoxItem">
-              <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            </Style>
-          </ListBox.ItemContainerStyle>
-          <ListBox.ItemTemplate>
-            <DataTemplate DataType="m:Group">
-              <DockPanel>
-                <TextBlock DockPanel.Dock="Right" Text="{Binding Students.Count, StringFormat=({0})}"/>
-                <TextBlock Text="{Binding Name}"/>
-              </DockPanel>
-            </DataTemplate>
-          </ListBox.ItemTemplate>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+          <Button  Content="Добавить" Margin="5" Width="65" 
+            Command="{Binding LaborShiftCommand}"
+            CommandParameter="{Binding Actions.Add}" />
+          <Button Content="Удалить" Margin="5" Width="65" 
+            Command="{Binding LaborShiftCommand}"
+            CommandParameter="{Binding Actions.Remove}" />
+        </StackPanel>
+       
+        <ListBox ItemsSource="{Binding Groups}"
+                 SelectedItem="{Binding SelectedGroup}" 
+                 SelectedIndex="{Binding SelectedIndex}">
+          
         </ListBox>
       </DockPanel>
     </GroupBox>
-    <GroupBox Grid.Column="2" Header="Информация" DataContext="{Binding SelectedStudent}">
-      <Grid Margin="3">
-        <Grid.Resources>
-          <Style TargetType="TextBlock">
-            <Style.Triggers>
-              <Trigger Property="Grid.Column" Value="0">
-                <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="Margin" Value="0,0,2,0"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-              </Trigger>
-              <Trigger Property="Grid.Column" Value="1">
-                <Setter Property="Margin" Value="2,0,0,0"/>
-              </Trigger>
-            </Style.Triggers>
-          </Style>
-        </Grid.Resources>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto"/>
-          <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        
-      </Grid>
+    
+    <GroupBox Grid.Column="2" Header="График">
+      <DataGrid AutoGenerateColumns="True" 
+            ItemsSource="{Binding SizeQuantityTable, UpdateSourceTrigger=PropertyChanged}" />
     </GroupBox>
 
-    <GridSplitter Grid.Column="0" HorizontalAlignment="Right" Width="3"/>
-    <GridSplitter Grid.Column="1" HorizontalAlignment="Right" Width="3"/>
-  </Grid>
+
+  </DockPanel>
 </UserControl>

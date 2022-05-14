@@ -26,15 +26,13 @@ namespace PTC_Management.ViewModel.Base
         }
 
         #region SelectedIndex
+        private int selectedIndex;
         public int SelectedIndex
         {
-            get => (int)GetValue(SelectedIndexProperty);
-            set => SetValue(SelectedIndexProperty, value);
+            get { return selectedIndex; }
+            set { SetProperty(ref selectedIndex, value); }
         }
 
-        public static readonly DependencyProperty SelectedIndexProperty =
-            DependencyProperty.Register("SelectedIndex", typeof(int),
-                typeof(EmployeeViewModel), new PropertyMetadata(null));
         #endregion
 
         private Actions actions = new Actions();
@@ -81,11 +79,11 @@ namespace PTC_Management.ViewModel.Base
             }
         }
 
+        // необходимо переопределить в дочернем классе
         protected virtual bool Filter(object entity)
         {
             throw new NotImplementedException();
         }
-
 
     }
 }

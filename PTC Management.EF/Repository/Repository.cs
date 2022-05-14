@@ -47,7 +47,7 @@ namespace PTC_Management.EF
         /// </summary>
         /// <returns> Все записи из таблицы. </returns>
         public ObservableCollection<T> GetObservableCollection()
-        {
+        { 
             _set.Load();
             return _set.Local;
         }

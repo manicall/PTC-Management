@@ -3,6 +3,7 @@ using PTC_Management.EF;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PTC_Management
@@ -10,6 +11,7 @@ namespace PTC_Management
 
     class MainWindowViewModel : BindableBase
     {
+        Repository<Entity> repository = new Repository<Entity>(new PTC_ManagementContext());
         #region Поля и свойства
         private ViewModels viewModels;
 
@@ -39,7 +41,7 @@ namespace PTC_Management
         public ICommand LoadCommand { get; }
 
         public async void Load()
-        {
+        {       
             viewModels = new ViewModels(size);
 
             // установка представления по умолчанию
@@ -58,7 +60,7 @@ namespace PTC_Management
             size = new Size(500);
 
             LoadCommand = new SimpleCommand(Load);
-
+            
         }
 
 

@@ -91,7 +91,8 @@
     <Compile Include="ViewModel\DialogViewModels\EmployeeDialogViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModels\TransportDialogViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\EmployeeViewModel.cs" />
-    <Compile Include="ViewModel\EntityViewModels\Helpers\GridViewColumns.cs" />
+    <Compile Include="ViewModel\EntityViewModels\Helpers\DatePickerDateFormat.cs" />
+    <Compile Include="ViewModel\EntityViewModels\Helpers\DatePickerCalendar.cs" />
     <Compile Include="ViewModel\EntityViewModels\ItineraryViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\LogOfDepartureAndEntryViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\MaintanceLogViewModel.cs" />
