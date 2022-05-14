@@ -1,13 +1,16 @@
 namespace PTC_Management.EF
 {
+
+
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+
 
     [Table("Employee")]
-    public partial class Employee : Entity
+    public partial class Employee : Entity, IDataErrorInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
@@ -80,6 +83,38 @@ namespace PTC_Management.EF
                 DriverLicense = DriverLicense
             };
             return employee;
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = null;
+                switch (columnName)
+                {
+                    case "Surname":
+                        if (string.IsNullOrEmpty(Surname))
+                            error = "ѕоле с фамилией не может быть пустым";
+                        break;
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name))
+                            error = "ѕоле с именем не может быть пустым";
+                        break;
+                    case "Patronymic":
+                       
+                        break;
+                    case "DriverLicense":
+                        if (string.IsNullOrEmpty(DriverLicense))
+                            error = "ѕоле с водительским удостоверением" +
+                                    " не может быть пустым";
+                        break;
+                }
+                return error;
+            }
+        }
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }

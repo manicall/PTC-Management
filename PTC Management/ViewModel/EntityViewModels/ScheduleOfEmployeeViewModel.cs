@@ -51,7 +51,6 @@ namespace PTC_Management.ViewModel
             {
                 DataColumn sColumn = new DataColumn {
                     ColumnName = i.ToString(),
-                    //sizeQuantityTable[i].
                 };
                 sizeQuantityTable.Columns.Add(sColumn);
             }

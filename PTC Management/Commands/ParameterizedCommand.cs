@@ -8,7 +8,10 @@ namespace PTC_Management.Commands
     {
 
         Action<T> _TargetExecuteMethod;
-        Func<T, bool> _TargetCanExecuteMethod;
+        Func<T,bool> _TargetCanExecuteMethod;
+
+        //Action _TargetExecuteMethod;
+        //Func<bool> _TargetCanExecuteMethod;
 
         public ParameterizedCommand(Action<T> executeMethod)
         {

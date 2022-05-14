@@ -22,22 +22,50 @@
 
     <Style TargetType="TextBox" >
       <Setter Property="Width" Value="150"/>
+
+      <Style.Triggers>
+        <Trigger Property="Validation.HasError" Value="True">
+          <Setter Property="ToolTip"
+                Value="{Binding RelativeSource={RelativeSource Self},
+                    Path=(Validation.Errors)[0].ErrorContent}" />
+          <Setter Property="Foreground" Value="Red" />
+        </Trigger>
+      </Style.Triggers>
     </Style>
 
     <Style TargetType="StackPanel" >
       <Setter Property="Margin" Value="0,0,0,10"/>
       <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
+
+    <Style TargetType="Button" x:Key="BlackConditionButton" BasedOn="{StaticResource BlackButton}">
+      <Setter Property="IsEnabled" Value="False"/>
+      <Style.Triggers>
+        <MultiDataTrigger>
+          <MultiDataTrigger.Conditions>
+            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=textBoxSurname}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=textBlockName}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=textBoxDriverLicense}" Value="False"/>
+          </MultiDataTrigger.Conditions>
+          <Setter Property="IsEnabled" Value="True"/>
+        </MultiDataTrigger>
+      </Style.Triggers>
+    </Style>
+
   </UserControl.Resources>
 
   
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
-      <Button Name="buttonWriteAndClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.WriteAndClose}" Margin="0 0 35 0" Width="auto"
+      <Button Name="buttonWriteAndClose" Style="{StaticResource BlackConditionButton }" 
+              Command="{Binding DialogActionCommand }"
+              CommandParameter="{Binding Actions.WriteAndClose}" Margin="0 0 35 0" Width="auto"
           >Записать и закрыть</Button>
-      <Button Name="buttonWrite" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Write}" 
+      <Button Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
+              Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Write}" 
            >Записать</Button>
-      <Button Name="buttonClose" Style="{StaticResource BlackButton }" Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
+      <Button Name="buttonClose" Style="{StaticResource BlackButton }" 
+              Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
     </StackPanel>
     <StackPanel Visibility="{Binding CopyCountVisibility}" >
       <TextBlock Name="textBlockCountCopy" >Количество копий</TextBlock>
@@ -46,23 +74,39 @@
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockSurname" >Фамилия</TextBlock>
-      <TextBox Name="textBoxSurname"  
-           Text="{Binding DialogItem.Surname}"></TextBox>
+      <TextBox 
+        Name="textBoxSurname"  
+        Text="{Binding DialogItem.Surname, 
+        ValidatesOnDataErrors=true, 
+        NotifyOnValidationError=true, 
+        UpdateSourceTrigger=PropertyChanged}"></TextBox>
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockName" >Имя</TextBlock>
       <TextBox Name="textBoxName" 
-           Text="{Binding DialogItem.Name}"></TextBox>
+        Text="{
+        Binding DialogItem.Name,
+        ValidatesOnDataErrors=true, 
+        NotifyOnValidationError=true, 
+        UpdateSourceTrigger=PropertyChanged}"></TextBox>
     </StackPanel>
     <StackPanel >
-      <TextBlock Name="textBlockMiddleName" >Отчество</TextBlock>
-      <TextBox Name="textBoxMiddleName" 
-           Text="{Binding DialogItem.Patronymic}"></TextBox>
+      <TextBlock Name="textBlockPatronymic" >Отчество</TextBlock>
+      <TextBox Name="textBoxPatronymic" 
+        Text="{
+        Binding DialogItem.Patronymic,
+        ValidatesOnDataErrors=true, 
+        NotifyOnValidationError=true, 
+        UpdateSourceTrigger=PropertyChanged}"></TextBox>
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockDriverLicense" >Водительское удостоверение</TextBlock>
       <TextBox Name="textBoxDriverLicense" 
-           Text="{Binding DialogItem.DriverLicense}"></TextBox>
+        Text="{
+        Binding DialogItem.DriverLicense,
+        ValidatesOnDataErrors=true, 
+        NotifyOnValidationError=true, 
+        UpdateSourceTrigger=PropertyChanged}"></TextBox>
     </StackPanel>
     
     

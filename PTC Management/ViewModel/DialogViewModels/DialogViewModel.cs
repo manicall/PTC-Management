@@ -6,6 +6,7 @@ using PTC_Management.ViewModel.Base;
 using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace PTC_Management.ViewModel
 {

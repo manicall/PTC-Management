@@ -43,9 +43,9 @@
     
     <GroupBox Grid.Column="2" Header="График">
       <DataGrid AutoGenerateColumns="True" 
-            ItemsSource="{Binding SizeQuantityTable, UpdateSourceTrigger=PropertyChanged}" />
+            ItemsSource="{Binding SizeQuantityTable}" />
+      
     </GroupBox>
-
 
   </DockPanel>
 </UserControl>

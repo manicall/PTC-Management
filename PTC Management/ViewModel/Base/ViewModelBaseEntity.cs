@@ -45,6 +45,8 @@ namespace PTC_Management.ViewModel.Base
             DialogCommand = new ParameterizedCommand<string>(OnDialog);
         }
 
+
+
         private Entity _selectedItem;
 
         public Entity SelectedItem
