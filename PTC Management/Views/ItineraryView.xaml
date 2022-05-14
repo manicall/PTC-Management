@@ -24,15 +24,52 @@
         <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
 
         <TextBlock Text="Поиск:" Margin="5"/>
-        <TextBox Text="{Binding FilterItineraryText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
+        <TextBox 
+          Text="{
+          Binding FilterItineraryText,
+          UpdateSourceTrigger=PropertyChanged
+          }" Width="200" Margin="5"/>
       </StackPanel>
 
-      <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" CanUserReorderColumns="False" IsReadOnly="True" 
-            CanUserAddRows="false" ItemsSource="{Binding ItineraryItems}" d:ItemsSource="{d:SampleData ItemCount=5}"  AutoGenerateColumns="False">
+      <DataGrid 
+        MaxHeight="400" 
+        ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" 
+        CanUserReorderColumns="False"
+        IsReadOnly="True" 
+        CanUserAddRows="false" 
+        ItemsSource="{Binding ItineraryItems}" 
+        AutoGenerateColumns="False">
+        
         <DataGrid.Columns>
-          <DataGridTextColumn Header="№ Листа"     Binding="{Binding Id}"/>
-          <DataGridTextColumn Header="ФИО сотрудника"  Binding="{Binding Employee.Surname}"/>
+          <DataGridTextColumn
+            Header="№ Листа"
+            Binding="{Binding Id}"/>
+          <DataGridTextColumn 
+            Header="ФИО сотрудника">
+            <DataGridTextColumn.Binding>
+              <MultiBinding StringFormat="{}{0} {1} {2}">
+                <Binding Path="Employee.Surname" />
+                <Binding Path="Employee.Name" />
+                <Binding Path="Employee.Patronymic" />
+              </MultiBinding>
+            </DataGridTextColumn.Binding>
+          </DataGridTextColumn>
 
+
+            <DataGridTextColumn 
+            Header="Водительское удостоверение" 
+            Binding="{Binding Employee.DriverLicense}"/>
+          <DataGridTextColumn 
+            Header="Транспорт"
+            Binding="{Binding Transport.Name}"/>
+          <DataGridTextColumn 
+            Header="Гос. Номер"
+            Binding="{Binding Transport.LicensePlate}"/>
+          <DataGridTextColumn 
+            Header="Маршрут"
+            Binding="{Binding Route.Name}"/>
+          
+          
         </DataGrid.Columns>
       </DataGrid>
 

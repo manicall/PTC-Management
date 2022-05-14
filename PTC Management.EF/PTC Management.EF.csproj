@@ -54,18 +54,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entityes\Date.cs" />
-    <Compile Include="Entityes\Date_has_Employee.cs" />
-    <Compile Include="Entityes\EmployeeSchedule.cs" />
     <Compile Include="Entityes\Employee.cs" />
     <Compile Include="Context\AppContext.cs" />
     <Compile Include="Entityes\Base\Entity.cs" />
     <Compile Include="Entityes\Itinerary.cs" />
     <Compile Include="Entityes\LogOfDepartureAndEntry.cs" />
     <Compile Include="Entityes\MaintanceLog.cs" />
+    <Compile Include="Entityes\LaborShift.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entityes\Route.cs" />
     <Compile Include="Entityes\Transport.cs" />
+    <Compile Include="Entityes\YearAndMonth.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

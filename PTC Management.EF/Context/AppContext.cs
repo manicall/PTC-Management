@@ -22,36 +22,18 @@ namespace PTC_Management.EF
         public PTC_ManagementContext()
             : base("name=PTC_ManagementConnection") { }
 
-        public virtual DbSet<Date> Dates { get; set; }
-        public virtual DbSet<Date_has_Employee> Date_has_Employee { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeeSchedule> EmployeeSchedules { get; set; }
-        public virtual DbSet<Itinerary> Itineraries { get; set; }
-        public virtual DbSet<LogOfDepartureAndEntry> LogOfDepartureAndEntries { get; set; }
-        public virtual DbSet<MaintanceLog> MaintanceLogs { get; set; }
-        public virtual DbSet<Route> Routes { get; set; }
-        public virtual DbSet<Transport> Transports { get; set; }
+        public virtual DbSet<Date> Date { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<Itinerary> Itinerary { get; set; }
+        public virtual DbSet<LaborShift> LaborShift { get; set; }
+        public virtual DbSet<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
+        public virtual DbSet<MaintanceLog> MaintanceLog { get; set; }
+        public virtual DbSet<Route> Route { get; set; }
+        public virtual DbSet<Transport> Transport { get; set; }
+        public virtual DbSet<YearAndMonth> YearAndMonth { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Date>()
-                .HasMany(e => e.Date_has_Employee)
-                .WithRequired(e => e.Date)
-                .HasForeignKey(e => e.IdDate)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Date>()
-                .HasMany(e => e.EmployeeSchedule)
-                .WithMany(e => e.Date)
-                .Map(m => m.ToTable("EmployeeSchedule_for_Month")
-                .MapLeftKey("IdDate")
-                .MapRightKey("IdEmployeeSchedule"));
-
-            modelBuilder.Entity<Date_has_Employee>()
-                .Property(e => e.Status)
-                .IsFixedLength()
-                .IsUnicode(false);
-
             modelBuilder.Entity<Employee>()
                 .Property(e => e.Surname)
                 .IsUnicode(false);
@@ -69,20 +51,26 @@ namespace PTC_Management.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Employee>()
-                .HasMany(e => e.Date_has_Employee)
-                .WithRequired(e => e.Employee)
-                .HasForeignKey(e => e.IdEmployee)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Employee>()
                 .HasMany(e => e.Itinerary)
                 .WithRequired(e => e.Employee)
                 .HasForeignKey(e => e.IdEmployee)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<EmployeeSchedule>()
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.YearAndMonth)
+                .WithRequired(e => e.Employee)
+                .HasForeignKey(e => e.IdEmployee)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<LaborShift>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<LaborShift>()
+                .HasMany(e => e.YearAndMonth)
+                .WithRequired(e => e.LaborShift)
+                .HasForeignKey(e => e.IdEmployee)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Route>()
                 .Property(e => e.Name)
@@ -119,6 +107,12 @@ namespace PTC_Management.EF
                 .HasMany(e => e.MaintanceLog)
                 .WithRequired(e => e.Transport)
                 .HasForeignKey(e => e.IdTransport)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<YearAndMonth>()
+                .HasMany(e => e.Date1)
+                .WithRequired(e => e.YearAndMonth)
+                .HasForeignKey(e => e.IdYearAndMonth)
                 .WillCascadeOnDelete(false);
         }
     }

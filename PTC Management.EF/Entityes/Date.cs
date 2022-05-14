@@ -9,22 +9,16 @@ namespace PTC_Management.EF
     [Table("Date")]
     public partial class Date
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Date()
-        {
-            Date_has_Employee = new HashSet<Date_has_Employee>();
-            EmployeeSchedule = new HashSet<EmployeeSchedule>();
-        }
-
         public int Id { get; set; }
 
         [Column("Date", TypeName = "date")]
-        public DateTime? Date1 { get; set; }
+        public DateTime Date1 { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Date_has_Employee> Date_has_Employee { get; set; }
+        [StringLength(25)]
+        public string Status { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeSchedule> EmployeeSchedule { get; set; }
+        public int IdYearAndMonth { get; set; }
+
+        public virtual YearAndMonth YearAndMonth { get; set; }
     }
 }

@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Date">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="25" />
+          <Property Name="IdYearAndMonth" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="50" />
+          <Property Name="DriverLicense" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Itinerary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRoute" Type="int" Nullable="false" />
+          <Property Name="IdTransport" Type="int" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LaborShift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LogOfDepartureAndEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTransport" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTransport" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="TimeOnDeparture" Type="time" Precision="7" />
+          <Property Name="TimeWhenReturning" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="MaintanceLog">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTransport" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTransport" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="TimeOnDeparture" Type="time" Precision="7" />
+          <Property Name="TimeWhenReturning" Type="time" Precision="7" />
+          <Property Name="SpeedometerInfoOnDeparture" Type="int" />
+          <Property Name="SpeedometerInfoWhenReturning" Type="int" />
+          <Property Name="Mileage" Type="int" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Distant" Type="real" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="LicensePlate" Type="char" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="YearAndMonth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="IdLaborShift" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Itinerary__Emplo__3B75D760">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Itinerary" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Itinerary">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Itinerary__Route__3D5E1FD2">
+          <End Role="Route" Type="Self.Route" Multiplicity="1" />
+          <End Role="Itinerary" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Itinerary">
+              <PropertyRef Name="IdRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Itinerary__Trans__3C69FB99">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+          <End Role="Itinerary" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Itinerary">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LogOfDepa__Trans__2E1BDC42">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+          <End Role="LogOfDepartureAndEntry" Type="Self.LogOfDepartureAndEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogOfDepartureAndEntry">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Maintance__Trans__30F848ED">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+          <End Role="MaintanceLog" Type="Self.MaintanceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaintanceLog">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Date_YearAndMonth">
+          <End Role="YearAndMonth" Type="Self.YearAndMonth" Multiplicity="1" />
+          <End Role="Date" Type="Self.Date" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YearAndMonth">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Date">
+              <PropertyRef Name="IdYearAndMonth" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YearAndMonth_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="YearAndMonth" Type="Self.YearAndMonth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="YearAndMonth">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YearAndMonth_LaborShift">
+          <End Role="LaborShift" Type="Self.LaborShift" Multiplicity="1" />
+          <End Role="YearAndMonth" Type="Self.YearAndMonth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LaborShift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="YearAndMonth">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Date" EntityType="Self.Date" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Itinerary" EntityType="Self.Itinerary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LaborShift" EntityType="Self.LaborShift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogOfDepartureAndEntry" EntityType="Self.LogOfDepartureAndEntry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaintanceLog" EntityType="Self.MaintanceLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transport" EntityType="Self.Transport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YearAndMonth" EntityType="Self.YearAndMonth" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Itinerary__Emplo__3B75D760" Association="Self.FK__Itinerary__Emplo__3B75D760">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Itinerary" EntitySet="Itinerary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Itinerary__Route__3D5E1FD2" Association="Self.FK__Itinerary__Route__3D5E1FD2">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="Itinerary" EntitySet="Itinerary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Itinerary__Trans__3C69FB99" Association="Self.FK__Itinerary__Trans__3C69FB99">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="Itinerary" EntitySet="Itinerary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LogOfDepa__Trans__2E1BDC42" Association="Self.FK__LogOfDepa__Trans__2E1BDC42">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="LogOfDepartureAndEntry" EntitySet="LogOfDepartureAndEntry" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Maintance__Trans__30F848ED" Association="Self.FK__Maintance__Trans__30F848ED">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="MaintanceLog" EntitySet="MaintanceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Date_YearAndMonth" Association="Self.FK_Date_YearAndMonth">
+            <End Role="YearAndMonth" EntitySet="YearAndMonth" />
+            <End Role="Date" EntitySet="Date" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YearAndMonth_Employee" Association="Self.FK_YearAndMonth_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="YearAndMonth" EntitySet="YearAndMonth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YearAndMonth_LaborShift" Association="Self.FK_YearAndMonth_LaborShift">
+            <End Role="LaborShift" EntitySet="LaborShift" />
+            <End Role="YearAndMonth" EntitySet="YearAndMonth" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Date">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date1" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="IdYearAndMonth" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="YearAndMonth" Relationship="Self.FK_Date_YearAndMonth" FromRole="Date" ToRole="YearAndMonth" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DriverLicense" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Itinerary" Relationship="Self.FK__Itinerary__Emplo__3B75D760" FromRole="Employee" ToRole="Itinerary" />
+          <NavigationProperty Name="YearAndMonth" Relationship="Self.FK_YearAndMonth_Employee" FromRole="Employee" ToRole="YearAndMonth" />
+        </EntityType>
+        <EntityType Name="Itinerary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRoute" Type="Int32" Nullable="false" />
+          <Property Name="IdTransport" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Itinerary__Emplo__3B75D760" FromRole="Itinerary" ToRole="Employee" />
+          <NavigationProperty Name="Route" Relationship="Self.FK__Itinerary__Route__3D5E1FD2" FromRole="Itinerary" ToRole="Route" />
+          <NavigationProperty Name="Transport" Relationship="Self.FK__Itinerary__Trans__3C69FB99" FromRole="Itinerary" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="LaborShift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="YearAndMonth" Relationship="Self.FK_YearAndMonth_LaborShift" FromRole="LaborShift" ToRole="YearAndMonth" />
+        </EntityType>
+        <EntityType Name="LogOfDepartureAndEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTransport" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTransport" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="TimeOnDeparture" Type="Time" Precision="7" />
+          <Property Name="TimeWhenReturning" Type="Time" Precision="7" />
+          <NavigationProperty Name="Transport" Relationship="Self.FK__LogOfDepa__Trans__2E1BDC42" FromRole="LogOfDepartureAndEntry" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="MaintanceLog">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTransport" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTransport" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="TimeOnDeparture" Type="Time" Precision="7" />
+          <Property Name="TimeWhenReturning" Type="Time" Precision="7" />
+          <Property Name="SpeedometerInfoOnDeparture" Type="Int32" />
+          <Property Name="SpeedometerInfoWhenReturning" Type="Int32" />
+          <Property Name="Mileage" Type="Int32" />
+          <NavigationProperty Name="Transport" Relationship="Self.FK__Maintance__Trans__30F848ED" FromRole="MaintanceLog" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Distant" Type="Single" />
+          <NavigationProperty Name="Itinerary" Relationship="Self.FK__Itinerary__Route__3D5E1FD2" FromRole="Route" ToRole="Itinerary" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LicensePlate" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Itinerary" Relationship="Self.FK__Itinerary__Trans__3C69FB99" FromRole="Transport" ToRole="Itinerary" />
+          <NavigationProperty Name="LogOfDepartureAndEntry" Relationship="Self.FK__LogOfDepa__Trans__2E1BDC42" FromRole="Transport" ToRole="LogOfDepartureAndEntry" />
+          <NavigationProperty Name="MaintanceLog" Relationship="Self.FK__Maintance__Trans__30F848ED" FromRole="Transport" ToRole="MaintanceLog" />
+        </EntityType>
+        <EntityType Name="YearAndMonth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="IdLaborShift" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Date1" Relationship="Self.FK_Date_YearAndMonth" FromRole="YearAndMonth" ToRole="Date" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_YearAndMonth_Employee" FromRole="YearAndMonth" ToRole="Employee" />
+          <NavigationProperty Name="LaborShift" Relationship="Self.FK_YearAndMonth_LaborShift" FromRole="YearAndMonth" ToRole="LaborShift" />
+        </EntityType>
+        <Association Name="FK_Date_YearAndMonth">
+          <End Role="YearAndMonth" Type="Self.YearAndMonth" Multiplicity="1" />
+          <End Role="Date" Type="Self.Date" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YearAndMonth">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Date">
+              <PropertyRef Name="IdYearAndMonth" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Itinerary__Emplo__3B75D760">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Itinerary" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Itinerary">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YearAndMonth_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="YearAndMonth" Type="Self.YearAndMonth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="YearAndMonth">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Itinerary__Route__3D5E1FD2">
+          <End Role="Route" Type="Self.Route" Multiplicity="1" />
+          <End Role="Itinerary" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Itinerary">
+              <PropertyRef Name="IdRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Itinerary__Trans__3C69FB99">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+          <End Role="Itinerary" Type="Self.Itinerary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Itinerary">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YearAndMonth_LaborShift">
+          <End Role="LaborShift" Type="Self.LaborShift" Multiplicity="1" />
+          <End Role="YearAndMonth" Type="Self.YearAndMonth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LaborShift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="YearAndMonth">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LogOfDepa__Trans__2E1BDC42">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+          <End Role="LogOfDepartureAndEntry" Type="Self.LogOfDepartureAndEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogOfDepartureAndEntry">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Maintance__Trans__30F848ED">
+          <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+          <End Role="MaintanceLog" Type="Self.MaintanceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaintanceLog">
+              <PropertyRef Name="IdTransport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PTC_ManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Date" EntityType="Self.Date" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Itinerary" EntityType="Self.Itinerary" />
+          <EntitySet Name="LaborShift" EntityType="Self.LaborShift" />
+          <EntitySet Name="LogOfDepartureAndEntry" EntityType="Self.LogOfDepartureAndEntry" />
+          <EntitySet Name="MaintanceLog" EntityType="Self.MaintanceLog" />
+          <EntitySet Name="Route" EntityType="Self.Route" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Transport" EntityType="Self.Transport" />
+          <EntitySet Name="YearAndMonth" EntityType="Self.YearAndMonth" />
+          <AssociationSet Name="FK_Date_YearAndMonth" Association="Self.FK_Date_YearAndMonth">
+            <End Role="YearAndMonth" EntitySet="YearAndMonth" />
+            <End Role="Date" EntitySet="Date" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Itinerary__Emplo__3B75D760" Association="Self.FK__Itinerary__Emplo__3B75D760">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Itinerary" EntitySet="Itinerary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YearAndMonth_Employee" Association="Self.FK_YearAndMonth_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="YearAndMonth" EntitySet="YearAndMonth" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Itinerary__Route__3D5E1FD2" Association="Self.FK__Itinerary__Route__3D5E1FD2">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="Itinerary" EntitySet="Itinerary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Itinerary__Trans__3C69FB99" Association="Self.FK__Itinerary__Trans__3C69FB99">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="Itinerary" EntitySet="Itinerary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YearAndMonth_LaborShift" Association="Self.FK_YearAndMonth_LaborShift">
+            <End Role="LaborShift" EntitySet="LaborShift" />
+            <End Role="YearAndMonth" EntitySet="YearAndMonth" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LogOfDepa__Trans__2E1BDC42" Association="Self.FK__LogOfDepa__Trans__2E1BDC42">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="LogOfDepartureAndEntry" EntitySet="LogOfDepartureAndEntry" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Maintance__Trans__30F848ED" Association="Self.FK__Maintance__Trans__30F848ED">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="MaintanceLog" EntitySet="MaintanceLog" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="PTC_ManagementEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Date">
+            <EntityTypeMapping TypeName="Model.Date">
+              <MappingFragment StoreEntitySet="Date">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date1" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IdYearAndMonth" ColumnName="IdYearAndMonth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="Model.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="DriverLicense" ColumnName="DriverLicense" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Itinerary">
+            <EntityTypeMapping TypeName="Model.Itinerary">
+              <MappingFragment StoreEntitySet="Itinerary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdRoute" ColumnName="IdRoute" />
+                <ScalarProperty Name="IdTransport" ColumnName="IdTransport" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LaborShift">
+            <EntityTypeMapping TypeName="Model.LaborShift">
+              <MappingFragment StoreEntitySet="LaborShift">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogOfDepartureAndEntry">
+            <EntityTypeMapping TypeName="Model.LogOfDepartureAndEntry">
+              <MappingFragment StoreEntitySet="LogOfDepartureAndEntry">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTransport" ColumnName="IdTransport" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TimeOnDeparture" ColumnName="TimeOnDeparture" />
+                <ScalarProperty Name="TimeWhenReturning" ColumnName="TimeWhenReturning" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaintanceLog">
+            <EntityTypeMapping TypeName="Model.MaintanceLog">
+              <MappingFragment StoreEntitySet="MaintanceLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTransport" ColumnName="IdTransport" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TimeOnDeparture" ColumnName="TimeOnDeparture" />
+                <ScalarProperty Name="TimeWhenReturning" ColumnName="TimeWhenReturning" />
+                <ScalarProperty Name="SpeedometerInfoOnDeparture" ColumnName="SpeedometerInfoOnDeparture" />
+                <ScalarProperty Name="SpeedometerInfoWhenReturning" ColumnName="SpeedometerInfoWhenReturning" />
+                <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Route">
+            <EntityTypeMapping TypeName="Model.Route">
+              <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Distant" ColumnName="Distant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transport">
+            <EntityTypeMapping TypeName="Model.Transport">
+              <MappingFragment StoreEntitySet="Transport">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YearAndMonth">
+            <EntityTypeMapping TypeName="Model.YearAndMonth">
+              <MappingFragment StoreEntitySet="YearAndMonth">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="IdLaborShift" ColumnName="IdLaborShift" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

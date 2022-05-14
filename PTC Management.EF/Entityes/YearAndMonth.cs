@@ -6,21 +6,30 @@ namespace PTC_Management.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("EmployeeSchedule")]
-    public partial class EmployeeSchedule
+    [Table("YearAndMonth")]
+    public partial class YearAndMonth
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EmployeeSchedule()
+        public YearAndMonth()
         {
-            Date = new HashSet<Date>();
+            Date1 = new HashSet<Date>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        [StringLength(50)]
-        public string Name { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime Date { get; set; }
+
+        public int IdEmployee { get; set; }
+
+        public int IdLaborShift { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Date> Date { get; set; }
+        public virtual ICollection<Date> Date1 { get; set; }
+
+        public virtual Employee Employee { get; set; }
+
+        public virtual LaborShift LaborShift { get; set; }
     }
 }

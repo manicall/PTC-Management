@@ -12,8 +12,8 @@ namespace PTC_Management.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            Date_has_Employee = new HashSet<Date_has_Employee>();
             Itinerary = new HashSet<Itinerary>();
+            YearAndMonth = new HashSet<YearAndMonth>();
         }
 
         [StringLength(50)]
@@ -29,13 +29,14 @@ namespace PTC_Management.EF
         public string DriverLicense { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Date_has_Employee> Date_has_Employee { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<YearAndMonth> YearAndMonth { get; set; }
+
+
         public static readonly Repository<Employee> repository =
-            new Repository<Employee>(new PTC_ManagementContext());
+    new Repository<Employee>(new PTC_ManagementContext());
 
         public override void Add()
         {
