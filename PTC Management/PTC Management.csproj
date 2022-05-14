@@ -79,7 +79,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Actions.cs" />
-    <Compile Include="Model\MyLiterals.cs" />
+    <Compile Include="Model\CopyParameters.cs" />
     <Compile Include="Model\MainWindow\BackUp.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
@@ -140,8 +140,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Commands\ParameterizedCommand.cs" />
-    <Compile Include="Commands\SimpleCommand.cs" />
+    <Compile Include="Commands\Command.cs" />
     <Page Include="Styles\GeneralStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

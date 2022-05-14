@@ -42,7 +42,7 @@ namespace PTC_Management.ViewModel.Base
 
         public ViewModelBaseEntity()
         {
-            DialogCommand = new ParameterizedCommand<string>(OnDialog);
+            DialogCommand = new Command<string>(OnDialog);
         }
 
 

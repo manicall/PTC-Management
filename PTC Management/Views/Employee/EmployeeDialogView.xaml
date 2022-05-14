@@ -43,9 +43,12 @@
       <Style.Triggers>
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
-            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=textBoxSurname}" Value="False"/>
-            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=textBlockName}" Value="False"/>
-            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=textBoxDriverLicense}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxSurname}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBlockName}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxDriverLicense}" Value="False"/>
           </MultiDataTrigger.Conditions>
           <Setter Property="IsEnabled" Value="True"/>
         </MultiDataTrigger>
@@ -59,13 +62,16 @@
     <StackPanel >
       <Button Name="buttonWriteAndClose" Style="{StaticResource BlackConditionButton }" 
               Command="{Binding DialogActionCommand }"
-              CommandParameter="{Binding Actions.WriteAndClose}" Margin="0 0 35 0" Width="auto"
+              CommandParameter="{Binding Actions.WriteAndClose}" 
+              Margin="0 0 35 0" Width="auto"
           >Записать и закрыть</Button>
       <Button Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
-              Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Write}" 
+              Command="{Binding DialogActionCommand }" 
+              CommandParameter="{Binding Actions.Write}" 
            >Записать</Button>
       <Button Name="buttonClose" Style="{StaticResource BlackButton }" 
-              Command="{Binding DialogActionCommand }" CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
+              Command="{Binding DialogActionCommand }" 
+              CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
     </StackPanel>
     <StackPanel Visibility="{Binding CopyCountVisibility}" >
       <TextBlock Name="textBlockCountCopy" >Количество копий</TextBlock>

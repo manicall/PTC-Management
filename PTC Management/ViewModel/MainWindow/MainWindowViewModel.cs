@@ -53,13 +53,13 @@ namespace PTC_Management
         public MainWindowViewModel()
         {
             // создание команды перехватывающей сообщения от кнопки
-            NavigationCommand = new ParameterizedCommand<string>(OnNavigation);
+            NavigationCommand = new Command<string>(OnNavigation);
             // создание команды работы с бекапом базы данных
-            BackUpCommand = new ParameterizedCommand<string>(OnBackUp);
+            BackUpCommand = new Command<string>(OnBackUp);
 
             size = new Size(500);
 
-            LoadCommand = new SimpleCommand(Load);
+            LoadCommand = new Command(Load);
             
         }
 
@@ -74,8 +74,8 @@ namespace PTC_Management
 
 
         #region Команды
-        public ParameterizedCommand<string> NavigationCommand { get; private set; }
-        public ParameterizedCommand<string> BackUpCommand { get; private set; }
+        public Command<string> NavigationCommand { get; private set; }
+        public Command<string> BackUpCommand { get; private set; }
 
         #endregion
 

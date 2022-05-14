@@ -37,6 +37,8 @@ namespace PTC_Management.ViewModel
                 new PropertyMetadata(null));
         #endregion
 
+        
+
         #region CopyCountVisibility
         private string _copyCountVisibility;
         public string CopyCountVisibility
@@ -62,11 +64,11 @@ namespace PTC_Management.ViewModel
         #endregion
 
 
-        public ParameterizedCommand<string> DialogActionCommand { get; private set; }
+        public Command<string> DialogActionCommand { get; private set; }
 
         public DialogViewModel()
         {
-            DialogActionCommand = new ParameterizedCommand<string>(OnDialogActionCommand);
+            DialogActionCommand = new Command<string>(OnDialogActionCommand);
             _currentViewModel = null;
         }
 

@@ -34,19 +34,11 @@ namespace PTC_Management.ViewModel
         {
             Transport current = entity as Transport;
 
-            //if (!string.IsNullOrWhiteSpace(FilterEmployeeText)
-            //     && !current.Id.ToString().Contains(FilterEmployeeText)
-            //     && (current.Surname == null ||
-            //         !current.Surname.Contains(FilterEmployeeText))
-            //     && (current.Name == null ||
-            //         !current.Name.Contains(FilterEmployeeText))
-            //     && (current.Patronymic == null ||
-            //         !current.Patronymic.Contains(FilterEmployeeText))
-            //     && (current.DriverLicense == null ||
-            //         !current.DriverLicense.Contains(FilterEmployeeText)))
-            //{
-            //    return false;
-            //}
+            if (!string.IsNullOrWhiteSpace(FilterText)
+                 && !current.Id.ToString().Contains(FilterText))
+            {
+                return false;
+            }
             return true;
         }
         #endregion 
