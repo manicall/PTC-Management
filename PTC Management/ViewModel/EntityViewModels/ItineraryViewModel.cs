@@ -1,65 +1,94 @@
 ﻿using PTC_Management.EF;
-using PTC_Management.Model;
 using PTC_Management.ViewModel.Base;
+using PTC_Management.ViewModel.DialogViewModels;
 
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
-    internal class ItineraryViewModel : BindableBase
+    internal class ItineraryViewModel : ViewModelBaseEntity
     {
-        //readonly Repository<Itinerary> _itinerary = new Repository<Itinerary>(new PTC_ManagementContext());
+        private ObservableCollection<Itinerary> observableCollection;
+        private Repository<Itinerary> repository;
 
-        //public ItineraryViewModel()
-        //{
-        //    ItineraryItems = CollectionViewSource.GetDefaultView(_itinerary.GetObservableCollection());
-        //    ItineraryItems.Filter = FilterItinerary;
-        //}
+        public ItineraryViewModel()
+        {
+            repository = Itinerary.repository;
+            observableCollection = GetObservableCollection();
 
-        //private bool FilterItinerary(object obj)
-        //{
-        //    bool result = true;
-        //    Itinerary current = obj as Itinerary;
-        //    if (!string.IsNullOrWhiteSpace(FilterItineraryText) && current != null && !current.Id.ToString().Contains(FilterItineraryText))
-        //    {
-        //        result = false;
-        //    }
-        //    return result;
-        //}
+            Items = GetItems();
+            Items.Filter = Filter;
+        }
 
-        //private static void FilterText_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    var current = d as ItineraryViewModel;
-        //    if (current != null)
-        //    {
-        //        current.ItineraryItems.Filter = null;
-        //        current.ItineraryItems.Filter = current.FilterItinerary;
+        #region FilterText
 
-        //    }
-        //}
+        /// <summary>
+        /// Проверка подходит заданный текст под фильтр.
+        /// </summary>
+        /// <param name="entity">Объект, который
+        /// будет проверяться фильтром.</param>
+        /// <returns>Подхоидт ли заданная запись под фильтр. </returns>
+        protected override bool Filter(object entity)
+        {
+            Itinerary current = entity as Itinerary;
 
-        //public string FilterItineraryText
-        //{
-        //    get { return (string)GetValue(FilterTextProperty); }
-        //    set { SetValue(FilterTextProperty, value); }
-        //}
 
-        //// Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty FilterTextProperty =
-        //    DependencyProperty.Register(MyLiterals<Itinerary>.FilterText, typeof(string), typeof(ItineraryViewModel), new PropertyMetadata("", FilterText_Changed));
+            return true;
+        }
+        #endregion 
 
-        //public ICollectionView ItineraryItems
-        //{
-        //    get { return (ICollectionView)GetValue(ItemsProperty); }
-        //    set { SetValue(ItemsProperty, value); }
-        //}
+        #region Методы
+        /// <summary> Возвращает записи из таблицы. </summary>
+        /// <returns>записи из таблицы. </returns>
+        private ObservableCollection<Itinerary>
+            GetObservableCollection()
+        {
+            return repository.GetObservableCollection();
+        }
 
-        //// Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty ItemsProperty =
-        //    DependencyProperty.Register(MyLiterals<Itinerary>.Items, typeof(ICollectionView), typeof(ItineraryViewModel), new PropertyMetadata(null));
+        /// <summary> Возвращает представление. </summary>
+        /// <returns> Преставление на основе объекта 
+        /// ObservableCollection. </returns>
+        private ICollectionView GetItems()
+        {
+            return
+                CollectionViewSource
+                .GetDefaultView(observableCollection);
+        }
 
+        /// <summary>
+        /// Выполняет заданное действие для вызывающей кнопки.
+        /// </summary>
+        /// <param name="action">Действие, которое 
+        /// было выбрано в главном окне.</param>
+        public override void OnDialog(string action)
+        {
+            var actionPerformer =
+                 new ActionPerformer<Itinerary, ObservableCollection<Itinerary>>
+                 (this, GetDialogViewModel(action),
+                 observableCollection);
+
+            actionPerformer.doAction(action);
+        }
+
+        /// <summary>
+        /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
+        /// </summary>
+        /// <param name="action">Действие, которое 
+        /// было выбрано в главном окне.</param>
+        /// <returns>Диалоговое окно, 
+        /// для текущей ViewModel. </returns>
+        private DialogViewModel GetDialogViewModel(string action)
+        {
+            return new ItineraryDialogViewModel()
+            {
+                MainWindowAction = action,
+                ObservableCollection = observableCollection,
+                Repository = repository
+            };
+        }
+        #endregion
     }
 }
-

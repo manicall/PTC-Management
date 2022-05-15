@@ -69,7 +69,9 @@ namespace PTC_Management.ViewModel
             if (entityVM.SelectedItem is null) return;
 
             dialogVM.SelectedIndex = entityVM.SelectedIndex;
-            dialogVM.DialogItem = (T)entityVM.SelectedItem;
+            dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
+            dialogVM.SelectedItem = (T)entityVM.SelectedItem;
+
 
             dialogVM.Show();
         }

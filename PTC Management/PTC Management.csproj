@@ -78,12 +78,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EF\Context\AppContext.cs" />
+    <Compile Include="EF\Entityes\Base\Entity.cs" />
+    <Compile Include="EF\Entityes\Date.cs" />
+    <Compile Include="EF\Entityes\Employee.cs" />
+    <Compile Include="EF\Entityes\Itinerary.cs" />
+    <Compile Include="EF\Entityes\LaborShift.cs" />
+    <Compile Include="EF\Entityes\LogOfDepartureAndEntry.cs" />
+    <Compile Include="EF\Entityes\MaintanceLog.cs" />
+    <Compile Include="EF\Entityes\Route.cs" />
+    <Compile Include="EF\Entityes\Transport.cs" />
+    <Compile Include="EF\Entityes\YearAndMonth.cs" />
+    <Compile Include="EF\Repository\Repository.cs" />
     <Compile Include="Model\Actions.cs" />
     <Compile Include="Model\CopyParameters.cs" />
     <Compile Include="Model\MainWindow\BackUp.cs" />
     <Compile Include="Model\MainWindow\Size.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ViewModel\DialogViewModels\RouteDialogViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\Helpers\ActionPerformer.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseDialog.cs" />
@@ -97,6 +110,7 @@
     <Compile Include="ViewModel\EntityViewModels\ItineraryViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\LogOfDepartureAndEntryViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\MaintanceLogViewModel.cs" />
+    <Compile Include="ViewModel\DialogViewModels\ItineraryDialogViewModel.cs" />
     <Compile Include="ViewModel\MainWindow\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\RouteViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\ScheduleOfEmployeeViewModel.cs" />
@@ -107,7 +121,10 @@
     <Compile Include="Views\Employee\EmployeeView.xaml.cs">
       <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ItineraryView.xaml.cs">
+    <Compile Include="Views\Itinerary\ItineraryDialogView.xaml.cs">
+      <DependentUpon>ItineraryDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Itinerary\ItineraryView.xaml.cs">
       <DependentUpon>ItineraryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogOfDepartureAndEntryView.xaml.cs">
@@ -116,7 +133,10 @@
     <Compile Include="Views\MaintanceLogView.xaml.cs">
       <DependentUpon>MaintanceLogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RouteView.xaml.cs">
+    <Compile Include="Views\Route\RouteDialogView.xaml.cs">
+      <DependentUpon>RouteDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Route\RouteView.xaml.cs">
       <DependentUpon>RouteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ScheduleOfEmployeeView.xaml.cs">
@@ -162,7 +182,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ItineraryView.xaml">
+    <Page Include="Views\Itinerary\ItineraryDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Itinerary\ItineraryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -174,7 +198,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\RouteView.xaml">
+    <Page Include="Views\Route\RouteDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Route\RouteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -232,12 +260,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PTC Management.EF\PTC Management.EF.csproj">
-      <Project>{06e06efb-ef34-4805-b523-1a74b8daaaf5}</Project>
-      <Name>PTC Management.EF</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

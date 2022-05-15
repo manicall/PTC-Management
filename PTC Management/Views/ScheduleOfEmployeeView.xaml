@@ -17,8 +17,6 @@
           Text="{Binding DataPickerValue, Mode=TwoWay}"
           h:DatePickerCalendar.IsMonthYear="True"    
           h:DatePickerDateFormat.DateFormat="MM/yyyy"/>
-
-        <TextBox Text="{Binding DataPickerValue }"></TextBox>
       </StackPanel>
     </GroupBox>
 

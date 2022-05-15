@@ -13,21 +13,9 @@ namespace UnitTests
         [TestMethod]
         public void FilterText_Test()
         {
-            string expected = "FilterEmployeeText";
 
-            string actual = MyLiterals<Employee>.FilterText;
-
-            Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        public void Items_Test()
-        {
-            string expected = "EmployeeItems";
 
-            string actual = MyLiterals<Employee>.Items;
-
-            Assert.AreEqual(expected, actual);
-        }
     }
 }

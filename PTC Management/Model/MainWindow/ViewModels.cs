@@ -19,11 +19,16 @@ namespace PTC_Management.Model.MainWindow
                 MainWidowSize = mainWindowSize
             };
 
-            route = new RouteViewModel();
+            route = new RouteViewModel()
+            {
+                MainWidowSize = mainWindowSize
+            };
+
             transport = new TransportViewModel()
             {
                 MainWidowSize = mainWindowSize
             };
+
             itinerary = new ItineraryViewModel();
             scheduleOfEmployee = new ScheduleOfEmployeeViewModel();
         }

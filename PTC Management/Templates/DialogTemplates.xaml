@@ -10,4 +10,12 @@
   <DataTemplate DataType="{x:Type dialogViewModels:TransportDialogViewModel}">
     <views:TransportDialogView />
   </DataTemplate>
+
+  <DataTemplate DataType="{x:Type dialogViewModels:RouteDialogViewModel}">
+    <views:RouteDialogView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type dialogViewModels:ItineraryDialogViewModel}">
+    <views:ItineraryDialogView />
+  </DataTemplate>
 </ResourceDictionary>

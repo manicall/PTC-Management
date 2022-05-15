@@ -1,65 +1,106 @@
 ﻿using PTC_Management.EF;
-using PTC_Management.Model;
 using PTC_Management.ViewModel.Base;
+using PTC_Management.ViewModel.DialogViewModels;
 
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
-    internal class RouteViewModel : BindableBase
+    internal class RouteViewModel : ViewModelBaseEntity
     {
-        //readonly Repository<Route> _route = new Repository<Route>(new PTC_ManagementContext());
+        private ObservableCollection<Route> observableCollection;
+        private Repository<Route> repository;
 
-        //public RouteViewModel()
-        //{
-        //    RouteItems = CollectionViewSource.GetDefaultView(_route.GetObservableCollection());
-        //    RouteItems.Filter = FilterRoute;
-        //}
+        public RouteViewModel()
+        {
+            repository = Route.repository;
+            observableCollection = GetObservableCollection();
 
-        //private bool FilterRoute(object obj)
-        //{
-        //    bool result = true;
-        //    Route current = obj as Route;
-        //    if (!string.IsNullOrWhiteSpace(FilterRouteText) &&
-        //        current != null &&
-        //        !current.Id.ToString().Contains(FilterRouteText))
-        //    {
-        //        result = false;
-        //    }
-        //    return result;
-        //}
-        //private static void FilterText_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    var current = d as RouteViewModel;
-        //    if (current != null)
-        //    {
-        //        current.RouteItems.Filter = null;
-        //        current.RouteItems.Filter = current.FilterRoute;
+            Items = GetItems();
+            Items.Filter = Filter;
+        }
 
-        //    }
-        //}
+        #region FilterText
 
-        //public string FilterRouteText
-        //{
-        //    get { return (string)GetValue(FilterTextProperty); }
-        //    set { SetValue(FilterTextProperty, value); }
-        //}
+        /// <summary>
+        /// Проверка подходит заданный текст под фильтр.
+        /// </summary>
+        /// <param name="entity">Объект, который
+        /// будет проверяться фильтром.</param>
+        /// <returns>Подхоидт ли заданная запись под фильтр. </returns>
+        protected override bool Filter(object entity)
+        {
+            Route current = entity as Route;
 
-        //// Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty FilterTextProperty =
-        //    DependencyProperty.Register(MyLiterals<Route>.FilterText, typeof(string), typeof(RouteViewModel), new PropertyMetadata("", FilterText_Changed));
+            //if (!string.IsNullOrWhiteSpace(FilterText)
+            //     && !current.Id.ToString().Contains(FilterText)
+            //     && (current.Surname == null ||
+            //         !current.Surname.Contains(FilterText))
+            //     && (current.Name == null ||
+            //         !current.Name.Contains(FilterText))
+            //     && (current.Patronymic == null ||
+            //         !current.Patronymic.Contains(FilterText))
+            //     && (current.DriverLicense == null ||
+            //         !current.DriverLicense.Contains(FilterText)))
+            //{
+            //    return false;
+            //}
+            return true;
+        }
+        #endregion 
 
-        //public ICollectionView RouteItems
-        //{
-        //    get { return (ICollectionView)GetValue(ItemsProperty); }
-        //    set { SetValue(ItemsProperty, value); }
-        //}
+        #region Методы
+        /// <summary> Возвращает записи из таблицы. </summary>
+        /// <returns>записи из таблицы. </returns>
+        private ObservableCollection<Route>
+            GetObservableCollection()
+        {
+            return repository.GetObservableCollection();
+        }
 
-        //// Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty ItemsProperty =
-        //    DependencyProperty.Register(MyLiterals<Route>.Items, typeof(ICollectionView), typeof(RouteViewModel), new PropertyMetadata(null));
+        /// <summary> Возвращает представление. </summary>
+        /// <returns> Преставление на основе объекта 
+        /// ObservableCollection. </returns>
+        private ICollectionView GetItems()
+        {
+            return
+                CollectionViewSource
+                .GetDefaultView(observableCollection);
+        }
 
+        /// <summary>
+        /// Выполняет заданное действие для вызывающей кнопки.
+        /// </summary>
+        /// <param name="action">Действие, которое 
+        /// было выбрано в главном окне.</param>
+        public override void OnDialog(string action)
+        {
+            var actionPerformer =
+                 new ActionPerformer<Route, ObservableCollection<Route>>
+                 (this, GetDialogViewModel(action),
+                 observableCollection);
+
+            actionPerformer.doAction(action);
+        }
+
+        /// <summary>
+        /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
+        /// </summary>
+        /// <param name="action">Действие, которое 
+        /// было выбрано в главном окне.</param>
+        /// <returns>Диалоговое окно, 
+        /// для текущей ViewModel. </returns>
+        private DialogViewModel GetDialogViewModel(string action)
+        {
+            return new RouteDialogViewModel()
+            {
+                MainWindowAction = action,
+                ObservableCollection = observableCollection,
+                Repository = repository
+            };
+        }
+        #endregion
     }
 }

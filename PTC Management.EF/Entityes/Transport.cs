@@ -2,13 +2,14 @@ namespace PTC_Management.EF
 {
     using System;
     using System.Collections.Generic;
+using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
     using System.Xml.Linq;
 
     [Table("Transport")]
-    public partial class Transport : Entity
+    public partial class Transport : Entity, IDataErrorInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Transport()
@@ -75,6 +76,34 @@ namespace PTC_Management.EF
             };
 
             return transport;
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = null;
+                switch (columnName)
+                {
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name))
+                            error = "Поле не может быть пустым";
+                        else if (Name.Contains(" "))
+                            error = "Поле не должно содержать пробелы";
+                        break;
+                    case "LicensePlate":
+                        if (string.IsNullOrEmpty(LicensePlate))
+                            error = "Поле не может быть пустым";
+                        else if (LicensePlate.Contains(" "))
+                            error = "Поле не должно содержать пробелы";
+                        break;
+                }
+                return error;
+            }
+        }
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }

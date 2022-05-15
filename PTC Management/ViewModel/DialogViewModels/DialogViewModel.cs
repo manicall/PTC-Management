@@ -36,6 +36,13 @@ namespace PTC_Management.ViewModel
             set => SetProperty(ref dialogItem, value);
         }
 
+        private Entity selectedItem;
+        public Entity SelectedItem
+        {
+            get => selectedItem;
+            set => SetProperty(ref selectedItem, value);
+        }
+
         public int SelectedIndex { get; set; }
         public Command<string> DialogActionCommand { get; private set; }
 
@@ -71,7 +78,10 @@ namespace PTC_Management.ViewModel
                     entity.Add();
                     break;
                 case Actions.update:
-                    DialogItem.Update();
+                    // чтобы содержимое таблицы не менялось
+                    // одновременно с содержимым диалогового окна
+                    SelectedItem.SetFields(DialogItem);
+                    SelectedItem.Update();
                     break;
                 case Actions.copy:
                     entity.Copy(CopyParameters.Count);
