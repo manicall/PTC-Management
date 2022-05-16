@@ -3,7 +3,6 @@ using PTC_Management.EF;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PTC_Management
@@ -20,13 +19,6 @@ namespace PTC_Management
         private readonly Backup _Backup = new Backup();
         public Backup Backup => _Backup;
 
-        public bool AutoSaveChanges
-        {
-            get { return Repository<Entity>.AutoSaveChanges; }
-            set { Repository<Entity>.AutoSaveChanges = value; }
-        }
-
-
         private BindableBase _CurrentViewModel;
         public BindableBase CurrentViewModel
         {
@@ -40,7 +32,7 @@ namespace PTC_Management
         public ICommand LoadCommand { get; }
 
         public async void Load()
-        {       
+        {
             viewModels = new ViewModels(size);
 
             // установка представления по умолчанию
@@ -59,7 +51,7 @@ namespace PTC_Management
             size = new Size(500);
 
             LoadCommand = new Command(Load);
-            
+
         }
 
         private Size size;
@@ -77,6 +69,9 @@ namespace PTC_Management
         #endregion
 
         #region Методы
+        /// <summary>
+        /// Управление содержимым главного окна 
+        /// </summary>
         private void OnNavigation(string destination)
         {
             switch (destination)
@@ -102,6 +97,9 @@ namespace PTC_Management
             }
         }
 
+        /// <summary>
+        ///  управление резервным копированием базы данных
+        /// </summary>
         private void OnBackUp(string command)
         {
             switch (command)

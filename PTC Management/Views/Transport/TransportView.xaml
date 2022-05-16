@@ -43,14 +43,16 @@
       
       <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
         <Button Style="{StaticResource BlackButton}" Content="Журнал ТО" />
-        <Button Width="auto" Style="{StaticResource BlackButton}" Content="Журнал въезда и выезда" />
+        <Button Width="auto" Style="{StaticResource BlackButton}"
+                Content="Журнал въезда и выезда" />
       </StackPanel>
 
       <DataGrid SelectedItem="{Binding SelectedItem}" 
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
             Name="dataGridEmployee"
-            MinRowHeight="20" MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            MinRowHeight="20" 
+                MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
             ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
             
             CanUserReorderColumns="False"
@@ -61,7 +63,8 @@
         <DataGrid.Columns>
           <DataGridTextColumn Header="Код"     Binding="{Binding Id}"/>
           <DataGridTextColumn Header="Название"  Binding="{Binding Name}"/>
-          <DataGridTextColumn Header="Гос. Номер"  Binding="{Binding LicensePlate}"/>
+          <DataGridTextColumn Header="Гос. Номер" 
+                              Binding="{Binding LicensePlate}"/>
         </DataGrid.Columns>
       </DataGrid>
 

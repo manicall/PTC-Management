@@ -3,12 +3,13 @@ using System.Windows.Input;
 
 namespace PTC_Management.Commands
 {
-
+    // класс для выполнения команды с параметром
     public class Command<T> : ICommand
     {
-
+        // действие которое следует выполнить
         Action<T> _TargetExecuteMethod;
-        Func<T,bool> _TargetCanExecuteMethod;
+        // предикат, определяющий разрешено ли выполнять действие
+        Func<T, bool> _TargetCanExecuteMethod;
 
         public Command(Action<T> executeMethod)
         {
@@ -22,11 +23,7 @@ namespace PTC_Management.Commands
             _TargetCanExecuteMethod = canExecuteMethod;
         }
 
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged(this, EventArgs.Empty);
-        }
-
+        // реализация метода интерфейса ICommand
         bool ICommand.CanExecute(object parameter)
         {
 
@@ -44,8 +41,10 @@ namespace PTC_Management.Commands
             return false;
         }
 
-        public event EventHandler CanExecuteChanged = delegate { };
+        // реализация события интерфейса ICommand
+        public event EventHandler CanExecuteChanged = delegate {};
 
+        // реализация метода интерфейса ICommand
         void ICommand.Execute(object parameter)
         {
             if (_TargetExecuteMethod != null)
@@ -53,11 +52,10 @@ namespace PTC_Management.Commands
                 _TargetExecuteMethod((T)parameter);
             }
         }
-
     }
 
-
-    public class Command: ICommand
+    // класс для выполнения команды без параметра
+    public class Command : ICommand
     {
         Action _TargetExecuteMethod;
         Func<bool> _TargetCanExecuteMethod;
@@ -67,7 +65,8 @@ namespace PTC_Management.Commands
             _TargetExecuteMethod = targetExecuteMethod;
         }
 
-        public Command(Action targetExecuteMethod, Func<bool> targetCanExecuteMethod)
+        public Command(Action targetExecuteMethod,
+            Func<bool> targetCanExecuteMethod)
         {
             _TargetExecuteMethod = targetExecuteMethod;
             _TargetCanExecuteMethod = targetCanExecuteMethod;
@@ -93,7 +92,7 @@ namespace PTC_Management.Commands
             return false;
         }
 
-        public event EventHandler CanExecuteChanged = delegate { };
+        public event EventHandler CanExecuteChanged = delegate {};
 
         void ICommand.Execute(object parameter)
         {
@@ -102,7 +101,5 @@ namespace PTC_Management.Commands
                 _TargetExecuteMethod();
             }
         }
-
     }
-    
 }

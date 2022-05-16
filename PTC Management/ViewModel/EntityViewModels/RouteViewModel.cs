@@ -34,19 +34,6 @@ namespace PTC_Management.ViewModel
         {
             Route current = entity as Route;
 
-            //if (!string.IsNullOrWhiteSpace(FilterText)
-            //     && !current.Id.ToString().Contains(FilterText)
-            //     && (current.Surname == null ||
-            //         !current.Surname.Contains(FilterText))
-            //     && (current.Name == null ||
-            //         !current.Name.Contains(FilterText))
-            //     && (current.Patronymic == null ||
-            //         !current.Patronymic.Contains(FilterText))
-            //     && (current.DriverLicense == null ||
-            //         !current.DriverLicense.Contains(FilterText)))
-            //{
-            //    return false;
-            //}
             return true;
         }
         #endregion 

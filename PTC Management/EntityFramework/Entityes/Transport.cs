@@ -2,34 +2,43 @@ namespace PTC_Management.EF
 {
     using System;
     using System.Collections.Generic;
-using System.ComponentModel;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
-    [Table("Route")]
-    public partial class Route : Entity, IDataErrorInfo
+    [Table("Transport")]
+    public partial class Transport : Entity, IDataErrorInfo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Route()
+         
+        public Transport()
         {
             Itinerary = new HashSet<Itinerary>();
+            LogOfDepartureAndEntry = new HashSet<LogOfDepartureAndEntry>();
+            MaintanceLog = new HashSet<MaintanceLog>();
         }
 
-        public int? Number { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [StringLength(50)]
         public string Name { get; set; }
 
-        public float? Distant { get; set; }
+        [Required]
+        [StringLength(10)]
+        public string LicensePlate { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
+        
+        public virtual ICollection<LogOfDepartureAndEntry> 
+            LogOfDepartureAndEntry { get; set; }
 
-        public static readonly Repository<Route> repository =
-            new Repository<Route>(new PTC_ManagementContext());
+        
+        public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
+
+        public static readonly Repository<Transport> repository =
+            new Repository<Transport>(new PTC_ManagementContext());
 
         public override void Add()
         {
@@ -53,23 +62,23 @@ using System.ComponentModel;
 
         public override void SetFields(Entity entity)
         {
-            if (entity is Route route)
+            if (entity is Transport transport)
             {
-                Number = route.Number;
-                Name = route.Name;
-                Distant = route.Distant;
+                Name = transport.Name;
+                LicensePlate = transport.LicensePlate;
             }
         }
 
         public override Entity Clone()
         {
-            Route route = new Route
+            Transport transport = new Transport
             {
-                Number = Number,
+                Id = Id,
                 Name = Name,
-                Distant = Distant
+                LicensePlate = LicensePlate
             };
-            return route;
+
+            return transport;
         }
 
         public string this[string columnName]
@@ -79,15 +88,14 @@ using System.ComponentModel;
                 string error = null;
                 switch (columnName)
                 {
-                    case "Number":
-                        break;
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
                             error = "Поле не может быть пустым";
                         break;
-                    case "Distant":
+                    case "LicensePlate":
+                        if (string.IsNullOrEmpty(LicensePlate))
+                            error = "Поле не может быть пустым";
                         break;
-
                 }
                 return error;
             }

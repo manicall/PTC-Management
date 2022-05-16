@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
-using System.Windows;
 
 namespace PTC_Management.ViewModel.EntityViewModels.Helpers
 {
     public class DatePickerDateFormat
     {
         public static readonly DependencyProperty DateFormatProperty =
-            DependencyProperty.RegisterAttached("DateFormat", typeof(string), 
-                typeof(DatePickerDateFormat),                                            
+            DependencyProperty.RegisterAttached("DateFormat", typeof(string),
+                typeof(DatePickerDateFormat),
                 new PropertyMetadata(OnDateFormatChanged));
 
         public static string GetDateFormat(DependencyObject dobj)
@@ -29,7 +25,7 @@ namespace PTC_Management.ViewModel.EntityViewModels.Helpers
             dobj.SetValue(DateFormatProperty, value);
         }
 
-        private static void OnDateFormatChanged(DependencyObject dobj, 
+        private static void OnDateFormatChanged(DependencyObject dobj,
             DependencyPropertyChangedEventArgs e)
         {
             var datePicker = (DatePicker)dobj;
@@ -43,11 +39,12 @@ namespace PTC_Management.ViewModel.EntityViewModels.Helpers
         {
             var binding = new Binding("SelectedDate")
             {
-                RelativeSource = new RelativeSource { 
-                    AncestorType = typeof(DatePicker) 
+                RelativeSource = new RelativeSource
+                {
+                    AncestorType = typeof(DatePicker)
                 },
                 Converter = new DatePickerDateTimeConverter(),
-                ConverterParameter = new Tuple<DatePicker, string>(datePicker, 
+                ConverterParameter = new Tuple<DatePicker, string>(datePicker,
                 GetDateFormat(datePicker))
             };
             var textBox = GetTemplateTextBox(datePicker);
@@ -78,7 +75,7 @@ namespace PTC_Management.ViewModel.EntityViewModels.Helpers
             var datePicker = (DatePicker)textBox.TemplatedParent;
             var dateStr = textBox.Text;
             var formatStr = GetDateFormat(datePicker);
-            datePicker.SelectedDate = 
+            datePicker.SelectedDate =
                 DatePickerDateTimeConverter
                 .StringToDateTime(datePicker, formatStr, dateStr);
         }

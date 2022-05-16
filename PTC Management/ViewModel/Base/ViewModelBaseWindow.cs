@@ -1,9 +1,6 @@
 ﻿using PTC_Management.Model.Dialog;
 using PTC_Management.Windows;
 
-using System.Windows;
-using System.Windows.Input;
-
 namespace PTC_Management.ViewModel.Base
 {
     class ViewModelBaseDialog : BindableBase

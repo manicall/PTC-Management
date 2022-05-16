@@ -2,7 +2,7 @@
 
 # All files
 [*]
-guidelines = 80 1px solid 0b9cbb
+guidelines = 66 1px solid ff0000, 80 1px solid 0b9cbb
 
 # C# or xaml files
 #[*.{cs, xaml}]

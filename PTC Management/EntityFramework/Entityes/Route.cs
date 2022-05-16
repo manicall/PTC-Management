@@ -2,29 +2,35 @@ namespace PTC_Management.EF
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-using System.Xml.Linq;
 
-    [Table("Itinerary")]
-    public partial class Itinerary : Entity
+    [Table("Route")]
+    public partial class Route : Entity, IDataErrorInfo
     {
+         
+        public Route()
+        {
+            Itinerary = new HashSet<Itinerary>();
+        }
 
-        public int IdRoute { get; set; }
+        public int Id { get; set; }
 
-        public int IdTransport { get; set; }
+        public int Number { get; set; }
 
-        public int IdEmployee { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Name { get; set; }
 
-        public virtual Employee Employee { get; set; }
+        public float? Distant { get; set; }
 
-        public virtual Route Route { get; set; }
+        
+        public virtual ICollection<Itinerary> Itinerary { get; set; }
 
-        public virtual Transport Transport { get; set; }
 
-        public static readonly Repository<Itinerary> repository =
-     new Repository<Itinerary>(new PTC_ManagementContext());
+        public static readonly Repository<Route> repository =
+            new Repository<Route>(new PTC_ManagementContext());
 
         public override void Add()
         {
@@ -48,23 +54,23 @@ using System.Xml.Linq;
 
         public override void SetFields(Entity entity)
         {
-            if (entity is Itinerary itinerary)
+            if (entity is Route route)
             {
-                IdRoute = itinerary.IdRoute;
-                IdTransport = itinerary.IdTransport;
-                IdEmployee = itinerary.IdEmployee;
+                Number = route.Number;
+                Name = route.Name;
+                Distant = route.Distant;
             }
         }
 
         public override Entity Clone()
         {
-            Itinerary itinerary = new Itinerary
+            Route route = new Route
             {
-                IdRoute = IdRoute,
-                IdTransport = IdTransport,
-                IdEmployee = IdEmployee
+                Number = Number,
+                Name = Name,
+                Distant = Distant
             };
-            return itinerary;
+            return route;
         }
 
         public string this[string columnName]
@@ -74,12 +80,15 @@ using System.Xml.Linq;
                 string error = null;
                 switch (columnName)
                 {
-                    case "IdRoute":
+                    case "Number":
                         break;
-                    case "IdTransport":
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name))
+                            error = "Поле не может быть пустым";
                         break;
-                    case "IdEmployee":
+                    case "Distant":
                         break;
+
                 }
                 return error;
             }

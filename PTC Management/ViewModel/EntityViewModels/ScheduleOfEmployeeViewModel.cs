@@ -1,11 +1,6 @@
 ﻿using PTC_Management.ViewModel.Base;
-using PTC_Management.ViewModel.EntityViewModels.Helpers;
 
-using System.Collections.ObjectModel;
 using System.Data;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Media3D;
 
 namespace PTC_Management.ViewModel
 {
@@ -49,12 +44,13 @@ namespace PTC_Management.ViewModel
 
             for (int i = 1, length = 31; i <= length; i++)
             {
-                DataColumn sColumn = new DataColumn {
+                DataColumn sColumn = new DataColumn
+                {
                     ColumnName = i.ToString(),
                 };
                 sizeQuantityTable.Columns.Add(sColumn);
             }
-            
+
 
 
 

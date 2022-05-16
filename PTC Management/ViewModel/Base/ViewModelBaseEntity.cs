@@ -1,12 +1,12 @@
 ﻿using PTC_Management.Commands;
 using PTC_Management.EF;
-using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+
 using Size = PTC_Management.Model.MainWindow.Size;
 
 namespace PTC_Management.ViewModel.Base

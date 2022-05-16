@@ -1,6 +1,6 @@
 ﻿namespace PTC_Management
 {
-    internal class Settings
+    internal static class Settings
     {
 
     }

@@ -1,12 +1,6 @@
-﻿using PTC_Management.ViewModel.Base;
-
+﻿
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace PTC_Management.Model
 {
@@ -26,13 +20,13 @@ namespace PTC_Management.Model
             set => countVisibility = value;
         }
 
-        public CopyParameters(int count = 1, 
+        public CopyParameters(int count = 1,
             string countVisibility = "Collapsed")
         {
             this.count = count;
             this.countVisibility = countVisibility;
         }
-   
+
         public string this[string columnName]
         {
             get
@@ -41,7 +35,8 @@ namespace PTC_Management.Model
                 switch (columnName)
                 {
                     case "Count":
-                        if (Count <= 0) {
+                        if (Count <= 0)
+                        {
                             error = "Число копирований должно быть больше нуля";
                         }
                         break;

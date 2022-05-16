@@ -7,7 +7,9 @@ namespace PTC_Management.Model.MainWindow
     internal class Backup
     {
         // подключение к базе данных через строку подключения 
-        static readonly string connectionString = ConfigurationManager.ConnectionStrings["PTC_ManagementConnection"].ConnectionString;
+        static readonly string connectionString = 
+            ConfigurationManager
+            .ConnectionStrings["PTC_ManagementConnection"].ConnectionString;
 
         internal const string _restore = "restore";
         internal const string _create = "create";
@@ -58,6 +60,5 @@ namespace PTC_Management.Model.MainWindow
             connection.Close();
         }
     }
-
 
 }

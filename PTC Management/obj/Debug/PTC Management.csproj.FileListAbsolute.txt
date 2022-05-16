@@ -59,7 +59,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Trans
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\Dialog.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\MainWindow.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfo.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\App.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management_MarkupCompile.cache
@@ -86,7 +85,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Trans
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\Dialog.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\MainWindow.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfo.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.g.resources
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC_Management.Properties.Resources.resources
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.GenerateResource.cache

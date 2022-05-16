@@ -1,46 +1,45 @@
 namespace PTC_Management.EF
 {
-
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-
     [Table("Employee")]
     public partial class Employee : Entity, IDataErrorInfo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
+            Date = new HashSet<Date>();
             Itinerary = new HashSet<Itinerary>();
-            YearAndMonth = new HashSet<YearAndMonth>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Surname { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
         [StringLength(50)]
         public string Patronymic { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string DriverLicense { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Itinerary> Itinerary { get; set; }
+        public virtual ICollection<Date> Date { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<YearAndMonth> YearAndMonth { get; set; }
+        public virtual ICollection<Itinerary> Itinerary { get; set; }
 
 
         public static readonly Repository<Employee> repository =
     new Repository<Employee>(new PTC_ManagementContext());
 
+
+        // переопределение методов базового класса
         public override void Add()
         {
             repository.Add(this);
@@ -85,6 +84,9 @@ namespace PTC_Management.EF
             return employee;
         }
 
+        // реализация интерфейса IDataErrorInfo
+        // позволяет обрабатывать ошибки,
+        // допускаемые в полях для ввода
         public string this[string columnName]
         {
             get
@@ -95,7 +97,7 @@ namespace PTC_Management.EF
                     case "Surname":
                         if (string.IsNullOrEmpty(Surname))
                             error = "Поле не может быть пустым";
-                        else if (Surname.Contains(" ")) 
+                        else if (Surname.Contains(" "))
                             error = "Поле не должно содержать пробелы";
                         break;
                     case "Name":

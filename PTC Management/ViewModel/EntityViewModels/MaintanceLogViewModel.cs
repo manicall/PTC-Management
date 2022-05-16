@@ -1,12 +1,4 @@
-﻿using PTC_Management.EF;
-using PTC_Management.Model;
-using PTC_Management.ViewModel.Base;
-
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Data;
-
-namespace PTC_Management.ViewModel
+﻿namespace PTC_Management.ViewModel
 {
     //internal class MaintanceLogViewModel : BindableBase
     //{

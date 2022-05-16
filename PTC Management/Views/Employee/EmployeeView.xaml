@@ -47,7 +47,8 @@
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
             Name="dataGridEmployee"
-            MinRowHeight="20" MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            MinRowHeight="20" 
+            MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
             ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
             
             CanUserReorderColumns="False"
@@ -59,7 +60,7 @@
           <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
           <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" />
           <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
-          <DataGridTextColumn Header="Отчество"  Binding="{Binding Patronymic}"/>
+          <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
           <DataGridTextColumn Binding="{Binding DriverLicense}" Width="*">
             <DataGridTextColumn.Header>
               <TextBlock TextAlignment="Center">

@@ -56,6 +56,7 @@
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
@@ -78,18 +79,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EF\Context\AppContext.cs" />
-    <Compile Include="EF\Entityes\Base\Entity.cs" />
-    <Compile Include="EF\Entityes\Date.cs" />
-    <Compile Include="EF\Entityes\Employee.cs" />
-    <Compile Include="EF\Entityes\Itinerary.cs" />
-    <Compile Include="EF\Entityes\LaborShift.cs" />
-    <Compile Include="EF\Entityes\LogOfDepartureAndEntry.cs" />
-    <Compile Include="EF\Entityes\MaintanceLog.cs" />
-    <Compile Include="EF\Entityes\Route.cs" />
-    <Compile Include="EF\Entityes\Transport.cs" />
-    <Compile Include="EF\Entityes\YearAndMonth.cs" />
-    <Compile Include="EF\Repository\Repository.cs" />
+    <Compile Include="EntityFramework\Context\PTC_ManagementContext.cs" />
+    <Compile Include="EntityFramework\Entityes\Base\Entity.cs" />
+    <Compile Include="EntityFramework\Entityes\Date.cs" />
+    <Compile Include="EntityFramework\Entityes\Employee.cs" />
+    <Compile Include="EntityFramework\Entityes\Itinerary.cs" />
+    <Compile Include="EntityFramework\Entityes\LaborShift.cs" />
+    <Compile Include="EntityFramework\Entityes\LogOfDepartureAndEntry.cs" />
+    <Compile Include="EntityFramework\Entityes\MaintanceLog.cs" />
+    <Compile Include="EntityFramework\Entityes\Route.cs" />
+    <Compile Include="EntityFramework\Entityes\Transport.cs" />
+    <Compile Include="EntityFramework\Repository\Repository.cs" />
     <Compile Include="Model\Actions.cs" />
     <Compile Include="Model\CopyParameters.cs" />
     <Compile Include="Model\MainWindow\BackUp.cs" />
@@ -99,7 +99,7 @@
     <Compile Include="ViewModel\DialogViewModels\RouteDialogViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\Helpers\ActionPerformer.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
-    <Compile Include="ViewModel\Base\ViewModelBaseDialog.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBaseWindow.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseEntity.cs" />
     <Compile Include="ViewModel\DialogViewModels\DialogViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModels\EmployeeDialogViewModel.cs" />
@@ -153,9 +153,6 @@
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\TransportInfo.xaml.cs">
-      <DependentUpon>TransportInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -223,10 +220,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Windows\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Windows\TransportInfo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

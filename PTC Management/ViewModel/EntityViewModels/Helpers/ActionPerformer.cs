@@ -1,14 +1,8 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.Base;
-using PTC_Management.ViewModel.DialogViewModels;
 
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PTC_Management.ViewModel
 {

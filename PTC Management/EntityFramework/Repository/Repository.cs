@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Linq;
 
 namespace PTC_Management.EF
 {
@@ -11,10 +10,6 @@ namespace PTC_Management.EF
     {
         private readonly PTC_ManagementContext _db;
         private readonly DbSet<T> _set;
-
-        /// <summary> Определяет будут ли выполняться
-        /// сохранения в базе данных автоматически </summary>
-        public static bool AutoSaveChanges { get; set; } = true;
 
         public Repository(PTC_ManagementContext db)
         {
@@ -27,16 +22,12 @@ namespace PTC_Management.EF
         /// Возвращает запись из базы данных по заданному ключу и 
         /// вызывает исключение, если таких элементов больше одного.
         /// </summary>
-        /// <param name="id">Ключ, по которому производится поиск.</param>
-        /// <returns>Запись в базе данных по заданному ключу.</returns>
         public T GetSingle(int id) => Items.Single(item => item.Id == id);
 
         /// <summary>
         /// Возвращает набор записей, 
         /// значение ключей которых больше заданного ключа.
         /// </summary>
-        /// <param name="id">Ключ, по которому производится поиск.</param>
-        /// <returns> Список записей из таблицы базы данных. </returns>
         public List<T> GetFrom(int id)
         {
             return Items.Where(items => items.Id > id).ToList();
@@ -45,9 +36,8 @@ namespace PTC_Management.EF
         /// <summary>
         /// Инициализация и возврат всех записей из таблицы.
         /// </summary>
-        /// <returns> Все записи из таблицы. </returns>
         public ObservableCollection<T> GetObservableCollection()
-        { 
+        {
             _set.Load();
             return _set.Local;
         }
@@ -55,44 +45,29 @@ namespace PTC_Management.EF
         /// <summary>
         /// Добавляет запись в таблицу базы данных
         /// </summary>
-        /// <param name="item"> Добавляемое значение. </param>
-        /// <exception cref="ArgumentNullException">
-        /// Если аргумент имеет null значение.
-        /// </exception>
         public void Add(T item)
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
 
             _set.Add(item);
 
-            if (AutoSaveChanges)
-                _db.SaveChanges();
+            _db.SaveChanges();
         }
 
         /// <summary>
         /// Изменяет запись в таблице базы данных
         /// </summary>
-        /// <param name="item"> Изменяемое значение. </param>
-        /// <exception cref="ArgumentNullException">
-        /// Если аргумент имеет null значение.
-        /// </exception>
         public void Update(T item)
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
             _db.Entry(item).State = EntityState.Modified;
 
-            if (AutoSaveChanges)
-                _db.SaveChanges();
+            _db.SaveChanges();
         }
 
         /// <summary>
         /// Выполняет удаление записи из базы данных
         /// </summary>
-        /// <param name="id">Ключ, по которому происходит
-        /// поиск записи в таблице</param>
-        /// <exception cref="ArgumentNullException">
-        /// Если аргумент имеет null значение.
-        /// </exception>
         public void Remove(T item)
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
@@ -100,20 +75,12 @@ namespace PTC_Management.EF
             _db.Entry(item).State = EntityState.Deleted;
 
             // TODO: Обработать исключение, если сущность имеет связь
-            if (AutoSaveChanges)
-                _db.SaveChanges();
+            _db.SaveChanges();
         }
 
         /// <summary>
         /// Выполняет добавление заданного числа копий в базу данных
         /// </summary>
-        /// <param name="item">Копируемый объект</param>
-        /// <param name="Count">
-        /// Число копий, которые будут добавленны в базу данных
-        /// </param>
-        /// <exception cref="ArgumentNullException">
-        /// Если аргумент имеет null значение.
-        /// </exception>
         public void Copy(T item, int Count)
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
@@ -124,8 +91,7 @@ namespace PTC_Management.EF
 
             _set.AddRange(Items);
 
-            if (AutoSaveChanges)
-                _db.SaveChanges();
+            _db.SaveChanges();
         }
 
     }

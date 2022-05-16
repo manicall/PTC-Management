@@ -7,7 +7,8 @@
    xmlns:local = "clr-namespace:PTC_Management" 
 
    mc:Ignorable = "d" 
-   Title = "Управление ПАТП" Height = "{Binding Size.Height, Mode=TwoWay}" Width = "750">
+   Title = "Управление ПАТП" Height = "{Binding Size.Height,
+  Mode=TwoWay}" Width = "750">
   <Window.DataContext>
     <local:MainWindowViewModel/>
   </Window.DataContext>
@@ -25,16 +26,16 @@
   <DockPanel>
     <Menu DockPanel.Dock="Top" IsMainMenu="True">
       <MenuItem Header="Файл">
-        <MenuItem Header="Сохранить" Command="" />
-        <Separator />
-        <MenuItem IsCheckable="True" IsChecked="{Binding AutoSaveChanges}" Header="Автосохранение" Command="" />
-        <Separator />
         <MenuItem Header="Выход" Command="" />
       </MenuItem>
       
       <MenuItem Header="Управление базой данных">
-        <MenuItem Header="Создать бекап" Command="{Binding BackUpCommand}" CommandParameter="{Binding Backup.Create}" />
-        <MenuItem Header="Восстановить бекап" Command="{Binding BackUpCommand}" CommandParameter="{Binding Backup.Restore}" />
+        <MenuItem Header="Создать бекап" 
+                  Command="{Binding BackUpCommand}"
+                  CommandParameter="{Binding Backup.Create}" />
+        <MenuItem Header="Восстановить бекап"
+                  Command="{Binding BackUpCommand}" 
+                  CommandParameter="{Binding Backup.Restore}" />
       </MenuItem>
     </Menu>
     <StatusBar DockPanel.Dock="Bottom">

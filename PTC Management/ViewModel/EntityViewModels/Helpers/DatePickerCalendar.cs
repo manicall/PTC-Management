@@ -1,10 +1,9 @@
 ﻿using System;
-
-using System.Windows.Controls.Primitives;
-using System.Windows.Controls;
-using System.Windows.Threading;
 using System.Windows;
-using System.Globalization;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
+
 using Calendar = System.Windows.Controls.Calendar;
 
 namespace PTC_Management.ViewModel.EntityViewModels.Helpers
