@@ -101,3 +101,4 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Itine
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryDialogView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryDialogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.SuggestedBindingRedirects.cache
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Resources\ControlTemplates.baml
