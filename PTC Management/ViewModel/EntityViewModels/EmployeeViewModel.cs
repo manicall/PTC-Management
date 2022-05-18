@@ -97,7 +97,12 @@ namespace PTC_Management.ViewModel
             return new EmployeeDialogViewModel()
             {
                 MainWindowAction = action,
-                ObservableCollection = observableCollection,
+
+                Title = 
+                Actions.GetGenetiveName(action) +
+                " сотрудника",
+
+            ObservableCollection = observableCollection,
                 Repository = repository
             };
         }

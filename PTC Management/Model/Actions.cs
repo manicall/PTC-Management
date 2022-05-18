@@ -1,7 +1,8 @@
 ﻿namespace PTC_Management.Model.Dialog
 {
     /// <summary>
-    /// Список контстант для выбора действия, которое необходимо выполнить
+    /// Список контстант для выбора действия, 
+    /// которое необходимо выполнить
     /// на основе параметра, передаваемого кнопкой
     /// </summary>
 
@@ -30,9 +31,9 @@
         {
             switch (action)
             {
-                case add: return "добавления";
-                case update: return "изменения";
-                case copy: return "копирования";
+                case add: return "Создание";
+                case update: return "Изменение";
+                case copy: return "Копирование";
                 default: return null;
             }
         }

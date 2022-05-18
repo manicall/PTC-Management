@@ -39,9 +39,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         public EmployeeDialogViewModel()
         {
-            Title = "Окно " +
-                Actions.GetGenetiveName(MainWindowAction) +
-                " сотрудника";
+            
 
             CopyParameters = new CopyParameters();
             DialogItem = new Employee();

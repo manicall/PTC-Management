@@ -24,18 +24,20 @@
         <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
 
         <TextBlock Text="Поиск:" Margin="5"/>
-        <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
+        <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
+                 Width="200" Margin="5"/>
       </StackPanel>
 
-      <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" 
-            CanUserReorderColumns="False" 
-            IsReadOnly="True" 
-            CanUserAddRows="false" 
-              
-            ItemsSource="{Binding Items}" 
-            d:ItemsSource="{d:SampleData ItemCount=5}" 
-            AutoGenerateColumns="False">
-
+      <DataGrid
+        MaxHeight="400"
+        ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" 
+        CanUserReorderColumns="False" 
+        IsReadOnly="True" 
+        CanUserAddRows="false"       
+        ItemsSource="{Binding Items}" 
+        d:ItemsSource="{d:SampleData ItemCount=5}" 
+        AutoGenerateColumns="False">
+        
         <DataGrid.Columns>
           <DataGridTextColumn Header="Код" Binding="{Binding id}"/>
           <DataGridTextColumn Header="Дата" Binding="{Binding date, StringFormat=\{0:dd.MM.yyyy\}}" />

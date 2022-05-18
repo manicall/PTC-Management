@@ -56,6 +56,20 @@
             CanUserAddRows="false"
             
             AutoGenerateColumns="False">
+
+        <DataGrid.InputBindings>
+
+          <!--<KeyBinding Command="{Binding ChangeColorCommand}"
+                CommandParameter="{Binding ElementName=colorPicker, Path=SelectedItem}"
+                Key="{Binding ChangeColorCommand.GestureKey}"
+                Modifiers="{Binding ChangeColorCommand.GestureModifier}"/>-->
+
+          <MouseBinding Command="{Binding DialogCommand}"
+                  CommandParameter="{Binding Actions.Update}"
+                  MouseAction="LeftDoubleClick"/>
+
+        </DataGrid.InputBindings>
+
         <DataGrid.Columns>
           <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
           <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" />
