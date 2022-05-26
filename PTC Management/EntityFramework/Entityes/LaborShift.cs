@@ -7,7 +7,6 @@ namespace PTC_Management.EF
     [Table("LaborShift")]
     public partial class LaborShift
     {
-         
         public LaborShift()
         {
             Date = new HashSet<Date>();

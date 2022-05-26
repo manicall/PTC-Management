@@ -92,8 +92,8 @@
     <Compile Include="EntityFramework\Repository\Repository.cs" />
     <Compile Include="Model\Actions.cs" />
     <Compile Include="Model\CopyParameters.cs" />
-    <Compile Include="Model\MainWindow\BackUp.cs" />
-    <Compile Include="Model\MainWindow\Size.cs" />
+    <Compile Include="Model\BackUp.cs" />
+    <Compile Include="Model\Size.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\DialogViewModels\RouteDialogViewModel.cs" />
@@ -115,6 +115,7 @@
     <Compile Include="ViewModel\EntityViewModels\RouteViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\ScheduleOfEmployeeViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\TransportViewModel.cs" />
+    <Compile Include="ViewModel\SelectWindowViewModel.cs" />
     <Compile Include="Views\Employee\EmployeeDialogView.xaml.cs">
       <DependentUpon>EmployeeDialogView.xaml</DependentUpon>
     </Compile>
@@ -159,6 +160,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Views\Windows\SelectWindow.xaml.cs">
+      <DependentUpon>SelectWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\ControlTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,7 +175,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Templates\MainWindowTemplates.xaml">
+    <Page Include="Templates\EntityTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -227,10 +231,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Windows\SelectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Destinations.cs" />
-    <Compile Include="Model\MainWindow\ViewModels.cs" />
+    <Compile Include="Model\ViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,7 +1,7 @@
 ﻿
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\App.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Templates\DialogTemplates.xaml;;
-FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Templates\MainWindowTemplates.xaml;;
+FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Templates\EntityTemplates.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Employee\EmployeeDialogView.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Itinerary\ItineraryDialogView.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\LogOfDepartureAndEntryView.xaml;;
@@ -13,4 +13,5 @@ FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Transport\Tran
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Transport\TransportView.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Windows\Dialog.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Windows\MainWindow.xaml;;
+FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Windows\SelectWindow.xaml;;
 

@@ -8,6 +8,11 @@ namespace PTC_Management.EF
     /// </summary>
     public abstract class Entity
     {
+        /* Данное поле следует удалить в дочерних классах,
+         * так как при выполнении метода GetSingle,
+         * Id переменной DialogItem равно 0 (так как изменяется не правильный id),
+         * что приводит к некорректному поведению программы
+         */
         public int Id { get; set; }
 
         // методы созданы для переопределения в дочерних классах
@@ -15,7 +20,7 @@ namespace PTC_Management.EF
 
         public abstract void Update();
 
-        public abstract void Remove();
+        public abstract bool Remove();
 
         public abstract void Copy(int count);
 

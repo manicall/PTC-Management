@@ -7,21 +7,17 @@
    xmlns:local = "clr-namespace:PTC_Management" 
 
    mc:Ignorable = "d" 
-   Title = "Управление ПАТП" Height = "{Binding Size.Height,
-  Mode=TwoWay}" Width = "750">
+   Title = "Управление ПАТП" 
+   Height = "{Binding Size.Height, Mode=TwoWay}" 
+   Width  = "{Binding Size.Width,  Mode=TwoWay}" >
+  
   <Window.DataContext>
     <local:MainWindowViewModel/>
   </Window.DataContext>
 
   <Window.Resources>
-    <ResourceDictionary Source="../../Templates/MainWindowTemplates.xaml" />
+    <ResourceDictionary Source="../../Templates/EntityTemplates.xaml" />
   </Window.Resources>
-  
-  <i:Interaction.Triggers>
-    <i:EventTrigger EventName="ContentRendered">
-      <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
-    </i:EventTrigger>
-  </i:Interaction.Triggers>
   
   <DockPanel>
     <Menu DockPanel.Dock="Top" IsMainMenu="True">

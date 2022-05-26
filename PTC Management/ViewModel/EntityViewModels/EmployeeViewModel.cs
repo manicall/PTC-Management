@@ -65,9 +65,7 @@ namespace PTC_Management.ViewModel
         /// ObservableCollection. </returns>
         private ICollectionView GetItems()
         {
-            return
-                CollectionViewSource
-                .GetDefaultView(observableCollection);
+            return CollectionViewSource.GetDefaultView(observableCollection);
         }
 
         /// <summary>
@@ -98,11 +96,9 @@ namespace PTC_Management.ViewModel
             {
                 MainWindowAction = action,
 
-                Title = 
-                Actions.GetGenetiveName(action) +
-                " сотрудника",
+                Title = Actions.GetGenetiveName(action) + " сотрудника",
 
-            ObservableCollection = observableCollection,
+                ObservableCollection = observableCollection,
                 Repository = repository
             };
         }

@@ -8,9 +8,23 @@ using System;
 
 namespace PTC_Management.ViewModel
 {
-    class DialogViewModel : ViewModelBaseDialog
+
+
+    class DialogViewModel : ViewModelBaseWindow
     {
 
+        private string mainWindowAction;
+        public string MainWindowAction
+        {
+            get => mainWindowAction;
+            set => mainWindowAction = value;
+        }
+
+        /// <summary>
+        /// Используется для отображения поля,
+        /// в которое воодится количество копий выбранной записи,
+        /// которые необходимо создать 
+        /// </summary>
         private CopyParameters copyParameters;
         public CopyParameters CopyParameters
         {
@@ -18,14 +32,9 @@ namespace PTC_Management.ViewModel
             set => SetProperty(ref copyParameters, value);
         }
 
-        private ViewModelBaseDialog currentViewModel;
-        public ViewModelBaseDialog CurrentViewModel
-        {
-            get => currentViewModel;
-            set => SetProperty(ref currentViewModel, value);
-        }
-
-
+        /// <summary>
+        /// Копия выбранного элемента таблицы
+        /// </summary>
         private Entity dialogItem;
         public Entity DialogItem
         {
@@ -33,20 +42,15 @@ namespace PTC_Management.ViewModel
             set => SetProperty(ref dialogItem, value);
         }
 
-        private Entity selectedItem;
-        public Entity SelectedItem
-        {
-            get => selectedItem;
-            set => SetProperty(ref selectedItem, value);
-        }
-
+        /// <summary>
+        /// Выбранный индекс в таблице 
+        /// </summary>
         public int SelectedIndex { get; set; }
         public Command<string> DialogActionCommand { get; private set; }
 
         public DialogViewModel()
         {
             DialogActionCommand = new Command<string>(OnDialogActionCommand);
-            currentViewModel = null;
         }
 
         protected virtual void OnDialogActionCommand(string action)

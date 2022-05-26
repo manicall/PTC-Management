@@ -49,7 +49,7 @@ namespace PTC_Management.ViewModel
         /// которое должно быть запущено.</param>
         private void Add()
         {
-            dialogVM.Show();
+            dialogVM.ShowDialog();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace PTC_Management.ViewModel
             dialogVM.SelectedItem = (T)entityVM.SelectedItem;
 
 
-            dialogVM.Show();
+            dialogVM.ShowDialog();
         }
 
         /// <summary>
@@ -83,9 +83,9 @@ namespace PTC_Management.ViewModel
             int temp = entityVM.SelectedIndex;
 
             T selectedEmployee = (T)entityVM.SelectedItem;
-            observableCollection.Remove(selectedEmployee);
+            //if )
+            //{ observableCollection.Remove(selectedEmployee); }
             selectedEmployee.Remove();
-
             entityVM.SelectedIndex = temp;
         }
 
@@ -102,7 +102,7 @@ namespace PTC_Management.ViewModel
             dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
             dialogVM.CopyParameters.CountVisibility = "Visible";
 
-            dialogVM.Show();
+            dialogVM.ShowDialog();
         }
     }
 }

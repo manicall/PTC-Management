@@ -75,7 +75,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\Microsoft.X
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\Microsoft.Xaml.Behaviors.xml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\App.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\DialogTemplates.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\MainWindowTemplates.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.baml
@@ -102,3 +101,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Itine
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryDialogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Resources\ControlTemplates.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.SuggestedBindingRedirects.cache
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\SelectWindow.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\EntityTemplates.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\SelectWindow.baml

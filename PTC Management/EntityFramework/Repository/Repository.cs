@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Windows;
 
 namespace PTC_Management.EF
 {
@@ -68,14 +70,28 @@ namespace PTC_Management.EF
         /// <summary>
         /// Выполняет удаление записи из базы данных
         /// </summary>
-        public void Remove(T item)
+        public bool Remove(T item)
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
 
             _db.Entry(item).State = EntityState.Deleted;
 
             // TODO: Обработать исключение, если сущность имеет связь
-            _db.SaveChanges();
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (DbUpdateException ex) 
+            {
+                MessageBox.Show(ex.InnerException.InnerException.Message, "Ошибка создания файла восстановления",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+
+                _db.Entry(item).State = EntityState.Unchanged;
+
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

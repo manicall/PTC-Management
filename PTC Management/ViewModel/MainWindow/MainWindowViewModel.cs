@@ -1,4 +1,6 @@
-﻿using PTC_Management.Commands;
+﻿using Microsoft.Win32;
+
+using PTC_Management.Commands;
 using PTC_Management.EF;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
@@ -7,39 +9,16 @@ using System.Windows.Input;
 
 namespace PTC_Management
 {
-
-    class MainWindowViewModel : BindableBase
+    class MainWindowViewModel : ViewModelBaseWindow
     {
-        #region Поля и свойства
-        private ViewModels viewModels;
-
         private readonly Destinations _destinations = new Destinations();
         public Destinations Destinations => _destinations;
 
         private readonly Backup _Backup = new Backup();
         public Backup Backup => _Backup;
 
-        private BindableBase _CurrentViewModel;
-        public BindableBase CurrentViewModel
-        {
-            get => _CurrentViewModel;
-            set => SetProperty(ref _CurrentViewModel, value);
-        }
-
-        #endregion
-
 
         public ICommand LoadCommand { get; }
-
-        public async void Load()
-        {
-            viewModels = new ViewModels(size);
-
-            // установка представления по умолчанию
-            CurrentViewModel = viewModels.employee;
-
-            RunTime.Stop();
-        }
 
         public MainWindowViewModel()
         {
@@ -48,19 +27,11 @@ namespace PTC_Management
             // создание команды работы с бекапом базы данных
             BackUpCommand = new Command<string>(OnBackUp);
 
-            size = new Size(500);
+            // установка представления по умолчанию
+            CurrentViewModel = viewModels.employee;
 
-            LoadCommand = new Command(Load);
-
+            RunTime.Stop();
         }
-
-        private Size size;
-        public Size Size
-        {
-            get => size;
-            set => SetProperty(ref size, value);
-        }
-
 
         #region Команды
         public Command<string> NavigationCommand { get; private set; }
@@ -74,6 +45,7 @@ namespace PTC_Management
         /// </summary>
         private void OnNavigation(string destination)
         {
+            // TODO: проверять нужно ли подстраивать размер окна под содержимое
             switch (destination)
             {
                 case Destinations._employee:
@@ -87,7 +59,8 @@ namespace PTC_Management
                     break;
                 case Destinations._itinerary:
                     CurrentViewModel = viewModels.itinerary;
-                    break;
+                    Size.Width = 1000;
+                    return; // выход из функции
                 case Destinations._schedule:
                     CurrentViewModel = viewModels.scheduleOfEmployee;
                     break;
@@ -95,6 +68,7 @@ namespace PTC_Management
                     CurrentViewModel = null;
                     break;
             }
+            Size.Width = 650;
         }
 
         /// <summary>
@@ -104,17 +78,37 @@ namespace PTC_Management
         {
             switch (command)
             {
-                case Backup._create:
-                    Backup.CreateBackup();
-                    break;
-                case Backup._restore:
-                    Backup.RestoreBackup();
-                    break;
-
+                case Backup._create: CreateBackUp(); break;
+                case Backup._restore: RestoreBackUp(); break;
                 default: break;
             }
+            
+            viewModels = new ViewModels(Size);
         }
 
+        private void CreateBackUp() {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = GetFilter();
+            dialog.Title = "Создание файла восстановления";
+
+            if (dialog.ShowDialog() == true) Backup.CreateBackup(dialog.FileName);
+        }
+
+
+        private void RestoreBackUp()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = GetFilter();
+            dialog.Title = "Открытие файла восстановления";
+            
+            if (dialog.ShowDialog() == true) Backup.RestoreBackup(dialog.FileName);
+        }
+
+        private string GetFilter() {
+            return "Файлы восстановления(*.bak;*.trn;*.log)" +
+                "|*.bak;*.trn;*.log" + "|Все файлы|*";
+        }
+        
         #endregion
     }
 

@@ -4,8 +4,14 @@ using System.ComponentModel;
 
 namespace PTC_Management.Model
 {
+     /// <summary>
+     /// Параметры копирования
+     /// </summary>
     class CopyParameters : IDataErrorInfo
     {
+        /// <summary>
+        /// Количество копирований
+        /// </summary>
         private int count;
         public int Count
         {
@@ -13,12 +19,16 @@ namespace PTC_Management.Model
             set => count = value;
         }
 
+        /// <summary>
+        /// Отображается ли поле для ввода
+        /// </summary>
         private string countVisibility;
         public string CountVisibility
         {
             get => countVisibility;
             set => countVisibility = value;
         }
+
 
         public CopyParameters(int count = 1,
             string countVisibility = "Collapsed")
@@ -27,6 +37,9 @@ namespace PTC_Management.Model
             this.countVisibility = countVisibility;
         }
 
+        /// <summary>
+        /// Правило валидации текстового поля
+        /// </summary>
         public string this[string columnName]
         {
             get
@@ -44,6 +57,7 @@ namespace PTC_Management.Model
                 return error;
             }
         }
+
         public string Error
         {
             get { throw new NotImplementedException(); }

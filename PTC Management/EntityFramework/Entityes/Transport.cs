@@ -17,6 +17,9 @@ namespace PTC_Management.EF
             MaintanceLog = new HashSet<MaintanceLog>();
         }
 
+
+
+
         public int Id { get; set; }
 
         [Required]
@@ -40,25 +43,13 @@ namespace PTC_Management.EF
         public static readonly Repository<Transport> repository =
             new Repository<Transport>(new PTC_ManagementContext());
 
-        public override void Add()
-        {
-            repository.Add(this);
-        }
+        public override void Add() => repository.Add(this);
 
-        public override void Update()
-        {
-            repository.Update(this);
-        }
+        public override void Update() => repository.Update(this);
 
-        public override void Remove()
-        {
-            repository.Remove(this);
-        }
+        public override bool Remove() => repository.Remove(this);
 
-        public override void Copy(int count)
-        {
-            repository.Copy(this, count);
-        }
+        public override void Copy(int count) => repository.Copy(this, count);
 
         public override void SetFields(Entity entity)
         {

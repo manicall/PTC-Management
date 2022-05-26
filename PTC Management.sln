@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32413.511
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTC Management", "PTC Management\PTC Management.csproj", "{7FA1EF16-5003-413D-A372-311275D5728C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTC Management.EF", "PTC Management.EF\PTC Management.EF.csproj", "{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{BE85DDE5-2A2F-4614-B621-294A6840BC0C}"
 EndProject
@@ -24,10 +22,6 @@ Global
 		{7FA1EF16-5003-413D-A372-311275D5728C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FA1EF16-5003-413D-A372-311275D5728C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FA1EF16-5003-413D-A372-311275D5728C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE85DDE5-2A2F-4614-B621-294A6840BC0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE85DDE5-2A2F-4614-B621-294A6840BC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE85DDE5-2A2F-4614-B621-294A6840BC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU

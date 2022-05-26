@@ -5,10 +5,10 @@ namespace PTC_Management.Model.MainWindow
 {
     class ViewModels : BindableBase
     {
-        public readonly BindableBase employee;
-        public readonly BindableBase route;
-        public readonly BindableBase transport;
-        public readonly BindableBase itinerary;
+        public readonly ViewModelBaseEntity employee;
+        public readonly ViewModelBaseEntity route;
+        public readonly ViewModelBaseEntity transport;
+        public readonly ViewModelBaseEntity itinerary;
         public readonly BindableBase scheduleOfEmployee;
 
         public ViewModels(Size mainWindowSize)

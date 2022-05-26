@@ -8,14 +8,11 @@ namespace PTC_Management.EF
 
     [Table("Route")]
     public partial class Route : Entity, IDataErrorInfo
-    {
-         
+    {         
         public Route()
         {
             Itinerary = new HashSet<Itinerary>();
         }
-
-        public int Id { get; set; }
 
         public int Number { get; set; }
 
@@ -32,25 +29,13 @@ namespace PTC_Management.EF
         public static readonly Repository<Route> repository =
             new Repository<Route>(new PTC_ManagementContext());
 
-        public override void Add()
-        {
-            repository.Add(this);
-        }
+        public override void Add() => repository.Add(this);
 
-        public override void Update()
-        {
-            repository.Update(this);
-        }
+        public override void Update() => repository.Update(this);
 
-        public override void Remove()
-        {
-            repository.Remove(this);
-        }
+        public override bool Remove() => repository.Remove(this);
 
-        public override void Copy(int count)
-        {
-            repository.Copy(this, count);
-        }
+        public override void Copy(int count) => repository.Copy(this, count);
 
         public override void SetFields(Entity entity)
         {
@@ -81,12 +66,20 @@ namespace PTC_Management.EF
                 switch (columnName)
                 {
                     case "Number":
+                        if (Number <= 0)
+                        {
+                            error = "Номер должен быть больше нуля";
+                        }
                         break;
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
                             error = "Поле не может быть пустым";
                         break;
                     case "Distant":
+                        if (Distant <= 0)
+                        {
+                            error = "Дистанция должна быть больше нуля";
+                        }
                         break;
 
                 }

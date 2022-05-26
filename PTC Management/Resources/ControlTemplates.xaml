@@ -29,35 +29,6 @@
 
   
   
-  <ControlTemplate x:Key="EmployeeDataGrid">
-    <DataGrid SelectedItem="{Binding SelectedItem}" 
-            SelectedIndex="{Binding SelectedIndex}"
-            ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
-            Name="dataGridEmployee"
-            MinRowHeight="20" 
-            MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
-            ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"         
-            CanUserReorderColumns="False"
-            IsReadOnly="True" 
-            CanUserAddRows="false"          
-            AutoGenerateColumns="False">
-
-      <DataGrid.Columns>
-        <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
-        <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" />
-        <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
-        <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
-        <DataGridTextColumn Binding="{Binding DriverLicense}" Width="*">
-          <DataGridTextColumn.Header>
-            <TextBlock TextAlignment="Center">
-                  Водительское удостоверение
-            </TextBlock>
-          </DataGridTextColumn.Header>
-        </DataGridTextColumn>
-      </DataGrid.Columns>
-    </DataGrid>
-  </ControlTemplate>
-
   <ControlTemplate x:Key="TransportDataGrid">
     <DataGrid SelectedItem="{Binding SelectedItem}" 
             SelectedIndex="{Binding SelectedIndex}"

@@ -1,6 +1,9 @@
-﻿using PTC_Management.EF;
+﻿using PTC_Management.Commands;
+using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
+using PTC_Management.Model.MainWindow;
+using PTC_Management.Views.Windows;
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +27,11 @@ namespace PTC_Management.ViewModel.DialogViewModels
         }
         #endregion
 
+        private readonly Destinations _destinations = new Destinations();
+        public Destinations Destinations => _destinations;
+
+
+
         #region repository
         /// <summary>
         /// Поле, обеспечивающее взаимодействие с таблицей в базе данных.
@@ -37,8 +45,12 @@ namespace PTC_Management.ViewModel.DialogViewModels
         }
         #endregion
 
+        public Command<string> DialogSelectСommand { get; private set; }
+
         public ItineraryDialogViewModel()
         {
+            DialogSelectСommand = new Command<string>(OnDialogSelectСommand);
+
             Title = "Окно " +
                 Actions.GetGenetiveName(MainWindowAction) +
                 " сотрудника";
@@ -46,6 +58,27 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CopyParameters = new CopyParameters();
             DialogItem = new Itinerary();
             CurrentViewModel = this;
+        }
+
+        public void OnDialogSelectСommand(string destination) {
+
+            SelectWindowViewModel sw = new SelectWindowViewModel();
+            switch (destination)
+            {
+                case Destinations._employee:
+                    sw.CurrentViewModel = viewModels.employee;
+                    sw.ShowWindow();
+                    //((Itinerary)DialogItem).viewModels.employee.SelectedItem;
+                    break;
+                case Destinations._routes:
+                    // TODO: Открытие окна со списком соответствующем destination
+                    break;
+                case Destinations._transport:
+                    // TODO: Открытие окна со списком соответствующем destination
+                    break;
+            }
+
+            
         }
 
         #region методы

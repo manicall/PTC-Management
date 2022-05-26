@@ -20,4 +20,5 @@
   <DataTemplate DataType="{x:Type dialogViewModels:ItineraryDialogViewModel}">
     <views:ItineraryDialogView />
   </DataTemplate>
+
 </ResourceDictionary>

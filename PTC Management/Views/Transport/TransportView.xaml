@@ -25,8 +25,27 @@
                 Content="Журнал въезда и выезда" />
       </StackPanel>
 
-      <ContentControl Template="{StaticResource TransportDataGrid}"  >
-        <ContentControl.InputBindings>
+
+
+      <DataGrid SelectedItem="{Binding SelectedItem}" 
+            SelectedIndex="{Binding SelectedIndex}"
+            ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+            MinRowHeight="20" 
+            MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
+            Name="dataGridTransport"
+            CanUserReorderColumns="False"
+            IsReadOnly="True" 
+            CanUserAddRows="false"  
+            AutoGenerateColumns="False">
+        <DataGrid.Columns>
+          <!--<DataGridTextColumn Header="Код" Binding="{Binding Id}"/>-->
+          <DataGridTextColumn Header="Название"  Binding="{Binding Name}"/>
+          <DataGridTextColumn Width="*" Header="Гос. Номер" 
+                            Binding="{Binding LicensePlate}"/>
+        </DataGrid.Columns>
+      
+      <DataGrid.InputBindings>
           <KeyBinding Command="{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Add}"
                 Key="C" />
@@ -42,9 +61,9 @@
           <MouseBinding Command="{Binding DialogCommand}"
                   CommandParameter="{Binding Actions.Update}"
                   MouseAction="LeftDoubleClick"/>
-        </ContentControl.InputBindings>
+      </DataGrid.InputBindings>
 
-        <ContentControl.ContextMenu>
+      <DataGrid.ContextMenu>
           <ContextMenu>
             <MenuItem Header ="Создать"
                 Command = "{Binding DialogCommand}"
@@ -59,8 +78,8 @@
                 Command = "{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
-        </ContentControl.ContextMenu>
-      </ContentControl>
+        </DataGrid.ContextMenu>
+      </DataGrid>
 
     </StackPanel>
   </Grid>

@@ -1,15 +1,44 @@
-﻿using PTC_Management.Model.Dialog;
+﻿using PTC_Management.EF;
+using PTC_Management.Model.Dialog;
+using PTC_Management.Model.MainWindow;
+using PTC_Management.Views.Windows;
 using PTC_Management.Windows;
+
+using System.Windows;
+
+using Size = PTC_Management.Model.MainWindow.Size;
 
 namespace PTC_Management.ViewModel.Base
 {
-    class ViewModelBaseDialog : BindableBase
+    class ViewModelBaseWindow : BindableBase
     {
-        private string mainWindowAction;
-        public string MainWindowAction
+        protected ViewModels viewModels;
+
+        protected Size size;
+        public Size Size
         {
-            get => mainWindowAction;
-            set => mainWindowAction = value;
+            get => size;
+            set => SetProperty(ref size, value);
+        }
+
+        /// <summary>
+        /// ViewModel содержимого диалогового окна
+        /// </summary>
+        protected BindableBase currentViewModel;
+        public BindableBase CurrentViewModel
+        {
+            get => currentViewModel;
+            set => SetProperty(ref currentViewModel, value);
+        }
+
+        /// <summary>
+        /// Выбранный элемент в таблице
+        /// </summary>
+        protected Entity selectedItem;
+        public Entity SelectedItem
+        {
+            get => selectedItem;
+            set => SetProperty(ref selectedItem, value);
         }
 
         private Actions actions = new Actions();
@@ -18,7 +47,7 @@ namespace PTC_Management.ViewModel.Base
         /// <summary>
         /// Окно в котором показывается текущий ViewModel
         /// </summary>
-        private Dialog window = null;
+        private Window window = null;
 
         #region Title
         /// <summary> Заголовок окна </summary>
@@ -29,6 +58,12 @@ namespace PTC_Management.ViewModel.Base
             set => title = value;
         }
         #endregion
+
+        public ViewModelBaseWindow()
+        {
+            size = new Size();
+            viewModels = new ViewModels(size);
+        }
 
         /// <summary> Методы вызываемый окном при закрытии </summary>
         protected virtual void Closed() { }
@@ -53,9 +88,17 @@ namespace PTC_Management.ViewModel.Base
         /// Указывает какое представление 
         /// будет отображаться в диалоговом окне
         /// </param>
-        public void Show()
+        public void ShowDialog()
         {
             window = new Dialog();
+            window.DataContext = this;
+            window.Closed += (sender, e) => Closed();
+            window.ShowDialog();
+        }
+
+        public void ShowWindow()
+        {
+            window = new SelectWindow();
             window.DataContext = this;
             window.Closed += (sender, e) => Closed();
             window.ShowDialog();

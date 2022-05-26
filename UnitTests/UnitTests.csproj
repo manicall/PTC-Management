@@ -56,10 +56,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PTC Management.EF\PTC Management.EF.csproj">
-      <Project>{06E06EFB-EF34-4805-B523-1A74B8DAAAF5}</Project>
-      <Name>PTC Management.EF</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PTC Management\PTC Management.csproj">
       <Project>{7fa1ef16-5003-413d-a372-311275d5728c}</Project>
       <Name>PTC Management</Name>

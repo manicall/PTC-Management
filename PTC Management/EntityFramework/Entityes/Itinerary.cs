@@ -21,25 +21,13 @@ namespace PTC_Management.EF
         public static readonly Repository<Itinerary> repository =
      new Repository<Itinerary>(new PTC_ManagementContext());
 
-        public override void Add()
-        {
-            repository.Add(this);
-        }
+        public override void Add() => repository.Add(this);
 
-        public override void Update()
-        {
-            repository.Update(this);
-        }
+        public override void Update() => repository.Update(this);
 
-        public override void Remove()
-        {
-            repository.Remove(this);
-        }
+        public override bool Remove() => repository.Remove(this);
 
-        public override void Copy(int count)
-        {
-            repository.Copy(this, count);
-        }
+        public override void Copy(int count) => repository.Copy(this, count);
 
         public override void SetFields(Entity entity)
         {

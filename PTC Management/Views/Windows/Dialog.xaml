@@ -7,7 +7,7 @@
 
     xmlns:local="clr-namespace:PTC_Management.Windows"
     mc:Ignorable="d"
-    Title="{Binding Title}" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    Title="{Binding Title}" SizeToContent="WidthAndHeight" ResizeMode="NoResize" >
 
   <Window.DataContext>
     <viewModels:DialogViewModel/>
@@ -17,7 +17,7 @@
     <ResourceDictionary Source="../../Templates/DialogTemplates.xaml" />
   </Window.Resources>
 
-  <Grid>
+  <StackPanel>
     <ContentControl Content="{Binding CurrentViewModel}" />
-  </Grid>
+  </StackPanel>
 </Window>
