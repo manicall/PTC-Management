@@ -28,6 +28,7 @@
   </ControlTemplate>
 
   
+  
   <ControlTemplate x:Key="EmployeeDataGrid">
     <DataGrid SelectedItem="{Binding SelectedItem}" 
             SelectedIndex="{Binding SelectedIndex}"
@@ -56,8 +57,27 @@
       </DataGrid.Columns>
     </DataGrid>
   </ControlTemplate>
-  
-  
 
+  <ControlTemplate x:Key="TransportDataGrid">
+    <DataGrid SelectedItem="{Binding SelectedItem}" 
+            SelectedIndex="{Binding SelectedIndex}"
+            ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+            MinRowHeight="20" 
+            MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
+            Name="dataGridTransport"
+            CanUserReorderColumns="False"
+            IsReadOnly="True" 
+            CanUserAddRows="false"
+            
+            AutoGenerateColumns="False">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Код"     Binding="{Binding Id}"/>
+        <DataGridTextColumn Header="Название"  Binding="{Binding Name}"/>
+        <DataGridTextColumn Header="Гос. Номер" 
+                            Binding="{Binding LicensePlate}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+  </ControlTemplate>
 
 </ResourceDictionary>

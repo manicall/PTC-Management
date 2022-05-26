@@ -25,7 +25,7 @@ namespace PTC_Management.ViewModel
         #region FilterText
 
         /// <summary>
-        /// Проверка подходит заданный текст под фильтр.
+        /// Проверка подходит ли заданный текст под фильтр.
         /// </summary>
         /// <param name="entity">Объект, который
         /// будет проверяться фильтром.</param>

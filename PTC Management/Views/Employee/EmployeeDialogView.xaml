@@ -11,10 +11,10 @@
        d:DesignHeight="200" d:DesignWidth="350">
 
   <UserControl.Resources>
-
     <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
       <views:EmployeeDialogView />
     </DataTemplate>
+
 
     <Style TargetType="TextBlock" >
       <Setter Property="Width" Value="170"/>
@@ -38,6 +38,7 @@
       <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
 
+    <!--Валидация полей для ввода -->
     <Style TargetType="Button" x:Key="BlackConditionButton"
            BasedOn="{StaticResource BlackButton}">
       <Setter Property="IsEnabled" Value="False"/>
@@ -60,7 +61,6 @@
 
   </UserControl.Resources>
 
-  
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
       <Button Name="buttonWriteAndClose" 

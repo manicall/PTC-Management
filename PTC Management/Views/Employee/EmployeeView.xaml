@@ -22,36 +22,35 @@
         <ContentControl.InputBindings>
           <KeyBinding Command="{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Add}"
-                Key="C"/>
+                Key="C" />
           <KeyBinding Command="{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Update}"
-                Key="U"/>
+                Key="U" />
           <KeyBinding Command="{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Remove}"
-                Key="Delete"/>
+                Key="Delete" />
           <KeyBinding Command="{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Copy}"
-                Gesture="ALT+C"
-                      />
-
+                Gesture="ALT+C" />
           <MouseBinding Command="{Binding DialogCommand}"
                   CommandParameter="{Binding Actions.Update}"
                   MouseAction="LeftDoubleClick"/>
         </ContentControl.InputBindings>
+        
         <ContentControl.ContextMenu>
           <ContextMenu>
             <MenuItem Header ="Создать"
-              Command = "{Binding DialogCommand}"
-              CommandParameter="{Binding Actions.Add}"/>
+                Command = "{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Add}"/>
             <MenuItem Header ="Изменить"
-              Command = "{Binding DialogCommand}"
-              CommandParameter="{Binding Actions.Update}"/>
+                Command = "{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Update}"/>
             <MenuItem Header ="Удалить" 
-              Command = "{Binding DialogCommand}"
-              CommandParameter="{Binding Actions.Remove}"/>
+                Command = "{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Remove}"/>
             <MenuItem Header ="Копировать" 
-              Command = "{Binding DialogCommand}"
-              CommandParameter="{Binding Actions.Copy}"/>
+                Command = "{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
         </ContentControl.ContextMenu>
       </ContentControl>
