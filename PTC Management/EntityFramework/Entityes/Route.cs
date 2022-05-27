@@ -20,9 +20,8 @@ namespace PTC_Management.EF
         [StringLength(255)]
         public string Name { get; set; }
 
-        public float? Distant { get; set; }
+        public float Distant { get; set; }
 
-        
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
 
@@ -67,9 +66,7 @@ namespace PTC_Management.EF
                 {
                     case "Number":
                         if (Number <= 0)
-                        {
                             error = "Номер должен быть больше нуля";
-                        }
                         break;
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
@@ -77,9 +74,7 @@ namespace PTC_Management.EF
                         break;
                     case "Distant":
                         if (Distant <= 0)
-                        {
-                            error = "Дистанция должна быть больше нуля";
-                        }
+                            error = "Дистанция должна быть больше нуля";     
                         break;
 
                 }

@@ -83,7 +83,8 @@ namespace PTC_Management.EF
             }
             catch (DbUpdateException ex) 
             {
-                MessageBox.Show(ex.InnerException.InnerException.Message, "Ошибка создания файла восстановления",
+                MessageBox.Show(ex.InnerException.InnerException.Message,
+                    "Ошибка создания файла восстановления",
                     MessageBoxButton.OK, MessageBoxImage.Error);
 
                 _db.Entry(item).State = EntityState.Unchanged;

@@ -11,7 +11,7 @@ using Size = PTC_Management.Model.MainWindow.Size;
 
 namespace PTC_Management.ViewModel.Base
 {
-    class ViewModelBaseEntity : BindableBase
+    class ViewModelBaseEntity : ViewModelBase
     {
         private Size mainWidowSize;
         public Size MainWidowSize
@@ -37,8 +37,6 @@ namespace PTC_Management.ViewModel.Base
 
         #endregion
 
-        private Actions actions = new Actions();
-        public Actions Actions { get => actions; }
 
         public ICommand DialogCommand { get; set; }
 
@@ -47,14 +45,6 @@ namespace PTC_Management.ViewModel.Base
             DialogCommand = new Command<string>(OnDialog);
         }
 
-
-        private Entity selectedItem;
-
-        public Entity SelectedItem
-        {
-            get => selectedItem;
-            set => selectedItem = value;
-        }
 
         public virtual void OnDialog(string action) { }
 

@@ -17,9 +17,6 @@ namespace PTC_Management
         private readonly Backup _Backup = new Backup();
         public Backup Backup => _Backup;
 
-
-        public ICommand LoadCommand { get; }
-
         public MainWindowViewModel()
         {
             // создание команды перехватывающей сообщения от кнопки
@@ -45,30 +42,9 @@ namespace PTC_Management
         /// </summary>
         private void OnNavigation(string destination)
         {
-            // TODO: проверять нужно ли подстраивать размер окна под содержимое
-            switch (destination)
-            {
-                case Destinations._employee:
-                    CurrentViewModel = viewModels.employee;
-                    break;
-                case Destinations._routes:
-                    CurrentViewModel = viewModels.route;
-                    break;
-                case Destinations._transport:
-                    CurrentViewModel = viewModels.transport;
-                    break;
-                case Destinations._itinerary:
-                    CurrentViewModel = viewModels.itinerary;
-                    Size.Width = 1000;
-                    return; // выход из функции
-                case Destinations._schedule:
-                    CurrentViewModel = viewModels.scheduleOfEmployee;
-                    break;
-                default:
-                    CurrentViewModel = null;
-                    break;
-            }
-            Size.Width = 650;
+            CurrentViewModel = viewModels.GetViewModel(destination);
+            //Size.Width = 1000;
+            //Size.Width = Size.defaultWidth;
         }
 
         /// <summary>
@@ -93,7 +69,6 @@ namespace PTC_Management
 
             if (dialog.ShowDialog() == true) Backup.CreateBackup(dialog.FileName);
         }
-
 
         private void RestoreBackUp()
         {

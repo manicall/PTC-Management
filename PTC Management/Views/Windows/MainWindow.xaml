@@ -65,7 +65,7 @@
         <Button Name="buttonRoute"
           Content = "Маршруты" 
           Command = "{Binding NavigationCommand}" 
-          CommandParameter = "{Binding Destinations.Routes}" 
+          CommandParameter = "{Binding Destinations.Route}" 
           Grid.Column = "1" />
 
         <Button Name="buttonTransport"

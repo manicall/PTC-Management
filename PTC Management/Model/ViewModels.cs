@@ -9,7 +9,7 @@ namespace PTC_Management.Model.MainWindow
         public readonly ViewModelBaseEntity route;
         public readonly ViewModelBaseEntity transport;
         public readonly ViewModelBaseEntity itinerary;
-        public readonly BindableBase scheduleOfEmployee;
+        public readonly ViewModelBaseEntity scheduleOfEmployee;
 
         public ViewModels(Size mainWindowSize)
         {
@@ -30,6 +30,18 @@ namespace PTC_Management.Model.MainWindow
 
             itinerary = new ItineraryViewModel();
             scheduleOfEmployee = new ScheduleOfEmployeeViewModel();
+        }
+
+        public ViewModelBaseEntity GetViewModel(string destination) {
+            switch (destination)
+            {
+                case Destinations.employee:  return employee;
+                case Destinations.route:     return route;
+                case Destinations.transport: return transport;
+                case Destinations.itinerary: return itinerary;
+                case Destinations.schedule : return scheduleOfEmployee;
+                default: return null;
+            }
         }
 
     }

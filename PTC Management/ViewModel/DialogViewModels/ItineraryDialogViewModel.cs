@@ -19,7 +19,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
         #region ObservableCollection
         /// <summary> Поле, содержащее коллекцию объектов класса. </summary>
         private ObservableCollection<Itinerary> observableCollection;
-
         public ObservableCollection<Itinerary> ObservableCollection
         {
             get => observableCollection;
@@ -29,8 +28,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         private readonly Destinations _destinations = new Destinations();
         public Destinations Destinations => _destinations;
-
-
 
         #region repository
         /// <summary>
@@ -60,25 +57,33 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
+        /*TODO: связять с ItineraryView*/
         public void OnDialogSelectСommand(string destination) {
+            var selectWindow = new SelectWindowViewModel();
+            selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
 
-            SelectWindowViewModel sw = new SelectWindowViewModel();
-            switch (destination)
-            {
-                case Destinations._employee:
-                    sw.CurrentViewModel = viewModels.employee;
-                    sw.ShowWindow();
-                    //((Itinerary)DialogItem).viewModels.employee.SelectedItem;
-                    break;
-                case Destinations._routes:
-                    // TODO: Открытие окна со списком соответствующем destination
-                    break;
-                case Destinations._transport:
-                    // TODO: Открытие окна со списком соответствующем destination
-                    break;
+            selectWindow.Show();
+
+            if (selectWindow.ReturnedItem != null) {
+                switch (destination)
+                {
+                    case Destinations.employee: 
+                        ((Itinerary)DialogItem).Employee = 
+                            (Employee)selectWindow.ReturnedItem;
+                        break;
+                    case Destinations.route:
+                        ((Itinerary)DialogItem).Route = 
+                            (Route)selectWindow.ReturnedItem;
+                        break;
+                    case Destinations.transport:
+                        ((Itinerary)DialogItem).Transport = 
+                            (Transport)selectWindow.ReturnedItem;
+                        break;
+
+                    default: break;
+                }
             }
 
-            
         }
 
         #region методы
@@ -88,12 +93,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// <remarks> 
         /// Примечание: Для вызова данного метода, кнопка диалогового окна 
         /// должна быть привязанна к команде DialogActionCommand.
-        /// </remarks>
-        /// <param name="dialogAction">                                         
-        /// Действие которое следует выполнить, для вызывающей кнопки.
-        /// Значение определяется нажатой кнопкой на диалоговом окне, 
-        /// через CommandParameter в xaml файле.
-        /// </param>
         protected override void OnDialogActionCommand(string dialogAction)
         {
             // выполнение метода базового класса

@@ -2,7 +2,7 @@
 
 namespace PTC_Management.ViewModel
 {
-    internal class MaintanceLogViewModel : BindableBase
+    internal class MaintanceLogViewModel : ViewModelBaseEntity
     {
     }
 }

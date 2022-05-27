@@ -4,8 +4,8 @@ namespace PTC_Management.Model.MainWindow
 {
     internal class Size : BindableBase
     {
-        private const int defaultWidth = 650;
-        private const int defaultHeight = 500;
+        public const int defaultWidth = 700;
+        public const int defaultHeight = 500;
 
         public Size(
             int width = defaultWidth,

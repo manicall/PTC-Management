@@ -2,16 +2,16 @@
 {
     public class Destinations
     {
-        public const string _employee = "employee";
-        public const string _routes = "routes";
-        public const string _transport = "transport";
-        public const string _itinerary = "itinerary";
-        public const string _schedule = "schedule";
+        public const string employee = "employee";
+        public const string route = "route";
+        public const string transport = "transport";
+        public const string itinerary = "itinerary";
+        public const string schedule = "schedule";
 
-        public string Employee => _employee;
-        public string Routes => _routes;
-        public string Transport => _transport;
-        public string Itinerary => _itinerary;
-        public string Schedule => _schedule;
+        public string Employee => employee;
+        public string Route => route;
+        public string Transport => transport;
+        public string Itinerary => itinerary;
+        public string Schedule => schedule;
     }
 }

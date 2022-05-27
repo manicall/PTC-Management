@@ -48,15 +48,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// <summary>
         /// Вызывается при нажатии на кнопку на диалоговом окне.
         /// </summary>
-        /// <remarks> 
-        /// Примечание: Для вызова данного метода, кнопка диалогового окна 
-        /// должна быть привязанна к команде DialogActionCommand.
-        /// </remarks>
-        /// <param name="dialogAction">                                         
-        /// Действие которое следует выполнить, для вызывающей кнопки.
-        /// Значение определяется нажатой кнопкой на диалоговом окне, 
-        /// через CommandParameter в xaml файле.
-        /// </param>
         protected override void OnDialogActionCommand(string dialogAction)
         {
             // выполнение метода базового класса
@@ -96,9 +87,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// <summary>
         /// Выполняет поиск записи в базе данных по ключу. 
         /// </summary>        
-        /// <returns> 
-        /// Сотрудник, ключ которого совпадает с заданным. 
-        /// </returns>
         private List<Employee> GetAdded()
         {
             return new List<Employee>

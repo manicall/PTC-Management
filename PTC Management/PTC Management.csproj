@@ -96,12 +96,13 @@
     <Compile Include="Model\Size.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="ViewModel\DialogViewModels\RouteDialogViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\Helpers\ActionPerformer.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseWindow.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseEntity.cs" />
-    <Compile Include="ViewModel\DialogViewModels\DialogViewModel.cs" />
+    <Compile Include="ViewModel\Base\DialogViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModels\EmployeeDialogViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModels\TransportDialogViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModels\EmployeeViewModel.cs" />

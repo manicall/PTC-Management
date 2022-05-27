@@ -49,7 +49,7 @@ namespace PTC_Management.ViewModel
         /// которое должно быть запущено.</param>
         private void Add()
         {
-            dialogVM.ShowDialog();
+            dialogVM.Show();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace PTC_Management.ViewModel
             dialogVM.SelectedItem = (T)entityVM.SelectedItem;
 
 
-            dialogVM.ShowDialog();
+            dialogVM.Show();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace PTC_Management.ViewModel
             dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
             dialogVM.CopyParameters.CountVisibility = "Visible";
 
-            dialogVM.ShowDialog();
+            dialogVM.Show();
         }
     }
 }

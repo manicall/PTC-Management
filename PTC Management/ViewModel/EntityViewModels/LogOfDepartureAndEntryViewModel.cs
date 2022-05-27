@@ -2,7 +2,7 @@
 
 namespace PTC_Management.ViewModel
 {
-    internal class LogOfDepartureAndEntryViewModel : BindableBase
+    internal class LogOfDepartureAndEntryViewModel : ViewModelBaseEntity
     {
     }
 }

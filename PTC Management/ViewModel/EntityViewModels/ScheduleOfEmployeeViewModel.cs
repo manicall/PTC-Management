@@ -5,7 +5,7 @@ using System.Data;
 namespace PTC_Management.ViewModel
 {
 
-    internal class ScheduleOfEmployeeViewModel : BindableBase
+    internal class ScheduleOfEmployeeViewModel : ViewModelBaseEntity
     {
         private string dataPickerValue;
         public string DataPickerValue
@@ -51,16 +51,6 @@ namespace PTC_Management.ViewModel
                 sizeQuantityTable.Columns.Add(sColumn);
             }
 
-
-
-
-
-
-
-
         }
-
     }
-
-
 }

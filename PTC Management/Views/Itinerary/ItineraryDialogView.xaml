@@ -75,9 +75,7 @@
       <TextBox Name="textBoxName" 
         Text="{
         Binding DialogItem.Name,
-        ValidatesOnDataErrors=True, 
-        
-        
+        ValidatesOnDataErrors=True,  
         NotifyOnValidationError=True, 
         UpdateSourceTrigger=PropertyChanged}" />
       <Button           

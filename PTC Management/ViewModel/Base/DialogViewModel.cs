@@ -3,13 +3,12 @@ using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.Base;
+using PTC_Management.Windows;
 
 using System;
 
 namespace PTC_Management.ViewModel
 {
-
-
     class DialogViewModel : ViewModelBaseWindow
     {
 
@@ -81,6 +80,7 @@ namespace PTC_Management.ViewModel
                 case Actions.update:
                     // чтобы содержимое таблицы не менялось
                     // одновременно с содержимым диалогового окна
+                    // используется 
                     SelectedItem.SetFields(DialogItem);
                     SelectedItem.Update();
                     break;
@@ -92,6 +92,15 @@ namespace PTC_Management.ViewModel
             }
 
             DialogItem.Id = entity.Id;
+        }
+
+        /// <summary> Метод показа ViewModel в окне </summary>
+        public void Show()
+        {
+            window = new Dialog();
+            window.DataContext = this;
+            window.Closed += (sender, e) => Closed();
+            window.ShowDialog();
         }
     }
 }

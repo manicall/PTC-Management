@@ -59,7 +59,7 @@
         <DataGrid.Columns>
           <DataGridTextColumn Header="Номер"     Binding="{Binding Number}"/>
           <DataGridTextColumn Header="Название"  Binding="{Binding Name}"/>
-          <DataGridTextColumn Header="Дистанция" Binding="{Binding Distant}"/>
+          <DataGridTextColumn Width="*" Header="Дистанция" Binding="{Binding Distant}"/>
         </DataGrid.Columns>
       </DataGrid>
     </StackPanel>
