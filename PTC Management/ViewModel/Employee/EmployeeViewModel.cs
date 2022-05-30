@@ -1,26 +1,24 @@
 ﻿using PTC_Management.EF;
+using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
+using PTC_Management.ViewModel.Helpers;
 
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
     {
-        // хранит записи, которые будут отображены в таблице
-        private ObservableCollection<Employee> observableCollection;
-        // для взаимодействия с базой данных
-        private Repository<Employee> repository;
+        ViewModelHelper<Employee, ObservableCollection<Employee>> viewModelHelper;
 
         public EmployeeViewModel()
         {
-            repository = Employee.repository;
-            observableCollection = repository.GetObservableCollection();
+            viewModelHelper =
+                new ViewModelHelper<Employee,
+                    ObservableCollection<Employee>>(Employee.repository);
 
-            Items = GetItems();
+            Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
         }
 
@@ -51,10 +49,7 @@ namespace PTC_Management.ViewModel
         #endregion 
 
         #region Методы
-        /// <summary> Возвращает представление. </summary>
-        private ICollectionView GetItems() => 
-            CollectionViewSource.GetDefaultView(observableCollection);
-
+        
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
         /// </summary>
@@ -62,8 +57,8 @@ namespace PTC_Management.ViewModel
         {
             var actionPerformer =
                  new ActionPerformer<Employee, ObservableCollection<Employee>>
-                 (this, GetDialogViewModel(action),
-                 observableCollection);
+                 (this, GetDialogViewModel(action),             
+                  viewModelHelper.ObservableCollection);
 
             actionPerformer.doAction(action);
         }
@@ -71,18 +66,16 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
         /// </summary>
-        private DialogViewModel GetDialogViewModel(string action)
+        public DialogViewModel GetDialogViewModel(string action)
         {
             return new EmployeeDialogViewModel()
             {
                 MainWindowAction = action,
-
-                Title = Actions.GetGenetiveName(action) + " сотрудника",
-
-                ObservableCollection = observableCollection,
-                Repository = repository
+                Title = ViewModels.GetDialogTitle(action, Destinations.employee),
+                ViewModelHelper = viewModelHelper
             };
         }
+
         #endregion
     }
 }

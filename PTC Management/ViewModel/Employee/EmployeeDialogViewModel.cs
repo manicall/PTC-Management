@@ -1,6 +1,7 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
+using PTC_Management.ViewModel.Helpers;
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,34 +11,18 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class EmployeeDialogViewModel : DialogViewModel
     {
-        #region ObservableCollection
-        /// <summary> Поле, содержащее коллекцию объектов класса. </summary>
-        private ObservableCollection<Employee> observableCollection;
-
-        public ObservableCollection<Employee> ObservableCollection
-        {
-            get => observableCollection;
-            set => observableCollection = value;
-        }
-        #endregion
-
-        #region repository
-        /// <summary>
-        /// Поле, обеспечивающее взаимодействие с таблицей в базе данных.
-        /// </summary>            
-        private Repository<Employee> repository;
-        public Repository<Employee> Repository
-        {
-            get => repository;
-            set => repository = value;
-        }
-        #endregion
+        ViewModelHelper<Employee, ObservableCollection<Employee>> viewModelHelper;
 
         public EmployeeDialogViewModel()
         {
             CopyParameters = new CopyParameters();
             DialogItem = new Employee();
             CurrentViewModel = this;
+        }
+
+        internal ViewModelHelper<Employee, ObservableCollection<Employee>> ViewModelHelper { 
+            get => viewModelHelper;
+            set => viewModelHelper = value; 
         }
 
         #region методы
@@ -51,55 +36,10 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
             if (dialogAction != Actions.close)
             {
-                // выполняет изменения в коллекции
-                // отображающей записи в таблице
-                DoActionForObservableCollection();
+                // выполняет изменения в коллекции отображающей записи в таблице
+                viewModelHelper.DoActionForObservableCollection(
+                    MainWindowAction, DialogItem.Id, SelectedIndex, (Employee)DialogItem);
             }
-        }
-
-        /// <summary>
-        /// Выполняет изменнение observableCollection,
-        /// на основе заданного действия.                     
-        /// </summary>
-        private void DoActionForObservableCollection()
-        {
-            List<Employee> List;
-            switch (MainWindowAction)
-            {
-                case Actions.add:
-                    List = GetAdded();
-                    break;
-                case Actions.update:
-                    UpdateObservableCollection();
-                    return; // выход из функции
-                case Actions.copy:
-                    List = repository.GetFrom(DialogItem.Id);
-                    break;
-                default: return;
-            }
-
-            foreach (var employee in List)
-                observableCollection.Add(employee);
-        }
-
-        /// <summary>
-        /// Выполняет поиск записи в базе данных по ключу. 
-        /// </summary>        
-        private List<Employee> GetAdded() => new List<Employee> 
-        {
-            repository.GetSingle(DialogItem.Id)
-        };
-
-        /// <summary>
-        /// Выполняет обновление записи в observableCollection
-        /// и обновляет представление, используещее данную коллекцию.
-        /// </summary>
-        private void UpdateObservableCollection()
-        {
-            ObservableCollection<Employee> ob = observableCollection;
-
-            ob[SelectedIndex].SetFields((Employee)DialogItem);
-            CollectionViewSource.GetDefaultView(ob).Refresh();
         }
 
         #endregion

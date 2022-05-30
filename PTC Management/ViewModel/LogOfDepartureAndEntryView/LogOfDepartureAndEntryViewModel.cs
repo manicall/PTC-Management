@@ -1,4 +1,5 @@
 ﻿using PTC_Management.EF;
+using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 
@@ -77,7 +78,7 @@ namespace PTC_Management.ViewModel
             {
                 MainWindowAction = action,
 
-                Title = Actions.GetGenetiveName(action) + " записи вьезда и выезда",
+                Title = ViewModels.GetDialogTitle(action, Destinations.logOfDepartureAndEntry),
 
                 ObservableCollection = observableCollection,
                 Repository = repository

@@ -6,6 +6,10 @@ using System.Collections.ObjectModel;
 
 namespace PTC_Management.ViewModel
 {
+    /// <summary>
+    /// Предназначен для выполнения действий, 
+    /// которые соответствуют кнопкам на главном окне
+    /// </summary>
     class ActionPerformer<T, T1>
         where T : Entity
         where T1 : ObservableCollection<T>
@@ -22,6 +26,10 @@ namespace PTC_Management.ViewModel
             this.observableCollection = observableCollection;
         }
 
+
+        /// <summary>
+        /// Вызывает действие, которое необходимо выполнить
+        /// </summary>
         public void doAction(string action)
         {
             switch (action)
@@ -43,10 +51,8 @@ namespace PTC_Management.ViewModel
 
         /// <summary>
         /// Выполняет запуск диалогового окна, 
-        /// для добавления записи в таблицу.
+        /// для добавления записи в таблицу
         /// </summary>
-        /// <param name="dialog"> Объект диалогового окна,
-        /// которое должно быть запущено.</param>
         private void Add()
         {
             dialogVM.Show();
@@ -54,10 +60,8 @@ namespace PTC_Management.ViewModel
 
         /// <summary>
         /// Выполняет запуск диалогового окна, 
-        /// для изменения записи в таблице.
+        /// для изменения записи в таблице
         /// </summary>
-        /// <param name="dialog"> Объект диалогового окна,
-        /// которое должно быть запущено.</param>
         private void Update()
         {
             if (entityVM.SelectedItem is null) return;
@@ -66,12 +70,11 @@ namespace PTC_Management.ViewModel
             dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
             dialogVM.SelectedItem = (T)entityVM.SelectedItem;
 
-
             dialogVM.Show();
         }
 
         /// <summary>
-        /// Выполняет удаление выбранной записи в таблице.
+        /// Выполняет удаление выбранной записи в таблице
         /// </summary>
         private void Remove()
         {
@@ -91,10 +94,8 @@ namespace PTC_Management.ViewModel
 
         /// <summary>
         /// Выполняет запуск диалогового окна, 
-        /// для копирования записи в таблицу.
+        /// для копирования записи в таблицу
         /// </summary>
-        /// <param name="dialog"> Объект диалогового окна,
-        /// которое должно быть запущено.</param>
         private void Copy()
         {
             if (entityVM.SelectedItem is null) return;

@@ -1,5 +1,8 @@
-﻿using PTC_Management.ViewModel;
+﻿using PTC_Management.Model.Dialog;
+using PTC_Management.ViewModel;
 using PTC_Management.ViewModel.Base;
+
+using System;
 
 namespace PTC_Management.Model.MainWindow
 {
@@ -50,6 +53,27 @@ namespace PTC_Management.Model.MainWindow
             }
         }
 
+        public static string GetDialogTitle(string action, string destination)
+        {
+            switch (destination)
+            { 
+                case Destinations.employee: 
+                    return Actions.GetGenetiveName(action) + " сотрудника";
+                case Destinations.route: 
+                    return Actions.GetGenetiveName(action) + " маршрута";
+                case Destinations.transport: 
+                    return Actions.GetGenetiveName(action) + " транспорта";
+                case Destinations.itinerary: 
+                    return Actions.GetGenetiveName(action) + " путевого листа";
+                case Destinations.schedule: 
+                    return Actions.GetGenetiveName(action) + " расписания";
+                case Destinations.maintanceLog: 
+                    return Actions.GetGenetiveName(action) + " записи технического обслуживания";
+                case Destinations.logOfDepartureAndEntry: 
+                    return Actions.GetGenetiveName(action) + " записи въезда и выезда";
+                default: return null;
+            }
+        }
     }
 
 }

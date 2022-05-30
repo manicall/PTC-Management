@@ -26,7 +26,7 @@
         public string Write => write;
         public string Close => close;
 
-        public string GetGenetiveName(string action)
+        public static string GetGenetiveName(string action)
         {
             switch (action)
             {

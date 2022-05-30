@@ -97,6 +97,7 @@
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModel\Helpers\ViewModelHelper.cs" />
     <Compile Include="ViewModel\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogViewModel.cs" />
     <Compile Include="ViewModel\MaintanceLogView\MaintanceLogDialogViewModel.cs" />
     <Compile Include="ViewModel\Route\RouteDialogViewModel.cs" />
