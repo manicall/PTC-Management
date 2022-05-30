@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\App.xaml
-20-1621138505
+2056754835
 
-64-153476560
+65420025154
 281998018946
-Resources\ControlTemplates.xaml;Styles\GeneralStyles.xaml;Templates\DialogTemplates.xaml;Templates\EntityTemplates.xaml;Views\Employee\EmployeeDialogView.xaml;Views\Employee\EmployeeView.xaml;Views\Itinerary\ItineraryDialogView.xaml;Views\Itinerary\ItineraryView.xaml;Views\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.xaml;Views\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.xaml;Views\MaintanceLogView\MaintanceLogDialogView.xaml;Views\MaintanceLogView\MaintanceLogView.xaml;Views\Route\RouteDialogView.xaml;Views\Route\RouteView.xaml;Views\ScheduleOfEmployeeView.xaml;Views\Transport\TransportDialogView.xaml;Views\Transport\TransportView.xaml;Views\Windows\Dialog.xaml;Views\Windows\MainWindow.xaml;Views\Windows\SelectWindow.xaml;
+Resources\ControlTemplates.xaml;Styles\GeneralStyles.xaml;Templates\DialogTemplates.xaml;Templates\EntityTemplates.xaml;Views\Employee\EmployeeDialogView.xaml;Views\Employee\EmployeeView.xaml;Views\Itinerary\ItineraryDialogView.xaml;Views\Itinerary\ItineraryView.xaml;Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.xaml;Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.xaml;Views\Transport\MaintanceLogView\MaintanceLogDialogView.xaml;Views\Transport\MaintanceLogView\MaintanceLogView.xaml;Views\Route\RouteDialogView.xaml;Views\Route\RouteView.xaml;Views\ScheduleOfEmployeeView.xaml;Views\Transport\TransportDialogView.xaml;Views\Transport\TransportView.xaml;Views\Windows\Dialog.xaml;Views\Windows\MainWindow.xaml;Views\Windows\SelectWindow.xaml;
 
 False
 

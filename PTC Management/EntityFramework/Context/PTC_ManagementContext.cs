@@ -2,7 +2,6 @@ using System.Data.Entity;
 
 namespace PTC_Management.EF
 {
-
     public partial class PTC_ManagementContext : DbContext
     {
         public PTC_ManagementContext()
@@ -12,10 +11,7 @@ namespace PTC_Management.EF
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Itinerary> Itinerary { get; set; }
         public virtual DbSet<LaborShift> LaborShift { get; set; }
-        public virtual DbSet<LogOfDepartureAndEntry> LogOfDepartureAndEntry 
-        { 
-            get; set;
-        }
+        public virtual DbSet<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
         public virtual DbSet<MaintanceLog> MaintanceLog { get; set; }
         public virtual DbSet<Route> Route { get; set; }
         public virtual DbSet<Transport> Transport { get; set; }

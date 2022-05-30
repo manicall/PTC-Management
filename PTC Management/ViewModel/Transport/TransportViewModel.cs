@@ -1,19 +1,24 @@
-﻿using PTC_Management.EF;
+﻿using PTC_Management.Commands;
+using PTC_Management.EF;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
 {
     internal class TransportViewModel : ViewModelBaseEntity
     {
         ViewModelHelper<Transport, ObservableCollection<Transport>> viewModelHelper;
+        public ICommand TransportInfoCommand { get; set; }
 
         public TransportViewModel()
         {
+            TransportInfoCommand = new Command<string>(OnTransportInfo);
+
             viewModelHelper =
                 new ViewModelHelper<Transport,
                     ObservableCollection<Transport>>(Transport.repository);
@@ -21,8 +26,6 @@ namespace PTC_Management.ViewModel
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
         }
-
-        #region FilterText
 
         /// <summary>
         /// Проверка подходит ли заданный текст под условие фильтра.
@@ -46,9 +49,28 @@ namespace PTC_Management.ViewModel
             //}
             return true;
         }
-        #endregion
+
+
+        private readonly Destinations _destinations = new Destinations();
+        public Destinations Destinations => _destinations;
+
 
         #region Методы
+        public void OnTransportInfo(string destination) {
+            DialogViewModel dialog;
+            switch (destination) 
+            {
+                case Destinations.maintanceLog:
+                     dialog = new MaintanceLogDialogViewModel();
+                    dialog.Show();
+                    break;
+                case Destinations.logOfDepartureAndEntry:
+                     dialog = new MaintanceLogDialogViewModel();
+                    dialog.Show();
+                    break;
+
+            }
+        }
 
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.

@@ -62,7 +62,8 @@ namespace PTC_Management.ViewModel
         public override void OnDialog(string action)
         {
             var actionPerformer =
-                 new ActionPerformer<LogOfDepartureAndEntry, ObservableCollection<LogOfDepartureAndEntry>>
+                 new ActionPerformer<LogOfDepartureAndEntry, 
+                    ObservableCollection<LogOfDepartureAndEntry>>
                  (this, GetDialogViewModel(action),
                  observableCollection);
 

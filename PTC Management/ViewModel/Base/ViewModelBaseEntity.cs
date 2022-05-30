@@ -14,29 +14,26 @@ namespace PTC_Management.ViewModel.Base
     class ViewModelBaseEntity : ViewModelBase
     {
         private Size mainWidowSize;
-        public Size MainWidowSize
-        {
-            get => mainWidowSize;
-            set => mainWidowSize = value;
-        }
-
         private ICollectionView items;
+        private int selectedIndex;
+
         public ICollectionView Items
         {
             get => items;
             set => items = value;
         }
 
-        #region SelectedIndex
-        private int selectedIndex;
         public int SelectedIndex
         {
             get { return selectedIndex; }
             set { SetProperty(ref selectedIndex, value); }
         }
 
-        #endregion
-
+        public Size MainWidowSize
+        {
+            get => mainWidowSize;
+            set => mainWidowSize = value;
+        }
 
         public ICommand DialogCommand { get; set; }
 
@@ -44,7 +41,6 @@ namespace PTC_Management.ViewModel.Base
         {
             DialogCommand = new Command<string>(OnDialog);
         }
-
 
         public virtual void OnDialog(string action) { }
 
@@ -61,6 +57,9 @@ namespace PTC_Management.ViewModel.Base
                 new PropertyMetadata("", FilterText_Changed)
                 );
 
+        /// <summary>
+        /// Событие вызываемое при изменение текста в поле фильтра
+        /// </summary>
         private static void FilterText_Changed(DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
@@ -72,11 +71,10 @@ namespace PTC_Management.ViewModel.Base
             }
         }
 
-        // необходимо переопределить в дочернем классе
+        // Необходимо переопределить в дочернем классе
         protected virtual bool Filter(object entity)
         {
             throw new NotImplementedException();
         }
-
     }
 }

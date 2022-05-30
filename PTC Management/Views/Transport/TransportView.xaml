@@ -21,12 +21,12 @@
 
       <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
         <Button Style="{StaticResource BlackButton}" Content="Журнал ТО"
-                Command="{Binding }"
+                Command="{Binding TransportInfoCommand}"
                 CommandParameter="{Binding Destinations.MaintanceLog}"
                 />
         <Button Width="auto" Style="{StaticResource BlackButton}"
                 Content="Журнал въезда и выезда" 
-                Command="{Binding }"
+                Command="{Binding TransportInfoCommand}"
                 CommandParameter="{Binding Destinations.LogOfDepartureAndEntry}"
                 />
       </StackPanel>
