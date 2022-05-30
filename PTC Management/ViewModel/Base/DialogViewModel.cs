@@ -71,6 +71,7 @@ namespace PTC_Management.ViewModel
 
         protected void DoAction(string action)
         {
+            /* взаимодействие с базой данных */
             Entity entity = DialogItem.Clone();
             switch (action)
             {
@@ -78,9 +79,6 @@ namespace PTC_Management.ViewModel
                     entity.Add();
                     break;
                 case Actions.update:
-                    // чтобы содержимое таблицы не менялось
-                    // одновременно с содержимым диалогового окна
-                    // используется 
                     SelectedItem.SetFields(DialogItem);
                     SelectedItem.Update();
                     break;

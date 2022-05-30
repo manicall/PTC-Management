@@ -80,8 +80,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="EntityFramework\Context\PTC_ManagementContext.cs" />
-    <Compile Include="EntityFramework\Date.cs" />
-    <Compile Include="EntityFramework\Employee.cs" />
     <Compile Include="EntityFramework\Entityes\Base\Entity.cs" />
     <Compile Include="EntityFramework\Entityes\Date.cs" />
     <Compile Include="EntityFramework\Entityes\Employee.cs" />
@@ -91,14 +89,7 @@
     <Compile Include="EntityFramework\Entityes\MaintanceLog.cs" />
     <Compile Include="EntityFramework\Entityes\Route.cs" />
     <Compile Include="EntityFramework\Entityes\Transport.cs" />
-    <Compile Include="EntityFramework\Itinerary.cs" />
-    <Compile Include="EntityFramework\LaborShift.cs" />
-    <Compile Include="EntityFramework\LogOfDepartureAndEntry.cs" />
-    <Compile Include="EntityFramework\MaintanceLog.cs" />
-    <Compile Include="EntityFramework\Model1.cs" />
     <Compile Include="EntityFramework\Repository\Repository.cs" />
-    <Compile Include="EntityFramework\Route.cs" />
-    <Compile Include="EntityFramework\Transport.cs" />
     <Compile Include="Model\Actions.cs" />
     <Compile Include="Model\CopyParameters.cs" />
     <Compile Include="Model\BackUp.cs" />

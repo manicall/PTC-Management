@@ -1,11 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PTC_Management.EF
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("Transport")]
     public partial class Transport : Entity, IDataErrorInfo
     {      
@@ -33,6 +33,7 @@ namespace PTC_Management.EF
 
         public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
     }
+
 
     public partial class Transport : Entity, IDataErrorInfo {
         public static readonly Repository<Transport> repository =

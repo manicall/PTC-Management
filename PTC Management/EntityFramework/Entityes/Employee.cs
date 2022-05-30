@@ -1,11 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PTC_Management.EF
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("Employee")]
     public partial class Employee : Entity, IDataErrorInfo
     {
@@ -35,6 +35,9 @@ namespace PTC_Management.EF
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
     }
+
+
+
     public partial class Employee : Entity, IDataErrorInfo
     {
         public static readonly Repository<Employee> repository =

@@ -1,8 +1,8 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PTC_Management.EF
 {
-    using System;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("Itinerary")]
     public partial class Itinerary : Entity
     {
@@ -18,6 +18,8 @@ namespace PTC_Management.EF
 
         public virtual Transport Transport { get; set; }
     }
+
+
 
     public partial class Itinerary : Entity {
         public static readonly Repository<Itinerary> repository =

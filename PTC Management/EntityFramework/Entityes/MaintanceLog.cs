@@ -1,11 +1,8 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PTC_Management.EF
 {
-using PTC_Management.EntityFramework;
-
-    using System;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("MaintanceLog")]
     public partial class MaintanceLog : Entity
     {
@@ -25,9 +22,9 @@ using PTC_Management.EntityFramework;
         public int? Mileage { get; set; }
 
         public virtual Transport Transport { get; set; }
-
-       
     }
+
+
 
     public partial class MaintanceLog : Entity
     {

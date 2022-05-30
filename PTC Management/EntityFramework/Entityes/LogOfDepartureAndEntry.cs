@@ -1,10 +1,8 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PTC_Management.EF
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
-
     [Table("LogOfDepartureAndEntry")]
     public partial class LogOfDepartureAndEntry : Entity
     {
@@ -19,6 +17,8 @@ using System.Xml.Linq;
 
         public virtual Transport Transport { get; set; }
     }
+
+
 
     public partial class LogOfDepartureAndEntry : Entity
     {

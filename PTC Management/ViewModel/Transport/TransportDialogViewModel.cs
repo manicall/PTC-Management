@@ -50,17 +50,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         #region методы
         /// <summary>
-        /// Вызывается при нажатии на кнопку на диалоговом окне.
+        /// Выполняет действие определяемое вызывающей кнопкой
         /// </summary>
-        /// <remarks> 
-        /// Примечание: Для вызова данного метода, кнопка диалогового окна 
-        /// должна быть привязанна к команде DialogActionCommand.
-        /// </remarks>
-        /// <param name="dialogAction">                                         
-        /// Действие которое следует выполнить, для вызывающей кнопки.
-        /// Значение определяется нажатой кнопкой на диалоговом окне, 
-        /// через CommandParameter в xaml файле.
-        /// </param>
         protected override void OnDialogActionCommand(string dialogAction)
         {
             // выполнение метода базового класса
