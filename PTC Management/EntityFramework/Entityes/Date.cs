@@ -12,6 +12,8 @@ namespace PTC_Management.EF
         [Column("Date", TypeName = "date")]
         public DateTime Date1 { get; set; }
 
+        public int Id { get; set; }
+
         [Required]
         [StringLength(1)]
         public string Status { get; set; }

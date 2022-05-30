@@ -29,7 +29,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// Поле, обеспечивающее взаимодействие с таблицей в базе данных.
         /// </summary>            
         private Repository<Employee> repository;
-
         public Repository<Employee> Repository
         {
             get => repository;
@@ -50,11 +49,13 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
-            // выполнение метода базового класса
+            // выполняет изменения в бд
             base.OnDialogActionCommand(dialogAction);
 
             if (dialogAction != Actions.close)
             {
+                // выполняет изменения в коллекции
+                // отображающей записи в таблице
                 DoActionForObservableCollection();
             }
         }
@@ -75,7 +76,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
                     UpdateObservableCollection();
                     return; // выход из функции
                 case Actions.copy:
-                    List = GetCopied();
+                    List = repository.GetFrom(DialogItem.Id);
                     break;
                 default: return;
             }
@@ -87,13 +88,10 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// <summary>
         /// Выполняет поиск записи в базе данных по ключу. 
         /// </summary>        
-        private List<Employee> GetAdded()
+        private List<Employee> GetAdded() => new List<Employee> 
         {
-            return new List<Employee>
-            {
-                repository.GetSingle(DialogItem.Id)
-            };
-        }
+            repository.GetSingle(DialogItem.Id)
+        };
 
         /// <summary>
         /// Выполняет обновление записи в observableCollection
@@ -107,14 +105,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CollectionViewSource.GetDefaultView(ob).Refresh();
         }
 
-        /// <summary>
-        /// Возвращает записи из таблицы,
-        /// значение ключа которых больше заданного параметра. 
-        /// </summary>
-        private List<Employee> GetCopied()
-        {
-            return repository.GetFrom(DialogItem.Id);
-        }
         #endregion
     }
 }

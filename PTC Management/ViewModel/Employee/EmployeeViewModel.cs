@@ -10,13 +10,15 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
     {
+        // хранит записи, которые будут отображены в таблице
         private ObservableCollection<Employee> observableCollection;
+        // для взаимодействия с базой данных
         private Repository<Employee> repository;
 
         public EmployeeViewModel()
         {
             repository = Employee.repository;
-            observableCollection = GetObservableCollection();
+            observableCollection = repository.GetObservableCollection();
 
             Items = GetItems();
             Items.Filter = Filter;
@@ -25,11 +27,8 @@ namespace PTC_Management.ViewModel
         #region FilterText
 
         /// <summary>
-        /// Проверка подходит ли заданный текст под фильтр.
+        /// Проверка подходит ли заданный текст под условие фильтра.
         /// </summary>
-        /// <param name="entity">Объект, который
-        /// будет проверяться фильтром.</param>
-        /// <returns>Подхоидт ли заданная запись под фильтр. </returns>
         protected override bool Filter(object entity)
         {
             Employee current = entity as Employee;
@@ -52,18 +51,9 @@ namespace PTC_Management.ViewModel
         #endregion 
 
         #region Методы
-        /// <summary> Возвращает записи из таблицы. </summary>
-        private ObservableCollection<Employee>
-            GetObservableCollection()
-        {
-            return repository.GetObservableCollection();
-        }
-
         /// <summary> Возвращает представление. </summary>
-        private ICollectionView GetItems()
-        {
-            return CollectionViewSource.GetDefaultView(observableCollection);
-        }
+        private ICollectionView GetItems() => 
+            CollectionViewSource.GetDefaultView(observableCollection);
 
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.

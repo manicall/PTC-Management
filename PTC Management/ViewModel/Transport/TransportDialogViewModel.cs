@@ -11,7 +11,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
     /// <summary>
     /// ViewModel Для представления TransportDialogViewModel
     /// </summary>
-    internal class TransportDialogViewModel : DialogViewModel
+    internal class TransportDialogViewModel
     {
         #region ObservableCollection
         /// <summary> Поле, содержащее коллекцию объектов класса. </summary>

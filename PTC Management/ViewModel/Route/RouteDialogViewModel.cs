@@ -11,7 +11,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
     /// <summary>
     /// ViewModel Для представления RouteDialogView
     /// </summary>
-    internal class RouteDialogViewModel : DialogViewModel
+    internal class RouteDialogViewModel 
     {
         #region ObservableCollection
         /// <summary> Поле, содержащее коллекцию объектов класса. </summary>

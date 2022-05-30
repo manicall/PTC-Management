@@ -14,7 +14,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
     /// <summary>
     /// ViewModel Для представления ItineraryDialogView
     /// </summary>
-    internal class ItineraryDialogViewModel : DialogViewModel
+    internal class ItineraryDialogViewModel 
     {
         #region ObservableCollection
         /// <summary> Поле, содержащее коллекцию объектов класса. </summary>
@@ -50,7 +50,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
             Title = "Окно " +
                 Actions.GetGenetiveName(MainWindowAction) +
-                " сотрудника";
+                " путевых листов";
 
             CopyParameters = new CopyParameters();
             DialogItem = new Itinerary();

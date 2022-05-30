@@ -10,13 +10,15 @@ namespace PTC_Management.ViewModel
 {
     internal class TransportViewModel : ViewModelBaseEntity
     {
+        // хранит записи, которые будут отображены в таблице
         private ObservableCollection<Transport> observableCollection;
+        // для взаимодействия с базой данных
         private Repository<Transport> repository;
 
         public TransportViewModel()
         {
             repository = Transport.repository;
-            observableCollection = GetObservableCollection();
+            observableCollection = repository.GetObservableCollection();
 
             Items = GetItems();
             Items.Filter = Filter;
@@ -25,48 +27,37 @@ namespace PTC_Management.ViewModel
         #region FilterText
 
         /// <summary>
-        /// Проверка подходит заданный текст под фильтр.
+        /// Проверка подходит ли заданный текст под условие фильтра.
         /// </summary>
-        /// <param name="entity">Объект, который
-        /// будет проверяться фильтром</param>
-        /// <returns>Подхоидт ли заданная запись под фильтр. </returns>
         protected override bool Filter(object entity)
         {
             Transport current = entity as Transport;
 
-            if (!string.IsNullOrWhiteSpace(FilterText)
-                 && !current.Id.ToString().Contains(FilterText))
-            {
-                return false;
-            }
+            //if (!string.IsNullOrWhiteSpace(FilterText)
+            //     && !current.Id.ToString().Contains(FilterText)
+            //     && (current.Surname == null ||
+            //         !current.Surname.Contains(FilterText))
+            //     && (current.Name == null ||
+            //         !current.Name.Contains(FilterText))
+            //     && (current.Patronymic == null ||
+            //         !current.Patronymic.Contains(FilterText))
+            //     && (current.DriverLicense == null ||
+            //         !current.DriverLicense.Contains(FilterText)))
+            //{
+            //    return false;
+            //}
             return true;
         }
         #endregion 
 
         #region Методы
-        /// <summary> Возвращает записи из таблицы. </summary>
-        /// <returns>записи из таблицы. </returns>
-        private ObservableCollection<Transport>
-            GetObservableCollection()
-        {
-            return repository.GetObservableCollection();
-        }
-
         /// <summary> Возвращает представление. </summary>
-        /// <returns> Преставление на основе объекта 
-        /// ObservableCollection. </returns>
-        private ICollectionView GetItems()
-        {
-            return
-                CollectionViewSource
-                .GetDefaultView(observableCollection);
-        }
+        private ICollectionView GetItems() =>
+            CollectionViewSource.GetDefaultView(observableCollection);
 
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
         /// </summary>
-        /// <param name="action">Действие, которое 
-        /// было выбрано в главном окне.</param>
         public override void OnDialog(string action)
         {
             var actionPerformer =
@@ -80,15 +71,14 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
         /// </summary>
-        /// <param name="action">Действие, которое 
-        /// было выбрано в главном окне.</param>
-        /// <returns>Диалоговое окно, 
-        /// для текущей ViewModel. </returns>
         private DialogViewModel GetDialogViewModel(string action)
         {
             return new TransportDialogViewModel()
             {
                 MainWindowAction = action,
+
+                Title = Actions.GetGenetiveName(action) + " транспорта",
+
                 ObservableCollection = observableCollection,
                 Repository = repository
             };
