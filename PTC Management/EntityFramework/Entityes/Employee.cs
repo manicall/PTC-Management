@@ -34,10 +34,11 @@ namespace PTC_Management.EF
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
-
+    }
+    public partial class Employee : Entity, IDataErrorInfo
+    {
         public static readonly Repository<Employee> repository =
-    new Repository<Employee>(new PTC_ManagementContext());
-
+            new Repository<Employee>(new PTC_ManagementContext());
 
         // переопределение методов базового класса
         public override void Add() => repository.Add(this);
@@ -61,7 +62,7 @@ namespace PTC_Management.EF
 
         public override Entity Clone()
         {
-            Employee employee = new Employee
+            return new Employee
             {
                 Id = Id,
                 Surname = Surname,
@@ -69,7 +70,6 @@ namespace PTC_Management.EF
                 Patronymic = Patronymic,
                 DriverLicense = DriverLicense
             };
-            return employee;
         }
 
         // реализация интерфейса IDataErrorInfo
@@ -115,3 +115,4 @@ namespace PTC_Management.EF
         }
     }
 }
+

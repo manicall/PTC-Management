@@ -17,9 +17,11 @@ namespace PTC_Management.EF
         public virtual Route Route { get; set; }
 
         public virtual Transport Transport { get; set; }
+    }
 
+    public partial class Itinerary : Entity {
         public static readonly Repository<Itinerary> repository =
-     new Repository<Itinerary>(new PTC_ManagementContext());
+            new Repository<Itinerary>(new PTC_ManagementContext());
 
         public override void Add() => repository.Add(this);
 

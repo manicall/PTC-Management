@@ -52,8 +52,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Managem
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Styles\GeneralStyles.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportDialogView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.g.cs
@@ -77,8 +75,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\App.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\DialogTemplates.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportDialogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\TransportView.baml
@@ -104,3 +100,11 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Managem
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\SelectWindow.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\EntityTemplates.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\SelectWindow.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView\DialogLogOfDepartureAndEntryView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView\DialogMaintanceLogView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView\MaintanceLogView.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView\DialogLogOfDepartureAndEntryView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView\DialogMaintanceLogView.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\MaintanceLogView\MaintanceLogView.baml

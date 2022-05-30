@@ -3,17 +3,11 @@ namespace PTC_Management.EF
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
     [Table("LogOfDepartureAndEntry")]
-    public partial class LogOfDepartureAndEntry
+    public partial class LogOfDepartureAndEntry : Entity
     {
-        [Key]
-        [Column(Order = 0)]
-        public int Id { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdTransport { get; set; }
 
         [Column(TypeName = "date")]
@@ -21,8 +15,46 @@ namespace PTC_Management.EF
 
         public TimeSpan TimeOnDeparture { get; set; }
 
-        public TimeSpan? TimeWhenReturning { get; set; }
+        public TimeSpan TimeWhenReturning { get; set; }
 
         public virtual Transport Transport { get; set; }
     }
+
+    public partial class LogOfDepartureAndEntry : Entity
+    {
+        public static readonly Repository<LogOfDepartureAndEntry> repository =
+            new Repository<LogOfDepartureAndEntry>(new PTC_ManagementContext());
+
+        // переопределение методов базового класса
+        public override void Add() => repository.Add(this);
+
+        public override void Update() => repository.Update(this);
+
+        public override bool Remove() => repository.Remove(this);
+
+        public override void Copy(int count) => repository.Copy(this, count);
+
+        public override void SetFields(Entity entity)
+        {
+            if (entity is LogOfDepartureAndEntry item)
+            {
+                IdTransport = item.IdTransport;
+                Date = item.Date;
+                TimeOnDeparture = item.TimeOnDeparture;
+                TimeWhenReturning = item.TimeWhenReturning;
+            }
+        }
+
+        public override Entity Clone() { 
+            return new LogOfDepartureAndEntry
+            {
+                Id = Id,
+                IdTransport = IdTransport,
+                Date = Date,
+                TimeOnDeparture = TimeOnDeparture,
+                TimeWhenReturning = TimeWhenReturning
+            };
+        }
+    }
+
 }

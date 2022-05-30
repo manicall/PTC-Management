@@ -24,7 +24,9 @@ namespace PTC_Management.EF
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
-
+    }
+    public partial class Route : Entity, IDataErrorInfo
+    {
         public static readonly Repository<Route> repository =
             new Repository<Route>(new PTC_ManagementContext());
 
@@ -74,7 +76,7 @@ namespace PTC_Management.EF
                         break;
                     case "Distant":
                         if (Distant <= 0)
-                            error = "Дистанция должна быть больше нуля";     
+                            error = "Дистанция должна быть больше нуля";
                         break;
 
                 }

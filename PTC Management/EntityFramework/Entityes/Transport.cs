@@ -8,19 +8,13 @@ namespace PTC_Management.EF
 
     [Table("Transport")]
     public partial class Transport : Entity, IDataErrorInfo
-    {
-         
+    {      
         public Transport()
         {
             Itinerary = new HashSet<Itinerary>();
             LogOfDepartureAndEntry = new HashSet<LogOfDepartureAndEntry>();
             MaintanceLog = new HashSet<MaintanceLog>();
         }
-
-
-
-
-        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -37,9 +31,10 @@ namespace PTC_Management.EF
         public virtual ICollection<LogOfDepartureAndEntry> 
             LogOfDepartureAndEntry { get; set; }
 
-        
         public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
+    }
 
+    public partial class Transport : Entity, IDataErrorInfo {
         public static readonly Repository<Transport> repository =
             new Repository<Transport>(new PTC_ManagementContext());
 

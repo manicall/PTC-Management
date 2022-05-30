@@ -2,8 +2,8 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
   xmlns:views = "clr-namespace:PTC_Management.Views"  
-  xmlns:dialogViewModels =
-    "clr-namespace:PTC_Management.ViewModel.DialogViewModels" 
+  xmlns:dialogViewModels = "clr-namespace:PTC_Management.ViewModel.DialogViewModels"  
+  xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
           >
   <DataTemplate DataType="{x:Type dialogViewModels:EmployeeDialogViewModel}">
     <views:EmployeeDialogView />
@@ -21,4 +21,15 @@
     <views:ItineraryDialogView />
   </DataTemplate>
 
+  
+  
+  
+  <DataTemplate DataType="{x:Type viewModels:MaintanceLogViewModel}">
+    <views:MaintanceLogView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type viewModels:LogOfDepartureAndEntryViewModel}">
+    <views:LogOfDepartureAndEntryView />
+  </DataTemplate>
+  
 </ResourceDictionary>

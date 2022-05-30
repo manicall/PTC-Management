@@ -1,21 +1,22 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Linq;
 
-namespace PTC_Management.EF
+namespace PTC_Management.EntityFramework
 {
-
-    public partial class PTC_ManagementContext : DbContext
+    public partial class Model1 : DbContext
     {
-        public PTC_ManagementContext()
-            : base("name=PTC_ManagementConnection") { }
+        public Model1()
+            : base("name=Model11")
+        {
+        }
 
         public virtual DbSet<Date> Date { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Itinerary> Itinerary { get; set; }
         public virtual DbSet<LaborShift> LaborShift { get; set; }
-        public virtual DbSet<LogOfDepartureAndEntry> LogOfDepartureAndEntry 
-        { 
-            get; set;
-        }
+        public virtual DbSet<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
         public virtual DbSet<MaintanceLog> MaintanceLog { get; set; }
         public virtual DbSet<Route> Route { get; set; }
         public virtual DbSet<Transport> Transport { get; set; }
@@ -56,10 +57,6 @@ namespace PTC_Management.EF
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<LaborShift>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<LaborShift>()
                 .HasMany(e => e.Date)
                 .WithRequired(e => e.LaborShift)
                 .HasForeignKey(e => e.IdLaborShift)
@@ -77,10 +74,6 @@ namespace PTC_Management.EF
 
             modelBuilder.Entity<Transport>()
                 .Property(e => e.Name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Transport>()
-                .Property(e => e.LicensePlate)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Transport>()
@@ -102,5 +95,4 @@ namespace PTC_Management.EF
                 .WillCascadeOnDelete(false);
         }
     }
-
 }
