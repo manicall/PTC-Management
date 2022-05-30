@@ -8,15 +8,11 @@ using System.Windows.Data;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
-    /// <summary>
-    /// ViewModel Для представления TransportDialogViewModel
-    /// </summary>
-    internal class TransportDialogViewModel
+    internal class TransportDialogViewModel : DialogViewModel
     {
         #region ObservableCollection
         /// <summary> Поле, содержащее коллекцию объектов класса. </summary>
         private ObservableCollection<Transport> observableCollection;
-
         public ObservableCollection<Transport> ObservableCollection
         {
             get => observableCollection;
@@ -29,7 +25,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// Поле, обеспечивающее взаимодействие с таблицей в базе данных.
         /// </summary>            
         private Repository<Transport> repository;
-
         public Repository<Transport> Repository
         {
             get => repository;
@@ -39,10 +34,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         public TransportDialogViewModel()
         {
-            Title = "Окно " +
-                Actions.GetGenetiveName(MainWindowAction) +
-                " транспорта";
-
             CopyParameters = new CopyParameters();
             DialogItem = new Transport();
             CurrentViewModel = this;
@@ -50,15 +41,17 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         #region методы
         /// <summary>
-        /// Выполняет действие определяемое вызывающей кнопкой
+        /// Вызывается при нажатии на кнопку на диалоговом окне.
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
-            // выполнение метода базового класса
+            // выполняет изменения в бд
             base.OnDialogActionCommand(dialogAction);
 
             if (dialogAction != Actions.close)
             {
+                // выполняет изменения в коллекции
+                // отображающей записи в таблице
                 DoActionForObservableCollection();
             }
         }
@@ -79,28 +72,22 @@ namespace PTC_Management.ViewModel.DialogViewModels
                     UpdateObservableCollection();
                     return; // выход из функции
                 case Actions.copy:
-                    List = GetCopied();
+                    List = repository.GetFrom(DialogItem.Id);
                     break;
                 default: return;
             }
 
-            foreach (var transport in List)
-                observableCollection.Add(transport);
+            foreach (var employee in List)
+                observableCollection.Add(employee);
         }
 
         /// <summary>
         /// Выполняет поиск записи в базе данных по ключу. 
         /// </summary>        
-        /// <returns> 
-        /// Сотрудник, ключ которого совпадает с заданным. 
-        /// </returns>
-        private List<Transport> GetAdded()
+        private List<Transport> GetAdded() => new List<Transport>
         {
-            return new List<Transport>
-            {
-                repository.GetSingle(DialogItem.Id)
-            };
-        }
+            repository.GetSingle(DialogItem.Id)
+        };
 
         /// <summary>
         /// Выполняет обновление записи в observableCollection
@@ -114,14 +101,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CollectionViewSource.GetDefaultView(ob).Refresh();
         }
 
-        /// <summary>
-        /// Возвращает записи из таблицы,
-        /// значение ключа которых больше заданного параметра. 
-        /// </summary>
-        private List<Transport> GetCopied()
-        {
-            return repository.GetFrom(DialogItem.Id);
-        }
         #endregion
     }
 }

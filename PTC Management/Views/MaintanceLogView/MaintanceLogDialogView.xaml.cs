@@ -18,9 +18,9 @@ namespace PTC_Management.Views
     /// <summary>
     /// Логика взаимодействия для DialogMaintanceLogView.xaml
     /// </summary>
-    public partial class DialogMaintanceLogView : UserControl
+    public partial class MaintanceLogDialogView : UserControl
     {
-        public DialogMaintanceLogView()
+        public MaintanceLogDialogView()
         {
             InitializeComponent();
         }

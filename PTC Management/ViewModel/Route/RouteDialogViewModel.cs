@@ -8,10 +8,7 @@ using System.Windows.Data;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
-    /// <summary>
-    /// ViewModel Для представления RouteDialogView
-    /// </summary>
-    internal class RouteDialogViewModel 
+    internal class RouteDialogViewModel : DialogViewModel
     {
         #region ObservableCollection
         /// <summary> Поле, содержащее коллекцию объектов класса. </summary>
@@ -29,7 +26,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// Поле, обеспечивающее взаимодействие с таблицей в базе данных.
         /// </summary>            
         private Repository<Route> repository;
-
         public Repository<Route> Repository
         {
             get => repository;
@@ -39,10 +35,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         public RouteDialogViewModel()
         {
-            Title = "Окно " +
-                Actions.GetGenetiveName(MainWindowAction) +
-                " маршрута";
-
             CopyParameters = new CopyParameters();
             DialogItem = new Route();
             CurrentViewModel = this;
@@ -52,17 +44,15 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// <summary>
         /// Вызывается при нажатии на кнопку на диалоговом окне.
         /// </summary>
-        /// <remarks> 
-        /// Примечание: Для вызова данного метода, кнопка диалогового окна 
-        /// должна быть привязанна к команде DialogActionCommand.
-        /// </remarks>
         protected override void OnDialogActionCommand(string dialogAction)
         {
-            // выполнение метода базового класса
+            // выполняет изменения в бд
             base.OnDialogActionCommand(dialogAction);
 
             if (dialogAction != Actions.close)
             {
+                // выполняет изменения в коллекции
+                // отображающей записи в таблице
                 DoActionForObservableCollection();
             }
         }
@@ -83,25 +73,22 @@ namespace PTC_Management.ViewModel.DialogViewModels
                     UpdateObservableCollection();
                     return; // выход из функции
                 case Actions.copy:
-                    List = GetCopied();
+                    List = repository.GetFrom(DialogItem.Id);
                     break;
                 default: return;
             }
 
-            foreach (var route in List)
-                observableCollection.Add(route);
+            foreach (var employee in List)
+                observableCollection.Add(employee);
         }
 
         /// <summary>
         /// Выполняет поиск записи в базе данных по ключу. 
         /// </summary>        
-        private List<Route> GetAdded()
+        private List<Route> GetAdded() => new List<Route>
         {
-            return new List<Route>
-            {
-                repository.GetSingle(DialogItem.Id)
-            };
-        }
+            repository.GetSingle(DialogItem.Id)
+        };
 
         /// <summary>
         /// Выполняет обновление записи в observableCollection
@@ -115,14 +102,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CollectionViewSource.GetDefaultView(ob).Refresh();
         }
 
-        /// <summary>
-        /// Возвращает записи из таблицы,
-        /// значение ключа которых больше заданного параметра. 
-        /// </summary>
-        private List<Route> GetCopied()
-        {
-            return repository.GetFrom(DialogItem.Id);
-        }
         #endregion
     }
 }

@@ -1,8 +1,6 @@
-﻿using PTC_Management.Commands;
-using PTC_Management.EF;
+﻿using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
-using PTC_Management.Model.MainWindow;
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,13 +8,13 @@ using System.Windows.Data;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
-    internal class ItineraryDialogViewModel : DialogViewModel
+    internal class LogOfDepartureAndEntryDialogViewModel : DialogViewModel
     {
         #region ObservableCollection
         /// <summary> Поле, содержащее коллекцию объектов класса. </summary>
-        private ObservableCollection<Itinerary> observableCollection;
+        private ObservableCollection<LogOfDepartureAndEntry> observableCollection;
 
-        public ObservableCollection<Itinerary> ObservableCollection
+        public ObservableCollection<LogOfDepartureAndEntry> ObservableCollection
         {
             get => observableCollection;
             set => observableCollection = value;
@@ -27,57 +25,19 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// <summary>
         /// Поле, обеспечивающее взаимодействие с таблицей в базе данных.
         /// </summary>            
-        private Repository<Itinerary> repository;
-        public Repository<Itinerary> Repository
+        private Repository<LogOfDepartureAndEntry> repository;
+        public Repository<LogOfDepartureAndEntry> Repository
         {
             get => repository;
             set => repository = value;
         }
         #endregion
 
-        private readonly Destinations _destinations = new Destinations();
-        public Destinations Destinations => _destinations;
-
-        public Command<string> DialogSelectСommand { get; private set; }
-
-        public ItineraryDialogViewModel()
+        public LogOfDepartureAndEntryDialogViewModel()
         {
-            DialogSelectСommand = new Command<string>(OnDialogSelectСommand);
-
             CopyParameters = new CopyParameters();
-            DialogItem = new Itinerary();
+            DialogItem = new LogOfDepartureAndEntry();
             CurrentViewModel = this;
-        }
-
-        /*TODO: связять с ItineraryView*/
-        public void OnDialogSelectСommand(string destination)
-        {
-            var selectWindow = new SelectWindowViewModel();
-            selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
-
-            selectWindow.Show();
-
-            if (selectWindow.ReturnedItem != null)
-            {
-                switch (destination)
-                {
-                    case Destinations.employee:
-                        ((Itinerary)DialogItem).Employee =
-                            (Employee)selectWindow.ReturnedItem;
-                        break;
-                    case Destinations.route:
-                        ((Itinerary)DialogItem).Route =
-                            (Route)selectWindow.ReturnedItem;
-                        break;
-                    case Destinations.transport:
-                        ((Itinerary)DialogItem).Transport =
-                            (Transport)selectWindow.ReturnedItem;
-                        break;
-
-                    default: break;
-                }
-            }
-
         }
 
         #region методы
@@ -103,7 +63,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// </summary>
         private void DoActionForObservableCollection()
         {
-            List<Itinerary> List;
+            List<LogOfDepartureAndEntry> List;
             switch (MainWindowAction)
             {
                 case Actions.add:
@@ -118,14 +78,14 @@ namespace PTC_Management.ViewModel.DialogViewModels
                 default: return;
             }
 
-            foreach (var employee in List)
-                observableCollection.Add(employee);
+            foreach (var LogOfDepartureAndEntry in List)
+                observableCollection.Add(LogOfDepartureAndEntry);
         }
 
         /// <summary>
         /// Выполняет поиск записи в базе данных по ключу. 
         /// </summary>        
-        private List<Itinerary> GetAdded() => new List<Itinerary>
+        private List<LogOfDepartureAndEntry> GetAdded() => new List<LogOfDepartureAndEntry>
         {
             repository.GetSingle(DialogItem.Id)
         };
@@ -136,9 +96,9 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /// </summary>
         private void UpdateObservableCollection()
         {
-            ObservableCollection<Itinerary> ob = observableCollection;
+            ObservableCollection<LogOfDepartureAndEntry> ob = observableCollection;
 
-            ob[SelectedIndex].SetFields((Itinerary)DialogItem);
+            ob[SelectedIndex].SetFields((LogOfDepartureAndEntry)DialogItem);
             CollectionViewSource.GetDefaultView(ob).Refresh();
         }
 

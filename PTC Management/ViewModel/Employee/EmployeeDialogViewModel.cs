@@ -8,9 +8,6 @@ using System.Windows.Data;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
-    /// <summary>
-    /// ViewModel Для представления EmployeeDialogView
-    /// </summary>
     internal class EmployeeDialogViewModel : DialogViewModel
     {
         #region ObservableCollection

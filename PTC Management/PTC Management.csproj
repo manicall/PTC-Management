@@ -97,6 +97,8 @@
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModel\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogViewModel.cs" />
+    <Compile Include="ViewModel\MaintanceLogView\MaintanceLogDialogViewModel.cs" />
     <Compile Include="ViewModel\Route\RouteDialogViewModel.cs" />
     <Compile Include="ViewModel\Helpers\ActionPerformer.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
@@ -129,14 +131,14 @@
     <Compile Include="Views\Itinerary\ItineraryView.xaml.cs">
       <DependentUpon>ItineraryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LogOfDepartureAndEntryView\DialogLogOfDepartureAndEntryView.xaml.cs">
-      <DependentUpon>DialogLogOfDepartureAndEntryView.xaml</DependentUpon>
+    <Compile Include="Views\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.xaml.cs">
+      <DependentUpon>LogOfDepartureAndEntryDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.xaml.cs">
       <DependentUpon>LogOfDepartureAndEntryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MaintanceLogView\DialogMaintanceLogView.xaml.cs">
-      <DependentUpon>DialogMaintanceLogView.xaml</DependentUpon>
+    <Compile Include="Views\MaintanceLogView\MaintanceLogDialogView.xaml.cs">
+      <DependentUpon>MaintanceLogDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MaintanceLogView\MaintanceLogView.xaml.cs">
       <DependentUpon>MaintanceLogView.xaml</DependentUpon>
@@ -202,7 +204,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\LogOfDepartureAndEntryView\DialogLogOfDepartureAndEntryView.xaml">
+    <Page Include="Views\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -210,7 +212,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MaintanceLogView\DialogMaintanceLogView.xaml">
+    <Page Include="Views\MaintanceLogView\MaintanceLogDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
