@@ -8,28 +8,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PTC_Management.EF
 {
     [Table("Transport")]
-    public partial class Transport : Entity, IDataErrorInfo
-    {      
+    public partial class Transport : Entity
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Transport()
         {
-            Itinerary = new ObservableCollection<Itinerary>();
-            LogOfDepartureAndEntry = new ObservableCollection<LogOfDepartureAndEntry>();
-            MaintanceLog = new ObservableCollection<MaintanceLog>();
+            Itinerary = new HashSet<Itinerary>();
         }
 
-        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
-        [Required]
         [StringLength(10)]
         public string LicensePlate { get; set; }
 
-        public virtual ObservableCollection<Itinerary> Itinerary { get; set; }
-
-        public virtual ObservableCollection<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
-
-        public virtual ObservableCollection<MaintanceLog> MaintanceLog { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Itinerary> Itinerary { get; set; }
     }
 
 

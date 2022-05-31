@@ -6,14 +6,14 @@ namespace PTC_Management.EF
     [Table("MaintanceLog")]
     public partial class MaintanceLog : Entity
     {
-        public int IdTransport { get; set; }
+        public int IdItinerary { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? Date { get; set; }
 
-        public DateTime? TimeOnDeparture { get; set; }
+        public TimeSpan? TimeOnDeparture { get; set; }
 
-        public DateTime? TimeWhenReturning { get; set; }
+        public TimeSpan? TimeWhenReturning { get; set; }
 
         public int? SpeedometerInfoOnDeparture { get; set; }
 
@@ -21,9 +21,8 @@ namespace PTC_Management.EF
 
         public int? Mileage { get; set; }
 
-        public virtual Transport Transport { get; set; }
+        public virtual Itinerary Itinerary { get; set; }
     }
-
 
 
     public partial class MaintanceLog : Entity
@@ -44,13 +43,14 @@ namespace PTC_Management.EF
         {
             if (entity is MaintanceLog item)
             {
-                IdTransport = item.IdTransport;
+                IdItinerary = item.IdItinerary;
                 Date = item.Date;
                 TimeOnDeparture = item.TimeOnDeparture;
                 TimeWhenReturning = item.TimeWhenReturning;
                 SpeedometerInfoOnDeparture = item.SpeedometerInfoOnDeparture;
                 SpeedometerInfoWhenReturning = item.SpeedometerInfoWhenReturning;
                 Mileage = item.Mileage;
+                Itinerary = Itinerary;
             }
         }
 
@@ -58,13 +58,14 @@ namespace PTC_Management.EF
         {
             return new MaintanceLog
             {
-                IdTransport = IdTransport,
+                IdItinerary = IdItinerary,
                 Date = Date,
                 TimeOnDeparture = TimeOnDeparture,
                 TimeWhenReturning = TimeWhenReturning,
                 SpeedometerInfoOnDeparture = SpeedometerInfoOnDeparture,
                 SpeedometerInfoWhenReturning = SpeedometerInfoWhenReturning,
-                Mileage = Mileage
+                Mileage = Mileage,
+                Itinerary = Itinerary
             };
         }
     }

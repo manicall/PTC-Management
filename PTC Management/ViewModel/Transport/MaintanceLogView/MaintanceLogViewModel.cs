@@ -4,6 +4,7 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 
@@ -30,7 +31,8 @@ namespace PTC_Management.ViewModel
                 new ViewModelHelper<MaintanceLog,
                     ObservableCollection<MaintanceLog>>(MaintanceLog.repository);
 
-            Items = CollectionViewSource.GetDefaultView(selectedTransport.MaintanceLog);
+            Items = CollectionViewSource.GetDefaultView(new List<MaintanceLog>() { new MaintanceLog() { Id = 1 } }); ;
+
             Items.Filter = Filter;
         }
 

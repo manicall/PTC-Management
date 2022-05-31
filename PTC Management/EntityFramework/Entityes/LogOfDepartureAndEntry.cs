@@ -6,16 +6,16 @@ namespace PTC_Management.EF
     [Table("LogOfDepartureAndEntry")]
     public partial class LogOfDepartureAndEntry : Entity
     {
-        public int IdTransport { get; set; }
+        public int IdItinerary { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
-        public TimeSpan TimeOnDeparture { get; set; }
+        public TimeSpan? TimeOnDeparture { get; set; }
 
-        public TimeSpan TimeWhenReturning { get; set; }
+        public TimeSpan? TimeWhenReturning { get; set; }
 
-        public virtual Transport Transport { get; set; }
+        public virtual Itinerary Itinerary { get; set; }
     }
 
 
@@ -38,10 +38,11 @@ namespace PTC_Management.EF
         {
             if (entity is LogOfDepartureAndEntry item)
             {
-                IdTransport = item.IdTransport;
+                IdItinerary = item.IdItinerary;
                 Date = item.Date;
                 TimeOnDeparture = item.TimeOnDeparture;
                 TimeWhenReturning = item.TimeWhenReturning;
+                Itinerary = Itinerary;
             }
         }
 
@@ -49,10 +50,11 @@ namespace PTC_Management.EF
             return new LogOfDepartureAndEntry
             {
                 Id = Id,
-                IdTransport = IdTransport,
+                IdItinerary = IdItinerary,
                 Date = Date,
                 TimeOnDeparture = TimeOnDeparture,
-                TimeWhenReturning = TimeWhenReturning
+                TimeWhenReturning = TimeWhenReturning,
+                Itinerary = Itinerary
             };
         }
     }

@@ -51,9 +51,17 @@ namespace PTC_Management.EF
                 .HasForeignKey(e => e.IdEmployee)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<LaborShift>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
+            modelBuilder.Entity<Itinerary>()
+                .HasMany(e => e.LogOfDepartureAndEntry)
+                .WithRequired(e => e.Itinerary)
+                .HasForeignKey(e => e.IdItinerary)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Itinerary>()
+                .HasMany(e => e.MaintanceLog)
+                .WithRequired(e => e.Itinerary)
+                .HasForeignKey(e => e.IdItinerary)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<LaborShift>()
                 .HasMany(e => e.Date)
@@ -76,23 +84,7 @@ namespace PTC_Management.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Transport>()
-                .Property(e => e.LicensePlate)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Transport>()
                 .HasMany(e => e.Itinerary)
-                .WithRequired(e => e.Transport)
-                .HasForeignKey(e => e.IdTransport)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Transport>()
-                .HasMany(e => e.LogOfDepartureAndEntry)
-                .WithRequired(e => e.Transport)
-                .HasForeignKey(e => e.IdTransport)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Transport>()
-                .HasMany(e => e.MaintanceLog)
                 .WithRequired(e => e.Transport)
                 .HasForeignKey(e => e.IdTransport)
                 .WillCascadeOnDelete(false);

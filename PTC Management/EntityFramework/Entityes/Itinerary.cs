@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PTC_Management.EF
@@ -6,6 +7,13 @@ namespace PTC_Management.EF
     [Table("Itinerary")]
     public partial class Itinerary : Entity
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Itinerary()
+        {
+            LogOfDepartureAndEntry = new HashSet<LogOfDepartureAndEntry>();
+            MaintanceLog = new HashSet<MaintanceLog>();
+        }
+
         public int IdRoute { get; set; }
 
         public int IdTransport { get; set; }
@@ -17,6 +25,12 @@ namespace PTC_Management.EF
         public virtual Route Route { get; set; }
 
         public virtual Transport Transport { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
     }
 
 
