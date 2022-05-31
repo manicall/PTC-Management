@@ -11,8 +11,6 @@ namespace PTC_Management.ViewModel
 {
     class DialogViewModel : ViewModelBaseWindow
     {
-
-
         /// <summary>
         /// Действие которое было выбрано в главном окне
         /// </summary>

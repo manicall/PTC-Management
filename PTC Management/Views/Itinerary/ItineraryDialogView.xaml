@@ -13,7 +13,6 @@
 
     <Style TargetType="TextBox" >
       <Setter Property="Width" Value="150"/>
-
     </Style>
 
     <Style TargetType="StackPanel" >
@@ -55,15 +54,15 @@
     </StackPanel>
     
     <StackPanel >
-      <TextBlock Name="textBlockNumber" Text="Сотрудник" />
+      <TextBlock Name="textBlockEmployee" Text="Сотрудник" />
       <TextBox 
-        Name="textBoxNumber"  
+        Name="textBoxEmployee"  
         Text="{
-        Binding DialogItem.Number, 
-        ValidatesOnDataErrors=True, 
-        NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged}" />
-      
+        Binding DialogItem.Employee.Surname,
+        UpdateSourceTrigger=PropertyChanged,
+        Mode=TwoWay}"
+        />
+
       <Button           
               Command="{Binding DialogSelectСommand }"
               CommandParameter="{Binding Destinations.Employee}" 
@@ -71,8 +70,8 @@
     </StackPanel>
     
     <StackPanel >
-      <TextBlock Name="textBlockName" Text="Транспорт" />
-      <TextBox Name="textBoxName" 
+      <TextBlock Name="textBlockTransport" Text="Транспорт" />
+      <TextBox Name="textBoxTransport" 
         Text="{
         Binding DialogItem.Name,
         ValidatesOnDataErrors=True,  
@@ -84,8 +83,8 @@
               Margin="0 0 35 0" Width="auto">Выбрать</Button>
     </StackPanel>
     <StackPanel >
-      <TextBlock Name="textBlockDistant" Text="Маршрут" />
-      <TextBox Name="textBoxDistant" 
+      <TextBlock Name="textBlockRoute" Text="Маршрут" />
+      <TextBox Name="textBoxRoute" 
         Text="{
         Binding DialogItem.Distant,
         ValidatesOnDataErrors=True, 

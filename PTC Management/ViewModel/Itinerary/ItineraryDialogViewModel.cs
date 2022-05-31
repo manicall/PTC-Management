@@ -54,6 +54,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
         /*TODO: связять с ItineraryView*/
         public void OnDialogSelectСommand(string destination)
         {
+
+
             var selectWindow = new SelectWindowViewModel();
             selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
 
@@ -66,14 +68,23 @@ namespace PTC_Management.ViewModel.DialogViewModels
                     case Destinations.employee:
                         ((Itinerary)DialogItem).Employee =
                             (Employee)selectWindow.ReturnedItem;
+
+                        ((Itinerary)DialogItem).IdEmployee =
+                            ((Employee)selectWindow.ReturnedItem).Id;
                         break;
                     case Destinations.route:
                         ((Itinerary)DialogItem).Route =
                             (Route)selectWindow.ReturnedItem;
+
+                        ((Itinerary)DialogItem).IdRoute =
+                            ((Route)selectWindow.ReturnedItem).Id;
                         break;
                     case Destinations.transport:
                         ((Itinerary)DialogItem).Transport =
                             (Transport)selectWindow.ReturnedItem;
+
+                        ((Itinerary)DialogItem).IdTransport =
+                            ((Transport)selectWindow.ReturnedItem).Id;
                         break;
 
                     default: break;

@@ -12,11 +12,11 @@ namespace PTC_Management.EF
 
         public int IdEmployee { get; set; }
 
-        public virtual Employee Employee { get; set; }
+        public Employee Employee { get; set; }
 
-        public virtual Route Route { get; set; }
+        public Route Route { get; set; }
 
-        public virtual Transport Transport { get; set; }
+        public Transport Transport { get; set; }
     }
 
 
@@ -54,29 +54,29 @@ namespace PTC_Management.EF
             return itinerary;
         }
 
-        // реализация интерфейса IDataErrorInfo
-        // позволяет обрабатывать ошибки,
-        // допускаемые в полях для ввода
-        public string this[string columnName]
-        {
-            get
-            {
-                string error = null;
-                switch (columnName)
-                {
-                    case "IdRoute":
-                        break;
-                    case "IdTransport":
-                        break;
-                    case "IdEmployee":
-                        break;
-                }
-                return error;
-            }
-        }
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
+        //// реализация интерфейса IDataErrorInfo
+        //// позволяет обрабатывать ошибки,
+        //// допускаемые в полях для ввода
+        //public string this[string columnName]
+        //{
+        //    get
+        //    {
+        //        string error = null;
+        //        switch (columnName)
+        //        {
+        //            case "IdRoute":
+        //                break;
+        //            case "IdTransport":
+        //                break;
+        //            case "IdEmployee":
+        //                break;
+        //        }
+        //        return error;
+        //    }
+        //}
+        //public string Error
+        //{
+        //    //get { throw new NotImplementedException(); }
+        //}
     }
 }

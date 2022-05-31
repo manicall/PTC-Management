@@ -41,15 +41,22 @@ namespace PTC_Management.EF
         /// </summary>
         public ObservableCollection<T> GetObservableCollection()
         {
-            try
-            {
-                _set.Load();
-                return _set.Local;
-            }
-            catch (Exception ex) { 
-                MessageBox.Show(ex.Message);
-                return new ObservableCollection<T>();
-            }
+
+            _set.Load();
+            return _set.Local;
+
+        }
+
+
+        /// <summary>
+        /// Инициализация и возврат всех записей из таблицы.
+        /// </summary>
+        public ObservableCollection<T> GetObservableCollection()
+        {
+
+            _set.Load();
+            return _set.Local;
+
         }
 
         /// <summary>

@@ -58,6 +58,8 @@ namespace PTC_Management.ViewModel
         #region Методы
         public void OnTransportInfo(string destination) {
             var transportInfo = new TransportInfoViewModel();
+            transportInfo.SelectedTransport = (Transport)SelectedItem;
+
             switch (destination) 
             {
                 case Destinations.maintanceLog:

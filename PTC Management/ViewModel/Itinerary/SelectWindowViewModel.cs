@@ -11,7 +11,6 @@ namespace PTC_Management.ViewModel
     internal class SelectWindowViewModel : ViewModelBaseWindow
     {
         private Entity returnedItem;
-
         public Entity ReturnedItem
         {
             get => returnedItem; 

@@ -15,7 +15,7 @@
   </Window.DataContext>
 
   <Window.Resources>
-    <ResourceDictionary Source="../../Templates/DialogTemplates.xaml" />
+    <ResourceDictionary Source="../../Templates/TransportInfoTemplate.xaml" />
   </Window.Resources>
 
   <StackPanel>

@@ -57,7 +57,6 @@
 
   </UserControl.Resources>
 
-
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
       <Button Name="buttonWriteAndClose" 

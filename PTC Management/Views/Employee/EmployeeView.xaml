@@ -18,7 +18,7 @@
 
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
       <ContentControl Template="{StaticResource MainWindowControls}" />
-      <DataGrid SelectedItem="{Binding SelectedItem}" 
+      <DataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
             Name="dataGridEmployee"
