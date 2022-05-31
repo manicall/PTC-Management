@@ -35,13 +35,21 @@ namespace PTC_Management.EF
             return Items.Where(items => items.Id > id).ToList();
         }
 
+
         /// <summary>
         /// Инициализация и возврат всех записей из таблицы.
         /// </summary>
         public ObservableCollection<T> GetObservableCollection()
         {
-            _set.Load();
-            return _set.Local;
+            try
+            {
+                _set.Load();
+                return _set.Local;
+            }
+            catch (Exception ex) { 
+                MessageBox.Show(ex.Message);
+                return new ObservableCollection<T>();
+            }
         }
 
         /// <summary>

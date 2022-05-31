@@ -1,5 +1,5 @@
 ﻿using PTC_Management.Model.MainWindow;
-
+using PTC_Management.Windows;
 using System.Windows;
 
 using Size = PTC_Management.Model.MainWindow.Size;
@@ -45,6 +45,7 @@ namespace PTC_Management.ViewModel.Base
             }
             return result;
         }
+
 
 
     }

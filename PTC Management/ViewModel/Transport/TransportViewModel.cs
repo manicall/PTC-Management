@@ -57,16 +57,20 @@ namespace PTC_Management.ViewModel
 
         #region Методы
         public void OnTransportInfo(string destination) {
-            DialogViewModel dialog;
+            var transportInfo = new TransportInfoViewModel();
             switch (destination) 
             {
                 case Destinations.maintanceLog:
-                     dialog = new MaintanceLogDialogViewModel();
-                    dialog.Show();
+                    transportInfo.CurrentViewModel = new MaintanceLogViewModel();
+                    transportInfo.Title = "Журнал технического обслуживания";
+                    transportInfo.Show();
+
                     break;
                 case Destinations.logOfDepartureAndEntry:
-                     dialog = new MaintanceLogDialogViewModel();
-                    dialog.Show();
+                    transportInfo.CurrentViewModel = new LogOfDepartureAndEntryViewModel();
+                    transportInfo.Title = "Журнал регистрации въезда и выезда";
+                    transportInfo.Show();
+
                     break;
 
             }

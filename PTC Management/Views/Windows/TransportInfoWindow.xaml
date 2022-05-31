@@ -1,0 +1,24 @@
+﻿<Window x:Class="PTC_Management.Views.Windows.TransportInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+        mc:Ignorable="d"        
+        xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
+        Title="{Binding Title}" 
+        Height = "{Binding Size.Height, Mode=TwoWay}" 
+        Width  = "{Binding Size.Width,  Mode=TwoWay}" >
+  
+  <Window.DataContext>
+    <viewModels:TransportInfoViewModel/>
+  </Window.DataContext>
+
+  <Window.Resources>
+    <ResourceDictionary Source="../../Templates/DialogTemplates.xaml" />
+  </Window.Resources>
+
+  <StackPanel>
+    <ContentControl Content="{Binding CurrentViewModel}" />
+  </StackPanel>
+</Window>

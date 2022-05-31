@@ -1,5 +1,5 @@
 ﻿using PTC_Management.ViewModel.Base;
-
+using PTC_Management.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,16 @@ namespace PTC_Management.ViewModel
     internal class TransportInfoViewModel : ViewModelBaseWindow
     {
 
+
+
+        /// <summary> Метод показа ViewModel в окне </summary>
+        public void Show()
+        {
+            window = new TransportInfoWindow();
+            window.DataContext = this;
+            window.Closed += (sender, e) => Closed();
+            window.ShowDialog();
+        }
 
     }
 }

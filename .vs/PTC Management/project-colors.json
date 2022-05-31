@@ -20,7 +20,12 @@
       "ProjectGuid": "57171859-10a3-45ee-9550-fe92f75a3a5c",
       "DisplayName": "Solution Items",
       "ColorIndex": 2
+    },
+    "06e06efb-ef34-4805-b523-1a74b8daaaf5": {
+      "ProjectGuid": "06e06efb-ef34-4805-b523-1a74b8daaaf5",
+      "DisplayName": "PTC Management.EF",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }
