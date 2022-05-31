@@ -121,3 +121,6 @@ C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Vie
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Windows\TransportInfoWindow.g.cs
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Windows\TransportInfoWindow.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Templates\TransportInfoTemplate.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfoWindow.g.cs
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\TransportInfoTemplate.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfoWindow.baml

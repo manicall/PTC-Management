@@ -94,6 +94,8 @@ namespace PTC_Management.ViewModel
             DialogItem.Id = entity.Id;
         }
 
+
+
         /// <summary> Метод показа ViewModel в окне </summary>
         public void Show()
         {

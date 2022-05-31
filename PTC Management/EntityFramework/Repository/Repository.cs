@@ -47,18 +47,6 @@ namespace PTC_Management.EF
 
         }
 
-
-        /// <summary>
-        /// Инициализация и возврат всех записей из таблицы.
-        /// </summary>
-        public ObservableCollection<T> GetObservableCollection()
-        {
-
-            _set.Load();
-            return _set.Local;
-
-        }
-
         /// <summary>
         /// Добавляет запись в таблицу базы данных
         /// </summary>

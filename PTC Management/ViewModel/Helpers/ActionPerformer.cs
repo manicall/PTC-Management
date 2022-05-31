@@ -26,7 +26,6 @@ namespace PTC_Management.ViewModel
             this.observableCollection = observableCollection;
         }
 
-
         /// <summary>
         /// Вызывает действие, которое необходимо выполнить
         /// </summary>

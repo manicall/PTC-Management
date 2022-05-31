@@ -40,6 +40,9 @@ namespace PTC_Management.EF
                 IdRoute = itinerary.IdRoute;
                 IdTransport = itinerary.IdTransport;
                 IdEmployee = itinerary.IdEmployee;
+                Employee = itinerary.Employee;
+                Route = itinerary.Route;
+                Transport = itinerary.Transport;
             }
         }
 
@@ -49,7 +52,10 @@ namespace PTC_Management.EF
             {
                 IdRoute = IdRoute,
                 IdTransport = IdTransport,
-                IdEmployee = IdEmployee
+                IdEmployee = IdEmployee,
+                Employee = Employee,
+                Route = Route,
+                Transport = Transport
             };
             return itinerary;
         }

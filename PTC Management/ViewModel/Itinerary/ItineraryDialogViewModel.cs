@@ -12,11 +12,21 @@ namespace PTC_Management.ViewModel.DialogViewModels
     internal class ItineraryDialogViewModel : DialogViewModel
     {
         ViewModelHelper<Itinerary, ObservableCollection<Itinerary>> viewModelHelper;
-
         private readonly Destinations _destinations = new Destinations();
+
         public Destinations Destinations => _destinations;
 
         public Command<string> DialogSelectСommand { get; private set; }
+
+
+        private Itinerary displayedDialogItem;
+
+        public Itinerary DisplayedDialogItem
+        {
+            get { return displayedDialogItem; }
+            set { SetProperty(ref displayedDialogItem, value); }
+        }
+
 
         public ItineraryDialogViewModel()
         {
@@ -24,6 +34,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
             CopyParameters = new CopyParameters();
             DialogItem = new Itinerary();
+            DisplayedDialogItem = new Itinerary();
             CurrentViewModel = this;
         }
 
@@ -50,12 +61,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
             }
         }
 
-
-        /*TODO: связять с ItineraryView*/
         public void OnDialogSelectСommand(string destination)
         {
-
-
             var selectWindow = new SelectWindowViewModel();
             selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
 
@@ -63,32 +70,30 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
             if (selectWindow.ReturnedItem != null)
             {
+                Itinerary tempDialogItem = (Itinerary)DisplayedDialogItem.Clone();
                 switch (destination)
                 {
                     case Destinations.employee:
-                        ((Itinerary)DialogItem).Employee =
-                            (Employee)selectWindow.ReturnedItem;
+                        // 
+                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem;
+                        ((Itinerary) DialogItem).IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
 
-                        ((Itinerary)DialogItem).IdEmployee =
-                            ((Employee)selectWindow.ReturnedItem).Id;
                         break;
                     case Destinations.route:
-                        ((Itinerary)DialogItem).Route =
-                            (Route)selectWindow.ReturnedItem;
+                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem;
+                        ((Itinerary)DialogItem).IdRoute =((Route)selectWindow.ReturnedItem).Id;
 
-                        ((Itinerary)DialogItem).IdRoute =
-                            ((Route)selectWindow.ReturnedItem).Id;
                         break;
                     case Destinations.transport:
-                        ((Itinerary)DialogItem).Transport =
-                            (Transport)selectWindow.ReturnedItem;
+                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem;
+                        ((Itinerary)DialogItem).IdTransport =((Transport)selectWindow.ReturnedItem).Id;
 
-                        ((Itinerary)DialogItem).IdTransport =
-                            ((Transport)selectWindow.ReturnedItem).Id;
                         break;
 
                     default: break;
                 }
+
+                DisplayedDialogItem = tempDialogItem;
             }
 
         }

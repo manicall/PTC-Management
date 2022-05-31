@@ -14,9 +14,7 @@ namespace PTC_Management.ViewModel
 
         public ItineraryViewModel()
         {
-            viewModelHelper =
-                new ViewModelHelper<Itinerary,
-                    ObservableCollection<Itinerary>>(Itinerary.repository);
+            viewModelHelper = new ViewModelHelper<Itinerary, ObservableCollection<Itinerary>>(Itinerary.repository);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
@@ -30,23 +28,10 @@ namespace PTC_Management.ViewModel
         protected override bool Filter(object entity)
         {
             Itinerary current = entity as Itinerary;
-
-            //if (!string.IsNullOrWhiteSpace(FilterText)
-            //     && !current.Id.ToString().Contains(FilterText)
-            //     && (current.Surname == null ||
-            //         !current.Surname.Contains(FilterText))
-            //     && (current.Name == null ||
-            //         !current.Name.Contains(FilterText))
-            //     && (current.Patronymic == null ||
-            //         !current.Patronymic.Contains(FilterText))
-            //     && (current.DriverLicense == null ||
-            //         !current.DriverLicense.Contains(FilterText)))
-            //{
-            //    return false;
-            //}
             return true;
         }
         #endregion
+
 
         #region Методы
 
@@ -56,9 +41,8 @@ namespace PTC_Management.ViewModel
         public override void OnDialog(string action)
         {
             var actionPerformer =
-                 new ActionPerformer<Itinerary, ObservableCollection<Itinerary>>
-                 (this, GetDialogViewModel(action),
-                  viewModelHelper.ObservableCollection);
+                 new ActionPerformer<Itinerary, ObservableCollection<Itinerary>> 
+                    (this, GetDialogViewModel(action), viewModelHelper.ObservableCollection);
 
             actionPerformer.doAction(action);
         }
@@ -70,7 +54,6 @@ namespace PTC_Management.ViewModel
         {
             return new ItineraryDialogViewModel()
             {
-
                 MainWindowAction = action,
                 Title = ViewModels.GetDialogTitle(action, Destinations.itinerary),
                 ViewModelHelper = viewModelHelper

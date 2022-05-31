@@ -41,7 +41,8 @@ namespace PTC_Management.ViewModel.Helpers
         /// Выполняет изменнение observableCollection,
         /// на основе заданного действия                     
         /// </summary>
-        public void DoActionForObservableCollection(string MainWindowAction, int id, int selectedIndex, T item)
+        public void DoActionForObservableCollection(string MainWindowAction, 
+            int id, int selectedIndex, T item)
         {
             List<T> List;
             switch (MainWindowAction)
