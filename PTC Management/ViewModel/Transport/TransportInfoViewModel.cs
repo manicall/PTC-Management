@@ -11,9 +11,7 @@ namespace PTC_Management.ViewModel
 {
     internal class TransportInfoViewModel : ViewModelBaseWindow
     {
-
         private Transport selectedTransport;
-
         public Transport SelectedTransport
         {
             get { return selectedTransport; }

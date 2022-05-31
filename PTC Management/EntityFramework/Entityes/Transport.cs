@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,9 +12,9 @@ namespace PTC_Management.EF
     {      
         public Transport()
         {
-            Itinerary = new HashSet<Itinerary>();
-            LogOfDepartureAndEntry = new HashSet<LogOfDepartureAndEntry>();
-            MaintanceLog = new HashSet<MaintanceLog>();
+            Itinerary = new ObservableCollection<Itinerary>();
+            LogOfDepartureAndEntry = new ObservableCollection<LogOfDepartureAndEntry>();
+            MaintanceLog = new ObservableCollection<MaintanceLog>();
         }
 
         [Required]
@@ -24,14 +25,11 @@ namespace PTC_Management.EF
         [StringLength(10)]
         public string LicensePlate { get; set; }
 
-        
-        public virtual ICollection<Itinerary> Itinerary { get; set; }
+        public virtual ObservableCollection<Itinerary> Itinerary { get; set; }
 
-        
-        public virtual ICollection<LogOfDepartureAndEntry> 
-            LogOfDepartureAndEntry { get; set; }
+        public virtual ObservableCollection<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
 
-        public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
+        public virtual ObservableCollection<MaintanceLog> MaintanceLog { get; set; }
     }
 
 

@@ -63,7 +63,7 @@ namespace PTC_Management.ViewModel
             switch (destination) 
             {
                 case Destinations.maintanceLog:
-                    transportInfo.CurrentViewModel = new MaintanceLogViewModel();
+                    transportInfo.CurrentViewModel = new MaintanceLogViewModel((Transport)SelectedItem);
                     transportInfo.Title = "Журнал технического обслуживания";
                     transportInfo.Show();
 

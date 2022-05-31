@@ -33,16 +33,15 @@
             CanUserAddRows="false" 
             Name="MaintenanceLogGrid" 
             ItemsSource="{Binding Items}" 
-            d:ItemsSource="{d:SampleData ItemCount=5}" 
             AutoGenerateColumns="False">
 
         <DataGrid.Columns>
           <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
-          <DataGridTextColumn Header="Дата" Binding="{Binding date, StringFormat=\{0:dd.MM.yyyy\}}" />
-          <DataGridTextColumn Header="№ листа" Binding="{Binding idList}"/>
-          <DataGridTextColumn Header="Транспорт"  Binding="{Binding transport}"/>
-          <DataGridTextColumn Header="Гос. номер"  Binding="{Binding licensePlate}"/>
-          <DataGridTextColumn Header="Маршрут"  Binding="{Binding route}"/>
+          <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}" />
+          <DataGridTextColumn Header="№ листа" Binding="{Binding Transport.Itinerary.Id}"/>
+          <DataGridTextColumn Header="Транспорт"  Binding="{Binding Transport.Name}"/>
+          <DataGridTextColumn Header="Гос. номер"  Binding="{Binding Transport.LicensePlate}"/>
+          <DataGridTextColumn Header="Маршрут"  Binding="{Binding Transport.Itinerary.Route.Name}"/>
 
           <DataGridTemplateColumn CanUserResize="False">
 
@@ -61,7 +60,7 @@
 
                   <TextBlock Grid.ColumnSpan="2" Text="время" TextAlignment="Center" />
                   <TextBlock Grid.Row="1"  Text="выезда"   TextAlignment="Center" />
-                  <TextBlock Grid.Row="1" Grid.Column="2" Text="возвращения"   TextAlignment="Center"/>
+                  <TextBlock Grid.Row="1" Grid.Column="2" Text="возвращения" TextAlignment="Center"/>
                 </Grid>
               </DataTemplate>
             </DataGridTemplateColumn.HeaderTemplate>
@@ -74,10 +73,10 @@
                   </Grid.ColumnDefinitions>
 
                   <Border Margin="-1,-1,0,-1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Text="{Binding timeOnDeparture, StringFormat=\{0:HH:mm\}}" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding TimeOnDeparture, StringFormat=\{0:HH:mm\}}" TextAlignment="Center"/>
                   </Border>
                   <Border Margin="-1,-1,-1,-1" Grid.Column="1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Text="{Binding timeWhenReturning, StringFormat=\{0:HH:mm\}}" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding TimeWhenReturning, StringFormat=\{0:HH:mm\}}" TextAlignment="Center"/>
                   </Border>
                 </Grid>
               </DataTemplate>
@@ -112,10 +111,10 @@
                   </Grid.ColumnDefinitions>
 
                   <Border Margin="-1,-1,0,-1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Grid.Column="0" Text="{Binding speedometerInfoOnDeparture}" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="{Binding SpeedometerInfoOnDeparture}" TextAlignment="Center"/>
                   </Border>
                   <Border Margin="-1,-1,-1,-1" Grid.Column="1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Grid.Column="1" Text="{Binding speedometerInfoWhenReturning }" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="{Binding SpeedometerInfoWhenReturning }" TextAlignment="Center"/>
                   </Border>
 
                 </Grid>
@@ -123,7 +122,7 @@
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
 
-          <DataGridTextColumn Header="Пробег, Км" Binding="{Binding mileage}" Width="*" />
+          <DataGridTextColumn Header="Пробег, Км" Binding="{Binding Mileage}" Width="*" />
 
         </DataGrid.Columns>
 

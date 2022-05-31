@@ -11,9 +11,9 @@ namespace PTC_Management.EF
         [Column(TypeName = "date")]
         public DateTime? Date { get; set; }
 
-        public TimeSpan? TimeOnDeparture { get; set; }
+        public DateTime? TimeOnDeparture { get; set; }
 
-        public TimeSpan? TimeWhenReturning { get; set; }
+        public DateTime? TimeWhenReturning { get; set; }
 
         public int? SpeedometerInfoOnDeparture { get; set; }
 

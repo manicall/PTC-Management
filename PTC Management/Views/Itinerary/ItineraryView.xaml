@@ -79,7 +79,7 @@
             Binding="{Binding Transport.LicensePlate}"/>
           <DataGridTextColumn 
             Header="Маршрут"
-            Binding="{Binding Route.Name}"/>
+            Binding="{Binding Route.Name}" Width="*"/>
 
         </DataGrid.Columns>
       </DataGrid>

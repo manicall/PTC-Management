@@ -35,8 +35,6 @@ namespace PTC_Management.Model.MainWindow
 
             itinerary = new ItineraryViewModel();
             scheduleOfEmployee = new ScheduleOfEmployeeViewModel();
-            maintanceLog = new MaintanceLogViewModel();
-            logOfDepartureAndEntry = new LogOfDepartureAndEntryViewModel();
         }
 
         public ViewModelBaseEntity GetViewModel(string destination) {
@@ -47,8 +45,6 @@ namespace PTC_Management.Model.MainWindow
                 case Destinations.transport: return transport;
                 case Destinations.itinerary: return itinerary;
                 case Destinations.schedule : return scheduleOfEmployee;
-                case Destinations.maintanceLog: return maintanceLog;
-                case Destinations.logOfDepartureAndEntry : return logOfDepartureAndEntry;
                 default: return null;
             }
         }

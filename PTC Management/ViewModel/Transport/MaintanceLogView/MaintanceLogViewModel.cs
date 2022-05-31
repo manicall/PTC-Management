@@ -5,6 +5,7 @@ using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
@@ -12,13 +13,24 @@ namespace PTC_Management.ViewModel
     {
         ViewModelHelper<MaintanceLog, ObservableCollection<MaintanceLog>> viewModelHelper;
 
-        public MaintanceLogViewModel()
+        private Transport selectedTransport;
+
+        public Transport SelectedTransport
         {
+            get { return selectedTransport; }
+            set { SetProperty(ref selectedTransport, value); }
+        }
+
+
+        public MaintanceLogViewModel(Transport selectedTransport)
+        {
+            SelectedTransport = selectedTransport;
+
             viewModelHelper =
                 new ViewModelHelper<MaintanceLog,
                     ObservableCollection<MaintanceLog>>(MaintanceLog.repository);
 
-            Items = viewModelHelper.GetItems();
+            Items = CollectionViewSource.GetDefaultView(selectedTransport.MaintanceLog);
             Items.Filter = Filter;
         }
 
