@@ -11,11 +11,23 @@ namespace PTC_Management.ViewModel
 {
     internal class ItineraryViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<Itinerary, List<Itinerary>> viewModelHelper;
+        ViewModelHelper<Itinerary> viewModelHelper;
 
         public ItineraryViewModel()
         {
-            viewModelHelper = new ViewModelHelper<Itinerary, List<Itinerary>>(Itinerary.repository);
+            viewModelHelper = new ViewModelHelper<Itinerary>(Itinerary.repository);
+
+            Items = viewModelHelper.GetItems();
+            Items.Filter = Filter;
+        }
+
+        public ItineraryViewModel(int id)
+        {
+            viewModelHelper =
+                new ViewModelHelper<Itinerary>(
+                    Itinerary.repository,
+                    Destinations.itinerary,
+                    id);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;

@@ -11,7 +11,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class RouteDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Route, List<Route>> viewModelHelper;
+        ViewModelHelper<Route> viewModelHelper;
 
         public RouteDialogViewModel()
         {
@@ -20,7 +20,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Route, List<Route>> ViewModelHelper
+        internal ViewModelHelper<Route> ViewModelHelper
         {
             get => viewModelHelper;
             set => viewModelHelper = value;

@@ -8,6 +8,9 @@ namespace PTC_Management.EF
     [Table("MaintanceLog")]
     public partial class MaintanceLog : TransportInfo
     {
+        [Column(TypeName = "date")]
+        public DateTime? Date { get; set; }
+
         public int? SpeedometerInfoOnDeparture { get; set; }
 
         public int? SpeedometerInfoWhenReturning { get; set; }

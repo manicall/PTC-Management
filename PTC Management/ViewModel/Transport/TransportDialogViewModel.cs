@@ -11,7 +11,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class TransportDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Transport, List<Transport>> viewModelHelper;
+        ViewModelHelper<Transport> viewModelHelper;
 
         public TransportDialogViewModel()
         {
@@ -20,7 +20,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Transport, List<Transport>> ViewModelHelper { 
+        internal ViewModelHelper<Transport> ViewModelHelper { 
             get => viewModelHelper;
             set => viewModelHelper = value; 
         }

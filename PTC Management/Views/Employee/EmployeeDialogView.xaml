@@ -20,6 +20,13 @@
       <Setter Property="Width" Value="170"/>
     </Style>
 
+    
+
+    <Style TargetType="StackPanel" >
+      <Setter Property="Margin" Value="0,0,0,10"/>
+      <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+
     <Style TargetType="TextBox" >
       <Setter Property="Width" Value="150"/>
 
@@ -31,11 +38,6 @@
           <Setter Property="Foreground" Value="Red" />
         </Trigger>
       </Style.Triggers>
-    </Style>
-
-    <Style TargetType="StackPanel" >
-      <Setter Property="Margin" Value="0,0,0,10"/>
-      <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
 
     <!--Валидация полей для ввода -->

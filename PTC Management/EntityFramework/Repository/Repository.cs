@@ -36,7 +36,7 @@ namespace PTC_Management.EF
         {
             return Items.Where(items => items.Id > id).ToList();
         }
-
+        
         public List<T> GetMaintanceLogs(int id) {
             return Items.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == id).ToList();
         }
@@ -46,6 +46,10 @@ namespace PTC_Management.EF
             return Items.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == id).ToList();
         }
 
+        public List<T> GetItineraries(int id)
+        {
+            return Items.Where(items => (items as Itinerary).Transport.Id == id).ToList();
+        }
 
         /// <summary>
         /// Инициализация и возврат всех записей из таблицы.
@@ -79,6 +83,8 @@ namespace PTC_Management.EF
             _db.SaveChanges();
         }
 
+        
+
         /// <summary>
         /// Выполняет удаление записи из базы данных
         /// </summary>
@@ -98,8 +104,6 @@ namespace PTC_Management.EF
                 MessageBox.Show(ex.InnerException.InnerException.Message,
                     "Ошибка создания файла восстановления",
                     MessageBoxButton.OK, MessageBoxImage.Error);
-
-                _db.Entry(item).State = EntityState.Unchanged;
 
                 return false;
             }

@@ -8,6 +8,9 @@ namespace PTC_Management.EF
     [Table("LogOfDepartureAndEntry")]
     public partial class LogOfDepartureAndEntry : TransportInfo
     {
+
+        [Column(TypeName = "date")]
+        public DateTime? Date { get; set; }
         public virtual Itinerary Itinerary { get; set; }
     }
 

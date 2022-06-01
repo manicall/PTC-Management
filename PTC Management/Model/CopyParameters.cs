@@ -29,9 +29,7 @@ namespace PTC_Management.Model
             set => countVisibility = value;
         }
 
-
-        public CopyParameters(int count = 1,
-            string countVisibility = "Collapsed")
+        public CopyParameters(int count = 1, string countVisibility = Visibility.collapsed)
         {
             this.count = count;
             this.countVisibility = countVisibility;

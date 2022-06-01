@@ -12,59 +12,64 @@ namespace PTC_Management.ViewModel
 {
     class DialogViewModel : ViewModelBaseWindow
     {
+        private readonly Destinations destinations = new Destinations();
         /// <summary>
         /// Используется для отображения поля,
         /// в которое воодится количество копий выбранной записи,
         /// которые необходимо создать 
         /// </summary>
         private CopyParameters copyParameters;
-        /// <summary>
-        /// Необходим для вызова события PropertyChanged 
-        /// у свойства DialogItem
-        /// </summary>
-        private Itinerary displayedDialogItem;
-
-        /// <summary>
-        /// Действие которое было выбрано в главном окне
-        /// </summary>
-        private string mainWindowAction;
-        public string MainWindowAction
-        {
-            get => mainWindowAction;
-            set => mainWindowAction = value;
-        }
-
-       
-        public CopyParameters CopyParameters
-        {
-            get => copyParameters;
-            set => SetProperty(ref copyParameters, value);
-        }
 
         /// <summary>
         /// Копия выбранного элемента таблицы
         /// </summary>
         private Entity dialogItem;
+
+        /// <summary>
+        /// Необходим для вызова события PropertyChanged 
+        /// у свойства DialogItem
+        /// </summary>
+        private Entity displayedDialogItem;
+
+        /// <summary>
+        /// Действие которое было выбрано в главном окне
+        /// </summary>
+        private string mainWindowAction;
+
+        public Destinations Destinations => destinations;
+
         public Entity DialogItem
         {
             get => dialogItem;
             set => SetProperty(ref dialogItem, value);
         }
 
-        /// <summary>
-        /// Выбранный индекс в таблице 
-        /// </summary>
-        public int SelectedIndex { get; set; }
-        public Command<string> DialogActionCommand { get; private set; }
-
-        public Command<string> DialogSelectСommand { get; private set; }
-
-        public Itinerary DisplayedDialogItem
+        public Entity DisplayedDialogItem
         {
             get { return displayedDialogItem; }
             set { SetProperty(ref displayedDialogItem, value); }
         }
 
+        public CopyParameters CopyParameters
+        {
+            get => copyParameters;
+            set => SetProperty(ref copyParameters, value);
+        }
+
+        public string MainWindowAction
+        {
+            get => mainWindowAction;
+            set => mainWindowAction = value;
+        }
+
+        /// <summary>
+        /// Выбранный индекс в таблице 
+        /// </summary>
+        public int SelectedIndex { get; set; }
+
+        public Command<string> DialogActionCommand { get; private set; }
+
+        public Command<string> DialogSelectСommand { get; private set; }
 
         public DialogViewModel()
         {
@@ -112,39 +117,8 @@ namespace PTC_Management.ViewModel
             DialogItem.Id = entity.Id;
         }
 
-        public void OnDialogSelectСommand(string destination)
+        protected virtual void OnDialogSelectСommand(string destination)
         {
-            var selectWindow = new SelectWindowViewModel();
-            selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
-
-            selectWindow.Show();
-
-            if (selectWindow.ReturnedItem != null)
-            {
-                Itinerary tempDialogItem = (Itinerary)DisplayedDialogItem.Clone();
-                switch (destination)
-                {
-                    case Destinations.employee:
-                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem;
-                        ((Itinerary)DialogItem).IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
-
-                        break;
-                    case Destinations.route:
-                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem;
-                        ((Itinerary)DialogItem).IdRoute = ((Route)selectWindow.ReturnedItem).Id;
-
-                        break;
-                    case Destinations.transport:
-                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem;
-                        ((Itinerary)DialogItem).IdTransport = ((Transport)selectWindow.ReturnedItem).Id;
-
-                        break;
-
-                    default: break;
-                }
-
-                DisplayedDialogItem = tempDialogItem;
-            }
 
         }
 

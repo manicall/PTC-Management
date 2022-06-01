@@ -7,7 +7,7 @@ namespace PTC_Management.EF
     [Table("Itinerary")]
     public partial class Itinerary : Entity
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        
         public Itinerary()
         {
             LogOfDepartureAndEntry = new HashSet<LogOfDepartureAndEntry>();
@@ -26,10 +26,10 @@ namespace PTC_Management.EF
 
         public virtual Transport Transport { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
     }
 
@@ -74,29 +74,35 @@ namespace PTC_Management.EF
             return itinerary;
         }
 
-        //// реализация интерфейса IDataErrorInfo
-        //// позволяет обрабатывать ошибки,
-        //// допускаемые в полях для ввода
-        //public string this[string columnName]
-        //{
-        //    get
-        //    {
-        //        string error = null;
-        //        switch (columnName)
-        //        {
-        //            case "IdRoute":
-        //                break;
-        //            case "IdTransport":
-        //                break;
-        //            case "IdEmployee":
-        //                break;
-        //        }
-        //        return error;
-        //    }
-        //}
-        //public string Error
-        //{
-        //    //get { throw new NotImplementedException(); }
-        //}
+        // реализация интерфейса IDataErrorInfo
+        // позволяет обрабатывать ошибки,
+        // допускаемые в полях для ввода
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = null;
+                switch (columnName)
+                {
+                    case "Employee":
+                        if (Employee == null)
+                            error = "Поле не может быть пустым";
+                        break;
+                    case "Route":
+                         if (Route == null)
+                            error = "Поле не может быть пустым";
+                        break;
+                    case "Transport":
+                         if (Transport == null)
+                            error = "Поле не может быть пустым";
+                        break;
+                }
+                return error;
+            }
+        }
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

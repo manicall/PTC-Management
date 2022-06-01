@@ -19,7 +19,7 @@
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
       <ContentControl Template="{StaticResource MainWindowControls}" />
 
-      <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+      <StackPanel Margin="0,5,0,5" Orientation="Horizontal" Visibility="{Binding TansportInfoVisibility}">
         <Button Style="{StaticResource BlackButton}" Content="Журнал ТО"
                 Command="{Binding TransportInfoCommand}"
                 CommandParameter="{Binding Destinations.MaintanceLog}"

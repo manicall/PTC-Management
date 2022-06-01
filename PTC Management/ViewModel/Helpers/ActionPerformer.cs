@@ -1,4 +1,5 @@
 ﻿using PTC_Management.EF;
+using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.Base;
 
@@ -86,6 +87,8 @@ namespace PTC_Management.ViewModel
             int selectedIndex = entityVM.SelectedIndex;
             T selectedEmployee = (T)entityVM.SelectedItem;
 
+            // TODO: Проверить чтобы элемент не удалялся из таблицы в случае не успеха
+
             // удаление в коллекции
             itemsList.Remove(selectedEmployee);
             // удаление в базе данных
@@ -105,7 +108,7 @@ namespace PTC_Management.ViewModel
             if (entityVM.SelectedItem is null) return;
 
             dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
-            dialogVM.CopyParameters.CountVisibility = "Visible";
+            dialogVM.CopyParameters.CountVisibility = Visibility.visible;
 
             dialogVM.Show();
         }

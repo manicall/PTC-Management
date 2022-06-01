@@ -12,7 +12,7 @@ namespace PTC_Management.ViewModel
 {
     internal class MaintanceLogViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<MaintanceLog, List<MaintanceLog>> viewModelHelper;
+        ViewModelHelper<MaintanceLog> viewModelHelper;
 
         private Transport selectedTransport;
 
@@ -29,8 +29,10 @@ namespace PTC_Management.ViewModel
             SelectedTransport = selectedTransport;
 
             viewModelHelper =
-                new ViewModelHelper<MaintanceLog,
-                    List<MaintanceLog>>(MaintanceLog.repository);
+                new ViewModelHelper<MaintanceLog>(
+                    MaintanceLog.repository, 
+                    Destinations.maintanceLog, 
+                    SelectedTransport.Id);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;

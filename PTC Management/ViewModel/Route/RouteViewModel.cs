@@ -11,13 +11,12 @@ namespace PTC_Management.ViewModel
 {
     internal class RouteViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<Route, List<Route>> viewModelHelper;
+        ViewModelHelper<Route> viewModelHelper;
 
         public RouteViewModel()
         {
             viewModelHelper =
-                new ViewModelHelper<Route,
-                    List<Route>>(Route.repository);
+                new ViewModelHelper<Route>(Route.repository);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;

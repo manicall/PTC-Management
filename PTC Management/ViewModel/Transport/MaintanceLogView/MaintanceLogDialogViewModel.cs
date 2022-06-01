@@ -1,6 +1,7 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
+using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Helpers;
 
 using System.Collections.Generic;
@@ -11,16 +12,17 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class MaintanceLogDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<MaintanceLog, List<MaintanceLog>> viewModelHelper;
+        ViewModelHelper<MaintanceLog> viewModelHelper;
 
         public MaintanceLogDialogViewModel()
         {
             CopyParameters = new CopyParameters();
             DialogItem = new MaintanceLog();
+            DisplayedDialogItem = new MaintanceLog();
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<MaintanceLog, List<MaintanceLog>> ViewModelHelper
+        internal ViewModelHelper<MaintanceLog> ViewModelHelper
         {
             get => viewModelHelper;
             set => viewModelHelper = value;
@@ -41,6 +43,30 @@ namespace PTC_Management.ViewModel.DialogViewModels
                 viewModelHelper.DoActionForList(
                     MainWindowAction, DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
             }
+        }
+
+        protected override void OnDialogSelectСommand(string destination)
+        {
+            var selectWindow = new SelectWindowViewModel();
+            selectWindow.CurrentViewModel = new ItineraryViewModel(viewModelHelper.IdTransport);
+            selectWindow.Show();
+
+            if (selectWindow.ReturnedItem != null)
+            {
+                MaintanceLog tempDialogItem = (MaintanceLog)DisplayedDialogItem.Clone();
+                switch (destination)
+                {
+                    case Destinations.itinerary:
+                        tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem;
+                        ((MaintanceLog)DialogItem).IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
+                        break;
+
+                    default: break;
+                }
+
+                DisplayedDialogItem = tempDialogItem;
+            }
+
         }
 
         #endregion

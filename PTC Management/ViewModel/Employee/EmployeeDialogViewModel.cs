@@ -11,7 +11,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class EmployeeDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Employee, List<Employee>> viewModelHelper;
+        ViewModelHelper<Employee> viewModelHelper;
 
         public EmployeeDialogViewModel()
         {
@@ -20,7 +20,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Employee, List<Employee>> ViewModelHelper { 
+        internal ViewModelHelper<Employee> ViewModelHelper { 
             get => viewModelHelper;
             set => viewModelHelper = value; 
         }

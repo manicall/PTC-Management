@@ -69,10 +69,10 @@
                   </Grid.ColumnDefinitions>
 
                   <Border Margin="-1,-1,0,-1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Text="{Binding TimeOnDeparture, StringFormat=\{0:HH:mm\}}" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding TimeOnDeparture, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
                   </Border>
                   <Border Margin="-1,-1,-1,-1" Grid.Column="1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Text="{Binding TimeWhenReturning, StringFormat=\{0:HH:mm\}}" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding TimeWhenReturning, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
                   </Border>
                 </Grid>
               </DataTemplate>

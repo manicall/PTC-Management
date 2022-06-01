@@ -12,24 +12,17 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class ItineraryDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Itinerary, List<Itinerary>> viewModelHelper;
-        private readonly Destinations _destinations = new Destinations();
-
-        public Destinations Destinations => _destinations;
-
-
+        ViewModelHelper<Itinerary> viewModelHelper;
 
         public ItineraryDialogViewModel()
         {
-
-
             CopyParameters = new CopyParameters();
             DialogItem = new Itinerary();
             DisplayedDialogItem = new Itinerary();
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Itinerary, List<Itinerary>> ViewModelHelper
+        internal ViewModelHelper<Itinerary> ViewModelHelper
         {
             get => viewModelHelper;
             set => viewModelHelper = value;
@@ -52,7 +45,44 @@ namespace PTC_Management.ViewModel.DialogViewModels
             }
         }
 
-        
+
+        // TODO: При добавлении записей, которых еще нет в таблице, поля становятся пустыми
+        protected override void OnDialogSelectСommand(string destination)
+        {
+            var selectWindow = new SelectWindowViewModel();
+
+            selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
+            if (destination == Destinations.Transport) (selectWindow.CurrentViewModel as TransportViewModel).TansportInfoVisibility = Visibility.collapsed;
+            selectWindow.Show();
+
+            if (selectWindow.ReturnedItem != null)
+            {
+                Itinerary tempDialogItem = (Itinerary)DisplayedDialogItem.Clone();
+                switch (destination)
+                {
+                    case Destinations.employee:
+                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem;
+                        ((Itinerary) DialogItem).IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
+
+                        break;
+                    case Destinations.route:
+                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem;
+                        ((Itinerary)DialogItem).IdRoute =((Route)selectWindow.ReturnedItem).Id;
+
+                        break;
+                    case Destinations.transport:
+                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem;
+                        ((Itinerary)DialogItem).IdTransport =((Transport)selectWindow.ReturnedItem).Id;
+
+                        break;
+
+                    default: break;
+                }
+
+                DisplayedDialogItem = tempDialogItem;
+            }
+
+        }
 
         #endregion
     }

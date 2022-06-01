@@ -11,13 +11,12 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<Employee, List<Employee>> viewModelHelper;
+        ViewModelHelper<Employee> viewModelHelper;
 
         public EmployeeViewModel()
         {
             viewModelHelper =
-                new ViewModelHelper<Employee,
-                    List<Employee>>(Employee.repository);
+                new ViewModelHelper<Employee>(Employee.repository);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;

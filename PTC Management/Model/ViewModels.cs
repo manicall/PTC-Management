@@ -13,8 +13,6 @@ namespace PTC_Management.Model.MainWindow
         public readonly ViewModelBaseEntity transport;
         public readonly ViewModelBaseEntity itinerary;
         public readonly ViewModelBaseEntity scheduleOfEmployee;
-        public readonly ViewModelBaseEntity maintanceLog;
-        public readonly ViewModelBaseEntity logOfDepartureAndEntry;
 
         public ViewModels(Size mainWindowSize)
         {

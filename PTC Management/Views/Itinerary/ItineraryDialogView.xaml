@@ -13,13 +13,8 @@
       <views:ItineraryDialogView />
     </DataTemplate>
 
-
     <Style TargetType="TextBlock" >
       <Setter Property="Width" Value="115"/>
-    </Style>
-
-    <Style TargetType="TextBox" >
-      <Setter Property="Width" Value="200"/>
     </Style>
 
     <Style TargetType="StackPanel" >
@@ -27,9 +22,40 @@
       <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
 
+    <Style TargetType="TextBox" >
+      <Setter Property="Width" Value="200"/>
+
+      <Style.Triggers>
+        <Trigger Property="Validation.HasError" Value="True">
+          <Setter Property="ToolTip"
+                Value="{Binding RelativeSource={RelativeSource Self},
+                    Path=(Validation.Errors)[0].ErrorContent}" />
+          <Setter Property="Foreground" Value="Red" />
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+
+    <!--Валидация полей для ввода -->
     <Style TargetType="Button" x:Key="BlackConditionButton"
            BasedOn="{StaticResource BlackButton}">
+      <Setter Property="IsEnabled" Value="False"/>
+      <Style.Triggers>
+        <MultiDataTrigger>
+          <MultiDataTrigger.Conditions>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxCountCopy}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxEmployee}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxTransport}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxRoute}" Value="False"/>
+          </MultiDataTrigger.Conditions>
+          <Setter Property="IsEnabled" Value="True"/>
+        </MultiDataTrigger>
+      </Style.Triggers>
     </Style>
+
 
   </UserControl.Resources>
 
@@ -62,7 +88,7 @@
     
     <StackPanel >
       <TextBlock Name="textBlockEmployee" Text="Сотрудник" />
-      <TextBox Name="textBoxEmployee" IsReadOnly="True">
+      <TextBox Name="textBoxEmployee" >
         <TextBox.Text>
           <MultiBinding StringFormat="{}{0} {1} {2}" 
               ValidatesOnDataErrors="True" 
@@ -84,7 +110,7 @@
     
     <StackPanel >
       <TextBlock Name="textBlockTransport" Text="Транспорт" />
-      <TextBox Name="textBoxTransport">
+      <TextBox Name="textBoxTransport" >
         <TextBox.Text>
           <MultiBinding StringFormat="{}{0} | {1}" 
               ValidatesOnDataErrors="True" 

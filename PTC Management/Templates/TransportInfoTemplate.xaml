@@ -12,4 +12,8 @@
     <views:LogOfDepartureAndEntryView />
   </DataTemplate>
 
+  <DataTemplate DataType="{x:Type viewModels:ItineraryViewModel}">
+    <views:ItineraryView />
+  </DataTemplate>
+
 </ResourceDictionary>

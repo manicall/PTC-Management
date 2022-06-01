@@ -14,7 +14,7 @@ using System.Windows.Data;
 
 namespace PTC_Management.ViewModel.Helpers
 {
-    internal class ViewModelHelper<T, T1>
+    internal class ViewModelHelper<T>
         where T : Entity
     {
         // хранит записи, которые будут отображены в таблице
@@ -28,11 +28,17 @@ namespace PTC_Management.ViewModel.Helpers
             itemsList = repository.GetList();
         }
 
+        public int IdTransport { get; set; }
+
         public ViewModelHelper(Repository<T> repository, string destination, int id)
         {
             this.repository = repository;
+            IdTransport = id;
             switch (destination)
             {
+                case Destinations.itinerary:
+                    itemsList = repository.GetItineraries(id);
+                    break;
                 case Destinations.maintanceLog: 
                     itemsList = repository.GetMaintanceLogs(id);
                     break;
