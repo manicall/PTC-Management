@@ -106,7 +106,7 @@
     <Compile Include="ViewModel\Base\BindableBase.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseWindow.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseEntity.cs" />
-    <Compile Include="ViewModel\Base\DialogViewModel.cs" />
+    <Compile Include="ViewModel\Windows\DialogViewModel.cs" />
     <Compile Include="ViewModel\Employee\EmployeeDialogViewModel.cs" />
     <Compile Include="ViewModel\Transport\TransportDialogViewModel.cs" />
     <Compile Include="ViewModel\Employee\EmployeeViewModel.cs" />
@@ -116,12 +116,12 @@
     <Compile Include="ViewModel\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryViewModel.cs" />
     <Compile Include="ViewModel\Transport\MaintanceLogView\MaintanceLogViewModel.cs" />
     <Compile Include="ViewModel\Itinerary\ItineraryDialogViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Windows\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Route\RouteViewModel.cs" />
     <Compile Include="ViewModel\ScheduleOfEmployee\ScheduleOfEmployeeViewModel.cs" />
-    <Compile Include="ViewModel\Transport\TransportInfoViewModel.cs" />
+    <Compile Include="ViewModel\Windows\TransportInfoViewModel.cs" />
     <Compile Include="ViewModel\Transport\TransportViewModel.cs" />
-    <Compile Include="ViewModel\Itinerary\SelectWindowViewModel.cs" />
+    <Compile Include="ViewModel\Windows\SelectWindowViewModel.cs" />
     <Compile Include="Views\Employee\EmployeeDialogView.xaml.cs">
       <DependentUpon>EmployeeDialogView.xaml</DependentUpon>
     </Compile>

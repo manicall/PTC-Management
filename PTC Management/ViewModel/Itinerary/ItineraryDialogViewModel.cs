@@ -17,21 +17,11 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         public Destinations Destinations => _destinations;
 
-        public Command<string> DialogSelectСommand { get; private set; }
-
-
-        private Itinerary displayedDialogItem;
-
-        public Itinerary DisplayedDialogItem
-        {
-            get { return displayedDialogItem; }
-            set { SetProperty(ref displayedDialogItem, value); }
-        }
 
 
         public ItineraryDialogViewModel()
         {
-            DialogSelectСommand = new Command<string>(OnDialogSelectСommand);
+
 
             CopyParameters = new CopyParameters();
             DialogItem = new Itinerary();
@@ -62,42 +52,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             }
         }
 
-        public void OnDialogSelectСommand(string destination)
-        {
-            var selectWindow = new SelectWindowViewModel();
-            selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
-
-            selectWindow.Show();
-
-            if (selectWindow.ReturnedItem != null)
-            {
-                Itinerary tempDialogItem = (Itinerary)DisplayedDialogItem.Clone();
-                switch (destination)
-                {
-                    case Destinations.employee:
-                        // 
-                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem;
-                        ((Itinerary) DialogItem).IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
-
-                        break;
-                    case Destinations.route:
-                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem;
-                        ((Itinerary)DialogItem).IdRoute =((Route)selectWindow.ReturnedItem).Id;
-
-                        break;
-                    case Destinations.transport:
-                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem;
-                        ((Itinerary)DialogItem).IdTransport =((Transport)selectWindow.ReturnedItem).Id;
-
-                        break;
-
-                    default: break;
-                }
-
-                DisplayedDialogItem = tempDialogItem;
-            }
-
-        }
+        
 
         #endregion
     }

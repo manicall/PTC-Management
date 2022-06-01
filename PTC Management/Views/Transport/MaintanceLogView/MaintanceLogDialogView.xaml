@@ -13,7 +13,7 @@
       <views:MaintanceLogDialogView />
     </DataTemplate>
 
-    <Style TargetType="TextBlock" >
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock" >
       <Setter Property="Width" Value="155"/>
     </Style>
 
@@ -49,7 +49,7 @@
     </StackPanel>
 
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
-      <TextBlock Name="textBlockCountCopy" Text="Количество копий" />
+      <TextBlock Style="{StaticResource TextBlockStyle}" Name="textBlockCountCopy" Text="Количество копий" />
       <TextBox Name ="textBoxCountCopy" Width="50"  
            Text="{
             Binding CopyParameters.Count,
@@ -59,7 +59,7 @@
     </StackPanel>
 
     <StackPanel >
-      <TextBlock Name="textBlockItinerary" Text="Путевой лист" />
+      <TextBlock Style="{StaticResource TextBlockStyle}"  Name="textBlockItinerary" Text="Путевой лист" />
       <TextBox Name="textBoxItinerary" IsReadOnly="True" Text="{
         Binding DisplayedDialogItem.Itinerary.Id,
         ValidatesOnDataErrors=True, 
@@ -72,8 +72,8 @@
     </StackPanel>
 
     <StackPanel >
-      <TextBlock Name="textBlockDate" Text="Дата" />
-      <TextBox Name="textBoxDate" 
+      <TextBlock Style="{StaticResource TextBlockStyle}" Name="textBlockDate" Text="Дата" />
+      <DatePicker  Name="textBoxDate" 
         Text="{
         Binding DialogItem.Date,
         ValidatesOnDataErrors=True, 
@@ -83,7 +83,7 @@
     <GroupBox Header="Время" MaxWidth="500" HorizontalAlignment="Left">
       <StackPanel Orientation="Vertical">
         <StackPanel  Margin="0,5,0,0">
-          <TextBlock Name="textBlockTimeOnDeparture" Text="выезда" Width="149" />
+          <TextBlock Style="{StaticResource TextBlockStyle}" Name="textBlockTimeOnDeparture" Text="выезда" Width="149" />
           <TextBox Name="textBoxTimeOnDeparture" 
             Text="{
             Binding DialogItem.TimeOnDeparture,
@@ -93,7 +93,7 @@
         </StackPanel>
 
         <StackPanel Margin="0,5,0,0">
-          <TextBlock Name="textBlockTimeWhenReturning" Text="возвращения"  Width="149"/>
+          <TextBlock Style="{StaticResource TextBlockStyle}" Name="textBlockTimeWhenReturning" Text="возвращения"  Width="149"/>
           <TextBox Name="textBoxTimeWhenReturning" 
             Text="{
             Binding DialogItem.TimeWhenReturning,
@@ -107,7 +107,7 @@
     <GroupBox Header="Показания спидометра" MaxWidth="500" HorizontalAlignment="Left">
       <StackPanel Orientation="Vertical">
         <StackPanel Margin="0,5,0,0">
-          <TextBlock Name="textBlockSpeedometerInfoOnDeparture" Text="при выезде" Width="149" />
+          <TextBlock Style="{StaticResource TextBlockStyle}" Name="textBlockSpeedometerInfoOnDeparture" Text="при выезде" Width="149" />
           <TextBox Name="textBoxSpeedometerInfoOnDeparture" 
                 Text="{
                 Binding DialogItem.SpeedometerInfoOnDeparture,
@@ -117,7 +117,7 @@
         </StackPanel>
 
         <StackPanel  Margin="0,5,0,0">
-          <TextBlock Name="textBlockSpeedometerInfoWhenReturning" Text="при возвращении" Width="149" />
+          <TextBlock Style="{StaticResource TextBlockStyle}" Name="textBlockSpeedometerInfoWhenReturning" Text="при возвращении" Width="149" />
           <TextBox Name="textBoxSpeedometerInfoWhenReturning" 
               Text="{
               Binding DialogItem.SpeedometerInfoWhenReturning,
@@ -128,7 +128,7 @@
       </StackPanel>
     </GroupBox>
     <StackPanel  Margin="0,10,0,0">
-      <TextBlock Name="textBlockMileage" Text="Пробег, Км" />
+      <TextBlock Style="{StaticResource TextBlockStyle}" Name="textBlockMileage" Text="Пробег, Км" />
       <TextBox Name="textBoxMileage" 
         Text="{
         Binding DialogItem.Mileage,

@@ -32,8 +32,7 @@ namespace PTC_Management.ViewModel
                 new ViewModelHelper<MaintanceLog,
                     List<MaintanceLog>>(MaintanceLog.repository);
 
-            Items = CollectionViewSource.GetDefaultView(repository.GetMaintanceLogs(SelectedTransport.Id));
-
+            Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
         }
 
@@ -72,8 +71,7 @@ namespace PTC_Management.ViewModel
         {
             var actionPerformer =
                  new ActionPerformer<MaintanceLog>
-                 (this, GetDialogViewModel(action),
-                  viewModelHelper.ItemsList);
+                 (this, GetDialogViewModel(action), viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);
         }

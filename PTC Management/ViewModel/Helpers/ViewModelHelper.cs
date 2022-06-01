@@ -28,6 +28,23 @@ namespace PTC_Management.ViewModel.Helpers
             itemsList = repository.GetList();
         }
 
+        public ViewModelHelper(Repository<T> repository, string destination, int id)
+        {
+            this.repository = repository;
+            switch (destination)
+            {
+                case Destinations.maintanceLog: 
+                    itemsList = repository.GetMaintanceLogs(id);
+                    break;
+                case Destinations.logOfDepartureAndEntry:
+                    itemsList = repository.GetLogOfDepartureAndEntry(id);
+                    break;
+                default: 
+                    itemsList = repository.GetList();
+                    break;
+            }
+        }
+
         public List<T> ItemsList {
             get => itemsList;
             set => itemsList = value; 
@@ -51,7 +68,7 @@ namespace PTC_Management.ViewModel.Helpers
                     break;
                 case Actions.update:
                     itemsList[selectedIndex].SetFields(item);
-                    return; // выход из функции
+                    break;
                 case Actions.copy:
                     itemsList.AddRange(repository.GetFrom(id));
                     break;

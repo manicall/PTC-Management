@@ -2,6 +2,7 @@
 using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
+using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.Windows;
 
@@ -12,6 +13,18 @@ namespace PTC_Management.ViewModel
     class DialogViewModel : ViewModelBaseWindow
     {
         /// <summary>
+        /// Используется для отображения поля,
+        /// в которое воодится количество копий выбранной записи,
+        /// которые необходимо создать 
+        /// </summary>
+        private CopyParameters copyParameters;
+        /// <summary>
+        /// Необходим для вызова события PropertyChanged 
+        /// у свойства DialogItem
+        /// </summary>
+        private Itinerary displayedDialogItem;
+
+        /// <summary>
         /// Действие которое было выбрано в главном окне
         /// </summary>
         private string mainWindowAction;
@@ -21,12 +34,7 @@ namespace PTC_Management.ViewModel
             set => mainWindowAction = value;
         }
 
-        /// <summary>
-        /// Используется для отображения поля,
-        /// в которое воодится количество копий выбранной записи,
-        /// которые необходимо создать 
-        /// </summary>
-        private CopyParameters copyParameters;
+       
         public CopyParameters CopyParameters
         {
             get => copyParameters;
@@ -49,9 +57,19 @@ namespace PTC_Management.ViewModel
         public int SelectedIndex { get; set; }
         public Command<string> DialogActionCommand { get; private set; }
 
+        public Command<string> DialogSelectСommand { get; private set; }
+
+        public Itinerary DisplayedDialogItem
+        {
+            get { return displayedDialogItem; }
+            set { SetProperty(ref displayedDialogItem, value); }
+        }
+
+
         public DialogViewModel()
         {
             DialogActionCommand = new Command<string>(OnDialogActionCommand);
+            DialogSelectСommand = new Command<string>(OnDialogSelectСommand);
         }
 
         protected virtual void OnDialogActionCommand(string action)
@@ -94,7 +112,41 @@ namespace PTC_Management.ViewModel
             DialogItem.Id = entity.Id;
         }
 
+        public void OnDialogSelectСommand(string destination)
+        {
+            var selectWindow = new SelectWindowViewModel();
+            selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
 
+            selectWindow.Show();
+
+            if (selectWindow.ReturnedItem != null)
+            {
+                Itinerary tempDialogItem = (Itinerary)DisplayedDialogItem.Clone();
+                switch (destination)
+                {
+                    case Destinations.employee:
+                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem;
+                        ((Itinerary)DialogItem).IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
+
+                        break;
+                    case Destinations.route:
+                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem;
+                        ((Itinerary)DialogItem).IdRoute = ((Route)selectWindow.ReturnedItem).Id;
+
+                        break;
+                    case Destinations.transport:
+                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem;
+                        ((Itinerary)DialogItem).IdTransport = ((Transport)selectWindow.ReturnedItem).Id;
+
+                        break;
+
+                    default: break;
+                }
+
+                DisplayedDialogItem = tempDialogItem;
+            }
+
+        }
 
         /// <summary> Метод показа ViewModel в окне </summary>
         public void Show()
