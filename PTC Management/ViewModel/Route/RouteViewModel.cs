@@ -57,7 +57,7 @@ namespace PTC_Management.ViewModel
         public override void OnDialog(string action)
         {
             var actionPerformer =
-                 new ActionPerformer<Route, List<Route>>
+                 new ActionPerformer<Route>
                  (this, GetDialogViewModel(action),
                   viewModelHelper.ItemsList);
 

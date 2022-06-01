@@ -12,16 +12,16 @@ namespace PTC_Management.ViewModel
     /// Предназначен для выполнения действий, 
     /// которые соответствуют кнопкам на главном окне
     /// </summary>
-    class ActionPerformer<T, T1>
+    class ActionPerformer<T>
         where T : Entity
-        where T1 : List<T>
     {
+        // модель представление, 
         private ViewModelBaseEntity entityVM;
         private DialogViewModel dialogVM;
-        private T1 itemsList;
+        private List<T> itemsList;
 
         public ActionPerformer(ViewModelBaseEntity entityVM,
-            DialogViewModel dialogVM, T1 itemsList)
+            DialogViewModel dialogVM, List<T> itemsList)
         {
             this.entityVM = entityVM;
             this.dialogVM = dialogVM;

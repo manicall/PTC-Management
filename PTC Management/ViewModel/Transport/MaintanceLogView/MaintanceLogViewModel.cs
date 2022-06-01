@@ -71,7 +71,7 @@ namespace PTC_Management.ViewModel
         public override void OnDialog(string action)
         {
             var actionPerformer =
-                 new ActionPerformer<MaintanceLog, List<MaintanceLog>>
+                 new ActionPerformer<MaintanceLog>
                  (this, GetDialogViewModel(action),
                   viewModelHelper.ItemsList);
 
