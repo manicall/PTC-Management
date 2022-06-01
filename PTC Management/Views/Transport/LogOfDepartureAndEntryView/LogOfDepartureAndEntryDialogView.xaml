@@ -4,9 +4,105 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PTC_Management.Views"
+             xmlns:views = "clr-namespace:PTC_Management.Views" 
+             xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+  <UserControl.Resources>
+    <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
+      <views:MaintanceLogDialogView />
+    </DataTemplate>
+
+    <Style TargetType="TextBlock" >
+      <Setter Property="Width" Value="155"/>
+    </Style>
+
+    <Style TargetType="TextBox" >
+      <Setter Property="Width" Value="115"/>
+    </Style>
+
+    <Style TargetType="StackPanel" >
+      <Setter Property="Margin" Value="0,0,0,10"/>
+      <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="BlackConditionButton"
+           BasedOn="{StaticResource BlackButton}">
+    </Style>
+
+  </UserControl.Resources>
+  <StackPanel Orientation="Vertical" Margin="10,0,10,10">
+    <StackPanel >
+      <Button Name="buttonWriteAndClose" 
+              Style="{StaticResource BlackConditionButton }" 
+              Command="{Binding DialogActionCommand }"
+              CommandParameter="{Binding Actions.WriteAndClose}" 
+              Margin="0 0 35 0" Width="auto"
+          >Записать и закрыть</Button>
+      <Button Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
+              Command="{Binding DialogActionCommand }" 
+              CommandParameter="{Binding Actions.Write}" 
+           >Записать</Button>
+      <Button Name="buttonClose" Style="{StaticResource BlackButton }" 
+              Command="{Binding DialogActionCommand }" 
+              CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
+    </StackPanel>
+
+    <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
+      <TextBlock Name="textBlockCountCopy" Text="Количество копий" />
+      <TextBox Name ="textBoxCountCopy" Width="50"  
+           Text="{
+            Binding CopyParameters.Count,
+            ValidatesOnDataErrors=True, 
+            NotifyOnValidationError=True, 
+            UpdateSourceTrigger=PropertyChanged}" />
+    </StackPanel>
+
+    <StackPanel >
+      <TextBlock Name="textBlockItinerary" Text="Путевой лист" />
+      <TextBox Name="textBoxItinerary" IsReadOnly="True" Text="{
+        Binding DisplayedDialogItem.Itinerary.Id,
+        ValidatesOnDataErrors=True, 
+        NotifyOnValidationError=True, 
+        UpdateSourceTrigger=PropertyChanged}" />
+      <Button           
+              Command="{Binding DialogSelectСommand }"
+              CommandParameter="{Binding Destinations.Itinerary}" 
+              Margin="0 0 35 0" Width="auto">Выбрать</Button>
+    </StackPanel>
+
+    <StackPanel >
+      <TextBlock Name="textBlockDate" Text="Дата" />
+      <TextBox Name="textBoxDate" 
+        Text="{
+        Binding DialogItem.Date,
+        ValidatesOnDataErrors=True, 
+        NotifyOnValidationError=True, 
+        UpdateSourceTrigger=PropertyChanged}" />
+    </StackPanel>
+    <GroupBox Header="Время" MaxWidth="500" HorizontalAlignment="Left">
+      <StackPanel Orientation="Vertical">
+        <StackPanel  Margin="0,5,0,0">
+          <TextBlock Name="textBlockTimeOnDeparture" Text="выезда" Width="149" />
+          <TextBox Name="textBoxTimeOnDeparture" 
+            Text="{
+            Binding DialogItem.TimeOnDeparture,
+            ValidatesOnDataErrors=True, 
+            NotifyOnValidationError=True, 
+            UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+
+        <StackPanel Margin="0,5,0,0">
+          <TextBlock Name="textBlockTimeWhenReturning" Text="возвращения"  Width="149"/>
+          <TextBox Name="textBoxTimeWhenReturning" 
+            Text="{
+            Binding DialogItem.TimeWhenReturning,
+            ValidatesOnDataErrors=True, 
+            NotifyOnValidationError=True, 
+            UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+      </StackPanel>
+    </GroupBox>
+
+  </StackPanel>
 </UserControl>

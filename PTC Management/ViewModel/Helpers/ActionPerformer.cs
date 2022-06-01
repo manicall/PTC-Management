@@ -2,7 +2,9 @@
 using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.Base;
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
@@ -12,18 +14,18 @@ namespace PTC_Management.ViewModel
     /// </summary>
     class ActionPerformer<T, T1>
         where T : Entity
-        where T1 : ObservableCollection<T>
+        where T1 : List<T>
     {
         private ViewModelBaseEntity entityVM;
         private DialogViewModel dialogVM;
-        private T1 observableCollection;
+        private T1 itemsList;
 
         public ActionPerformer(ViewModelBaseEntity entityVM,
-            DialogViewModel dialogVM, T1 observableCollection)
+            DialogViewModel dialogVM, T1 itemsList)
         {
             this.entityVM = entityVM;
             this.dialogVM = dialogVM;
-            this.observableCollection = observableCollection;
+            this.itemsList = itemsList;
         }
 
         /// <summary>
@@ -63,6 +65,7 @@ namespace PTC_Management.ViewModel
         /// </summary>
         private void Update()
         {
+            // TODO: уведомить пользователя о том, что запись не выбрана
             if (entityVM.SelectedItem is null) return;
 
             dialogVM.SelectedIndex = entityVM.SelectedIndex;
@@ -79,16 +82,18 @@ namespace PTC_Management.ViewModel
         {
             if (entityVM.SelectedItem is null) return;
 
-            // хранит значение индекса, чтобы заново его присвоить, 
-            // так как во время удаления записи в observableCollection
-            // выбранный индекс сбрасывается
-            int temp = entityVM.SelectedIndex;
-
+            // хранит значение индекса, чтобы заново его присвоить
+            int selectedIndex = entityVM.SelectedIndex;
             T selectedEmployee = (T)entityVM.SelectedItem;
-            //if )
-            //{ observableCollection.Remove(selectedEmployee); }
+
+            // удаление в коллекции
+            itemsList.Remove(selectedEmployee);
+            // удаление в базе данных
             selectedEmployee.Remove();
-            entityVM.SelectedIndex = temp;
+            // обновление представления      
+            CollectionViewSource.GetDefaultView(itemsList).Refresh();
+
+            entityVM.SelectedIndex = selectedIndex;
         }
 
         /// <summary>

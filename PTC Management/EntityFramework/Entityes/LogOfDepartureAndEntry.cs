@@ -1,26 +1,19 @@
+using PTC_Management.EntityFramework.Entityes.Base;
+
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PTC_Management.EF
 {
     [Table("LogOfDepartureAndEntry")]
-    public partial class LogOfDepartureAndEntry : Entity
+    public partial class LogOfDepartureAndEntry : TransportInfo
     {
-        public int IdItinerary { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? Date { get; set; }
-
-        public TimeSpan? TimeOnDeparture { get; set; }
-
-        public TimeSpan? TimeWhenReturning { get; set; }
-
         public virtual Itinerary Itinerary { get; set; }
     }
 
 
 
-    public partial class LogOfDepartureAndEntry : Entity
+    public partial class LogOfDepartureAndEntry : TransportInfo
     {
         public static readonly Repository<LogOfDepartureAndEntry> repository =
             new Repository<LogOfDepartureAndEntry>(new PTC_ManagementContext());

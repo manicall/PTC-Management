@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PTC_Management.EntityFramework.Entityes.Base;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -35,16 +37,23 @@ namespace PTC_Management.EF
             return Items.Where(items => items.Id > id).ToList();
         }
 
+        public List<T> GetMaintanceLogs(int id) {
+            return Items.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == id).ToList();
+        }
+
+        public List<T> GetLogOfDepartureAndEntry(int id)
+        {
+            return Items.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == id).ToList();
+        }
+
 
         /// <summary>
         /// Инициализация и возврат всех записей из таблицы.
         /// </summary>
-        public ObservableCollection<T> GetObservableCollection()
+        public List<T> GetList()
         {
-
             _set.Load();
-            return _set.Local;
-
+            return _set.Local.ToList();
         }
 
         /// <summary>

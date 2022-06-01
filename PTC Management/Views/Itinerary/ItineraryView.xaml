@@ -48,7 +48,7 @@
             MinRowHeight="20"
             MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
             ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
-            
+
             CanUserReorderColumns="False"
             IsReadOnly="True" 
             CanUserAddRows="false"      
@@ -57,8 +57,7 @@
           <DataGridTextColumn
             Header="№ Листа"
             Binding="{Binding Id}"/>
-          <DataGridTextColumn 
-            Header="ФИО сотрудника">
+          <DataGridTextColumn Header="ФИО сотрудника">
             <DataGridTextColumn.Binding>
               <MultiBinding StringFormat="{}{0} {1} {2}">
                 <Binding Path="Employee.Surname" />
@@ -68,18 +67,14 @@
             </DataGridTextColumn.Binding>
           </DataGridTextColumn>
 
-          <DataGridTextColumn 
-            Header="Водительское удостоверение" 
-            Binding="{Binding Employee.DriverLicense}"/>
-          <DataGridTextColumn 
-            Header="Транспорт"
-            Binding="{Binding Transport.Name}"/>
-          <DataGridTextColumn 
-            Header="Гос. Номер"
-            Binding="{Binding Transport.LicensePlate}"/>
-          <DataGridTextColumn 
-            Header="Маршрут"
-            Binding="{Binding Route.Name}" Width="*"/>
+          <DataGridTextColumn Header="Водительское удостоверение" 
+                Binding="{Binding Employee.DriverLicense}"/>
+          <DataGridTextColumn Header="Транспорт"
+                Binding="{Binding Transport.Name}"/>
+          <DataGridTextColumn Header="Гос. Номер"
+                Binding="{Binding Transport.LicensePlate}"/>
+          <DataGridTextColumn Header="Маршрут"
+                Binding="{Binding Route.Name}" Width="*"/>
 
         </DataGrid.Columns>
       </DataGrid>

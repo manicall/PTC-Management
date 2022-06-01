@@ -17,26 +17,19 @@
       <ColumnDefinition Width="192*"/>
     </Grid.ColumnDefinitions>
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
-      <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-        <Button Name="create" Style="{StaticResource BlackButton}" Content="Создать"  />
-        <Button Name="change" Style="{StaticResource BlackButton}" Content="Изменить"   />
-        <Button Name="delete" Style="{StaticResource BlackButton}" Content="Удалить"  />
-        <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
-
-        <TextBlock Text="Поиск:" Margin="5"/>
-        <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
-                 Width="200" Margin="5"/>
-      </StackPanel>
-
-      <DataGrid
-        MaxHeight="400"
-        ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" 
-        CanUserReorderColumns="False" 
-        IsReadOnly="True" 
-        CanUserAddRows="false"       
-        ItemsSource="{Binding Items}" 
-        d:ItemsSource="{d:SampleData ItemCount=5}" 
-        AutoGenerateColumns="False">
+      <ContentControl Template="{StaticResource MainWindowControls}" />
+      
+      <DataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+            SelectedIndex="{Binding SelectedIndex}"
+            ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+            Name="dataGridLogOfDepartureAndEntry"
+            MinRowHeight="20" 
+            MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"         
+            CanUserReorderColumns="False"
+            IsReadOnly="True" 
+            CanUserAddRows="false"          
+            AutoGenerateColumns="False">
         
         <DataGrid.Columns>
           <DataGridTextColumn Header="Код" Binding="{Binding id}"/>

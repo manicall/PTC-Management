@@ -21,4 +21,12 @@
     <views:ItineraryDialogView />
   </DataTemplate>
 
+  <DataTemplate DataType="{x:Type dialogViewModels:MaintanceLogDialogViewModel}">
+    <views:MaintanceLogDialogView />
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type dialogViewModels:LogOfDepartureAndEntryDialogViewModel}">
+    <views:LogOfDepartureAndEntryDialogView />
+  </DataTemplate>
+
 </ResourceDictionary>

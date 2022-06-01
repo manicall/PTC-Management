@@ -1,20 +1,13 @@
+using PTC_Management.EntityFramework.Entityes.Base;
+
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PTC_Management.EF
 {
     [Table("MaintanceLog")]
-    public partial class MaintanceLog : Entity
+    public partial class MaintanceLog : TransportInfo
     {
-        public int IdItinerary { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? Date { get; set; }
-
-        public TimeSpan? TimeOnDeparture { get; set; }
-
-        public TimeSpan? TimeWhenReturning { get; set; }
-
         public int? SpeedometerInfoOnDeparture { get; set; }
 
         public int? SpeedometerInfoWhenReturning { get; set; }
@@ -25,7 +18,7 @@ namespace PTC_Management.EF
     }
 
 
-    public partial class MaintanceLog : Entity
+    public partial class MaintanceLog : TransportInfo
     {
         public static readonly Repository<MaintanceLog> repository =
              new Repository<MaintanceLog>(new PTC_ManagementContext());

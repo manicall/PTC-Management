@@ -12,7 +12,7 @@ namespace PTC_Management.ViewModel
 {
     internal class MaintanceLogViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<MaintanceLog, ObservableCollection<MaintanceLog>> viewModelHelper;
+        ViewModelHelper<MaintanceLog, List<MaintanceLog>> viewModelHelper;
 
         private Transport selectedTransport;
 
@@ -22,6 +22,7 @@ namespace PTC_Management.ViewModel
             set { SetProperty(ref selectedTransport, value); }
         }
 
+        Repository<MaintanceLog> repository = MaintanceLog.repository;
 
         public MaintanceLogViewModel(Transport selectedTransport)
         {
@@ -29,9 +30,9 @@ namespace PTC_Management.ViewModel
 
             viewModelHelper =
                 new ViewModelHelper<MaintanceLog,
-                    ObservableCollection<MaintanceLog>>(MaintanceLog.repository);
+                    List<MaintanceLog>>(MaintanceLog.repository);
 
-            Items = CollectionViewSource.GetDefaultView(new List<MaintanceLog>() { new MaintanceLog() { Id = 1 } }); ;
+            Items = CollectionViewSource.GetDefaultView(repository.GetMaintanceLogs(SelectedTransport.Id));
 
             Items.Filter = Filter;
         }
@@ -70,9 +71,9 @@ namespace PTC_Management.ViewModel
         public override void OnDialog(string action)
         {
             var actionPerformer =
-                 new ActionPerformer<MaintanceLog, ObservableCollection<MaintanceLog>>
+                 new ActionPerformer<MaintanceLog, List<MaintanceLog>>
                  (this, GetDialogViewModel(action),
-                  viewModelHelper.ObservableCollection);
+                  viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);
         }

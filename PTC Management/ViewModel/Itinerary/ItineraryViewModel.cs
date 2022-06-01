@@ -4,17 +4,18 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace PTC_Management.ViewModel
 {
     internal class ItineraryViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<Itinerary, ObservableCollection<Itinerary>> viewModelHelper;
+        ViewModelHelper<Itinerary, List<Itinerary>> viewModelHelper;
 
         public ItineraryViewModel()
         {
-            viewModelHelper = new ViewModelHelper<Itinerary, ObservableCollection<Itinerary>>(Itinerary.repository);
+            viewModelHelper = new ViewModelHelper<Itinerary, List<Itinerary>>(Itinerary.repository);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
@@ -41,8 +42,8 @@ namespace PTC_Management.ViewModel
         public override void OnDialog(string action)
         {
             var actionPerformer =
-                 new ActionPerformer<Itinerary, ObservableCollection<Itinerary>> 
-                    (this, GetDialogViewModel(action), viewModelHelper.ObservableCollection);
+                 new ActionPerformer<Itinerary, List<Itinerary>> 
+                    (this, GetDialogViewModel(action), viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);
         }

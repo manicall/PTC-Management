@@ -4,19 +4,20 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<Employee, ObservableCollection<Employee>> viewModelHelper;
+        ViewModelHelper<Employee, List<Employee>> viewModelHelper;
 
         public EmployeeViewModel()
         {
             viewModelHelper =
                 new ViewModelHelper<Employee,
-                    ObservableCollection<Employee>>(Employee.repository);
+                    List<Employee>>(Employee.repository);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
@@ -56,9 +57,9 @@ namespace PTC_Management.ViewModel
         public override void OnDialog(string action)
         {
             var actionPerformer =
-                 new ActionPerformer<Employee, ObservableCollection<Employee>>
+                 new ActionPerformer<Employee, List<Employee>>
                  (this, GetDialogViewModel(action),             
-                  viewModelHelper.ObservableCollection);
+                  viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);
         }

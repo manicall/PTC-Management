@@ -3,6 +3,7 @@ using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
@@ -12,14 +13,14 @@ namespace PTC_Management.ViewModel
     internal class LogOfDepartureAndEntryViewModel : ViewModelBaseEntity
     {
         // хранит записи, которые будут отображены в таблице
-        private ObservableCollection<LogOfDepartureAndEntry> observableCollection;
+        private List<LogOfDepartureAndEntry> itemsList;
         // для взаимодействия с базой данных
         private Repository<LogOfDepartureAndEntry> repository;
 
         public LogOfDepartureAndEntryViewModel()
         {
             repository = LogOfDepartureAndEntry.repository;
-            observableCollection = repository.GetObservableCollection();
+            itemsList = repository.GetList();
 
             Items = GetItems();
             Items.Filter = Filter;
@@ -54,7 +55,7 @@ namespace PTC_Management.ViewModel
         #region Методы
         /// <summary> Возвращает представление. </summary>
         private ICollectionView GetItems() =>
-            CollectionViewSource.GetDefaultView(observableCollection);
+            CollectionViewSource.GetDefaultView(itemsList);
 
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
@@ -63,9 +64,9 @@ namespace PTC_Management.ViewModel
         {
             var actionPerformer =
                  new ActionPerformer<LogOfDepartureAndEntry, 
-                    ObservableCollection<LogOfDepartureAndEntry>>
+                    List<LogOfDepartureAndEntry>>
                  (this, GetDialogViewModel(action),
-                 observableCollection);
+                 itemsList);
 
             actionPerformer.doAction(action);
         }
@@ -81,7 +82,7 @@ namespace PTC_Management.ViewModel
 
                 Title = ViewModels.GetDialogTitle(action, Destinations.logOfDepartureAndEntry),
 
-                ObservableCollection = observableCollection,
+                List = itemsList,
                 Repository = repository
             };
         }

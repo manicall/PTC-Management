@@ -5,6 +5,7 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -12,7 +13,7 @@ namespace PTC_Management.ViewModel
 {
     internal class TransportViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<Transport, ObservableCollection<Transport>> viewModelHelper;
+        ViewModelHelper<Transport, List<Transport>> viewModelHelper;
         public ICommand TransportInfoCommand { get; set; }
 
         public TransportViewModel()
@@ -21,7 +22,7 @@ namespace PTC_Management.ViewModel
 
             viewModelHelper =
                 new ViewModelHelper<Transport,
-                    ObservableCollection<Transport>>(Transport.repository);
+                    List<Transport>>(Transport.repository);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
@@ -84,9 +85,9 @@ namespace PTC_Management.ViewModel
         public override void OnDialog(string action)
         {
             var actionPerformer =
-                 new ActionPerformer<Transport, ObservableCollection<Transport>>
+                 new ActionPerformer<Transport, List<Transport>>
                  (this, GetDialogViewModel(action),
-                  viewModelHelper.ObservableCollection);
+                  viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);
         }

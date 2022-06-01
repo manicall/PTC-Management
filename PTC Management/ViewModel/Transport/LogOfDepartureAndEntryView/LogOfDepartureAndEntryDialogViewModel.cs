@@ -10,14 +10,14 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class LogOfDepartureAndEntryDialogViewModel : DialogViewModel
     {
-        #region ObservableCollection
+        #region List
         /// <summary> Поле, содержащее коллекцию объектов класса. </summary>
-        private ObservableCollection<LogOfDepartureAndEntry> observableCollection;
+        private List<LogOfDepartureAndEntry> itemsList;
 
-        public ObservableCollection<LogOfDepartureAndEntry> ObservableCollection
+        public List<LogOfDepartureAndEntry> List
         {
-            get => observableCollection;
-            set => observableCollection = value;
+            get => itemsList;
+            set => itemsList = value;
         }
         #endregion
 
@@ -53,15 +53,15 @@ namespace PTC_Management.ViewModel.DialogViewModels
             {
                 // выполняет изменения в коллекции
                 // отображающей записи в таблице
-                DoActionForObservableCollection();
+                DoActionForList();
             }
         }
 
         /// <summary>
-        /// Выполняет изменнение observableCollection,
+        /// Выполняет изменнение itemsList,
         /// на основе заданного действия.                     
         /// </summary>
-        private void DoActionForObservableCollection()
+        private void DoActionForList()
         {
             List<LogOfDepartureAndEntry> List;
             switch (MainWindowAction)
@@ -70,7 +70,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
                     List = GetAdded();
                     break;
                 case Actions.update:
-                    UpdateObservableCollection();
+                    UpdateList();
                     return; // выход из функции
                 case Actions.copy:
                     List = repository.GetFrom(DialogItem.Id);
@@ -79,7 +79,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             }
 
             foreach (var LogOfDepartureAndEntry in List)
-                observableCollection.Add(LogOfDepartureAndEntry);
+                itemsList.Add(LogOfDepartureAndEntry);
         }
 
         /// <summary>
@@ -91,12 +91,12 @@ namespace PTC_Management.ViewModel.DialogViewModels
         };
 
         /// <summary>
-        /// Выполняет обновление записи в observableCollection
+        /// Выполняет обновление записи в itemsList
         /// и обновляет представление, используещее данную коллекцию.
         /// </summary>
-        private void UpdateObservableCollection()
+        private void UpdateList()
         {
-            ObservableCollection<LogOfDepartureAndEntry> ob = observableCollection;
+            List<LogOfDepartureAndEntry> ob = itemsList;
 
             ob[SelectedIndex].SetFields((LogOfDepartureAndEntry)DialogItem);
             CollectionViewSource.GetDefaultView(ob).Refresh();

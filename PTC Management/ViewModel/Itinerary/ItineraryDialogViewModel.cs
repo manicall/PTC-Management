@@ -5,13 +5,14 @@ using PTC_Management.Model.Dialog;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class ItineraryDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Itinerary, ObservableCollection<Itinerary>> viewModelHelper;
+        ViewModelHelper<Itinerary, List<Itinerary>> viewModelHelper;
         private readonly Destinations _destinations = new Destinations();
 
         public Destinations Destinations => _destinations;
@@ -38,7 +39,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Itinerary, ObservableCollection<Itinerary>> ViewModelHelper
+        internal ViewModelHelper<Itinerary, List<Itinerary>> ViewModelHelper
         {
             get => viewModelHelper;
             set => viewModelHelper = value;
@@ -56,7 +57,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             if (dialogAction != Actions.close)
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
-                viewModelHelper.DoActionForObservableCollection(
+                viewModelHelper.DoActionForList(
                     MainWindowAction, DialogItem.Id, SelectedIndex, (Itinerary)DialogItem);
             }
         }

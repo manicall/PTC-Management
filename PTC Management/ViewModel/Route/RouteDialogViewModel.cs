@@ -11,7 +11,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class RouteDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Route, ObservableCollection<Route>> viewModelHelper;
+        ViewModelHelper<Route, List<Route>> viewModelHelper;
 
         public RouteDialogViewModel()
         {
@@ -20,7 +20,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Route, ObservableCollection<Route>> ViewModelHelper
+        internal ViewModelHelper<Route, List<Route>> ViewModelHelper
         {
             get => viewModelHelper;
             set => viewModelHelper = value;
@@ -38,7 +38,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             if (dialogAction != Actions.close)
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
-                viewModelHelper.DoActionForObservableCollection(
+                viewModelHelper.DoActionForList(
                     MainWindowAction, DialogItem.Id, SelectedIndex, (Route)DialogItem);
             }
         }

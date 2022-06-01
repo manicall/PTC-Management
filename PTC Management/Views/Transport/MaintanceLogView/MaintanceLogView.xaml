@@ -3,7 +3,7 @@
    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
-   xmlns:local = "clr-namespace:PTC_Management.Views" 
+
    mc:Ignorable = "d" 
    d:DesignHeight = "300" d:DesignWidth = "950">
 
@@ -17,31 +17,27 @@
       <ColumnDefinition Width="192*"/>
     </Grid.ColumnDefinitions>
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
-      <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-        <Button Name="create" Style="{StaticResource BlackButton}" Content="Создать"  />
-        <Button Name="change" Style="{StaticResource BlackButton}" Content="Изменить"   />
-        <Button Name="delete" Style="{StaticResource BlackButton}" Content="Удалить"  />
-        <Button Name="copy"   Style="{StaticResource BlackButton}" Content="Копировать" />
+      <ContentControl Template="{StaticResource MainWindowControls}" />
 
-        <TextBlock Text="Поиск:" Margin="5"/>
-        <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5"/>
-      </StackPanel>
-
-      <DataGrid MaxHeight="400" ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" 
-            CanUserReorderColumns="False" 
+      <DataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+            SelectedIndex="{Binding SelectedIndex}"
+            ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+            Name="dataGridMaintanceLog"
+            MinRowHeight="20" 
+            MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"         
+            CanUserReorderColumns="False"
             IsReadOnly="True" 
-            CanUserAddRows="false" 
-            Name="MaintenanceLogGrid" 
-            ItemsSource="{Binding Items}" 
+            CanUserAddRows="false"          
             AutoGenerateColumns="False">
 
         <DataGrid.Columns>
           <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
           <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}" />
-          <DataGridTextColumn Header="№ листа" Binding="{Binding Transport.Itinerary.Id}"/>
-          <DataGridTextColumn Header="Транспорт"  Binding="{Binding Transport.Name}"/>
-          <DataGridTextColumn Header="Гос. номер"  Binding="{Binding Transport.LicensePlate}"/>
-          <DataGridTextColumn Header="Маршрут"  Binding="{Binding Transport.Itinerary.Route.Name}"/>
+          <DataGridTextColumn Header="№ листа" Binding="{Binding Itinerary.Id}"/>
+          <DataGridTextColumn Header="Транспорт"  Binding="{Binding Itinerary.Transport.Name}"/>
+          <DataGridTextColumn Header="Гос. номер"  Binding="{Binding Itinerary.Transport.LicensePlate}"/>
+          <DataGridTextColumn Header="Маршрут"  Binding="{Binding Itinerary.Route.Name}"/>
 
           <DataGridTemplateColumn CanUserResize="False">
 

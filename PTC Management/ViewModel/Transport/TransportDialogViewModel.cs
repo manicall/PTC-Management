@@ -11,7 +11,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class TransportDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Transport, ObservableCollection<Transport>> viewModelHelper;
+        ViewModelHelper<Transport, List<Transport>> viewModelHelper;
 
         public TransportDialogViewModel()
         {
@@ -20,7 +20,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Transport, ObservableCollection<Transport>> ViewModelHelper { 
+        internal ViewModelHelper<Transport, List<Transport>> ViewModelHelper { 
             get => viewModelHelper;
             set => viewModelHelper = value; 
         }
@@ -37,7 +37,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             if (dialogAction != Actions.close)
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
-                viewModelHelper.DoActionForObservableCollection(
+                viewModelHelper.DoActionForList(
                     MainWindowAction, DialogItem.Id, SelectedIndex, (Transport)DialogItem);
             }
         }
