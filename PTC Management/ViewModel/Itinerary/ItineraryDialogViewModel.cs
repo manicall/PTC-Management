@@ -52,7 +52,9 @@ namespace PTC_Management.ViewModel.DialogViewModels
             var selectWindow = new SelectWindowViewModel();
 
             selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
-            if (destination == Destinations.Transport) (selectWindow.CurrentViewModel as TransportViewModel).TansportInfoVisibility = Visibility.collapsed;
+            if (destination == Destinations.Transport) 
+                (selectWindow.CurrentViewModel as TransportViewModel).TansportInfoVisibility = Visibility.collapsed;
+
             selectWindow.Show();
 
             if (selectWindow.ReturnedItem != null)

@@ -32,7 +32,7 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Вызывает действие, которое необходимо выполнить
         /// </summary>
-        public void doAction(string action)
+        public void doAction(string action)h
         {
             switch (action)
             {
@@ -89,10 +89,11 @@ namespace PTC_Management.ViewModel
 
             // TODO: Проверить чтобы элемент не удалялся из таблицы в случае не успеха
 
-            // удаление в коллекции
-            itemsList.Remove(selectedEmployee);
             // удаление в базе данных
-            selectedEmployee.Remove();
+            if (selectedEmployee.Remove()) {
+                // удаление в коллекции
+                itemsList.Remove(selectedEmployee);
+            }
             // обновление представления      
             CollectionViewSource.GetDefaultView(itemsList).Refresh();
 
