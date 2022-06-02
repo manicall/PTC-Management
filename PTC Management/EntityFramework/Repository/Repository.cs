@@ -35,19 +35,28 @@ namespace PTC_Management.EF
             return Items.Where(items => items.Id > id).ToList();
         }
 
-        public List<T> GetMaintanceLogs(int id)
+        /// <summary>
+        /// Возвращает набор записей, которые содержат указанный id транспорта
+        /// </summary>
+        public List<T> GetMaintanceLogs(int idTransport)
         {
-            return Items.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == id).ToList();
+            return Items.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
         }
 
-        public List<T> GetLogOfDepartureAndEntry(int id)
+        /// <summary>
+        /// Возвращает набор записей, которые содержат указанный id транспорта
+        /// </summary>
+        public List<T> GetLogOfDepartureAndEntry(int idTransport)
         {
-            return Items.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == id).ToList();
+            return Items.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == idTransport).ToList();
         }
 
-        public List<T> GetItineraries(int id)
+        /// <summary>
+        /// Возвращает набор записей, которые содержат указанный id транспорта
+        /// </summary>
+        public List<T> GetItineraries(int idTransport)
         {
-            return Items.Where(items => (items as Itinerary).Transport.Id == id).ToList();
+            return Items.Where(items => (items as Itinerary).Transport.Id == idTransport).ToList();
         }
 
         /// <summary>
@@ -104,6 +113,9 @@ namespace PTC_Management.EF
                     "Ошибка удаления файла из базы данных",
                     MessageBoxButton.OK, MessageBoxImage.Error);
 
+                // отмена удаления
+                _db.Entry(item).State = EntityState.Unchanged;
+
                 return false;
             }
 
@@ -118,8 +130,7 @@ namespace PTC_Management.EF
             if (item is null) throw new ArgumentNullException(nameof(item));
 
             // Инициализация списка копий
-            List<T> Items = Enumerable
-                .Range(1, Count).Select(i => (T)item.Clone()).ToList();
+            List<T> Items = Enumerable.Range(1, Count).Select(i => (T)item.Clone()).ToList();
 
             _set.AddRange(Items);
 

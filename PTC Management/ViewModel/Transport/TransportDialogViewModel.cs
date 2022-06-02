@@ -14,11 +14,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Transport> ViewModelHelper
-        {
-            get => viewModelHelper;
-            set => viewModelHelper = value;
-        }
+        internal ViewModelHelper<Transport> ViewModelHelper { get; set; }
 
         #region методы
         /// <summary>

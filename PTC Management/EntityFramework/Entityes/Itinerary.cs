@@ -74,9 +74,9 @@ namespace PTC_Management.EF
                 // создавать копии сущностей, так как при добавлении записи
                 // оригинальные сущности могут использовать
                 // другой контекст, что приведет к исключению InvalidOperationException
-                Employee = (Employee)Employee.Clone(),
-                Route = (Route)Route.Clone(),
-                Transport = (Transport)Transport.Clone()
+                Employee = (Employee)Employee?.Clone(),
+                Route = (Route)Route?.Clone(),
+                Transport = (Transport)Transport?.Clone()
             };
             return itinerary;
         }

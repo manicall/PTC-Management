@@ -6,19 +6,13 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class EmployeeDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Employee> viewModelHelper;
-
         public EmployeeDialogViewModel()
         {
             DialogItem = new Employee();
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Employee> ViewModelHelper
-        {
-            get => viewModelHelper;
-            set => viewModelHelper = value;
-        }
+        public ViewModelHelper<Employee> ViewModelHelper { get; set ; }
 
         #region методы
         /// <summary>
@@ -32,7 +26,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             if (dialogAction != Actions.close)
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
-                viewModelHelper.DoActionForList(
+                ViewModelHelper.DoActionForList(
                     MainWindowAction, DialogItem.Id, SelectedIndex, (Employee)DialogItem);
             }
         }

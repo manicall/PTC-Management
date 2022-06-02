@@ -10,11 +10,9 @@ namespace PTC_Management
 {
     class MainWindowViewModel : ViewModelBaseWindow
     {
-        private readonly Destinations _destinations = new Destinations();
-        public Destinations Destinations => _destinations;
+        public Destinations Destinations => new Destinations();
 
-        private readonly Backup _Backup = new Backup();
-        public Backup Backup => _Backup;
+        public Backup Backup => new Backup();
 
         public MainWindowViewModel()
         {

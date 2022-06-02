@@ -8,19 +8,13 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class ItineraryDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Itinerary> viewModelHelper;
-
         public ItineraryDialogViewModel()
         {
             DialogItem = new Itinerary();
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Itinerary> ViewModelHelper
-        {
-            get => viewModelHelper;
-            set => viewModelHelper = value;
-        }
+        public ViewModelHelper<Itinerary> ViewModelHelper { get; set; }
 
         #region методы
         /// <summary>
@@ -34,7 +28,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             if (dialogAction != Actions.close)
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
-                viewModelHelper.DoActionForList(
+                ViewModelHelper.DoActionForList(
                     MainWindowAction, DialogItem.Id, SelectedIndex, (Itinerary)DialogItem);
             }
         }
