@@ -102,7 +102,7 @@ namespace PTC_Management.EF
             catch (DbUpdateException ex) 
             {
                 MessageBox.Show(ex.InnerException.InnerException.Message,
-                    "Ошибка создания файла восстановления",
+                    "Ошибка удаления файла из базы данных",
                     MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return false;

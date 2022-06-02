@@ -48,6 +48,9 @@ namespace PTC_Management.ViewModel
 
         #region Методы
         public void OnTransportInfo(string destination) {
+            // TODO: отправить сообщение о том, что должен быть выбран транспорт
+            if ((Transport)SelectedItem is null) return;
+
             var transportInfo = new TransportInfoViewModel();
             transportInfo.SelectedTransport = (Transport)SelectedItem;
 

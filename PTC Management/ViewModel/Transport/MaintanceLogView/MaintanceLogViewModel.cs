@@ -26,6 +26,7 @@ namespace PTC_Management.ViewModel
 
         public MaintanceLogViewModel(Transport selectedTransport)
         {
+
             SelectedTransport = selectedTransport;
 
             viewModelHelper =

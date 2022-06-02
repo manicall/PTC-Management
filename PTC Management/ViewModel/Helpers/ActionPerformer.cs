@@ -32,7 +32,7 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Вызывает действие, которое необходимо выполнить
         /// </summary>
-        public void doAction(string action)h
+        public void doAction(string action)
         {
             switch (action)
             {
