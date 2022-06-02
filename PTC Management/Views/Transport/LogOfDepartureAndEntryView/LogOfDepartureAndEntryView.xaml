@@ -32,11 +32,12 @@
             AutoGenerateColumns="False">
         
         <DataGrid.Columns>
-          <DataGridTextColumn Header="Код" Binding="{Binding id}"/>
-          <DataGridTextColumn Header="Дата" Binding="{Binding date, StringFormat=\{0:dd.MM.yyyy\}}" />
-          <DataGridTextColumn Header="№ листа" Binding="{Binding idList}"/>
-          <DataGridTextColumn Header="Транспорт"  Binding="{Binding transport}"/>
-          <DataGridTextColumn Header="Гос. номер"  Binding="{Binding licensePlate}"/>
+          <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
+          <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}" />
+          <DataGridTextColumn Header="№ листа" Binding="{Binding Itinerary.Id}"/>
+          <DataGridTextColumn Header="Транспорт"  Binding="{Binding Itinerary.Transport.Name}"/>
+          <DataGridTextColumn Header="Гос. номер"  Binding="{Binding Itinerary.Transport.LicensePlate}"/>
+          <DataGridTextColumn Header="Маршрут"  Binding="{Binding Itinerary.Route.Name}"/>
 
           <DataGridTemplateColumn CanUserResize="False">
             <DataGridTemplateColumn.HeaderTemplate>
@@ -67,10 +68,10 @@
                   </Grid.ColumnDefinitions>
 
                   <Border Margin="-1,-1,0,-1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Text="{Binding timeOnDeparture, StringFormat=\{0:HH:mm\}}" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding TimeOnDeparture, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
                   </Border>
                   <Border Margin="-1,-1,-1,-1" Grid.Column="1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Text="{Binding timeWhenReturning, StringFormat=\{0:HH:mm\}}" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding TimeWhenReturning, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
                   </Border>
                 </Grid>
               </DataTemplate>

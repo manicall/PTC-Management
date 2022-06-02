@@ -14,7 +14,7 @@ namespace PTC_Management.Model.MainWindow
         internal const string _restore = "restore";
         internal const string _create = "create";
 
-        public string Restore => _restore;
+        public static string Restore => _restore;
         public string Create => _create;
 
         internal static void CreateBackup(string backupFile)

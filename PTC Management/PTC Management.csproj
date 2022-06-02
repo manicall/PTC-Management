@@ -145,7 +145,7 @@
     <Compile Include="ViewModel\Windows\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Route\RouteViewModel.cs" />
     <Compile Include="ViewModel\ScheduleOfEmployee\ScheduleOfEmployeeViewModel.cs" />
-    <Compile Include="ViewModel\Windows\TransportInfoViewModel.cs" />
+    <Compile Include="ViewModel\Windows\TransportInfoWindowViewModel.cs" />
     <Compile Include="ViewModel\Transport\TransportViewModel.cs" />
     <Compile Include="ViewModel\Windows\SelectWindowViewModel.cs" />
     <Compile Include="Views\Employee\EmployeeDialogView.xaml.cs">

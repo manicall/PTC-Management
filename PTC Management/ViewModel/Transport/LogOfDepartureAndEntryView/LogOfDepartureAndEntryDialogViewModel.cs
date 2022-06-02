@@ -1,42 +1,27 @@
 ﻿using PTC_Management.EF;
-using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
+using PTC_Management.Model.MainWindow;
+using PTC_Management.ViewModel.Helpers;
 
-using System.Collections.Generic;
-using System.Windows.Data;
+using System;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class LogOfDepartureAndEntryDialogViewModel : DialogViewModel
     {
-        #region List
-        /// <summary> Поле, содержащее коллекцию объектов класса. </summary>
-        private List<LogOfDepartureAndEntry> itemsList;
-
-        public List<LogOfDepartureAndEntry> List
-        {
-            get => itemsList;
-            set => itemsList = value;
-        }
-        #endregion
-
-        #region repository
-        /// <summary>
-        /// Поле, обеспечивающее взаимодействие с таблицей в базе данных.
-        /// </summary>            
-        private Repository<LogOfDepartureAndEntry> repository;
-        public Repository<LogOfDepartureAndEntry> Repository
-        {
-            get => repository;
-            set => repository = value;
-        }
-        #endregion
+        ViewModelHelper<LogOfDepartureAndEntry> viewModelHelper;
 
         public LogOfDepartureAndEntryDialogViewModel()
         {
-            CopyParameters = new CopyParameters();
             DialogItem = new LogOfDepartureAndEntry();
+            ((LogOfDepartureAndEntry)DialogItem).Date = DateTime.Now;
             CurrentViewModel = this;
+        }
+
+        internal ViewModelHelper<LogOfDepartureAndEntry> ViewModelHelper
+        {
+            get => viewModelHelper;
+            set => viewModelHelper = value;
         }
 
         #region методы
@@ -50,55 +35,34 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
             if (dialogAction != Actions.close)
             {
-                // выполняет изменения в коллекции
-                // отображающей записи в таблице
-                DoActionForList();
+                // выполняет изменения в коллекции отображающей записи в таблице
+                viewModelHelper.DoActionForList(
+                    MainWindowAction, DialogItem.Id, SelectedIndex, (LogOfDepartureAndEntry)DialogItem);
             }
         }
 
-        /// <summary>
-        /// Выполняет изменнение itemsList,
-        /// на основе заданного действия.                     
-        /// </summary>
-        private void DoActionForList()
+        protected override void OnDialogSelectСommand(string destination)
         {
-            List<LogOfDepartureAndEntry> List;
-            switch (MainWindowAction)
+            var selectWindow = new SelectWindowViewModel();
+            selectWindow.CurrentViewModel = new ItineraryViewModel(viewModelHelper.IdTransport);
+            selectWindow.Show();
+
+            if (selectWindow.ReturnedItem != null)
             {
-                case Actions.add:
-                    List = GetAdded();
-                    break;
-                case Actions.update:
-                    UpdateList();
-                    return; // выход из функции
-                case Actions.copy:
-                    List = repository.GetFrom(DialogItem.Id);
-                    break;
-                default: return;
+                LogOfDepartureAndEntry tempDialogItem = (LogOfDepartureAndEntry)DialogItem.Clone();
+                switch (destination)
+                {
+                    case Destinations.itinerary:
+                        tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem.Clone();
+                        tempDialogItem.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
+                        break;
+
+                    default: break;
+                }
+
+                DialogItem = tempDialogItem;
             }
 
-            foreach (var LogOfDepartureAndEntry in List)
-                itemsList.Add(LogOfDepartureAndEntry);
-        }
-
-        /// <summary>
-        /// Выполняет поиск записи в базе данных по ключу. 
-        /// </summary>        
-        private List<LogOfDepartureAndEntry> GetAdded() => new List<LogOfDepartureAndEntry>
-        {
-            repository.GetSingle(DialogItem.Id)
-        };
-
-        /// <summary>
-        /// Выполняет обновление записи в itemsList
-        /// и обновляет представление, используещее данную коллекцию.
-        /// </summary>
-        private void UpdateList()
-        {
-            List<LogOfDepartureAndEntry> ob = itemsList;
-
-            ob[SelectedIndex].SetFields((LogOfDepartureAndEntry)DialogItem);
-            CollectionViewSource.GetDefaultView(ob).Refresh();
         }
 
         #endregion

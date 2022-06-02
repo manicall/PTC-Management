@@ -52,6 +52,7 @@ namespace PTC_Management.EF
         {
             if (entity is Itinerary itinerary)
             {
+                Id = itinerary.Id;
                 IdRoute = itinerary.IdRoute;
                 IdTransport = itinerary.IdTransport;
                 IdEmployee = itinerary.IdEmployee;
@@ -65,12 +66,17 @@ namespace PTC_Management.EF
         {
             Itinerary itinerary = new Itinerary
             {
+                Id = Id,
                 IdRoute = IdRoute,
                 IdTransport = IdTransport,
                 IdEmployee = IdEmployee,
-                Employee = Employee,
-                Route = Route,
-                Transport = Transport
+                // при создании новой записи необходимо
+                // создавать копии сущностей, так как при добавлении записи
+                // оригинальные сущности могут использовать
+                // другой контекст, что приведет к исключению InvalidOperationException
+                Employee = (Employee)Employee.Clone(),
+                Route = (Route)Route.Clone(),
+                Transport = (Transport)Transport.Clone()
             };
             return itinerary;
         }

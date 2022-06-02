@@ -39,7 +39,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
             }
         }
 
-        // DONE: При добавлении записей, которых еще нет в таблице, поля становятся пустыми
         protected override void OnDialogSelectСommand(string destination)
         {
             var selectWindow = new SelectWindowViewModel();

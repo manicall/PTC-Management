@@ -34,7 +34,7 @@ namespace PTC_Management.ViewModel
         public void doAction(string action)
         {
             // TODO: уведомить пользователя о том, что запись не выбрана
-            if (entityVM.SelectedItem is null) return;
+            if (entityVM.SelectedItem is null && action != Actions.add) return;
 
             switch (action)
             {

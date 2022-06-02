@@ -34,6 +34,7 @@ namespace PTC_Management.EF
         {
             if (entity is LogOfDepartureAndEntry item)
             {
+                Id = item.Id;
                 IdItinerary = item.IdItinerary;
                 Date = item.Date;
                 TimeOnDeparture = item.TimeOnDeparture;

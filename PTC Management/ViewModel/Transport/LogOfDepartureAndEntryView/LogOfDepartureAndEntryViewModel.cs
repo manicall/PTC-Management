@@ -2,6 +2,7 @@
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
+using PTC_Management.ViewModel.Helpers;
 
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,17 +12,17 @@ namespace PTC_Management.ViewModel
 {
     internal class LogOfDepartureAndEntryViewModel : ViewModelBaseEntity
     {
-        // хранит записи, которые будут отображены в таблице
-        private List<LogOfDepartureAndEntry> itemsList;
-        // для взаимодействия с базой данных
-        private Repository<LogOfDepartureAndEntry> repository;
+        ViewModelHelper<LogOfDepartureAndEntry> viewModelHelper;
 
-        public LogOfDepartureAndEntryViewModel()
+        public LogOfDepartureAndEntryViewModel(Transport selectedTransport)
         {
-            repository = LogOfDepartureAndEntry.repository;
-            itemsList = repository.GetList();
+            viewModelHelper =
+                new ViewModelHelper<LogOfDepartureAndEntry>(
+                    LogOfDepartureAndEntry.repository,
+                    Destinations.logOfDepartureAndEntry,
+                    selectedTransport.Id);
 
-            Items = GetItems();
+            Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
         }
 
@@ -49,12 +50,9 @@ namespace PTC_Management.ViewModel
             //}
             return true;
         }
-        #endregion 
+        #endregion
 
         #region Методы
-        /// <summary> Возвращает представление. </summary>
-        private ICollectionView GetItems() =>
-            CollectionViewSource.GetDefaultView(itemsList);
 
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
@@ -63,7 +61,7 @@ namespace PTC_Management.ViewModel
         {
             var actionPerformer =
                  new ActionPerformer<LogOfDepartureAndEntry>
-                    (this, GetDialogViewModel(action), itemsList);
+                 (this, GetDialogViewModel(action), viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);
         }
@@ -71,18 +69,16 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
         /// </summary>
-        private DialogViewModel GetDialogViewModel(string action)
+        public DialogViewModel GetDialogViewModel(string action)
         {
             return new LogOfDepartureAndEntryDialogViewModel()
             {
                 MainWindowAction = action,
-
                 Title = ViewModels.GetDialogTitle(action, Destinations.logOfDepartureAndEntry),
-
-                List = itemsList,
-                Repository = repository
+                ViewModelHelper = viewModelHelper
             };
         }
+
         #endregion
     }
 }

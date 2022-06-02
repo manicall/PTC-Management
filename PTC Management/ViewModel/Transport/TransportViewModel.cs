@@ -50,7 +50,7 @@ namespace PTC_Management.ViewModel
             // TODO: отправить сообщение о том, что должен быть выбран транспорт
             if ((Transport)SelectedItem is null) return;
 
-            var transportInfo = new TransportInfoViewModel();
+            var transportInfo = new TransportInfoWindowViewModel();
 
             switch (destination)
             {
@@ -62,7 +62,7 @@ namespace PTC_Management.ViewModel
                     break;
 
                 case Destinations.logOfDepartureAndEntry:
-                    transportInfo.CurrentViewModel = new LogOfDepartureAndEntryViewModel();
+                    transportInfo.CurrentViewModel = new LogOfDepartureAndEntryViewModel((Transport)SelectedItem);
                     transportInfo.Title = "Журнал регистрации въезда и выезда";
                     transportInfo.Show();
 

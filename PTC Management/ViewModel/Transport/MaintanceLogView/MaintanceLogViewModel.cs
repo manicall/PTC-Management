@@ -10,24 +10,13 @@ namespace PTC_Management.ViewModel
     {
         ViewModelHelper<MaintanceLog> viewModelHelper;
 
-        private Transport selectedTransport;
-
-        public Transport SelectedTransport
-        {
-            get { return selectedTransport; }
-            set { SetProperty(ref selectedTransport, value); }
-        }
-
         public MaintanceLogViewModel(Transport selectedTransport)
         {
-
-            SelectedTransport = selectedTransport;
-
             viewModelHelper =
                 new ViewModelHelper<MaintanceLog>(
                     MaintanceLog.repository,
                     Destinations.maintanceLog,
-                    SelectedTransport.Id);
+                    selectedTransport.Id);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;

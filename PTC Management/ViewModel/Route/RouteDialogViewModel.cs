@@ -11,7 +11,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         public RouteDialogViewModel()
         {
-            CopyParameters = new CopyParameters();
             DialogItem = new Route();
             CurrentViewModel = this;
         }

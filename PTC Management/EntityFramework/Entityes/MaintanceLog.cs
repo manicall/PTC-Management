@@ -39,6 +39,7 @@ namespace PTC_Management.EF
         {
             if (entity is MaintanceLog item)
             {
+                Id = item.Id;
                 IdItinerary = item.IdItinerary;
                 Date = item.Date;
                 TimeOnDeparture = item.TimeOnDeparture;
@@ -54,6 +55,7 @@ namespace PTC_Management.EF
         {
             return new MaintanceLog
             {
+                Id = Id,
                 IdItinerary = IdItinerary,
                 Date = Date,
                 TimeOnDeparture = TimeOnDeparture,

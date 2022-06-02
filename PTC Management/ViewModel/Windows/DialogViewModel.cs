@@ -26,12 +26,6 @@ namespace PTC_Management.ViewModel
         private Entity dialogItem;
 
         /// <summary>
-        /// Необходим для вызова события PropertyChanged 
-        /// у свойства DialogItem
-        /// </summary>
-        private Entity displayedDialogItem;
-
-        /// <summary>
         /// Действие которое было выбрано в главном окне
         /// </summary>
         private string mainWindowAction;
@@ -42,12 +36,6 @@ namespace PTC_Management.ViewModel
         {
             get => dialogItem;
             set => SetProperty(ref dialogItem, value);
-        }
-
-        public Entity DisplayedDialogItem
-        {
-            get { return displayedDialogItem; }
-            set { SetProperty(ref displayedDialogItem, value); }
         }
 
         public CopyParameters CopyParameters

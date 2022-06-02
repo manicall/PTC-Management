@@ -1,8 +1,9 @@
 ﻿using PTC_Management.EF;
-using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Helpers;
+
+using System;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
@@ -12,9 +13,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         public MaintanceLogDialogViewModel()
         {
-            CopyParameters = new CopyParameters();
             DialogItem = new MaintanceLog();
-            DisplayedDialogItem = new MaintanceLog();
+            ((MaintanceLog)DialogItem).Date = DateTime.Now;
             CurrentViewModel = this;
         }
 
@@ -49,18 +49,18 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
             if (selectWindow.ReturnedItem != null)
             {
-                MaintanceLog tempDialogItem = (MaintanceLog)DisplayedDialogItem.Clone();
+                MaintanceLog tempDialogItem = (MaintanceLog)DialogItem.Clone();
                 switch (destination)
                 {
                     case Destinations.itinerary:
-                        tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem;
-                        ((MaintanceLog)DialogItem).IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem.Clone();
+                        tempDialogItem.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
                         break;
 
                     default: break;
                 }
 
-                DisplayedDialogItem = tempDialogItem;
+                DialogItem = tempDialogItem;
             }
 
         }

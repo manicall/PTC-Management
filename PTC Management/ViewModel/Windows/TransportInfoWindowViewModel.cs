@@ -3,7 +3,7 @@ using PTC_Management.Views.Windows;
 
 namespace PTC_Management.ViewModel
 {
-    internal class TransportInfoViewModel : ViewModelBaseWindow
+    internal class TransportInfoWindowViewModel : ViewModelBaseWindow
     {
 
         /// <summary> Метод показа ViewModel в окне </summary>
