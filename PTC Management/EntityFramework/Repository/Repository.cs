@@ -94,7 +94,7 @@ namespace PTC_Management.EF
 
             _db.Entry(item).State = EntityState.Deleted;
 
-            // TODO: Обработать исключение, если сущность имеет связь
+            // DONE: Обработать исключение, если сущность имеет связь
             try
             {
                 _db.SaveChanges();

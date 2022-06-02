@@ -33,7 +33,10 @@ namespace PTC_Management.ViewModel
         /// Вызывает действие, которое необходимо выполнить
         /// </summary>
         public void doAction(string action)
-        {
+        { 
+            // TODO: уведомить пользователя о том, что запись не выбрана
+            if (entityVM.SelectedItem is null) return;
+
             switch (action)
             {
                 case Actions.add:
@@ -55,10 +58,7 @@ namespace PTC_Management.ViewModel
         /// Выполняет запуск диалогового окна, 
         /// для добавления записи в таблицу
         /// </summary>
-        private void Add()
-        {
-            dialogVM.Show();
-        }
+        private void Add() => dialogVM.Show();
 
         /// <summary>
         /// Выполняет запуск диалогового окна, 
@@ -66,9 +66,6 @@ namespace PTC_Management.ViewModel
         /// </summary>
         private void Update()
         {
-            // TODO: уведомить пользователя о том, что запись не выбрана
-            if (entityVM.SelectedItem is null) return;
-
             dialogVM.SelectedIndex = entityVM.SelectedIndex;
             dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
             dialogVM.SelectedItem = (T)entityVM.SelectedItem;
@@ -81,13 +78,11 @@ namespace PTC_Management.ViewModel
         /// </summary>
         private void Remove()
         {
-            if (entityVM.SelectedItem is null) return;
-
             // хранит значение индекса, чтобы заново его присвоить
             int selectedIndex = entityVM.SelectedIndex;
             T selectedEmployee = (T)entityVM.SelectedItem;
 
-            // TODO: Проверить чтобы элемент не удалялся из таблицы в случае не успеха
+            // DONE: Проверить чтобы элемент не удалялся из таблицы в случае не успеха
 
             // удаление в базе данных
             if (selectedEmployee.Remove()) {
@@ -106,8 +101,6 @@ namespace PTC_Management.ViewModel
         /// </summary>
         private void Copy()
         {
-            if (entityVM.SelectedItem is null) return;
-
             dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
             dialogVM.CopyParameters.CountVisibility = Visibility.visible;
 

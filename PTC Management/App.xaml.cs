@@ -7,10 +7,13 @@ namespace PTC_Management
     /// </summary>
     public partial class App : Application
     {
+        // TODO: Сделать заставку
         protected override void OnStartup(StartupEventArgs e)
         {
             RunTime.Start();
             base.OnStartup(e);
         }
+
+        
     }
 }

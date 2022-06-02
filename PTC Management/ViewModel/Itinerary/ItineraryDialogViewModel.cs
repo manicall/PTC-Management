@@ -4,6 +4,7 @@ using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Helpers;
+using PTC_Management.Views.Windows;
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,9 +17,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         public ItineraryDialogViewModel()
         {
-            CopyParameters = new CopyParameters();
             DialogItem = new Itinerary();
-            DisplayedDialogItem = new Itinerary();
             CurrentViewModel = this;
         }
 
@@ -45,45 +44,51 @@ namespace PTC_Management.ViewModel.DialogViewModels
             }
         }
 
-
-        // TODO: При добавлении записей, которых еще нет в таблице, поля становятся пустыми
+        // DONE: При добавлении записей, которых еще нет в таблице, поля становятся пустыми
         protected override void OnDialogSelectСommand(string destination)
         {
             var selectWindow = new SelectWindowViewModel();
-
+            // устанавливается представление-модель,
+            // по которой будет ясно какое представление отобразить
             selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
+
+            // отключение видимости кнопок с журналом ТО и
+            // журналом въезда и выезда у окна со списком транспорта
             if (destination == Destinations.Transport) 
-                (selectWindow.CurrentViewModel as TransportViewModel).TansportInfoVisibility = Visibility.collapsed;
+                ChangeTansportInfoVisibility(selectWindow, Visibility.collapsed);
 
             selectWindow.Show();
 
             if (selectWindow.ReturnedItem != null)
             {
-                Itinerary tempDialogItem = (Itinerary)DisplayedDialogItem.Clone();
+                Itinerary tempDialogItem = (Itinerary)DialogItem.Clone();
                 switch (destination)
                 {
                     case Destinations.employee:
-                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem;
-                        ((Itinerary) DialogItem).IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem.Clone();
+                        tempDialogItem.IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
 
                         break;
                     case Destinations.route:
-                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem;
-                        ((Itinerary)DialogItem).IdRoute =((Route)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem.Clone();
+                        tempDialogItem.IdRoute =((Route)selectWindow.ReturnedItem).Id;
 
                         break;
                     case Destinations.transport:
-                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem;
-                        ((Itinerary)DialogItem).IdTransport =((Transport)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem.Clone();
+                        tempDialogItem.IdTransport =((Transport)selectWindow.ReturnedItem).Id;
 
                         break;
 
                     default: break;
                 }
-
-                DisplayedDialogItem = tempDialogItem;
+                DialogItem = tempDialogItem;
             }
 
+        }
+
+        void ChangeTansportInfoVisibility(SelectWindowViewModel sw, string visibility) {
+            (sw.CurrentViewModel as TransportViewModel).TansportInfoVisibility = visibility;
         }
 
         #endregion

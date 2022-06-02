@@ -11,13 +11,6 @@ namespace PTC_Management.ViewModel
 {
     internal class TransportInfoViewModel : ViewModelBaseWindow
     {
-        private Transport selectedTransport;
-        public Transport SelectedTransport
-        {
-            get { return selectedTransport; }
-            set { SetProperty(ref selectedTransport, value); }
-        }
-
 
         /// <summary> Метод показа ViewModel в окне </summary>
         public void Show()

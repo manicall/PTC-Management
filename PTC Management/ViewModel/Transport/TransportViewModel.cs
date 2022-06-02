@@ -52,7 +52,6 @@ namespace PTC_Management.ViewModel
             if ((Transport)SelectedItem is null) return;
 
             var transportInfo = new TransportInfoViewModel();
-            transportInfo.SelectedTransport = (Transport)SelectedItem;
 
             switch (destination) 
             {
@@ -62,13 +61,13 @@ namespace PTC_Management.ViewModel
                     transportInfo.Show();
 
                     break;
+
                 case Destinations.logOfDepartureAndEntry:
                     transportInfo.CurrentViewModel = new LogOfDepartureAndEntryViewModel();
                     transportInfo.Title = "Журнал регистрации въезда и выезда";
                     transportInfo.Show();
 
                     break;
-
             }
         }
 

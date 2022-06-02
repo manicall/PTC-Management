@@ -15,7 +15,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         public TransportDialogViewModel()
         {
-            CopyParameters = new CopyParameters();
             DialogItem = new Transport();
             CurrentViewModel = this;
         }

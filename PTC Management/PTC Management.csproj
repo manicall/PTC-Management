@@ -316,7 +316,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="PTC Management_TemporaryKey.pfx" />
     <None Include="диаграмма классов ViewModel.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

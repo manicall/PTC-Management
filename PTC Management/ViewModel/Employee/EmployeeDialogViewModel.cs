@@ -15,7 +15,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         public EmployeeDialogViewModel()
         {
-            CopyParameters = new CopyParameters();
+            //CopyParameters = new CopyParameters();
             DialogItem = new Employee();
             CurrentViewModel = this;
         }
