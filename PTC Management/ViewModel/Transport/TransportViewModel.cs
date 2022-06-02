@@ -6,8 +6,6 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
@@ -47,13 +45,14 @@ namespace PTC_Management.ViewModel
 
 
         #region Методы
-        public void OnTransportInfo(string destination) {
+        public void OnTransportInfo(string destination)
+        {
             // TODO: отправить сообщение о том, что должен быть выбран транспорт
             if ((Transport)SelectedItem is null) return;
 
             var transportInfo = new TransportInfoViewModel();
 
-            switch (destination) 
+            switch (destination)
             {
                 case Destinations.maintanceLog:
                     transportInfo.CurrentViewModel = new MaintanceLogViewModel((Transport)SelectedItem);

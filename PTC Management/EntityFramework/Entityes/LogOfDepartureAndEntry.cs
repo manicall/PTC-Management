@@ -42,7 +42,8 @@ namespace PTC_Management.EF
             }
         }
 
-        public override Entity Clone() { 
+        public override Entity Clone()
+        {
             return new LogOfDepartureAndEntry
             {
                 Id = Id,

@@ -22,7 +22,7 @@
   <DockPanel>
     <Menu DockPanel.Dock="Top" IsMainMenu="True">
       <MenuItem Header="Файл">
-        <MenuItem Header="Выход" Command="" />
+        <MenuItem Header="Выход" Command="{Binding CloseCommand}" />
       </MenuItem>
       
       <MenuItem Header="Управление базой данных">

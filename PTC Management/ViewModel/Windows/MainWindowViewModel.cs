@@ -1,11 +1,10 @@
 ﻿using Microsoft.Win32;
 
 using PTC_Management.Commands;
-using PTC_Management.EF;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 
-using System.Windows.Input;
+using System.Windows;
 
 namespace PTC_Management
 {
@@ -19,6 +18,10 @@ namespace PTC_Management
 
         public MainWindowViewModel()
         {
+            // сохраняем экземпляр главного окна
+            // для корректной работы метода Close()
+            window = Application.Current.MainWindow;
+
             // создание команды перехватывающей сообщения от кнопки
             NavigationCommand = new Command<string>(OnNavigation);
             // создание команды работы с бекапом базы данных
@@ -58,11 +61,12 @@ namespace PTC_Management
                 case Backup._restore: RestoreBackUp(); break;
                 default: break;
             }
-            
+
             viewModels = new ViewModels(Size);
         }
 
-        private void CreateBackUp() {
+        private void CreateBackUp()
+        {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = GetFilter();
             dialog.Title = "Создание файла восстановления";
@@ -75,15 +79,16 @@ namespace PTC_Management
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = GetFilter();
             dialog.Title = "Открытие файла восстановления";
-            
+
             if (dialog.ShowDialog() == true) Backup.RestoreBackup(dialog.FileName);
         }
 
-        private string GetFilter() {
+        private string GetFilter()
+        {
             return "Файлы восстановления(*.bak;*.trn;*.log)" +
                 "|*.bak;*.trn;*.log" + "|Все файлы|*";
         }
-        
+
         #endregion
     }
 

@@ -74,6 +74,8 @@ namespace PTC_Management {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
+            SplashScreen splashScreen = new SplashScreen("images/splashscreen.png");
+            splashScreen.Show(true);
             PTC_Management.App app = new PTC_Management.App();
             app.InitializeComponent();
             app.Run();

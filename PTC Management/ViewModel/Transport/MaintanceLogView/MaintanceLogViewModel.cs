@@ -4,10 +4,6 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Data;
-
 namespace PTC_Management.ViewModel
 {
     internal class MaintanceLogViewModel : ViewModelBaseEntity
@@ -22,8 +18,6 @@ namespace PTC_Management.ViewModel
             set { SetProperty(ref selectedTransport, value); }
         }
 
-        Repository<MaintanceLog> repository = MaintanceLog.repository;
-
         public MaintanceLogViewModel(Transport selectedTransport)
         {
 
@@ -31,8 +25,8 @@ namespace PTC_Management.ViewModel
 
             viewModelHelper =
                 new ViewModelHelper<MaintanceLog>(
-                    MaintanceLog.repository, 
-                    Destinations.maintanceLog, 
+                    MaintanceLog.repository,
+                    Destinations.maintanceLog,
                     SelectedTransport.Id);
 
             Items = viewModelHelper.GetItems();

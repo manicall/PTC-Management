@@ -1,5 +1,6 @@
-﻿using PTC_Management.Model.MainWindow;
-using PTC_Management.Windows;
+﻿using PTC_Management.Commands;
+using PTC_Management.Model.MainWindow;
+
 using System.Windows;
 
 using Size = PTC_Management.Model.MainWindow.Size;
@@ -22,8 +23,12 @@ namespace PTC_Management.ViewModel.Base
         /// </summary>
         protected Window window = null;
 
+        public Command CloseCommand { get; private set; }
+
         public ViewModelBaseWindow()
         {
+            CloseCommand = new Command(() => Close());
+
             size = new Size();
             viewModels = new ViewModels(size);
         }

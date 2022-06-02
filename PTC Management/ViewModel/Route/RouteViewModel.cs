@@ -4,9 +4,6 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
 namespace PTC_Management.ViewModel
 {
     internal class RouteViewModel : ViewModelBaseEntity

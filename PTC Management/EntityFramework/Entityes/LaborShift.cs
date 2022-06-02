@@ -18,7 +18,7 @@ namespace PTC_Management.EF
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
-        
+
         public virtual ICollection<Date> Date { get; set; }
     }
 }

@@ -4,9 +4,9 @@ using System.ComponentModel;
 
 namespace PTC_Management.Model
 {
-     /// <summary>
-     /// Параметры копирования
-     /// </summary>
+    /// <summary>
+    /// Параметры копирования
+    /// </summary>
     class CopyParameters : IDataErrorInfo
     {
         /// <summary>

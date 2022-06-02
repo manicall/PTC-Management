@@ -8,7 +8,7 @@ namespace PTC_Management.EF
 {
     [Table("Route")]
     public partial class Route : Entity, IDataErrorInfo
-    {         
+    {
         public Route()
         {
             Itinerary = new HashSet<Itinerary>();

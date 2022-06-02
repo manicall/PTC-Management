@@ -1,10 +1,7 @@
 ﻿using PTC_Management.Commands;
 using PTC_Management.EF;
-using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.Views.Windows;
-
-using System;
 
 namespace PTC_Management.ViewModel
 {
@@ -13,8 +10,8 @@ namespace PTC_Management.ViewModel
         private Entity returnedItem;
         public Entity ReturnedItem
         {
-            get => returnedItem; 
-            set => SetProperty(ref returnedItem, value); 
+            get => returnedItem;
+            set => SetProperty(ref returnedItem, value);
         }
 
         public Command<string> DialogSelectCommand { get; private set; }

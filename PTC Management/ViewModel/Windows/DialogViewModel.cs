@@ -75,7 +75,7 @@ namespace PTC_Management.ViewModel
         {
             DialogActionCommand = new Command<string>(OnDialogActionCommand);
             DialogSelectСommand = new Command<string>(OnDialogSelectСommand);
-            
+
             CopyParameters = new CopyParameters();
         }
 

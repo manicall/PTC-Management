@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PTC_Management.EF
+﻿namespace PTC_Management.EF
 {
     /// <summary>
     /// Позволяет использовать методы

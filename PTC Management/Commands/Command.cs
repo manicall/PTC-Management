@@ -42,7 +42,7 @@ namespace PTC_Management.Commands
         }
 
         // реализация события интерфейса ICommand
-        public event EventHandler CanExecuteChanged = delegate {};
+        public event EventHandler CanExecuteChanged = delegate { };
 
         // реализация метода интерфейса ICommand
         void ICommand.Execute(object parameter)
@@ -92,7 +92,7 @@ namespace PTC_Management.Commands
             return false;
         }
 
-        public event EventHandler CanExecuteChanged = delegate {};
+        public event EventHandler CanExecuteChanged = delegate { };
 
         void ICommand.Execute(object parameter)
         {

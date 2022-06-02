@@ -4,9 +4,6 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
 namespace PTC_Management.ViewModel
 {
     internal class ItineraryViewModel : ViewModelBaseEntity
@@ -54,7 +51,7 @@ namespace PTC_Management.ViewModel
         public override void OnDialog(string action)
         {
             var actionPerformer =
-                 new ActionPerformer<Itinerary> 
+                 new ActionPerformer<Itinerary>
                     (this, GetDialogViewModel(action), viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);

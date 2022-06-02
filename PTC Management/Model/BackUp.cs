@@ -7,7 +7,7 @@ namespace PTC_Management.Model.MainWindow
     internal class Backup
     {
         // подключение к базе данных через строку подключения 
-        static readonly string connectionString = 
+        static readonly string connectionString =
             ConfigurationManager
             .ConnectionStrings["PTC_ManagementConnection"].ConnectionString;
 
@@ -31,10 +31,10 @@ namespace PTC_Management.Model.MainWindow
             {
                 command.ExecuteNonQuery();
             }
-            catch (SqlException ex) 
-            { 
+            catch (SqlException ex)
+            {
                 MessageBox.Show(ex.Message, "Ошибка создания файла восстановления",
-                MessageBoxButton.OK, MessageBoxImage.Error); 
+                MessageBoxButton.OK, MessageBoxImage.Error);
             }
             connection.Close();
         }

@@ -9,10 +9,10 @@ namespace PTC_Management.Model.MainWindow
 
         public Size(
             int width = defaultWidth,
-            int height = defaultHeight) 
-        { 
-            this.width = width; 
-            this.height = height; 
+            int height = defaultHeight)
+        {
+            this.width = width;
+            this.height = height;
         }
 
         private int height;

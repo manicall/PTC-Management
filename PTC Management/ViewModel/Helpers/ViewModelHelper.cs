@@ -1,19 +1,17 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model.Dialog;
 using PTC_Management.Model.MainWindow;
-using PTC_Management.ViewModel.DialogViewModels;
 
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace PTC_Management.ViewModel.Helpers
 {
+    /// <summary>
+    /// Используется для инициализации преставление-модель.
+    /// Выполняет действия определяемые диалоговым окном.
+    /// </summary>
     internal class ViewModelHelper<T>
         where T : Entity
     {
@@ -39,21 +37,22 @@ namespace PTC_Management.ViewModel.Helpers
                 case Destinations.itinerary:
                     itemsList = repository.GetItineraries(id);
                     break;
-                case Destinations.maintanceLog: 
+                case Destinations.maintanceLog:
                     itemsList = repository.GetMaintanceLogs(id);
                     break;
                 case Destinations.logOfDepartureAndEntry:
                     itemsList = repository.GetLogOfDepartureAndEntry(id);
                     break;
-                default: 
+                default:
                     itemsList = repository.GetList();
                     break;
             }
         }
 
-        public List<T> ItemsList {
+        public List<T> ItemsList
+        {
             get => itemsList;
-            set => itemsList = value; 
+            set => itemsList = value;
         }
 
         /// <summary> Возвращает представление </summary>
@@ -64,7 +63,7 @@ namespace PTC_Management.ViewModel.Helpers
         /// Выполняет изменнение itemsList,
         /// на основе заданного действия                     
         /// </summary>
-        public void DoActionForList(string MainWindowAction, 
+        public void DoActionForList(string MainWindowAction,
             int id, int selectedIndex, T item)
         {
             switch (MainWindowAction)

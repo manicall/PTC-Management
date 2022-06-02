@@ -1,8 +1,6 @@
-﻿using PTC_Management.EntityFramework.Entityes.Base;
-
+﻿
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -36,8 +34,9 @@ namespace PTC_Management.EF
         {
             return Items.Where(items => items.Id > id).ToList();
         }
-        
-        public List<T> GetMaintanceLogs(int id) {
+
+        public List<T> GetMaintanceLogs(int id)
+        {
             return Items.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == id).ToList();
         }
 
@@ -83,7 +82,7 @@ namespace PTC_Management.EF
             _db.SaveChanges();
         }
 
-        
+
 
         /// <summary>
         /// Выполняет удаление записи из базы данных
@@ -99,7 +98,7 @@ namespace PTC_Management.EF
             {
                 _db.SaveChanges();
             }
-            catch (DbUpdateException ex) 
+            catch (DbUpdateException ex)
             {
                 MessageBox.Show(ex.InnerException.InnerException.Message,
                     "Ошибка удаления файла из базы данных",

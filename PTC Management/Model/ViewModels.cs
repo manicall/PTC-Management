@@ -2,8 +2,6 @@
 using PTC_Management.ViewModel;
 using PTC_Management.ViewModel.Base;
 
-using System;
-
 namespace PTC_Management.Model.MainWindow
 {
     class ViewModels : BindableBase
@@ -35,14 +33,15 @@ namespace PTC_Management.Model.MainWindow
             scheduleOfEmployee = new ScheduleOfEmployeeViewModel();
         }
 
-        public ViewModelBaseEntity GetViewModel(string destination) {
+        public ViewModelBaseEntity GetViewModel(string destination)
+        {
             switch (destination)
             {
-                case Destinations.employee:  return employee;
-                case Destinations.route:     return route;
+                case Destinations.employee: return employee;
+                case Destinations.route: return route;
                 case Destinations.transport: return transport;
                 case Destinations.itinerary: return itinerary;
-                case Destinations.schedule : return scheduleOfEmployee;
+                case Destinations.schedule: return scheduleOfEmployee;
                 default: return null;
             }
         }
@@ -50,20 +49,20 @@ namespace PTC_Management.Model.MainWindow
         public static string GetDialogTitle(string action, string destination)
         {
             switch (destination)
-            { 
-                case Destinations.employee: 
+            {
+                case Destinations.employee:
                     return Actions.GetGenetiveName(action) + " сотрудника";
-                case Destinations.route: 
+                case Destinations.route:
                     return Actions.GetGenetiveName(action) + " маршрута";
-                case Destinations.transport: 
+                case Destinations.transport:
                     return Actions.GetGenetiveName(action) + " транспорта";
-                case Destinations.itinerary: 
+                case Destinations.itinerary:
                     return Actions.GetGenetiveName(action) + " путевого листа";
-                case Destinations.schedule: 
+                case Destinations.schedule:
                     return Actions.GetGenetiveName(action) + " расписания";
-                case Destinations.maintanceLog: 
+                case Destinations.maintanceLog:
                     return Actions.GetGenetiveName(action) + " записи технического обслуживания";
-                case Destinations.logOfDepartureAndEntry: 
+                case Destinations.logOfDepartureAndEntry:
                     return Actions.GetGenetiveName(action) + " записи въезда и выезда";
                 default: return null;
             }

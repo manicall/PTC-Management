@@ -4,9 +4,6 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
 namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
@@ -46,10 +43,10 @@ namespace PTC_Management.ViewModel
             //}
             return true;
         }
-        #endregion 
+        #endregion
 
         #region Методы
-        
+
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
         /// </summary>
@@ -57,7 +54,7 @@ namespace PTC_Management.ViewModel
         {
             var actionPerformer =
                  new ActionPerformer<Employee>
-                 (this, GetDialogViewModel(action),             
+                 (this, GetDialogViewModel(action),
                   viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);

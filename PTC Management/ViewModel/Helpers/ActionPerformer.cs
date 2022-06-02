@@ -4,7 +4,6 @@ using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.Base;
 
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
@@ -33,7 +32,7 @@ namespace PTC_Management.ViewModel
         /// Вызывает действие, которое необходимо выполнить
         /// </summary>
         public void doAction(string action)
-        { 
+        {
             // TODO: уведомить пользователя о том, что запись не выбрана
             if (entityVM.SelectedItem is null) return;
 
@@ -85,7 +84,8 @@ namespace PTC_Management.ViewModel
             // DONE: Проверить чтобы элемент не удалялся из таблицы в случае не успеха
 
             // удаление в базе данных
-            if (selectedEmployee.Remove()) {
+            if (selectedEmployee.Remove())
+            {
                 // удаление в коллекции
                 itemsList.Remove(selectedEmployee);
             }

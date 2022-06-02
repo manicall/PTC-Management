@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +9,7 @@ namespace PTC_Management.EF
     [Table("Transport")]
     public partial class Transport : Entity
     {
-        
+
         public Transport()
         {
             Itinerary = new HashSet<Itinerary>();
@@ -27,7 +26,8 @@ namespace PTC_Management.EF
     }
 
 
-    public partial class Transport : Entity, IDataErrorInfo {
+    public partial class Transport : Entity, IDataErrorInfo
+    {
         public static readonly Repository<Transport> repository =
             new Repository<Transport>(new PTC_ManagementContext());
 

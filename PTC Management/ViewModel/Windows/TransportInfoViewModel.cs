@@ -1,11 +1,5 @@
-﻿using PTC_Management.EF;
-using PTC_Management.ViewModel.Base;
+﻿using PTC_Management.ViewModel.Base;
 using PTC_Management.Views.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PTC_Management.ViewModel
 {

@@ -7,7 +7,7 @@ namespace PTC_Management.EF
     [Table("Itinerary")]
     public partial class Itinerary : Entity
     {
-        
+
         public Itinerary()
         {
             LogOfDepartureAndEntry = new HashSet<LogOfDepartureAndEntry>();
@@ -35,7 +35,8 @@ namespace PTC_Management.EF
 
 
 
-    public partial class Itinerary : Entity {
+    public partial class Itinerary : Entity
+    {
         public static readonly Repository<Itinerary> repository =
             new Repository<Itinerary>(new PTC_ManagementContext());
 
@@ -89,11 +90,11 @@ namespace PTC_Management.EF
                             error = "Поле не может быть пустым";
                         break;
                     case "Route":
-                         if (Route == null)
+                        if (Route == null)
                             error = "Поле не может быть пустым";
                         break;
                     case "Transport":
-                         if (Transport == null)
+                        if (Transport == null)
                             error = "Поле не может быть пустым";
                         break;
                 }

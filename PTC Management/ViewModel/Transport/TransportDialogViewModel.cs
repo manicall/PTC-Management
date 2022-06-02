@@ -1,11 +1,6 @@
 ﻿using PTC_Management.EF;
-using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.ViewModel.Helpers;
-
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Data;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
@@ -19,9 +14,10 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
-        internal ViewModelHelper<Transport> ViewModelHelper { 
+        internal ViewModelHelper<Transport> ViewModelHelper
+        {
             get => viewModelHelper;
-            set => viewModelHelper = value; 
+            set => viewModelHelper = value;
         }
 
         #region методы

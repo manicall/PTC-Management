@@ -1,13 +1,8 @@
-﻿using PTC_Management.Commands;
-using PTC_Management.EF;
+﻿using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Helpers;
-using PTC_Management.Views.Windows;
-
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
@@ -54,7 +49,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
             // отключение видимости кнопок с журналом ТО и
             // журналом въезда и выезда у окна со списком транспорта
-            if (destination == Destinations.Transport) 
+            if (destination == Destinations.Transport)
                 ChangeTansportInfoVisibility(selectWindow, Visibility.collapsed);
 
             selectWindow.Show();
@@ -71,12 +66,12 @@ namespace PTC_Management.ViewModel.DialogViewModels
                         break;
                     case Destinations.route:
                         tempDialogItem.Route = (Route)selectWindow.ReturnedItem.Clone();
-                        tempDialogItem.IdRoute =((Route)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.IdRoute = ((Route)selectWindow.ReturnedItem).Id;
 
                         break;
                     case Destinations.transport:
                         tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem.Clone();
-                        tempDialogItem.IdTransport =((Transport)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.IdTransport = ((Transport)selectWindow.ReturnedItem).Id;
 
                         break;
 
@@ -87,7 +82,8 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         }
 
-        void ChangeTansportInfoVisibility(SelectWindowViewModel sw, string visibility) {
+        void ChangeTansportInfoVisibility(SelectWindowViewModel sw, string visibility)
+        {
             (sw.CurrentViewModel as TransportViewModel).TansportInfoVisibility = visibility;
         }
 
