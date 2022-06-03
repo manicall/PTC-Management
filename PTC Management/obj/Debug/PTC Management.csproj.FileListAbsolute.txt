@@ -91,9 +91,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Trans
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\MaintanceLogView\MaintanceLogDialogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\MaintanceLogView\MaintanceLogView.baml
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\Microsoft.Xaml.Behaviors.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\Microsoft.Xaml.Behaviors.pdb
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\Microsoft.Xaml.Behaviors.xml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Resources\ControlTemplates.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryView.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryDialogView.g.cs
@@ -125,3 +122,7 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Managem
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.application
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.exe.manifest
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.application
+C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\PTC Management.exe.manifest
+C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\PTC Management.application
+C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.exe.manifest
+C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.application

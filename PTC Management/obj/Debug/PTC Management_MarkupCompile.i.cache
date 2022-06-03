@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\
+C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\
 PTC_Management
 none
 false
 DEBUG;TRACE
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\App.xaml
+C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\App.xaml
 22-1015058827
 
 70-252111720
-27-2016810621
+271376511019
 Resources\ControlTemplates.xaml;Styles\GeneralStyles.xaml;Templates\DialogTemplates.xaml;Templates\EntityTemplates.xaml;Templates\TransportInfoTemplate.xaml;Views\Employee\EmployeeDialogView.xaml;Views\Employee\EmployeeView.xaml;Views\Itinerary\ItineraryDialogView.xaml;Views\Itinerary\ItineraryView.xaml;Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.xaml;Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.xaml;Views\Transport\MaintanceLogView\MaintanceLogDialogView.xaml;Views\Transport\MaintanceLogView\MaintanceLogView.xaml;Views\Route\RouteDialogView.xaml;Views\Route\RouteView.xaml;Views\ScheduleOfEmployeeView.xaml;Views\Transport\TransportDialogView.xaml;Views\Transport\TransportView.xaml;Views\Windows\Dialog.xaml;Views\Windows\MainWindow.xaml;Views\Windows\SelectWindow.xaml;Views\Windows\TransportInfoWindow.xaml;
 images\splashscreen.png
 True

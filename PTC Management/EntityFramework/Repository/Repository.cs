@@ -91,8 +91,6 @@ namespace PTC_Management.EF
             _db.SaveChanges();
         }
 
-
-
         /// <summary>
         /// Выполняет удаление записи из базы данных
         /// </summary>

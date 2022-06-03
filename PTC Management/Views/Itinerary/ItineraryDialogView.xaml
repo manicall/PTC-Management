@@ -95,13 +95,13 @@
               NotifyOnValidationError="True"
               UpdateSourceTrigger="PropertyChanged" >
 
-            <Binding Path="Employee.Surname" 
+            <Binding Path="DialogItem.Employee.Surname" 
               ValidatesOnDataErrors="True" 
               NotifyOnValidationError="True" />
-            <Binding Path="Employee.Name" 
+            <Binding Path="DialogItem.Employee.Name" 
               ValidatesOnDataErrors="True" 
               NotifyOnValidationError="True" />
-            <Binding Path="Employee.Patronymic" 
+            <Binding Path="DialogItem.Employee.Patronymic" 
               ValidatesOnDataErrors="True" 
               NotifyOnValidationError="True" />
           </MultiBinding>
@@ -116,17 +116,17 @@
     
     <StackPanel >
       <TextBlock Name="textBlockTransport" Text="Транспорт" />
-      <TextBox Name="textBoxTransport" >
-        <TextBox.Text>
-          <MultiBinding StringFormat="{}{0} | {1}" 
+      <TextBox Name="textBoxTransport"  >
+        <TextBox.Text >
+          <MultiBinding StringFormat="{}{0} {1}" 
               ValidatesOnDataErrors="True" 
               NotifyOnValidationError="True"
               UpdateSourceTrigger="PropertyChanged" >
-            
-            <Binding Path="Transport.Name" 
+
+            <Binding Path="DialogItem.Transport.Name" 
               ValidatesOnDataErrors="True" 
               NotifyOnValidationError="True"/>
-            <Binding Path="Transport.LicensePlate" 
+            <Binding Path="DialogItem.Transport.LicensePlate" 
               ValidatesOnDataErrors="True" 
               NotifyOnValidationError="True"/>
           </MultiBinding>
@@ -142,7 +142,7 @@
       <TextBlock Name="textBlockRoute" Text="Маршрут" />
       <TextBox Name="textBoxRoute" 
         Text="{
-        Binding Route.Number,
+        Binding DialogItem.Route.Number,
         ValidatesOnDataErrors=True, 
         NotifyOnValidationError=True, 
         UpdateSourceTrigger=PropertyChanged}" />
