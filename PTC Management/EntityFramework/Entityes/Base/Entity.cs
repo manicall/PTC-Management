@@ -1,10 +1,14 @@
-﻿namespace PTC_Management.EF
+﻿using PTC_Management.ViewModel.Base;
+
+using System.ComponentModel;
+
+namespace PTC_Management.EF
 {
     /// <summary>
     /// Позволяет использовать методы
     /// переопределенные в дочерних классах
     /// </summary>
-    public abstract class Entity
+    public abstract class Entity : IDataErrorInfo
     {
         /* Данное поле следует удалить в дочерних классах,
          * так как при выполнении метода GetSingle,
@@ -12,6 +16,9 @@
          * что приводит к некорректному поведению программы
          */
         public int Id { get; set; }
+        public abstract string Error { get; }
+
+        public abstract string this[string columnName] { get; }
 
         // методы созданы для переопределения в дочерних классах
         public abstract void Add();

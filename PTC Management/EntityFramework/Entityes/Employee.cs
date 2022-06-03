@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
+
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PTC_Management.EF
 {
     [Table("Employee")]
-    public partial class Employee : Entity, IDataErrorInfo
+    public partial class Employee : Entity
     {
         public Employee()
         {
@@ -38,7 +41,7 @@ namespace PTC_Management.EF
 
 
 
-    public partial class Employee : Entity, IDataErrorInfo
+    public partial class Employee : Entity
     {
         public static readonly Repository<Employee> repository =
             new Repository<Employee>(new PTC_ManagementContext());
@@ -78,41 +81,77 @@ namespace PTC_Management.EF
         // реализация интерфейса IDataErrorInfo
         // позволяет обрабатывать ошибки,
         // допускаемые в полях для ввода
-        public string this[string columnName]
+        public override string this[string columnName]
         {
             get
             {
                 string error = null;
-                switch (columnName)
-                {
-                    case "Surname":
-                        if (string.IsNullOrEmpty(Surname))
-                            error = "Поле не может быть пустым";
-                        else if (Surname.Contains(" "))
-                            error = "Поле не должно содержать пробелы";
+                switch (columnName) { 
+                        case "Surname":
+                        error = GetNullOrNameError(Surname);
                         break;
                     case "Name":
-                        if (string.IsNullOrEmpty(Name))
-                            error = "Поле не может быть пустым";
-                        else if (Name.Contains(" "))
-                            error = "Поле не должно содержать пробелы";
+                        error = GetNullOrNameError(Name);
                         break;
                     case "Patronymic":
-                        if (!string.IsNullOrEmpty(Patronymic)
-                            && Patronymic.Contains(" "))
-                            error = "Поле не должно содержать пробелы";
+                        error = GetNameError(Patronymic);
                         break;
                     case "DriverLicense":
-                        if (string.IsNullOrEmpty(DriverLicense))
-                            error = "Поле не может быть пустым";
-                        else if (DriverLicense.Contains(" "))
-                            error = "Поле не должно содержать пробелы";
+                        error = GetDriverLicenseError(DriverLicense);
                         break;
-                }
+                } 
                 return error;
             }
         }
-        public string Error
+
+        string NullError { get => "Поле не может быть пустым";  }
+        string NameError { get => "Поле может содержать только буквы и дефисы";  }
+        string DigitError { get => "Поле может содержать только цифры";  }
+
+        /// <summary>
+        /// Проверяет, что поле содержит только буквы и дефисы
+        /// </summary>
+        string GetNameError(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return null; 
+            if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
+                return NameError;
+            if (text.Length > 50)
+                return SizeError(50);
+            return null;
+        }
+
+        /// <summary>
+        /// Проверяет, что поле не является пустым и содержит только буквы и дефисы
+        /// </summary>
+        string GetNullOrNameError(string text) {
+            if (string.IsNullOrEmpty(text))
+                return NullError;
+            if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
+                return NameError;
+            if (text.Length > 50)
+                return SizeError(50);
+            return null;
+        }
+
+        /// <summary>
+        /// Проверяет, что поле не является пустым и содержит только цифры
+        /// при этом не более 10
+        /// </summary>
+        string GetDriverLicenseError(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return NullError;
+            if (Regex.IsMatch(text, "[\\D]+"))
+                return DigitError;
+            if (text.Length > 10) 
+                return SizeError(10);
+            return null;
+        }
+
+        string SizeError(int size) { return $"Максимальное количество символов в строке: {size}"; }
+
+        public override string Error
         {
             get { throw new NotImplementedException(); }
         }

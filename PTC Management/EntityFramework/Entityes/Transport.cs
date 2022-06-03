@@ -26,7 +26,7 @@ namespace PTC_Management.EF
     }
 
 
-    public partial class Transport : Entity, IDataErrorInfo
+    public partial class Transport : Entity
     {
         public static readonly Repository<Transport> repository =
             new Repository<Transport>(new PTC_ManagementContext());
@@ -60,7 +60,7 @@ namespace PTC_Management.EF
             return transport;
         }
 
-        public string this[string columnName]
+        public override string this[string columnName]
         {
             get
             {
@@ -79,7 +79,7 @@ namespace PTC_Management.EF
                 return error;
             }
         }
-        public string Error
+        public override string Error
         {
             get { throw new NotImplementedException(); }
         }

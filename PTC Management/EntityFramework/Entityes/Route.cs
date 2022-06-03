@@ -7,20 +7,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PTC_Management.EF
 {
     [Table("Route")]
-    public partial class Route : Entity, IDataErrorInfo
+    public partial class Route : Entity
     {
         public Route()
         {
             Itinerary = new HashSet<Itinerary>();
         }
 
-        public int Number { get; set; }
+        public int? Number { get; set; }
 
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
 
-        public float Distant { get; set; }
+        public float? Distant { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
@@ -28,7 +28,7 @@ namespace PTC_Management.EF
 
 
 
-    public partial class Route : Entity, IDataErrorInfo
+    public partial class Route : Entity
     {
         public static readonly Repository<Route> repository =
             new Repository<Route>(new PTC_ManagementContext());
@@ -62,7 +62,7 @@ namespace PTC_Management.EF
             return route;
         }
 
-        public string this[string columnName]
+        public override string this[string columnName]
         {
             get
             {
@@ -70,6 +70,8 @@ namespace PTC_Management.EF
                 switch (columnName)
                 {
                     case "Number":
+                        if (!Number.HasValue)
+                            error = "Поле не может быть пустым";
                         if (Number <= 0)
                             error = "Номер должен быть больше нуля";
                         break;
@@ -78,6 +80,8 @@ namespace PTC_Management.EF
                             error = "Поле не может быть пустым";
                         break;
                     case "Distant":
+                        if (!Distant.HasValue)
+                            error = "Поле не может быть пустым";
                         if (Distant <= 0)
                             error = "Дистанция должна быть больше нуля";
                         break;
@@ -86,7 +90,7 @@ namespace PTC_Management.EF
                 return error;
             }
         }
-        public string Error
+        public override string Error
         {
             get { throw new NotImplementedException(); }
         }

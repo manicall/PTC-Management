@@ -66,5 +66,37 @@ namespace PTC_Management.EF
                 Itinerary = Itinerary
             };
         }
+
+        // реализация интерфейса IDataErrorInfo
+        // позволяет обрабатывать ошибки,
+        // допускаемые в полях для ввода
+        public override string this[string columnName]
+        {
+            get
+            {
+                string error = null;
+                switch (columnName)
+                {
+                    case "Itinerary":
+                        if (Itinerary == null)
+                            error = "Поле не может быть пустым";
+                        break;
+                        //    break;
+                        //case "Route":
+                        //    if (Route == null)
+                        //        error = "Поле не может быть пустым";
+                        //    break;
+                        //case "Transport":
+                        //    if (Transport == null)
+                        //        error = "Поле не может быть пустым";
+                        //    break;
+                }
+                return error;
+            }
+        }
+        public override string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

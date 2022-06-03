@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PTC_Management.EF
@@ -84,7 +85,7 @@ namespace PTC_Management.EF
         // реализация интерфейса IDataErrorInfo
         // позволяет обрабатывать ошибки,
         // допускаемые в полях для ввода
-        public string this[string columnName]
+        public override string this[string columnName]
         {
             get
             {
@@ -107,7 +108,9 @@ namespace PTC_Management.EF
                 return error;
             }
         }
-        public string Error
+
+
+        public override string Error
         {
             get { throw new NotImplementedException(); }
         }
