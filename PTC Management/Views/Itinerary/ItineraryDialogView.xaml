@@ -94,10 +94,16 @@
               ValidatesOnDataErrors="True" 
               NotifyOnValidationError="True"
               UpdateSourceTrigger="PropertyChanged" >
-            
-            <Binding Path="DialogItem.Employee.Surname" />
-            <Binding Path="DialogItem.Employee.Name" />
-            <Binding Path="DialogItem.Employee.Patronymic" />
+
+            <Binding Path="Employee.Surname" 
+              ValidatesOnDataErrors="True" 
+              NotifyOnValidationError="True" />
+            <Binding Path="Employee.Name" 
+              ValidatesOnDataErrors="True" 
+              NotifyOnValidationError="True" />
+            <Binding Path="Employee.Patronymic" 
+              ValidatesOnDataErrors="True" 
+              NotifyOnValidationError="True" />
           </MultiBinding>
         </TextBox.Text>
       </TextBox>
@@ -117,8 +123,12 @@
               NotifyOnValidationError="True"
               UpdateSourceTrigger="PropertyChanged" >
             
-            <Binding Path="DialogItem.Transport.Name" />
-            <Binding Path="DialogItem.Transport.LicensePlate" />
+            <Binding Path="Transport.Name" 
+              ValidatesOnDataErrors="True" 
+              NotifyOnValidationError="True"/>
+            <Binding Path="Transport.LicensePlate" 
+              ValidatesOnDataErrors="True" 
+              NotifyOnValidationError="True"/>
           </MultiBinding>
         </TextBox.Text>
       </TextBox>
@@ -132,7 +142,7 @@
       <TextBlock Name="textBlockRoute" Text="Маршрут" />
       <TextBox Name="textBoxRoute" 
         Text="{
-        Binding DialogItem.Route.Number,
+        Binding Route.Number,
         ValidatesOnDataErrors=True, 
         NotifyOnValidationError=True, 
         UpdateSourceTrigger=PropertyChanged}" />
