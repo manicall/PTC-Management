@@ -1,4 +1,5 @@
 ﻿using PTC_Management.Commands;
+using PTC_Management.Model.MainWindow;
 
 using System;
 using System.ComponentModel;
@@ -11,28 +12,28 @@ namespace PTC_Management.ViewModel.Base
 {
     class ViewModelBaseEntity : ViewModelBase
     {
-        private Size mainWidowSize;
-        private ICollectionView items;
         private int selectedIndex;
 
-        public ICollectionView Items
-        {
-            get => items;
-            set => items = value;
-        }
+        public static readonly DependencyProperty filterTextProperty =
+            DependencyProperty.Register(
+                "FilterText", typeof(string), typeof(ViewModelBaseEntity),
+                new PropertyMetadata("", FilterText_Changed));
 
+        public ICollectionView Items { get; set; }
+
+        /// <summary>
+        /// Индекс выбранной записи в таблице
+        /// </summary>
         public int SelectedIndex
         {
             get { return selectedIndex; }
             set { SetProperty(ref selectedIndex, value); }
         }
 
-        public Size MainWidowSize
-        {
-            get => mainWidowSize;
-            set => mainWidowSize = value;
-        }
-
+        /// <summary>
+        /// Вызывается когда нажата одна 
+        /// из кнопок, выполняющая изменения записей в таблице
+        /// </summary>
         public ICommand DialogCommand { get; set; }
 
         public ViewModelBaseEntity()
@@ -40,6 +41,9 @@ namespace PTC_Management.ViewModel.Base
             DialogCommand = new Command<string>(OnDialog);
         }
 
+        /// <summary>
+        /// Вызывается при вызове DialogCommand
+        /// </summary>
         public virtual void OnDialog(string action) { }
 
         public string FilterText
@@ -48,12 +52,6 @@ namespace PTC_Management.ViewModel.Base
             set { SetValue(filterTextProperty, value); }
         }
 
-        public static readonly DependencyProperty filterTextProperty =
-            DependencyProperty.Register(
-                "FilterText", typeof(string),
-                typeof(EmployeeViewModel),
-                new PropertyMetadata("", FilterText_Changed)
-                );
 
         /// <summary>
         /// Событие вызываемое при изменение текста в поле фильтра
@@ -61,7 +59,7 @@ namespace PTC_Management.ViewModel.Base
         private static void FilterText_Changed(DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
-            EmployeeViewModel current = d as EmployeeViewModel;
+            ViewModelBaseEntity current = d as ViewModelBaseEntity;
             if (current != null)
             {
                 current.Items.Filter = null;
@@ -69,10 +67,22 @@ namespace PTC_Management.ViewModel.Base
             }
         }
 
-        // Необходимо переопределить в дочернем классе
-        protected virtual bool Filter(object entity)
+        /// <summary>
+        /// Правило фильтрации
+        /// </summary>
+        protected virtual bool Filter(object entity) { throw new NotImplementedException(); }
+
+        /// <summary>
+        /// Выполняет инициализацию диалогового окна и возвращает его экземпляр
+        /// </summary>
+        public DialogViewModel GetDialogViewModel<T>(string action, string destination) where T : DialogViewModel, new()
         {
-            throw new NotImplementedException();
+            return new T()
+            {
+                MainWindowAction = action,
+                Title = ViewModels.GetDialogTitle(action, destination),
+                WindowParameters = WindowParameters,
+            };
         }
     }
 }

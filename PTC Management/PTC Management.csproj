@@ -121,6 +121,7 @@
     <Compile Include="Model\CopyParameters.cs" />
     <Compile Include="Model\BackUp.cs" />
     <Compile Include="Model\Size.cs" />
+    <Compile Include="Model\WindowParameters.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />

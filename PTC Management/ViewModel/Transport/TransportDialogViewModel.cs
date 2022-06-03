@@ -6,8 +6,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class TransportDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<Transport> viewModelHelper;
-
         public TransportDialogViewModel()
         {
             DialogItem = new Transport();
@@ -28,7 +26,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             if (dialogAction != Actions.close)
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
-                viewModelHelper.DoActionForList(
+                ViewModelHelper.DoActionForList(
                     MainWindowAction, DialogItem.Id, SelectedIndex, (Transport)DialogItem);
             }
         }

@@ -50,25 +50,16 @@ namespace PTC_Management.ViewModel
         /// </summary>
         public override void OnDialog(string action)
         {
-            var actionPerformer =
-                 new ActionPerformer<Itinerary>
-                    (this, GetDialogViewModel(action), viewModelHelper.ItemsList);
+            // инициализация представление-модель диалогового окна
+            DialogViewModel dialogViewModel = GetDialogViewModel<ItineraryDialogViewModel>(action, Destinations.itinerary);
+            (dialogViewModel as ItineraryDialogViewModel).ViewModelHelper = viewModelHelper;
+
+            var actionPerformer = new ActionPerformer<Itinerary>
+                 (this, dialogViewModel, viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);
         }
 
-        /// <summary>
-        /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
-        /// </summary>
-        public DialogViewModel GetDialogViewModel(string action)
-        {
-            return new ItineraryDialogViewModel()
-            {
-                MainWindowAction = action,
-                Title = ViewModels.GetDialogTitle(action, Destinations.itinerary),
-                ViewModelHelper = viewModelHelper
-            };
-        }
 
         #endregion
     }

@@ -17,7 +17,9 @@ namespace PTC_Management.ViewModel
     {
         // модель представление, 
         private ViewModelBaseEntity entityVM;
+
         private DialogViewModel dialogVM;
+
         private List<T> itemsList;
 
         public ActionPerformer(ViewModelBaseEntity entityVM,
@@ -33,9 +35,12 @@ namespace PTC_Management.ViewModel
         /// </summary>
         public void doAction(string action)
         {
-            // TODO: уведомить пользователя о том, что запись не выбрана
-            if (entityVM.SelectedItem is null && action != Actions.add) return;
-
+            // DONE: уведомить пользователя о том, что запись не выбрана
+            if (entityVM.SelectedItem is null && action != Actions.add)
+            {
+                entityVM.WindowParameters.StatusBarMessage = "Запись не выбрана!";
+                return;
+            }
             switch (action)
             {
                 case Actions.add:
@@ -45,7 +50,10 @@ namespace PTC_Management.ViewModel
                     Update();
                     break;
                 case Actions.remove:
-                    Remove();
+                    if (Remove())
+                        entityVM.WindowParameters.StatusBarMessage = "Запись успешно удалена";
+                    else
+                        entityVM.WindowParameters.StatusBarMessage = "Не удалось выполнить операцию";
                     break;
                 case Actions.copy:
                     Copy();
@@ -75,7 +83,7 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет удаление выбранной записи в таблице
         /// </summary>
-        private void Remove()
+        private bool Remove()
         {
             // хранит значение индекса, чтобы заново его присвоить
             int selectedIndex = entityVM.SelectedIndex;
@@ -89,10 +97,17 @@ namespace PTC_Management.ViewModel
                 // удаление в коллекции
                 itemsList.Remove(selectedEmployee);
             }
+            else
+            { 
+                return false; 
+            }
+
             // обновление представления      
             CollectionViewSource.GetDefaultView(itemsList).Refresh();
 
-            entityVM.SelectedIndex = selectedIndex;
+            entityVM.SelectedIndex = selectedIndex < itemsList.Count ? selectedIndex : selectedIndex - 1;
+
+            return true;
         }
 
         /// <summary>

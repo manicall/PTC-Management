@@ -35,7 +35,7 @@
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
             MinRowHeight="20" 
-            MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
             ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
             Name="dataGridTransport"
             CanUserReorderColumns="False"
@@ -69,16 +69,16 @@
 
       <DataGrid.ContextMenu>
           <ContextMenu>
-            <MenuItem Header ="Создать"
+            <MenuItem Header ="Создать" InputGestureText="C"
                 Command = "{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Add}"/>
-            <MenuItem Header ="Изменить"
+            <MenuItem Header ="Изменить" InputGestureText="U"
                 Command = "{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Update}"/>
-            <MenuItem Header ="Удалить" 
+            <MenuItem Header ="Удалить" InputGestureText="Delete"
                 Command = "{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Remove}"/>
-            <MenuItem Header ="Копировать" 
+            <MenuItem Header ="Копировать" InputGestureText="ALT+C"
                 Command = "{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>

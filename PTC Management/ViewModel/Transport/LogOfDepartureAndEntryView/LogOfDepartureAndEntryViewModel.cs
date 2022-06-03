@@ -59,25 +59,16 @@ namespace PTC_Management.ViewModel
         /// </summary>
         public override void OnDialog(string action)
         {
-            var actionPerformer =
-                 new ActionPerformer<LogOfDepartureAndEntry>
-                 (this, GetDialogViewModel(action), viewModelHelper.ItemsList);
+            // инициализация представление-модель диалогового окна
+            DialogViewModel dialogViewModel = GetDialogViewModel<LogOfDepartureAndEntryDialogViewModel>(action, Destinations.logOfDepartureAndEntry);
+            (dialogViewModel as LogOfDepartureAndEntryDialogViewModel).ViewModelHelper = viewModelHelper;
+
+            var actionPerformer = new ActionPerformer<LogOfDepartureAndEntry>
+                 (this, dialogViewModel, viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);
         }
 
-        /// <summary>
-        /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
-        /// </summary>
-        public DialogViewModel GetDialogViewModel(string action)
-        {
-            return new LogOfDepartureAndEntryDialogViewModel()
-            {
-                MainWindowAction = action,
-                Title = ViewModels.GetDialogTitle(action, Destinations.logOfDepartureAndEntry),
-                ViewModelHelper = viewModelHelper
-            };
-        }
 
         #endregion
     }

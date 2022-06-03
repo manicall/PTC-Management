@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
         Title="Выбор записи"
-        Height = "{Binding Size.Height, Mode=TwoWay}" 
-        Width  = "{Binding Size.Width,  Mode=TwoWay}" >
+        Height = "{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}" 
+        Width  = "{Binding WindowParameters.WindowSize.Width,  Mode=TwoWay}" >
 
   <Window.DataContext>
     <viewModels:SelectWindowViewModel/>

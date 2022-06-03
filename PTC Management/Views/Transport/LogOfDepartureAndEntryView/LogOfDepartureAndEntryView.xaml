@@ -24,7 +24,7 @@
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
             Name="dataGridLogOfDepartureAndEntry"
             MinRowHeight="20" 
-            MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
             ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"         
             CanUserReorderColumns="False"
             IsReadOnly="True" 
@@ -79,6 +79,40 @@
           </DataGridTemplateColumn>
         </DataGrid.Columns>
 
+        <DataGrid.InputBindings>
+          <KeyBinding Command="{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Add}"
+                Key="C" />
+          <KeyBinding Command="{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Update}"
+                Key="U" />
+          <KeyBinding Command="{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Remove}"
+                Key="Delete" />
+          <KeyBinding Command="{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Copy}"
+                Gesture="ALT+C" />
+          <MouseBinding Command="{Binding DialogCommand}"
+                  CommandParameter="{Binding Actions.Update}"
+                  MouseAction="LeftDoubleClick"/>
+        </DataGrid.InputBindings>
+
+        <DataGrid.ContextMenu>
+          <ContextMenu>
+            <MenuItem Header ="Создать" InputGestureText="C"
+                Command = "{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Add}"/>
+            <MenuItem Header ="Изменить" InputGestureText="U"
+                Command = "{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Update}"/>
+            <MenuItem Header ="Удалить" InputGestureText="Delete"
+                Command = "{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Remove}"/>
+            <MenuItem Header ="Копировать" InputGestureText="ALT+C"
+                Command = "{Binding DialogCommand}"
+                CommandParameter="{Binding Actions.Copy}"/>
+          </ContextMenu>
+        </DataGrid.ContextMenu>
       </DataGrid>
 
     </StackPanel>

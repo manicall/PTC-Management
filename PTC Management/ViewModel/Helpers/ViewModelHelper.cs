@@ -1,6 +1,8 @@
 ﻿using PTC_Management.EF;
+using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.Model.MainWindow;
+using PTC_Management.ViewModel.DialogViewModels;
 
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +11,7 @@ using System.Windows.Data;
 namespace PTC_Management.ViewModel.Helpers
 {
     /// <summary>
-    /// Используется для инициализации преставление-модель.
+    /// Используется для инициализации преставление-модели.
     /// Выполняет действия определяемые диалоговым окном.
     /// </summary>
     internal class ViewModelHelper<T>
@@ -81,5 +83,6 @@ namespace PTC_Management.ViewModel.Helpers
             }
             GetItems().Refresh();
         }
+
     }
 }

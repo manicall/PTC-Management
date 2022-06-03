@@ -1,10 +1,13 @@
 ﻿using Microsoft.Win32;
 
 using PTC_Management.Commands;
+using PTC_Management.Model;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 
 using System.Windows;
+
+using Size = PTC_Management.Model.MainWindow.Size;
 
 namespace PTC_Management
 {
@@ -25,8 +28,9 @@ namespace PTC_Management
             // создание команды работы с бекапом базы данных
             BackUpCommand = new Command<string>(OnBackUp);
 
+
             // установка представления по умолчанию
-            CurrentViewModel = viewModels.employee;
+            CurrentViewModel = viewModels.GetViewModel(Destinations.employee);
 
             RunTime.Stop();
         }
@@ -43,6 +47,7 @@ namespace PTC_Management
         /// </summary>
         private void OnNavigation(string destination)
         {
+
             CurrentViewModel = viewModels.GetViewModel(destination);
             //Size.Width = 1000;
             //Size.Width = Size.defaultWidth;
@@ -60,7 +65,6 @@ namespace PTC_Management
                 default: break;
             }
 
-            viewModels = new ViewModels(Size);
         }
 
         private void CreateBackUp()

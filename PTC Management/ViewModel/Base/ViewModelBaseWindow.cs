@@ -1,4 +1,5 @@
 ﻿using PTC_Management.Commands;
+using PTC_Management.Model;
 using PTC_Management.Model.MainWindow;
 
 using System.Windows;
@@ -9,29 +10,28 @@ namespace PTC_Management.ViewModel.Base
 {
     class ViewModelBaseWindow : ViewModelBase
     {
+        /// <summary>
+        /// Позволяет выбрать представление-модель
+        /// </summary>
         protected ViewModels viewModels;
 
-        protected Size size;
-        public Size Size
-        {
-            get => size;
-            set => SetProperty(ref size, value);
-        }
-
         /// <summary>
-        /// Окно в котором показывается текущий ViewModel
+        /// Окно в котором показывается текущее представление-модель
         /// </summary>
         protected Window window = null;
 
+        /// <summary>
+        /// Комадна вызывающая закрытие окна
+        /// </summary>
         public Command CloseCommand { get; private set; }
 
         public ViewModelBaseWindow()
         {
             CloseCommand = new Command(() => Close());
 
-            size = new Size();
-            viewModels = new ViewModels(size);
-        }
+            WindowParameters = new WindowParameters() { StatusBarMessage = "", WindowSize = new Size() };
+            viewModels = new ViewModels(WindowParameters);
+        } 
 
         /// <summary> Методы вызываемый окном при закрытии </summary>
         protected virtual void Closed() { }
@@ -50,8 +50,6 @@ namespace PTC_Management.ViewModel.Base
             }
             return result;
         }
-
-
 
     }
 }

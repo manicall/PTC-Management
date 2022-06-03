@@ -9,8 +9,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
 {
     internal class MaintanceLogDialogViewModel : DialogViewModel
     {
-        ViewModelHelper<MaintanceLog> viewModelHelper;
-
         public MaintanceLogDialogViewModel()
         {
             DialogItem = new MaintanceLog();
@@ -32,7 +30,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             if (dialogAction != Actions.close)
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
-                viewModelHelper.DoActionForList(
+                ViewModelHelper.DoActionForList(
                     MainWindowAction, DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
             }
         }
@@ -40,7 +38,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
         protected override void OnDialogSelectСommand(string destination)
         {
             var selectWindow = new SelectWindowViewModel();
-            selectWindow.CurrentViewModel = new ItineraryViewModel(viewModelHelper.IdTransport);
+            selectWindow.CurrentViewModel = new ItineraryViewModel(ViewModelHelper.IdTransport);
             selectWindow.Show();
 
             if (selectWindow.ReturnedItem != null)

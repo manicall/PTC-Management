@@ -6,6 +6,7 @@ using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.DialogViewModels;
 using PTC_Management.ViewModel.Helpers;
 
+using System.IdentityModel.Metadata;
 using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
@@ -17,16 +18,24 @@ namespace PTC_Management.ViewModel
 
         public string TansportInfoVisibility { get; set; }
 
-        public TransportViewModel(string tansportInfoVisibility = Visibility.visible)
+
+        public TransportViewModel()
         {
             TransportInfoCommand = new Command<string>(OnTransportInfo);
-            TansportInfoVisibility = tansportInfoVisibility;
+
 
             viewModelHelper =
                 new ViewModelHelper<Transport>(Transport.repository);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
+
+            TansportInfoVisibility = Visibility.visible;
+        }
+
+        public TransportViewModel(string tansportInfoVisibility) : base()
+        {
+            TansportInfoVisibility = tansportInfoVisibility;
         }
 
         /// <summary>
@@ -47,8 +56,12 @@ namespace PTC_Management.ViewModel
         #region Методы
         public void OnTransportInfo(string destination)
         {
-            // TODO: отправить сообщение о том, что должен быть выбран транспорт
-            if ((Transport)SelectedItem is null) return;
+            // DONE: отправить сообщение о том, что должен быть выбран транспорт
+            if ((Transport)SelectedItem is null)
+            {
+                WindowParameters.StatusBarMessage = "Необходимо выбрать транспорт";
+                return;
+            }
 
             var transportInfo = new TransportInfoWindowViewModel();
 
@@ -75,25 +88,14 @@ namespace PTC_Management.ViewModel
         /// </summary>
         public override void OnDialog(string action)
         {
-            var actionPerformer =
-                 new ActionPerformer<Transport>
-                 (this, GetDialogViewModel(action),
-                  viewModelHelper.ItemsList);
+            // инициализация представление-модель диалогового окна
+            DialogViewModel dialogViewModel = GetDialogViewModel<TransportDialogViewModel>(action, Destinations.transport);
+            (dialogViewModel as TransportDialogViewModel).ViewModelHelper = viewModelHelper;
+
+            var actionPerformer = new ActionPerformer<Transport>
+                 (this, dialogViewModel, viewModelHelper.ItemsList);
 
             actionPerformer.doAction(action);
-        }
-
-        /// <summary>
-        /// Выполняет инициализацию диалогового окна и возвращает его экземпляр.
-        /// </summary>
-        public DialogViewModel GetDialogViewModel(string action)
-        {
-            return new TransportDialogViewModel()
-            {
-                MainWindowAction = action,
-                Title = Title = ViewModels.GetDialogTitle(action, Destinations.transport),
-                ViewModelHelper = viewModelHelper
-            };
         }
 
         #endregion

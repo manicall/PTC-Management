@@ -8,8 +8,8 @@
 
    mc:Ignorable = "d" 
    Title = "Управление ПАТП" 
-   Height = "{Binding Size.Height, Mode=TwoWay}" 
-   Width  = "{Binding Size.Width,  Mode=TwoWay}" >
+   Height = "{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}" 
+   Width  = "{Binding WindowParameters.WindowSize.Width,  Mode=TwoWay}" >
   
   <Window.DataContext>
     <local:MainWindowViewModel/>
@@ -35,7 +35,7 @@
       </MenuItem>
     </Menu>
     <StatusBar DockPanel.Dock="Bottom">
-      <TextBlock Text="Сообщение: " />
+      <TextBlock Text="{Binding WindowParameters.StatusBarMessage}" />
     </StatusBar>
     
     <Grid>

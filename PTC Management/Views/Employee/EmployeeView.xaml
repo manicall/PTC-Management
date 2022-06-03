@@ -23,7 +23,7 @@
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
             Name="dataGridEmployee"
             MinRowHeight="20" 
-            MaxHeight="{Binding MainWidowSize.Height, Mode=TwoWay}"
+            MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
             ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"         
             CanUserReorderColumns="False"
             IsReadOnly="True" 
@@ -31,7 +31,7 @@
             AutoGenerateColumns="False">
 
         <DataGrid.Columns>
-          <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
+          <!--<DataGridTextColumn Header="Код" Binding="{Binding Id}"/>-->
           <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" />
           <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
           <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
@@ -61,19 +61,19 @@
                   CommandParameter="{Binding Actions.Update}"
                   MouseAction="LeftDoubleClick"/>
         </DataGrid.InputBindings>
-        
+
         <DataGrid.ContextMenu>
           <ContextMenu>
-            <MenuItem Header ="Создать"
+            <MenuItem Header ="Создать" InputGestureText="C"
                 Command = "{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Add}"/>
-            <MenuItem Header ="Изменить"
+            <MenuItem Header ="Изменить" InputGestureText="U"
                 Command = "{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Update}"/>
-            <MenuItem Header ="Удалить" 
+            <MenuItem Header ="Удалить" InputGestureText="Delete"
                 Command = "{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Remove}"/>
-            <MenuItem Header ="Копировать" 
+            <MenuItem Header ="Копировать" InputGestureText="ALT+C"
                 Command = "{Binding DialogCommand}"
                 CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>

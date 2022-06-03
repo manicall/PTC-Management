@@ -19,7 +19,7 @@ namespace PTC_Management.Model.MainWindow
         public int Height
         {
             get => height;
-            set => height = value - 170;
+            set => SetProperty(ref height, value - 170);
         }
 
         private int width;

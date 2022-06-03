@@ -13,37 +13,40 @@ namespace PTC_Management.ViewModel
     class DialogViewModel : ViewModelBaseWindow
     {
         private readonly Destinations destinations = new Destinations();
-        /// <summary>
-        /// Используется для отображения поля,
-        /// в которое воодится количество копий выбранной записи,
-        /// которые необходимо создать 
-        /// </summary>
+
         private CopyParameters copyParameters;
 
-        /// <summary>
-        /// Копия выбранного элемента таблицы
-        /// </summary>
+
         private Entity dialogItem;
 
-        /// <summary>
-        /// Действие которое было выбрано в главном окне
-        /// </summary>
+
         private string mainWindowAction;
 
         public Destinations Destinations => destinations;
 
+        /// <summary>
+        /// Копия выбранного элемента таблицы
+        /// </summary>
         public Entity DialogItem
         {
             get => dialogItem;
             set => SetProperty(ref dialogItem, value);
         }
 
+        /// <summary>
+        /// Используется для отображения поля,
+        /// в которое воодится количество копий выбранной записи,
+        /// которые необходимо создать 
+        /// </summary>
         public CopyParameters CopyParameters
         {
             get => copyParameters;
             set => SetProperty(ref copyParameters, value);
         }
 
+        /// <summary>
+        /// Действие которое было выбрано в главном окне
+        /// </summary>
         public string MainWindowAction
         {
             get => mainWindowAction;
@@ -92,13 +95,16 @@ namespace PTC_Management.ViewModel
             {
                 case Actions.add:
                     entity.Add();
+                    WindowParameters.StatusBarMessage = "Запись успешно добавлена";
                     break;
                 case Actions.update:
                     SelectedItem.SetFields(DialogItem);
                     SelectedItem.Update();
+                    WindowParameters.StatusBarMessage = "Запись успешно изменена";
                     break;
                 case Actions.copy:
                     entity.Copy(CopyParameters.Count);
+                    WindowParameters.StatusBarMessage = "Запись успешно скопирована";
                     break;
                 default:
                     throw new ArgumentException("Действие не обработано");
@@ -107,10 +113,10 @@ namespace PTC_Management.ViewModel
             DialogItem.Id = entity.Id;
         }
 
-        protected virtual void OnDialogSelectСommand(string destination)
-        {
-
-        }
+        /// <summary>
+        /// Используется для выбора существующих записей
+        /// </summary>
+        protected virtual void OnDialogSelectСommand(string destination) { }
 
         /// <summary> Метод показа ViewModel в окне </summary>
         public void Show()

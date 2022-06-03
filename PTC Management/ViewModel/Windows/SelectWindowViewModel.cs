@@ -23,7 +23,7 @@ namespace PTC_Management.ViewModel
 
         private void OnDialogSelectCommand(string obj)
         {
-            returnedItem = currentViewModel.SelectedItem;
+            returnedItem = CurrentViewModel.SelectedItem;
             Close();
         }
 
