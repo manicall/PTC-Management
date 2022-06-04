@@ -117,6 +117,8 @@
     <Compile Include="EntityFramework\Entityes\Transport.cs" />
     <Compile Include="EntityFramework\Repository\Repository.cs" />
     <Compile Include="Model\Actions.cs" />
+    <Compile Include="Model\ValidationRule\ToDoubleValidationRule.cs" />
+    <Compile Include="Model\ValidationRule\ToIntValidationRule.cs" />
     <Compile Include="Model\Visibility.cs" />
     <Compile Include="Model\CopyParameters.cs" />
     <Compile Include="Model\BackUp.cs" />

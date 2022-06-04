@@ -3,9 +3,11 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-       xmlns:local="clr-namespace:PTC_Management.Views"
+       xmlns:model="clr-namespace:PTC_Management.Model"
        xmlns:views = "clr-namespace:PTC_Management.Views" 
        xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
+       xmlns:dialogviewmodels="clr-namespace:PTC_Management.ViewModel.DialogViewModels" 
+       d:DataContext="{d:DesignInstance Type=dialogviewmodels:RouteDialogViewModel}"
        mc:Ignorable="d" 
 
        d:DesignHeight="200" d:DesignWidth="350">
@@ -84,17 +86,26 @@
         Binding CopyParameters.Count,
         ValidatesOnDataErrors=True, 
         NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged}" />
+        UpdateSourceTrigger=PropertyChanged }" />
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockNumber" Text="Номер" />
       <TextBox 
-        Name="textBoxNumber"  
-        Text="{
-        Binding DialogItem.Number, 
-        ValidatesOnDataErrors=True, 
-        NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged}" />
+        Name="textBoxNumber"  >
+        <TextBox.Text>
+          <Binding Path="DialogItem.Number"
+                   ValidatesOnDataErrors="True"
+                   NotifyOnValidationError="True"
+                   UpdateSourceTrigger="PropertyChanged">
+            <Binding.ValidationRules>
+              <model:ToIntValidationRule />
+            </Binding.ValidationRules>
+          </Binding>
+        </TextBox.Text>
+        
+      </TextBox>
+
+      
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockName" Text="Название" />
@@ -105,14 +116,24 @@
         NotifyOnValidationError=True, 
         UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
+    
     <StackPanel >
       <TextBlock Name="textBlockDistant" Text="Дистанция" />
-      <TextBox Name="textBoxDistant" 
-        Text="{
-        Binding DialogItem.Distant,
-        ValidatesOnDataErrors=True, 
-        NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged}" />
+      <TextBox Name="textBoxDistant">
+
+        <TextBox.Text>
+        <Binding Path="DialogItem.Distant"
+                   ValidatesOnDataErrors="True"
+                   NotifyOnValidationError="True"
+                   UpdateSourceTrigger="PropertyChanged">
+          <Binding.ValidationRules>
+              <model:ToDoubleValidationRule />
+          </Binding.ValidationRules>
+        </Binding>
+        </TextBox.Text>
+
+      </TextBox>
+
     </StackPanel>
 
   </StackPanel>

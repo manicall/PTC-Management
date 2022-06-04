@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
+
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PTC_Management.EF
 {
@@ -20,6 +23,7 @@ namespace PTC_Management.EF
         [StringLength(255)]
         public string Name { get; set; }
 
+        // TODO: невозможно вести дробь в текстовое поле
         public float? Distant { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
@@ -53,12 +57,9 @@ namespace PTC_Management.EF
 
         public override Entity Clone()
         {
-            Route route = new Route
-            {
-                Number = Number,
-                Name = Name,
-                Distant = Distant
-            };
+            var route = new Route { Id = Id };
+            route.SetFields(this);
+
             return route;
         }
 
@@ -70,26 +71,40 @@ namespace PTC_Management.EF
                 switch (columnName)
                 {
                     case "Number":
-                        if (!Number.HasValue)
-                            error = "Поле не может быть пустым";
-                        if (Number <= 0)
-                            error = "Номер должен быть больше нуля";
+                        error = NumberError(Number);
                         break;
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
                             error = "Поле не может быть пустым";
                         break;
                     case "Distant":
-                        if (!Distant.HasValue)
-                            error = "Поле не может быть пустым";
-                        if (Distant <= 0)
-                            error = "Дистанция должна быть больше нуля";
+                        DistantError(Distant);
                         break;
 
                 }
                 return error;
             }
         }
+
+
+        public string NumberError(int? number) 
+        {
+            if (!number.HasValue)
+                return "Поле не может быть пустым";
+            if (number <= 0)
+                return "Номер должен быть больше нуля";
+            return null;
+        }
+
+        public string DistantError(float? distant)
+        {
+            if (!distant.HasValue)
+                return "Поле не может быть пустым";
+            if (distant <= 0)
+                return "Дистанция должна быть больше нуля";
+            return null;
+        }
+
         public override string Error
         {
             get { throw new NotImplementedException(); }

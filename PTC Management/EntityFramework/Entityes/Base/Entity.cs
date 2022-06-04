@@ -8,6 +8,8 @@ namespace PTC_Management.EF
     /// Позволяет использовать методы
     /// переопределенные в дочерних классах
     /// </summary>
+    
+    // TODO: доделать валидацию
     public abstract class Entity : IDataErrorInfo
     {
         /* Данное поле следует удалить в дочерних классах,

@@ -34,26 +34,20 @@ namespace PTC_Management.EF
         {
             if (entity is LogOfDepartureAndEntry item)
             {
-                Id = item.Id;
                 IdItinerary = item.IdItinerary;
                 Date = item.Date;
                 TimeOnDeparture = item.TimeOnDeparture;
                 TimeWhenReturning = item.TimeWhenReturning;
-                Itinerary = Itinerary;
+                Itinerary = item.Itinerary;
             }
         }
 
         public override Entity Clone()
         {
-            return new LogOfDepartureAndEntry
-            {
-                Id = Id,
-                IdItinerary = IdItinerary,
-                Date = Date,
-                TimeOnDeparture = TimeOnDeparture,
-                TimeWhenReturning = TimeWhenReturning,
-                Itinerary = Itinerary
-            };
+            var logOfDepartureAndEntry = new LogOfDepartureAndEntry { Id = Id };
+            logOfDepartureAndEntry.SetFields(this);
+
+            return logOfDepartureAndEntry;
         }
 
         // реализация интерфейса IDataErrorInfo

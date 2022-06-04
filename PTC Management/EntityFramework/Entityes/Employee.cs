@@ -63,19 +63,15 @@ namespace PTC_Management.EF
                 Name = employee.Name;
                 Patronymic = employee.Patronymic;
                 DriverLicense = employee.DriverLicense;
-            }
+            } 
         }
 
         public override Entity Clone()
         {
-            return new Employee
-            {
-                Id = Id,
-                Surname = Surname,
-                Name = Name,
-                Patronymic = Patronymic,
-                DriverLicense = DriverLicense
-            };
+            var employee = new Employee { Id = Id };
+            employee.SetFields(this);
+
+            return employee;
         }
 
         // реализация интерфейса IDataErrorInfo
@@ -94,7 +90,7 @@ namespace PTC_Management.EF
                         error = GetNullOrNameError(Name);
                         break;
                     case "Patronymic":
-                        error = GetNameError(Patronymic);
+                        error = GetPatronymicError(Patronymic);
                         break;
                     case "DriverLicense":
                         error = GetDriverLicenseError(DriverLicense);
@@ -104,18 +100,14 @@ namespace PTC_Management.EF
             }
         }
 
-        string NullError { get => "Поле не может быть пустым";  }
-        string NameError { get => "Поле может содержать только буквы и дефисы";  }
-        string DigitError { get => "Поле может содержать только цифры";  }
-
         /// <summary>
         /// Проверяет, что поле содержит только буквы и дефисы
         /// </summary>
-        string GetNameError(string text)
+        string GetPatronymicError(string text)
         {
             if (string.IsNullOrEmpty(text)) return null; 
             if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
-                return NameError;
+                return "Поле может содержать только буквы и дефисы";
             if (text.Length > 50)
                 return SizeError(50);
             return null;
@@ -126,24 +118,24 @@ namespace PTC_Management.EF
         /// </summary>
         string GetNullOrNameError(string text) {
             if (string.IsNullOrEmpty(text))
-                return NullError;
+                return "Поле не может быть пустым";
             if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
-                return NameError;
+                return "Поле может содержать только буквы и дефисы";
             if (text.Length > 50)
                 return SizeError(50);
             return null;
         }
 
         /// <summary>
-        /// Проверяет, что поле не является пустым и содержит только цифры
-        /// при этом не более 10
+        /// Проверяет, что поле не является пустым и
+        /// содержит только цифры при этом не более 10
         /// </summary>
         string GetDriverLicenseError(string text)
         {
             if (string.IsNullOrEmpty(text))
-                return NullError;
+                return "Поле не может быть пустым";
             if (Regex.IsMatch(text, "[\\D]+"))
-                return DigitError;
+                return "Поле может содержать только цифры";
             if (text.Length > 10) 
                 return SizeError(10);
             return null;

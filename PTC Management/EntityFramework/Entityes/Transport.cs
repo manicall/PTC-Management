@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows;
 
 namespace PTC_Management.EF
 {
@@ -17,7 +18,7 @@ namespace PTC_Management.EF
 
         [StringLength(50)]
         public string Name { get; set; }
-
+        
         [StringLength(10)]
         public string LicensePlate { get; set; }
 
@@ -50,12 +51,8 @@ namespace PTC_Management.EF
 
         public override Entity Clone()
         {
-            Transport transport = new Transport
-            {
-                Id = Id,
-                Name = Name,
-                LicensePlate = LicensePlate
-            };
+            var transport = new Transport { Id = Id };
+            transport.SetFields(this);
 
             return transport;
         }

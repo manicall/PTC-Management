@@ -87,26 +87,7 @@ namespace PTC_Management.EF
         // допускаемые в полях для ввода
         public override string this[string columnName]
         {
-            get
-            {
-                string error = null;
-                switch (columnName)
-                {
-                    case "Employee":
-                        if (Employee == null)
-                            error = "Поле не может быть пустым";
-                        break;
-                    case "Route":
-                        if (Route == null)
-                            error = "Поле не может быть пустым";
-                        break;
-                    case "Transport":
-                        if (Transport == null)
-                            error = "Поле не может быть пустым";
-                        break;
-                }
-                return error;
-            }
+            get { throw new NotImplementedException(); }
         }
 
 

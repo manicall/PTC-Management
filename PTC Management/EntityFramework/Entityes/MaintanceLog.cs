@@ -39,7 +39,6 @@ namespace PTC_Management.EF
         {
             if (entity is MaintanceLog item)
             {
-                Id = item.Id;
                 IdItinerary = item.IdItinerary;
                 Date = item.Date;
                 TimeOnDeparture = item.TimeOnDeparture;
@@ -47,24 +46,16 @@ namespace PTC_Management.EF
                 SpeedometerInfoOnDeparture = item.SpeedometerInfoOnDeparture;
                 SpeedometerInfoWhenReturning = item.SpeedometerInfoWhenReturning;
                 Mileage = item.Mileage;
-                Itinerary = Itinerary;
+                Itinerary = item.Itinerary;
             }
         }
 
         public override Entity Clone()
         {
-            return new MaintanceLog
-            {
-                Id = Id,
-                IdItinerary = IdItinerary,
-                Date = Date,
-                TimeOnDeparture = TimeOnDeparture,
-                TimeWhenReturning = TimeWhenReturning,
-                SpeedometerInfoOnDeparture = SpeedometerInfoOnDeparture,
-                SpeedometerInfoWhenReturning = SpeedometerInfoWhenReturning,
-                Mileage = Mileage,
-                Itinerary = Itinerary
-            };
+            var maintanceLog = new MaintanceLog { Id = Id };
+            maintanceLog.SetFields(this);
+
+            return maintanceLog;
         }
 
         // реализация интерфейса IDataErrorInfo
