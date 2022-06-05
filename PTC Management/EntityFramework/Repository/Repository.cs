@@ -82,8 +82,6 @@ namespace PTC_Management.EF
         /// </summary>
         public void Add(T item)
         {
-            if (item is null) throw new ArgumentNullException(nameof(item));
-
             _set.Add(item);
 
             _db.SaveChanges();
@@ -94,7 +92,6 @@ namespace PTC_Management.EF
         /// </summary>
         public void Update(T item)
         {
-            if (item is null) throw new ArgumentNullException(nameof(item));
             _db.Entry(item).State = EntityState.Modified;
 
             _db.SaveChanges();
@@ -134,8 +131,6 @@ namespace PTC_Management.EF
         /// </summary>
         public void Copy(T item, int Count)
         {
-            if (item is null) throw new ArgumentNullException(nameof(item));
-
             // Инициализация списка копий
             List<T> Items = Enumerable.Range(1, Count).Select(i => (T)item.Clone()).ToList();
 
