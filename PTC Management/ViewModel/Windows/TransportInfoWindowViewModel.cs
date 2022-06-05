@@ -1,10 +1,34 @@
-﻿using PTC_Management.ViewModel.Base;
+﻿using PTC_Management.EF;
+using PTC_Management.Model.MainWindow;
+using PTC_Management.ViewModel.Base;
 using PTC_Management.Views.Windows;
 
 namespace PTC_Management.ViewModel
 {
     internal class TransportInfoWindowViewModel : ViewModelBaseWindow
     {
+        public TransportInfoWindowViewModel()
+        {
+
+        }
+
+        public TransportInfoWindowViewModel(string destination, Transport transport)
+        {
+            switch (destination)
+            {
+                case Destinations.maintanceLog:
+                    CurrentViewModel = viewModels.GetMaintanceLogVM(transport);
+                    Title = "Журнал технического обслуживания";
+
+                    break;
+
+                case Destinations.logOfDepartureAndEntry:
+                    CurrentViewModel = viewModels.GetLogOfDepartureAndEntryVM(transport);
+                    Title = "Журнал регистрации въезда и выезда";
+
+                    break;
+            }
+        }
 
         /// <summary> Метод показа ViewModel в окне </summary>
         public void Show()
@@ -14,6 +38,5 @@ namespace PTC_Management.ViewModel
             window.Closed += (sender, e) => Closed();
             window.ShowDialog();
         }
-
     }
 }

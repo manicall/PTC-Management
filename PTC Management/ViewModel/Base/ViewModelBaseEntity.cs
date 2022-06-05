@@ -96,7 +96,7 @@ namespace PTC_Management.ViewModel.Base
             return new T()
             {
                 MainWindowAction = action,
-                Title = ViewModels.GetDialogTitle(Actions.GetGenetiveName(action), destination),
+                Title = ViewModels.GetTitle(Actions.GetGenetiveName(action), destination),
                 WindowParameters = WindowParameters,
             };
         }

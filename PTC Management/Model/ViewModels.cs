@@ -1,4 +1,5 @@
-﻿using PTC_Management.ViewModel;
+﻿using PTC_Management.EF;
+using PTC_Management.ViewModel;
 using PTC_Management.ViewModel.Base;
 
 namespace PTC_Management.Model.MainWindow
@@ -20,6 +21,16 @@ namespace PTC_Management.Model.MainWindow
             };
         }
 
+        public MaintanceLogViewModel GetMaintanceLogVM(Transport transport) 
+        {
+            return new MaintanceLogViewModel(transport) { WindowParameters = WindowParameters };
+        }
+        
+        public LogOfDepartureAndEntryViewModel GetLogOfDepartureAndEntryVM(Transport transport) 
+        {
+            return new LogOfDepartureAndEntryViewModel(transport) { WindowParameters = WindowParameters };
+        }
+
         public ViewModelBaseEntity GetViewModel(string destination)
         {
             switch (destination)
@@ -33,7 +44,7 @@ namespace PTC_Management.Model.MainWindow
             }
         }
 
-        public static string GetDialogTitle(string partOfTitle, string destination)
+        public static string GetTitle(string partOfTitle, string destination)
         {
             switch (destination)
             {

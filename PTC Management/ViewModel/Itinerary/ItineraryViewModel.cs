@@ -96,7 +96,7 @@ namespace PTC_Management.ViewModel
         /// </summary>
         public override void OnTableAction(string action)
         {
-            // инициализация представление-модель диалогового окна
+            // инициализация модели представления диалогового окна
             var dialogViewModel = GetDialogViewModel<ItineraryDialogViewModel>(action, Destinations.itinerary);
             dialogViewModel.ViewModelHelper = viewModelHelper;
 

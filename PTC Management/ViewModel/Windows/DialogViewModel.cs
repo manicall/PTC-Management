@@ -15,6 +15,10 @@ namespace PTC_Management.ViewModel
         private CopyParameters copyParameters;
         private Entity dialogItem;
 
+        /// <summary>
+        /// Содержит константы, которые определяют 
+        /// с какой моделью представления взаимодействовать
+        /// </summary>
         public Destinations Destinations => new Destinations();
 
         /// <summary>
@@ -87,11 +91,10 @@ namespace PTC_Management.ViewModel
         }
 
         /// <summary>
-        /// Выполняет действие, заданное в параметре
+        /// Изменяет записи в базе данных
         /// </summary>
         protected void DoAction(string action)
         {
-            /* взаимодействие с базой данных */
             Entity entity = DialogItem.Clone();
             switch (action)
             {
@@ -121,15 +124,14 @@ namespace PTC_Management.ViewModel
         protected virtual void OnDialogSelectСommand(string destination) { }
 
         /// <summary>
-        /// Возвращает настроенную представление-модель
+        /// Возвращает настроенную модель представления
         /// </summary>
         protected SelectWindowViewModel GetSelectWindow(string destination)
         {
             var selectWindow = new SelectWindowViewModel();
 
             selectWindow.CurrentViewModel = GetViewModel(selectWindow, destination);
-
-            selectWindow.Title = ViewModels.GetDialogTitle("Выбор", destination);
+            selectWindow.Title = ViewModels.GetTitle("Выбор", destination);
 
             return selectWindow;
         }
@@ -160,7 +162,7 @@ namespace PTC_Management.ViewModel
             return viewModel;
         }
 
-        /// <summary> Метод показа ViewModel в окне </summary>
+        /// <summary> Метод показа модели представления в окне </summary>
         public void Show()
         {
             window = new Dialog();

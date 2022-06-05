@@ -88,7 +88,7 @@
     
     <StackPanel >
       <TextBlock Name="textBlockEmployee" Text="Сотрудник" />
-      <TextBox Name="textBoxEmployee" >
+      <TextBox Name="textBoxEmployee" IsReadOnly="True" >
         <TextBox.Text>
           <MultiBinding StringFormat="{}{0} {1} {2}" 
               ValidatesOnDataErrors="True" 
@@ -117,7 +117,7 @@
     
     <StackPanel >
       <TextBlock Name="textBlockTransport" Text="Транспорт" />
-      <TextBox Name="textBoxTransport"  >
+      <TextBox Name="textBoxTransport" IsReadOnly="True" >
         <TextBox.Text >
           <MultiBinding StringFormat="{}{0} {1}" 
               ValidatesOnDataErrors="True" 
@@ -142,7 +142,7 @@
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockRoute" Text="Маршрут" />
-      <TextBox Name="textBoxRoute" 
+      <TextBox Name="textBoxRoute" IsReadOnly="True"
         Text="{
         Binding DialogItem.Route.Number,
         ValidatesOnDataErrors=True, 

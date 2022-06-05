@@ -15,7 +15,6 @@ namespace PTC_Management.ViewModel
     class ActionPerformer<T>
         where T : Entity
     {
-        // модель представление, 
         private ViewModelBaseEntity entityVM;
 
         private DialogViewModel dialogVM;

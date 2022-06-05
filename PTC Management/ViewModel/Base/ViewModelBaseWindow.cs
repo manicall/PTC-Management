@@ -11,12 +11,12 @@ namespace PTC_Management.ViewModel.Base
     class ViewModelBaseWindow : ViewModelBase
     {
         /// <summary>
-        /// Позволяет выбрать представление-модель
+        /// Позволяет выбрать модель представления
         /// </summary>
         protected ViewModels viewModels;
 
         /// <summary>
-        /// Окно в котором показывается текущее представление-модель
+        /// Окно в котором показывается представление
         /// </summary>
         protected Window window = null;
 

@@ -17,8 +17,13 @@
   <Window.Resources>
     <ResourceDictionary Source="../../Templates/TransportInfoTemplate.xaml" />
   </Window.Resources>
+  <DockPanel>
+    <StatusBar DockPanel.Dock="Bottom">
+      <TextBlock Text="{Binding WindowParameters.StatusBarMessage}" />
+    </StatusBar>
+    <StackPanel>
 
-  <StackPanel>
-    <ContentControl Content="{Binding CurrentViewModel}" />
-  </StackPanel>
+      <ContentControl Content="{Binding CurrentViewModel}" />
+    </StackPanel>
+  </DockPanel>
 </Window>

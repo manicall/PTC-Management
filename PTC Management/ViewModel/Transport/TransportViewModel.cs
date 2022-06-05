@@ -66,23 +66,9 @@ namespace PTC_Management.ViewModel
                 return;
             }
 
-            var transportInfo = new TransportInfoWindowViewModel();
-            switch (destination)
-            {
-                case Destinations.maintanceLog:
-                    transportInfo.CurrentViewModel = new MaintanceLogViewModel((Transport)SelectedItem);
-                    transportInfo.Title = "Журнал технического обслуживания";
-
-                    break;
-
-                case Destinations.logOfDepartureAndEntry:
-                    transportInfo.CurrentViewModel = new LogOfDepartureAndEntryViewModel((Transport)SelectedItem);
-                    transportInfo.Title = "Журнал регистрации въезда и выезда";         
-
-                    break;
-            }
-
-            transportInfo.Show();
+            new TransportInfoWindowViewModel(
+                destination, 
+                (Transport)SelectedItem).Show();
         }
 
         /// <summary>
@@ -90,7 +76,7 @@ namespace PTC_Management.ViewModel
         /// </summary>
         public override void OnTableAction(string action)
         {
-            // инициализация представление-модель диалогового окна
+            // инициализация моделм представления диалогового окна
             var dialogViewModel = GetDialogViewModel<TransportDialogViewModel>(action, Destinations.transport);
             dialogViewModel.ViewModelHelper = viewModelHelper;
 

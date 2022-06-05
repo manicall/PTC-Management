@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 namespace PTC_Management.EF
 {
@@ -87,7 +88,18 @@ namespace PTC_Management.EF
         // допускаемые в полях для ввода
         public override string this[string columnName]
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                string error = null;
+                switch (columnName)
+                {
+                    case "Id":
+                        if (string.IsNullOrEmpty(Id.ToString()))
+                            error = "пустое";
+                        break;
+                }
+                return error;
+            }
         }
 
 
