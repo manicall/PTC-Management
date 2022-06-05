@@ -1,7 +1,7 @@
 ﻿using PTC_Management.Commands;
 using PTC_Management.EF;
 using PTC_Management.Model;
-using PTC_Management.Model.Dialog;
+using PTC_Management.Model;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.Helpers;
@@ -44,7 +44,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         protected override void OnDialogSelectСommand(string destination)
         {
-            var selectWindow = GetSelectWindow(destination);
+            var selectWindow = new SelectWindowViewModel(destination);
             selectWindow.Show();
 
             if (selectWindow.ReturnedItem != null)

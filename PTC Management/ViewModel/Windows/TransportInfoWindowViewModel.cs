@@ -12,18 +12,18 @@ namespace PTC_Management.ViewModel
 
         }
 
-        public TransportInfoWindowViewModel(string destination, Transport transport)
+        public TransportInfoWindowViewModel(string destination, int idTransport)
         {
             switch (destination)
             {
                 case Destinations.maintanceLog:
-                    CurrentViewModel = viewModels.GetMaintanceLogVM(transport);
+                    CurrentViewModel = viewModels.GetMaintanceLogVM(idTransport);
                     Title = "Журнал технического обслуживания";
 
                     break;
 
                 case Destinations.logOfDepartureAndEntry:
-                    CurrentViewModel = viewModels.GetLogOfDepartureAndEntryVM(transport);
+                    CurrentViewModel = viewModels.GetLogOfDepartureAndEntryVM(idTransport);
                     Title = "Журнал регистрации въезда и выезда";
 
                     break;

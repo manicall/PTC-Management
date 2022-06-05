@@ -1,7 +1,7 @@
 ﻿using PTC_Management.Commands;
 using PTC_Management.EF;
 using PTC_Management.Model;
-using PTC_Management.Model.Dialog;
+using PTC_Management.Model;
 using PTC_Management.Model.MainWindow;
 using PTC_Management.ViewModel.Base;
 using PTC_Management.Windows;
@@ -122,45 +122,6 @@ namespace PTC_Management.ViewModel
         /// Используется для выбора существующих записей
         /// </summary>
         protected virtual void OnDialogSelectСommand(string destination) { }
-
-        /// <summary>
-        /// Возвращает настроенную модель представления
-        /// </summary>
-        protected SelectWindowViewModel GetSelectWindow(string destination)
-        {
-            var selectWindow = new SelectWindowViewModel();
-
-            selectWindow.CurrentViewModel = GetViewModel(selectWindow, destination);
-            selectWindow.Title = ViewModels.GetTitle("Выбор", destination);
-
-            return selectWindow;
-        }
-
-        private ViewModelBaseEntity GetViewModel(SelectWindowViewModel selectWindow, string destination) 
-        {
-            var viewModel = viewModels.GetViewModel(destination);
-
-            // скрытие кнопок позволяющих взаимодействовать с таблицей
-            viewModel.TableActionButtonsVisible = Visibility.collapsed;
-
-            // переопределяем команду, чтобы при двойном клике мыши
-            // вызывался метод подтверждающий выбор записи из таблицы
-            viewModel.TableAction = new Command<string>(
-                (action) =>
-                {
-                    // если параметр соответствует параметру,
-                    // передаваемому двойным кликом
-                    if (action == Actions.update)
-                        selectWindow.OnDialogSelectCommand();
-                });
-
-            // отключение видимости кнопок с журналом ТО и
-            // журналом въезда и выезда у окна со списком транспорта
-            if (viewModel is TransportViewModel transportVM)
-                transportVM.TansportInfoButtonsVisibility = Visibility.collapsed;
-
-            return viewModel;
-        }
 
         /// <summary> Метод показа модели представления в окне </summary>
         public void Show()

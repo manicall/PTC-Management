@@ -67,8 +67,8 @@ namespace PTC_Management.ViewModel
             }
 
             new TransportInfoWindowViewModel(
-                destination, 
-                (Transport)SelectedItem).Show();
+                destination, ((Transport)SelectedItem).Id
+                ).Show();
         }
 
         /// <summary>

@@ -27,4 +27,8 @@
     
     <ContentControl Content="{Binding CurrentViewModel}" />
   </StackPanel>
+
+  <Window.InputBindings>
+    <KeyBinding Key="Enter" Command="{Binding DialogSelectCommand}" />
+  </Window.InputBindings>
 </Window>

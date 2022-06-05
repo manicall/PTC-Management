@@ -19,12 +19,21 @@ namespace PTC_Management.EF
             _set = db.Set<T>();
         }
 
-        public virtual IQueryable<T> Items => _set;
         /// <summary>
         /// Возвращает запись из базы данных по заданному ключу и 
         /// вызывает исключение, если таких элементов больше одного.
         /// </summary>
-        public T GetSingle(int id) => Items.Single(item => item.Id == id);
+        public T GetSingle(int id) => _set.Single(item => item.Id == id);
+
+        /// <summary>
+        /// Возвращает запись из базы данных по заданному ключу и 
+        /// вызывает исключение, если таких элементов больше одного.
+        /// </summary>
+        public TEntity GetSingle<TEntity>(int id) where TEntity : Entity
+        {
+            var set = _db.Set<TEntity>();
+            return set.Single(item => item.Id == id);
+        }
 
         /// <summary>
         /// Возвращает набор записей, 
@@ -32,7 +41,7 @@ namespace PTC_Management.EF
         /// </summary>
         public List<T> GetFrom(int id)
         {
-            return Items.Where(items => items.Id > id).ToList();
+            return _set.Where(items => items.Id > id).ToList();
         }
 
         /// <summary>
@@ -40,7 +49,7 @@ namespace PTC_Management.EF
         /// </summary>
         public List<T> GetMaintanceLogs(int idTransport)
         {
-            return Items.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
+            return _set.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
         }
 
         /// <summary>
@@ -48,7 +57,7 @@ namespace PTC_Management.EF
         /// </summary>
         public List<T> GetLogOfDepartureAndEntry(int idTransport)
         {
-            return Items.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == idTransport).ToList();
+            return _set.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == idTransport).ToList();
         }
 
         /// <summary>
@@ -56,7 +65,7 @@ namespace PTC_Management.EF
         /// </summary>
         public List<T> GetItineraries(int idTransport)
         {
-            return Items.Where(items => (items as Itinerary).Transport.Id == idTransport).ToList();
+            return _set.Where(items => (items as Itinerary).Transport.Id == idTransport).ToList();
         }
 
         /// <summary>

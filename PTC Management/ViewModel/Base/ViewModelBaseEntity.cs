@@ -1,10 +1,11 @@
 ﻿using PTC_Management.Commands;
 using PTC_Management.Model.MainWindow;
-using PTC_Management.Model.Dialog;
+using PTC_Management.Model;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using Visibility = PTC_Management.Model.Visibility;
 
 namespace PTC_Management.ViewModel.Base
 {
@@ -53,6 +54,8 @@ namespace PTC_Management.ViewModel.Base
         public ViewModelBaseEntity()
         {
             TableAction = new Command<string>(OnTableAction);
+
+            TableActionButtonsVisible = Visibility.visible;
         }
 
         /// <summary>

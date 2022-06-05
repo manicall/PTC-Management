@@ -14,13 +14,13 @@ namespace PTC_Management.ViewModel
     {
         ViewModelHelper<LogOfDepartureAndEntry> viewModelHelper;
 
-        public LogOfDepartureAndEntryViewModel(Transport selectedTransport)
+        public LogOfDepartureAndEntryViewModel(int idTransport)
         {
             viewModelHelper =
                 new ViewModelHelper<LogOfDepartureAndEntry>(
                     LogOfDepartureAndEntry.repository,
                     Destinations.logOfDepartureAndEntry,
-                    selectedTransport.Id);
+                    idTransport);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;

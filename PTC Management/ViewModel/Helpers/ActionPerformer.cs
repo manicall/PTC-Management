@@ -1,6 +1,6 @@
 ﻿using PTC_Management.EF;
 using PTC_Management.Model;
-using PTC_Management.Model.Dialog;
+using PTC_Management.Model;
 using PTC_Management.ViewModel.Base;
 
 using System.Collections.Generic;

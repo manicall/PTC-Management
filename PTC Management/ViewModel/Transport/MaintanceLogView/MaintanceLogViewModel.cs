@@ -10,13 +10,13 @@ namespace PTC_Management.ViewModel
     {
         ViewModelHelper<MaintanceLog> viewModelHelper;
 
-        public MaintanceLogViewModel(Transport selectedTransport)
+        public MaintanceLogViewModel(int idTransport)
         {
             viewModelHelper =
                 new ViewModelHelper<MaintanceLog>(
                     MaintanceLog.repository,
                     Destinations.maintanceLog,
-                    selectedTransport.Id);
+                    idTransport);
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;

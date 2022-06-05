@@ -1,4 +1,4 @@
-﻿namespace PTC_Management.Model.Dialog
+﻿namespace PTC_Management.Model
 {
     /// <summary>
     /// Список контстант для выбора действия, 

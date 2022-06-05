@@ -27,13 +27,25 @@ namespace PTC_Management.EF
              new Repository<MaintanceLog>(new PTC_ManagementContext());
 
         // переопределение методов базового класса
-        public override void Add() => repository.Add(this);
+        public override void Add()
+        {
+            Itinerary = repository.GetSingle<Itinerary>(IdItinerary);
+            repository.Add(this);
+        }
 
-        public override void Update() => repository.Update(this);
+        public override void Update()
+        {
+            Itinerary = repository.GetSingle<Itinerary>(IdItinerary);
+            repository.Update(this);
+        }
 
         public override bool Remove() => repository.Remove(this);
 
-        public override void Copy(int count) => repository.Copy(this, count);
+        public override void Copy(int count)
+        {
+            Itinerary = repository.GetSingle<Itinerary>(IdItinerary);
+            repository.Copy(this, count);
+        }
 
         public override void SetFields(Entity entity)
         {

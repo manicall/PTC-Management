@@ -21,14 +21,20 @@ namespace PTC_Management.Model.MainWindow
             };
         }
 
-        public MaintanceLogViewModel GetMaintanceLogVM(Transport transport) 
+        public ItineraryViewModel GetItineraryVM(int idTransport)
         {
-            return new MaintanceLogViewModel(transport) { WindowParameters = WindowParameters };
+            return new ItineraryViewModel(idTransport) { WindowParameters = WindowParameters };
+        }
+
+
+        public MaintanceLogViewModel GetMaintanceLogVM(int idTransport) 
+        {
+            return new MaintanceLogViewModel(idTransport) { WindowParameters = WindowParameters };
         }
         
-        public LogOfDepartureAndEntryViewModel GetLogOfDepartureAndEntryVM(Transport transport) 
+        public LogOfDepartureAndEntryViewModel GetLogOfDepartureAndEntryVM(int idTransport) 
         {
-            return new LogOfDepartureAndEntryViewModel(transport) { WindowParameters = WindowParameters };
+            return new LogOfDepartureAndEntryViewModel(idTransport) { WindowParameters = WindowParameters };
         }
 
         public ViewModelBaseEntity GetViewModel(string destination)
