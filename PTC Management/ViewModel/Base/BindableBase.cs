@@ -9,6 +9,9 @@ namespace PTC_Management.ViewModel.Base
     /// </summary>
     public class BindableBase : DependencyObject, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Устанавливает значение свойства генерируя событие PropertyChanged
+        /// </summary>
         protected virtual void SetProperty<T>(ref T member, T val,
            [CallerMemberName] string propertyName = null)
         {
@@ -19,6 +22,9 @@ namespace PTC_Management.ViewModel.Base
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Вызывается при генерации события PropertyChanged
+        /// </summary>
         protected virtual void OnPropertyChanged(
             [CallerMemberName] string propertyName = null)
         {

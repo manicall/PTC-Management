@@ -14,15 +14,14 @@ namespace PTC_Management.ViewModel
     internal class TransportViewModel : ViewModelBaseEntity
     {
         ViewModelHelper<Transport> viewModelHelper;
+
         public ICommand TransportInfoCommand { get; set; }
 
-        public string TansportInfoVisibility { get; set; }
-
+        public string TansportInfoButtonsVisibility { get; set; }
 
         public TransportViewModel()
         {
             TransportInfoCommand = new Command<string>(OnTransportInfo);
-
 
             viewModelHelper =
                 new ViewModelHelper<Transport>(Transport.repository);
@@ -30,12 +29,12 @@ namespace PTC_Management.ViewModel
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
 
-            TansportInfoVisibility = Visibility.visible;
+            TansportInfoButtonsVisibility = Visibility.visible;
         }
 
         public TransportViewModel(string tansportInfoVisibility) : base()
         {
-            TansportInfoVisibility = tansportInfoVisibility;
+            TansportInfoButtonsVisibility = tansportInfoVisibility;
         }
 
         /// <summary>
@@ -45,13 +44,17 @@ namespace PTC_Management.ViewModel
         {
             Transport current = entity as Transport;
 
-            return true;
+            if (string.IsNullOrWhiteSpace(FilterText)
+                 // || current.Id.ToString().Contains(FilterText)
+                 || current.Name.Contains(FilterText)
+                 || current.LicensePlate.Contains(FilterText))
+            {
+                return true;
+            }
+            return false;
         }
 
-
-        private readonly Destinations _destinations = new Destinations();
-        public Destinations Destinations => _destinations;
-
+        public Destinations Destinations => new Destinations();
 
         #region Методы
         public void OnTransportInfo(string destination)
@@ -64,33 +67,32 @@ namespace PTC_Management.ViewModel
             }
 
             var transportInfo = new TransportInfoWindowViewModel();
-
             switch (destination)
             {
                 case Destinations.maintanceLog:
                     transportInfo.CurrentViewModel = new MaintanceLogViewModel((Transport)SelectedItem);
                     transportInfo.Title = "Журнал технического обслуживания";
-                    transportInfo.Show();
 
                     break;
 
                 case Destinations.logOfDepartureAndEntry:
                     transportInfo.CurrentViewModel = new LogOfDepartureAndEntryViewModel((Transport)SelectedItem);
-                    transportInfo.Title = "Журнал регистрации въезда и выезда";
-                    transportInfo.Show();
+                    transportInfo.Title = "Журнал регистрации въезда и выезда";         
 
                     break;
             }
+
+            transportInfo.Show();
         }
 
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
         /// </summary>
-        public override void OnDialog(string action)
+        public override void OnTableAction(string action)
         {
             // инициализация представление-модель диалогового окна
-            DialogViewModel dialogViewModel = GetDialogViewModel<TransportDialogViewModel>(action, Destinations.transport);
-            (dialogViewModel as TransportDialogViewModel).ViewModelHelper = viewModelHelper;
+            var dialogViewModel = GetDialogViewModel<TransportDialogViewModel>(action, Destinations.transport);
+            dialogViewModel.ViewModelHelper = viewModelHelper;
 
             var actionPerformer = new ActionPerformer<Transport>
                  (this, dialogViewModel, viewModelHelper.ItemsList);

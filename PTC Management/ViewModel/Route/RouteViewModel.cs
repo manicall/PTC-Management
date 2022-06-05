@@ -28,20 +28,16 @@ namespace PTC_Management.ViewModel
         {
             Route current = entity as Route;
 
-            //if (!string.IsNullOrWhiteSpace(FilterText)
-            //     && !current.Id.ToString().Contains(FilterText)
-            //     && (current.Surname == null ||
-            //         !current.Surname.Contains(FilterText))
-            //     && (current.Name == null ||
-            //         !current.Name.Contains(FilterText))
-            //     && (current.Patronymic == null ||
-            //         !current.Patronymic.Contains(FilterText))
-            //     && (current.DriverLicense == null ||
-            //         !current.DriverLicense.Contains(FilterText)))
-            //{
-            //    return false;
-            //}
-            return true;
+            if (string.IsNullOrWhiteSpace(FilterText)
+                 // && !current.Id.ToString().Contains(FilterText)
+                 || current.Number.ToString().Contains(FilterText)
+                 || current.Name.Contains(FilterText)
+                 || current.Distant != null &&
+                     current.Distant.ToString().Contains(FilterText))
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
 
@@ -50,11 +46,11 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
         /// </summary>
-        public override void OnDialog(string action)
+        public override void OnTableAction(string action)
         {
             // инициализация представление-модель диалогового окна
-            DialogViewModel dialogViewModel = GetDialogViewModel<RouteDialogViewModel>(action, Destinations.route);
-            (dialogViewModel as RouteDialogViewModel).ViewModelHelper = viewModelHelper;
+            var dialogViewModel = GetDialogViewModel<RouteDialogViewModel>(action, Destinations.route);
+            dialogViewModel.ViewModelHelper = viewModelHelper;
 
             var actionPerformer =
                  new ActionPerformer<Route>

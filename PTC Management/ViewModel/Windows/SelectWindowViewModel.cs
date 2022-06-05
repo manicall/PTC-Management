@@ -14,14 +14,14 @@ namespace PTC_Management.ViewModel
             set => SetProperty(ref returnedItem, value);
         }
 
-        public Command<string> DialogSelectCommand { get; private set; }
+        public Command DialogSelectCommand { get; private set; }
 
         public SelectWindowViewModel()
         {
-            DialogSelectCommand = new Command<string>(OnDialogSelectCommand);
+            DialogSelectCommand = new Command(OnDialogSelectCommand);
         }
 
-        private void OnDialogSelectCommand(string obj)
+        public void OnDialogSelectCommand()
         {
             returnedItem = CurrentViewModel.SelectedItem;
             Close();

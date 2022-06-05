@@ -3,6 +3,8 @@
    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:viewmodel="clr-namespace:PTC_Management.ViewModel"
+   d:DataContext="{d:DesignInstance Type=viewmodel:EmployeeViewModel}"
    mc:Ignorable = "d" 
    d:DesignHeight = "300" d:DesignWidth = "650">
   
@@ -17,7 +19,7 @@
     </Grid.ColumnDefinitions>
 
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
-      <ContentControl Template="{StaticResource MainWindowControls}" />
+      <Control Template="{StaticResource TableActionControls}"></Control>
       <DataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
@@ -44,37 +46,37 @@
           </DataGridTextColumn>
         </DataGrid.Columns>
 
-      <DataGrid.InputBindings>
-          <KeyBinding Command="{Binding DialogCommand}"
+      <DataGrid.InputBindings >
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Add}"
                 Key="C" />
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Update}"
                 Key="U" />
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Remove}"
                 Key="Delete" />
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Copy}"
                 Gesture="ALT+C" />
-          <MouseBinding Command="{Binding DialogCommand}"
+          <MouseBinding Command="{Binding TableAction}"
                   CommandParameter="{Binding Actions.Update}"
                   MouseAction="LeftDoubleClick"/>
         </DataGrid.InputBindings>
 
-        <DataGrid.ContextMenu>
-          <ContextMenu>
+        <DataGrid.ContextMenu >
+          <ContextMenu Visibility="{Binding TableActionButtonsVisible}" >
             <MenuItem Header ="Создать" InputGestureText="C"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Add}"/>
             <MenuItem Header ="Изменить" InputGestureText="U"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Update}"/>
             <MenuItem Header ="Удалить" InputGestureText="Delete"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Remove}"/>
             <MenuItem Header ="Копировать" InputGestureText="ALT+C"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
         </DataGrid.ContextMenu>

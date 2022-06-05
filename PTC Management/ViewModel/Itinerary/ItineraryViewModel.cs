@@ -38,9 +38,55 @@ namespace PTC_Management.ViewModel
         protected override bool Filter(object entity)
         {
             Itinerary current = entity as Itinerary;
-            return true;
+
+            // Если в поле фильтра было введено ФИО
+            if (FilterText.Contains(" "))
+            {
+                return CheckFIO(current);
+            }
+
+            if (string.IsNullOrWhiteSpace(FilterText)
+                 || current.Id.ToString().Contains(FilterText)
+                 || current.Employee.DriverLicense.Contains(FilterText)
+                 || current.Employee.Surname.Contains(FilterText)
+                 || current.Employee.Name.Contains(FilterText)
+                 || current.Employee.Patronymic != null &&
+                     current.Employee.Patronymic.Contains(FilterText)
+                 || current.Transport.Name.Contains(FilterText)
+                 || current.Transport.LicensePlate.Contains(FilterText)
+                 || current.Route.Name.Contains(FilterText))
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
+
+        bool CheckFIO(Itinerary current) 
+        {
+            string[] split = FilterText.Split();
+
+            if (split.Length > 3 || current.Employee.Patronymic == null && split.Length > 2) return false;
+
+            string[] FIO = new string[] {
+                    current.Employee.Surname,
+                    current.Employee.Name,
+                    current.Employee.Patronymic
+            };
+
+            bool result = true;
+            for (int i = 0; i < split.Length; i++)
+            {
+                if (split[i] != "" && !FIO[i].Contains(split[i]))
+                {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
 
 
         #region Методы
@@ -48,11 +94,11 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
         /// </summary>
-        public override void OnDialog(string action)
+        public override void OnTableAction(string action)
         {
             // инициализация представление-модель диалогового окна
-            DialogViewModel dialogViewModel = GetDialogViewModel<ItineraryDialogViewModel>(action, Destinations.itinerary);
-            (dialogViewModel as ItineraryDialogViewModel).ViewModelHelper = viewModelHelper;
+            var dialogViewModel = GetDialogViewModel<ItineraryDialogViewModel>(action, Destinations.itinerary);
+            dialogViewModel.ViewModelHelper = viewModelHelper;
 
             var actionPerformer = new ActionPerformer<Itinerary>
                  (this, dialogViewModel, viewModelHelper.ItemsList);

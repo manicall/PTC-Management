@@ -1,5 +1,4 @@
-﻿using PTC_Management.Model.Dialog;
-using PTC_Management.ViewModel;
+﻿using PTC_Management.ViewModel;
 using PTC_Management.ViewModel.Base;
 
 namespace PTC_Management.Model.MainWindow
@@ -8,13 +7,9 @@ namespace PTC_Management.Model.MainWindow
     {
         public WindowParameters WindowParameters { get; set; }
 
-        public readonly ViewModelBaseEntity scheduleOfEmployee;
-
         public ViewModels(WindowParameters windowParameters)
         {
             WindowParameters = windowParameters;
-
-            //scheduleOfEmployee = new ScheduleOfEmployeeViewModel();
         }
 
         public T GetNewModelView<T>() where T : ViewModelBaseEntity, new()
@@ -38,24 +33,24 @@ namespace PTC_Management.Model.MainWindow
             }
         }
 
-        public static string GetDialogTitle(string action, string destination)
+        public static string GetDialogTitle(string partOfTitle, string destination)
         {
             switch (destination)
             {
                 case Destinations.employee:
-                    return Actions.GetGenetiveName(action) + " сотрудника";
+                    return partOfTitle + " сотрудника";
                 case Destinations.route:
-                    return Actions.GetGenetiveName(action) + " маршрута";
+                    return partOfTitle + " маршрута";
                 case Destinations.transport:
-                    return Actions.GetGenetiveName(action) + " транспорта";
+                    return partOfTitle + " транспорта";
                 case Destinations.itinerary:
-                    return Actions.GetGenetiveName(action) + " путевого листа";
+                    return partOfTitle + " путевого листа";
                 case Destinations.schedule:
-                    return Actions.GetGenetiveName(action) + " расписания";
+                    return partOfTitle + " расписания";
                 case Destinations.maintanceLog:
-                    return Actions.GetGenetiveName(action) + " записи технического обслуживания";
+                    return partOfTitle + " записи технического обслуживания";
                 case Destinations.logOfDepartureAndEntry:
-                    return Actions.GetGenetiveName(action) + " записи въезда и выезда";
+                    return partOfTitle + " записи въезда и выезда";
                 default: return null;
             }
         }

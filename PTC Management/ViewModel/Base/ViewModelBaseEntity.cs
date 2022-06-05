@@ -1,24 +1,33 @@
 ﻿using PTC_Management.Commands;
 using PTC_Management.Model.MainWindow;
-
+using PTC_Management.Model.Dialog;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
-using Size = PTC_Management.Model.MainWindow.Size;
-
 namespace PTC_Management.ViewModel.Base
 {
     class ViewModelBaseEntity : ViewModelBase
     {
+        /// <summary>
+        /// Поле, именяемое свойством SelectedIndex
+        /// </summary>
         private int selectedIndex;
 
-        public static readonly DependencyProperty filterTextProperty =
+        /// <summary>
+        /// Поле, изменяемое свойством FilterText
+        /// </summary>
+        public static readonly DependencyProperty filterText =
             DependencyProperty.Register(
                 "FilterText", typeof(string), typeof(ViewModelBaseEntity),
                 new PropertyMetadata("", FilterText_Changed));
 
+        /// <summary>
+        /// Представление элементов. 
+        /// Используется для предоставления 
+        /// возможности фильтрации элементов в таблице.
+        /// </summary>
         public ICollectionView Items { get; set; }
 
         /// <summary>
@@ -34,24 +43,31 @@ namespace PTC_Management.ViewModel.Base
         /// Вызывается когда нажата одна 
         /// из кнопок, выполняющая изменения записей в таблице
         /// </summary>
-        public ICommand DialogCommand { get; set; }
+        public ICommand TableAction { get; set; }
+
+        /// <summary>
+        /// Определяет видимость кнопок, изменяющих записи таблицы
+        /// </summary>
+        public string TableActionButtonsVisible { get; set; }
 
         public ViewModelBaseEntity()
         {
-            DialogCommand = new Command<string>(OnDialog);
+            TableAction = new Command<string>(OnTableAction);
         }
 
         /// <summary>
-        /// Вызывается при вызове DialogCommand
+        /// Вызывается при вызове TableAction
         /// </summary>
-        public virtual void OnDialog(string action) { }
+        public virtual void OnTableAction(string action) { }
 
+        /// <summary>
+        /// Свойство устанавливаемое в текстовое поле фильтра
+        /// </summary>
         public string FilterText
         {
-            get { return (string)GetValue(filterTextProperty); }
-            set { SetValue(filterTextProperty, value); }
+            get { return (string)GetValue(filterText); }
+            set { SetValue(filterText, value); }
         }
-
 
         /// <summary>
         /// Событие вызываемое при изменение текста в поле фильтра
@@ -75,12 +91,12 @@ namespace PTC_Management.ViewModel.Base
         /// <summary>
         /// Выполняет инициализацию диалогового окна и возвращает его экземпляр
         /// </summary>
-        public DialogViewModel GetDialogViewModel<T>(string action, string destination) where T : DialogViewModel, new()
+        public T GetDialogViewModel<T>(string action, string destination) where T : DialogViewModel, new()
         {
             return new T()
             {
                 MainWindowAction = action,
-                Title = ViewModels.GetDialogTitle(action, destination),
+                Title = ViewModels.GetDialogTitle(Actions.GetGenetiveName(action), destination),
                 WindowParameters = WindowParameters,
             };
         }

@@ -28,20 +28,17 @@ namespace PTC_Management.ViewModel
         {
             Employee current = entity as Employee;
 
-            if (!string.IsNullOrWhiteSpace(FilterText)
-                 && !current.Id.ToString().Contains(FilterText)
-                 && (current.Surname == null ||
-                     !current.Surname.Contains(FilterText))
-                 && (current.Name == null ||
-                     !current.Name.Contains(FilterText))
-                 && (current.Patronymic == null ||
-                     !current.Patronymic.Contains(FilterText))
-                 && (current.DriverLicense == null ||
-                     !current.DriverLicense.Contains(FilterText)))
+            if (string.IsNullOrWhiteSpace(FilterText)
+                 // && !current.Id.ToString().Contains(FilterText)
+                 || current.Surname.Contains(FilterText)
+                 || current.Name.Contains(FilterText)
+                 || current.Patronymic != null &&
+                     current.Patronymic.Contains(FilterText)
+                 || current.DriverLicense.Contains(FilterText))
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
         #endregion
 
@@ -50,11 +47,11 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
         /// </summary>
-        public override void OnDialog(string action)
+        public override void OnTableAction(string action)
         {
             // инициализация представление-модель диалогового окна
-            DialogViewModel dialogViewModel = GetDialogViewModel<EmployeeDialogViewModel>(action, Destinations.employee);
-            (dialogViewModel as EmployeeDialogViewModel).ViewModelHelper = viewModelHelper;
+            var dialogViewModel = GetDialogViewModel<EmployeeDialogViewModel>(action, Destinations.employee);
+            dialogViewModel.ViewModelHelper = viewModelHelper;
 
             var actionPerformer = new ActionPerformer<Employee>
                  (this, dialogViewModel, viewModelHelper.ItemsList);

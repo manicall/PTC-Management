@@ -1,8 +1,11 @@
-﻿using PTC_Management.EF;
+﻿using PTC_Management.Commands;
+using PTC_Management.EF;
 using PTC_Management.Model;
 using PTC_Management.Model.Dialog;
 using PTC_Management.Model.MainWindow;
+using PTC_Management.ViewModel.Base;
 using PTC_Management.ViewModel.Helpers;
+using PTC_Management.Views.Windows;
 
 namespace PTC_Management.ViewModel.DialogViewModels
 {
@@ -41,16 +44,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
 
         protected override void OnDialogSelectСommand(string destination)
         {
-            var selectWindow = new SelectWindowViewModel();
-            // устанавливается представление-модель,
-            // по которой будет ясно какое представление отобразить
-            selectWindow.CurrentViewModel = viewModels.GetViewModel(destination);
-
-            // отключение видимости кнопок с журналом ТО и
-            // журналом въезда и выезда у окна со списком транспорта
-            if (destination == Destinations.Transport)
-                ChangeTansportInfoVisibility(selectWindow, Visibility.collapsed);
-
+            var selectWindow = GetSelectWindow(destination);
             selectWindow.Show();
 
             if (selectWindow.ReturnedItem != null)
@@ -60,7 +54,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
                 {
                     case Destinations.employee:
                         tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem.Clone();
-                        tempDialogItem.IdEmployee  = ((Employee)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
 
                         break;
                     case Destinations.route:
@@ -79,11 +73,6 @@ namespace PTC_Management.ViewModel.DialogViewModels
                 DialogItem = tempDialogItem;
             }
 
-        }
-
-        void ChangeTansportInfoVisibility(SelectWindowViewModel sw, string visibility)
-        {
-            (sw.CurrentViewModel as TransportViewModel).TansportInfoVisibility = visibility;
         }
 
         #endregion

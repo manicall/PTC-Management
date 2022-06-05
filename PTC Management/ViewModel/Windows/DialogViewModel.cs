@@ -12,17 +12,10 @@ namespace PTC_Management.ViewModel
 {
     class DialogViewModel : ViewModelBaseWindow
     {
-        private readonly Destinations destinations = new Destinations();
-
         private CopyParameters copyParameters;
-
-
         private Entity dialogItem;
 
-
-        private string mainWindowAction;
-
-        public Destinations Destinations => destinations;
+        public Destinations Destinations => new Destinations();
 
         /// <summary>
         /// Копия выбранного элемента таблицы
@@ -47,19 +40,22 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Действие которое было выбрано в главном окне
         /// </summary>
-        public string MainWindowAction
-        {
-            get => mainWindowAction;
-            set => mainWindowAction = value;
-        }
+        public string MainWindowAction { get; set; }
 
         /// <summary>
         /// Выбранный индекс в таблице 
         /// </summary>
         public int SelectedIndex { get; set; }
 
+        /// <summary>
+        /// Команда, вызываемая когда необходимо выполнить,
+        /// определяемое кнопкой на диалоговом окне
+        /// </summary>
         public Command<string> DialogActionCommand { get; private set; }
 
+        /// <summary>
+        /// Команда, вызываемая когда необходимо выбрать существующую запись
+        /// </summary>
         public Command<string> DialogSelectСommand { get; private set; }
 
         public DialogViewModel()
@@ -70,6 +66,9 @@ namespace PTC_Management.ViewModel
             CopyParameters = new CopyParameters();
         }
 
+        /// <summary>
+        /// Выполняет действие заданное кнопкой на диалоговом окне
+        /// </summary>
         protected virtual void OnDialogActionCommand(string action)
         {
             switch (action)
@@ -87,6 +86,9 @@ namespace PTC_Management.ViewModel
             }
         }
 
+        /// <summary>
+        /// Выполняет действие, заданное в параметре
+        /// </summary>
         protected void DoAction(string action)
         {
             /* взаимодействие с базой данных */
@@ -117,6 +119,46 @@ namespace PTC_Management.ViewModel
         /// Используется для выбора существующих записей
         /// </summary>
         protected virtual void OnDialogSelectСommand(string destination) { }
+
+        /// <summary>
+        /// Возвращает настроенную представление-модель
+        /// </summary>
+        protected SelectWindowViewModel GetSelectWindow(string destination)
+        {
+            var selectWindow = new SelectWindowViewModel();
+
+            selectWindow.CurrentViewModel = GetViewModel(selectWindow, destination);
+
+            selectWindow.Title = ViewModels.GetDialogTitle("Выбор", destination);
+
+            return selectWindow;
+        }
+
+        private ViewModelBaseEntity GetViewModel(SelectWindowViewModel selectWindow, string destination) 
+        {
+            var viewModel = viewModels.GetViewModel(destination);
+
+            // скрытие кнопок позволяющих взаимодействовать с таблицей
+            viewModel.TableActionButtonsVisible = Visibility.collapsed;
+
+            // переопределяем команду, чтобы при двойном клике мыши
+            // вызывался метод подтверждающий выбор записи из таблицы
+            viewModel.TableAction = new Command<string>(
+                (action) =>
+                {
+                    // если параметр соответствует параметру,
+                    // передаваемому двойным кликом
+                    if (action == Actions.update)
+                        selectWindow.OnDialogSelectCommand();
+                });
+
+            // отключение видимости кнопок с журналом ТО и
+            // журналом въезда и выезда у окна со списком транспорта
+            if (viewModel is TransportViewModel transportVM)
+                transportVM.TansportInfoButtonsVisibility = Visibility.collapsed;
+
+            return viewModel;
+        }
 
         /// <summary> Метод показа ViewModel в окне </summary>
         public void Show()

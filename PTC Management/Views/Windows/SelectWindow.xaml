@@ -6,7 +6,7 @@
 
         mc:Ignorable="d"
         xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
-        Title="Выбор записи"
+        Title="{Binding Title}"
         Height = "{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}" 
         Width  = "{Binding WindowParameters.WindowSize.Width,  Mode=TwoWay}" >
 

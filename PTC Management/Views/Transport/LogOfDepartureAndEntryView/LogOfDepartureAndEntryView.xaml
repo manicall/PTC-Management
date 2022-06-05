@@ -17,7 +17,7 @@
       <ColumnDefinition Width="192*"/>
     </Grid.ColumnDefinitions>
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
-      <ContentControl Template="{StaticResource MainWindowControls}" />
+      <ContentControl Template="{StaticResource TableActionControls}" />
       
       <DataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
             SelectedIndex="{Binding SelectedIndex}"
@@ -80,19 +80,19 @@
         </DataGrid.Columns>
 
         <DataGrid.InputBindings>
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Add}"
                 Key="C" />
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Update}"
                 Key="U" />
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Remove}"
                 Key="Delete" />
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Copy}"
                 Gesture="ALT+C" />
-          <MouseBinding Command="{Binding DialogCommand}"
+          <MouseBinding Command="{Binding TableAction}"
                   CommandParameter="{Binding Actions.Update}"
                   MouseAction="LeftDoubleClick"/>
         </DataGrid.InputBindings>
@@ -100,16 +100,16 @@
         <DataGrid.ContextMenu>
           <ContextMenu>
             <MenuItem Header ="Создать" InputGestureText="C"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Add}"/>
             <MenuItem Header ="Изменить" InputGestureText="U"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Update}"/>
             <MenuItem Header ="Удалить" InputGestureText="Delete"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Remove}"/>
             <MenuItem Header ="Копировать" InputGestureText="ALT+C"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
         </DataGrid.ContextMenu>

@@ -57,11 +57,11 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
         /// </summary>
-        public override void OnDialog(string action)
+        public override void OnTableAction(string action)
         {
             // инициализация представление-модель диалогового окна
-            DialogViewModel dialogViewModel = GetDialogViewModel<LogOfDepartureAndEntryDialogViewModel>(action, Destinations.logOfDepartureAndEntry);
-            (dialogViewModel as LogOfDepartureAndEntryDialogViewModel).ViewModelHelper = viewModelHelper;
+            var dialogViewModel = GetDialogViewModel<LogOfDepartureAndEntryDialogViewModel>(action, Destinations.logOfDepartureAndEntry);
+            dialogViewModel.ViewModelHelper = viewModelHelper;
 
             var actionPerformer = new ActionPerformer<LogOfDepartureAndEntry>
                  (this, dialogViewModel, viewModelHelper.ItemsList);

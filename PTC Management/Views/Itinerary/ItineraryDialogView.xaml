@@ -108,10 +108,11 @@
         </TextBox.Text>
       </TextBox>
 
-      <Button           
+      <Button    
+              Content="Выбрать"
               Command="{Binding DialogSelectСommand }"
               CommandParameter="{Binding Destinations.Employee}" 
-              Margin="0 0 35 0" Width="auto">Выбрать</Button>
+              Margin="0 0 35 0" Width="auto" />
     </StackPanel>
     
     <StackPanel >
@@ -132,11 +133,12 @@
           </MultiBinding>
         </TextBox.Text>
       </TextBox>
-      
+
       <Button           
+              Content="Выбрать"
               Command="{Binding DialogSelectСommand }"
               CommandParameter="{Binding Destinations.Transport}" 
-              Margin="0 0 35 0" Width="auto">Выбрать</Button>
+              Margin="0 0 35 0" Width="auto" />
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockRoute" Text="Маршрут" />
@@ -147,9 +149,10 @@
         NotifyOnValidationError=True, 
         UpdateSourceTrigger=PropertyChanged}" />
       <Button           
+              Content="Выбрать"
               Command="{Binding DialogSelectСommand }"
               CommandParameter="{Binding Destinations.Route}" 
-              Margin="0 0 35 0" Width="auto">Выбрать</Button>
+              Margin="0 0 35 0" Width="auto" />
     </StackPanel>
 
   </StackPanel>

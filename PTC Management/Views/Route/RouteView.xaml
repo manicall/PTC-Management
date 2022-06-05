@@ -4,8 +4,8 @@
    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
    xmlns:local = "clr-namespace:PTC_Management.Views" 
-   xmlns:m = "clr-namespace:PTC_Management.Model" 
-   mc:Ignorable = "d" 
+   xmlns:m = "clr-namespace:PTC_Management.Model" xmlns:viewmodel="clr-namespace:PTC_Management.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:RouteViewModel}"
+             mc:Ignorable = "d" 
    d:DesignHeight = "300" d:DesignWidth = "650">
 
   <Grid>
@@ -19,29 +19,7 @@
     </Grid.ColumnDefinitions>
 
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
-      <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-        <Button Name="create" Style="{StaticResource BlackButton}" 
-            Content="Создать"
-            Command = "{Binding DialogCommand}"
-            CommandParameter="{Binding Actions.Add}"/>
-        <Button Name="update" Style="{StaticResource BlackButton}" 
-            Content="Изменить"
-            Command = "{Binding DialogCommand}"
-            CommandParameter="{Binding Actions.Update}"/>
-        <Button Name="delete" Style="{StaticResource BlackButton}" 
-            Content="Удалить" 
-            Command = "{Binding DialogCommand}"
-            CommandParameter="{Binding Actions.Remove}"/>
-        <Button Name="copy" Style="{StaticResource BlackButton}" 
-            Content="Копировать" 
-            Command = "{Binding DialogCommand}"
-            CommandParameter="{Binding Actions.Copy}"/>
-
-        <TextBlock Text="Поиск:" Margin="5"/>
-        <TextBox Name="TextBoxSearch" 
-             Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
-             Width="200" Margin="5"/>
-      </StackPanel>
+      <ContentControl Template="{StaticResource TableActionControls}" />
 
       <DataGrid SelectedItem="{Binding SelectedItem}" 
             SelectedIndex="{Binding SelectedIndex}"
@@ -63,19 +41,19 @@
         </DataGrid.Columns>
 
         <DataGrid.InputBindings>
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Add}"
                 Key="C" />
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Update}"
                 Key="U" />
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Remove}"
                 Key="Delete" />
-          <KeyBinding Command="{Binding DialogCommand}"
+          <KeyBinding Command="{Binding TableAction}"
                 CommandParameter="{Binding Actions.Copy}"
                 Gesture="ALT+C" />
-          <MouseBinding Command="{Binding DialogCommand}"
+          <MouseBinding Command="{Binding TableAction}"
                   CommandParameter="{Binding Actions.Update}"
                   MouseAction="LeftDoubleClick"/>
         </DataGrid.InputBindings>
@@ -83,16 +61,16 @@
         <DataGrid.ContextMenu>
           <ContextMenu>
             <MenuItem Header ="Создать" InputGestureText="C"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Add}"/>
             <MenuItem Header ="Изменить" InputGestureText="U"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Update}"/>
             <MenuItem Header ="Удалить" InputGestureText="Delete"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Remove}"/>
             <MenuItem Header ="Копировать" InputGestureText="ALT+C"
-                Command = "{Binding DialogCommand}"
+                Command = "{Binding TableAction}"
                 CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
         </DataGrid.ContextMenu>

@@ -1,29 +1,33 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-  <ControlTemplate x:Key="MainWindowControls">
-    <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-      <Button Name="create" Style="{StaticResource BlackButton}" 
+  <ControlTemplate x:Key="TableActionControls" >
+    <StackPanel Orientation="Horizontal">
+      <StackPanel Visibility="{Binding TableActionButtonsVisible}" 
+                    Margin="0,5,0,5" Orientation="Horizontal">
+        <Button Name="create" Style="{StaticResource BlackButton}" 
               Content="Создать"
-              Command = "{Binding DialogCommand}"
+              Command = "{Binding TableAction}"
               CommandParameter="{Binding Actions.Add}"/>
-      <Button Name="update" Style="{StaticResource BlackButton}" 
+        <Button Name="update" Style="{StaticResource BlackButton}" 
               Content="Изменить"
-              Command = "{Binding DialogCommand}"
+              Command = "{Binding TableAction}"
               CommandParameter="{Binding Actions.Update}"/>
-      <Button Name="delete" Style="{StaticResource BlackButton}" 
+        <Button Name="delete" Style="{StaticResource BlackButton}" 
               Content="Удалить" 
-              Command = "{Binding DialogCommand}"
+              Command = "{Binding TableAction}"
               CommandParameter="{Binding Actions.Remove}"/>
-      <Button Name="copy" Style="{StaticResource BlackButton}" 
+        <Button Name="copy" Style="{StaticResource BlackButton}" 
               Content="Копировать" 
-              Command = "{Binding DialogCommand}"
+              Command = "{Binding TableAction}"
               CommandParameter="{Binding Actions.Copy}"/>
-
-      <TextBlock Text="Поиск:" Margin="5"/>
-      <TextBox Name="TextBoxSearch" 
-                Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
-                Width="200" Margin="5"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Height="28" >
+        <TextBlock Text="Поиск:" Margin="5"/>
+        <TextBox Name="TextBoxSearch" 
+               Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
+               Width="200" Margin="5"/>
+      </StackPanel>
     </StackPanel>
   </ControlTemplate>
 
