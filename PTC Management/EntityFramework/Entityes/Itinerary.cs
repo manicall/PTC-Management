@@ -60,7 +60,11 @@ namespace PTC_Management.EF
             repository.Update(this);
         }
 
-        public override bool Remove() => repository.Remove(this);
+        public override bool Remove()
+        {
+            //InitEntities();
+            return repository.Remove(this);
+        }
 
         public override void Copy(int count)
         {
@@ -72,7 +76,6 @@ namespace PTC_Management.EF
         {
             if (entity is Itinerary itinerary)
             {
-                Id = itinerary.Id;
                 IdRoute = itinerary.IdRoute;
                 IdTransport = itinerary.IdTransport;
                 IdEmployee = itinerary.IdEmployee;
