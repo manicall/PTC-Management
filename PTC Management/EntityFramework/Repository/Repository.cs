@@ -16,7 +16,7 @@ namespace PTC_Management.EF
         public Repository(PTC_ManagementContext db)
         {
             _db = db;
-            _set = db.Set<T>();
+            _set = _db.Set<T>();
         }
 
         /// <summary>
@@ -82,7 +82,19 @@ namespace PTC_Management.EF
         /// </summary>
         public void Add(T item)
         {
-            _set.Add(item);
+            if (item is Itinerary itinerary)
+            {
+                _db.Employee.Attach(itinerary.Employee);
+                _db.Route.Attach(itinerary.Route);
+                _db.Transport.Attach(itinerary.Transport);
+
+                var set = _db.Set<Itinerary>();
+                set.Add(itinerary);
+            }
+            else
+            {
+                _set.Add(item);
+            }
 
             _db.SaveChanges();
         }
@@ -92,7 +104,20 @@ namespace PTC_Management.EF
         /// </summary>
         public void Update(T item)
         {
-            _db.Entry(item).State = EntityState.Modified;
+            if (item is Itinerary itinerary)
+            {
+                _db.Employee.Attach(itinerary.Employee);
+                _db.Route.Attach(itinerary.Route);
+                _db.Transport.Attach(itinerary.Transport);
+
+                _db.Entry(itinerary).State = EntityState.Modified;
+            }
+            else
+            {
+                _db.Entry(item).State = EntityState.Modified;
+            }
+
+            
 
             _db.SaveChanges();
         }
@@ -105,7 +130,6 @@ namespace PTC_Management.EF
             if (item is null) throw new ArgumentNullException(nameof(item));
 
             _db.Entry(item).State = EntityState.Deleted;
-
 
             // DONE: Обработать исключение, если сущность имеет связь
             try

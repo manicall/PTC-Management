@@ -50,19 +50,19 @@ namespace PTC_Management.EF
 
         public override void Add()
         {
-            InitEntities();
+            //InitEntities();
             repository.Add(this);
         }
 
         public override void Update()
         {
-            InitEntities();
+            //InitEntities();
             repository.Update(this);
         }
 
         public override bool Remove()
         {
-            //InitEntities();
+            InitEntities();
             return repository.Remove(this);
         }
 
