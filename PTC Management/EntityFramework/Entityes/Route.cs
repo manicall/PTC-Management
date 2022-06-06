@@ -23,8 +23,8 @@ namespace PTC_Management.EF
         [StringLength(255)]
         public string Name { get; set; }
 
-        // TODO: невозможно вести дробь в текстовое поле
-        public float? Distant { get; set; }
+        [StringLength(10)]
+        public string Distant { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
@@ -78,7 +78,7 @@ namespace PTC_Management.EF
                             error = "Поле не может быть пустым";
                         break;
                     case "Distant":
-                        DistantError(Distant);
+                        error = DistantError(Distant);
                         break;
 
                 }
@@ -96,11 +96,12 @@ namespace PTC_Management.EF
             return null;
         }
 
-        public string DistantError(float? distant)
+        public string DistantError(string distant)
         {
-            if (!distant.HasValue)
+            if (string.IsNullOrEmpty(distant))
                 return "Поле не может быть пустым";
-            if (distant <= 0)
+            float.TryParse(distant, out float i);
+            if (i <= 0)
                 return "Дистанция должна быть больше нуля";
             return null;
         }

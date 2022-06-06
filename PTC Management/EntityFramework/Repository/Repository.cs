@@ -94,7 +94,6 @@ namespace PTC_Management.EF
         {
             _db.Entry(item).State = EntityState.Modified;
 
-
             _db.SaveChanges();
         }
 
@@ -105,19 +104,7 @@ namespace PTC_Management.EF
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
 
-            if (item is Itinerary itinerary)
-            {
-                _db.Entry(itinerary.Employee).State = EntityState.Detached;
-                _db.Entry(itinerary.Route).State = EntityState.Detached;
-                _db.Entry(itinerary.Transport).State = EntityState.Detached;
-
-                _db.Entry(itinerary.Employee).State = EntityState.Deleted;
-                _db.Entry(itinerary.Route).State = EntityState.Deleted;
-                _db.Entry(itinerary.Transport).State = EntityState.Deleted;
-            }
-
             _db.Entry(item).State = EntityState.Deleted;
-
 
 
             // DONE: Обработать исключение, если сущность имеет связь
