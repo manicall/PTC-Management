@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Windows;
 
-namespace PTC_Management.Model.MainWindow
+namespace PTC_Management.Model
 {
     internal class Backup
     {

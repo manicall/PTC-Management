@@ -1,6 +1,6 @@
 using System.Data.Entity;
 
-namespace PTC_Management.EF
+namespace PTC_Management.EntityFramework
 {
     public partial class PTC_ManagementContext : DbContext
     {

@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Xml.Linq;
 
-namespace PTC_Management.EF
+namespace PTC_Management.EntityFramework
 {
     [Table("Itinerary")]
     public partial class Itinerary : Entity

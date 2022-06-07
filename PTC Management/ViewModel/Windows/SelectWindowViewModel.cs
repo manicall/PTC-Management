@@ -1,8 +1,6 @@
 ﻿using PTC_Management.Commands;
-using PTC_Management.EF;
+using PTC_Management.EntityFramework;
 using PTC_Management.Model;
-using PTC_Management.Model.MainWindow;
-using PTC_Management.ViewModel.Base;
 using PTC_Management.Views.Windows;
 
 namespace PTC_Management.ViewModel
@@ -32,7 +30,8 @@ namespace PTC_Management.ViewModel
 
         public SelectWindowViewModel(string destination, int idTransport) : this()
         {
-            switch (destination) {
+            switch (destination)
+            {
                 case Destinations.itinerary:
                     CurrentViewModel = GetViewModel(viewModels.GetItineraryVM(idTransport));
                     Title = ViewModels.GetTitle("Выбор", destination);

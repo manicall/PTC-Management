@@ -1,13 +1,14 @@
 ﻿using PTC_Management.Commands;
-using PTC_Management.Model.MainWindow;
 using PTC_Management.Model;
+
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+
 using Visibility = PTC_Management.Model.Visibility;
 
-namespace PTC_Management.ViewModel.Base
+namespace PTC_Management.ViewModel
 {
     class ViewModelBaseEntity : ViewModelBase
     {
@@ -104,7 +105,10 @@ namespace PTC_Management.ViewModel.Base
             };
         }
 
-
+        /// <summary>
+        /// Устанавливает текст строки состояния
+        /// </summary>
+        /// <param name="message"></param>
         public void SetStatusBarMessage(string message)
         {
             WindowParameters.StatusBarMessage = message;

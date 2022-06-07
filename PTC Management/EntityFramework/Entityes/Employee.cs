@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 
-using static System.Net.Mime.MediaTypeNames;
-
-namespace PTC_Management.EF
+namespace PTC_Management.EntityFramework
 {
     [Table("Employee")]
     public partial class Employee : Entity
@@ -61,7 +58,7 @@ namespace PTC_Management.EF
                 Name = employee.Name;
                 Patronymic = employee.Patronymic;
                 DriverLicense = employee.DriverLicense;
-            } 
+            }
         }
 
         public override Entity Clone() => Clone<Employee>();
@@ -74,8 +71,9 @@ namespace PTC_Management.EF
             get
             {
                 string error = null;
-                switch (columnName) { 
-                        case "Surname":
+                switch (columnName)
+                {
+                    case "Surname":
                         error = GetNullOrNameError(Surname);
                         break;
                     case "Name":
@@ -87,7 +85,7 @@ namespace PTC_Management.EF
                     case "DriverLicense":
                         error = GetDriverLicenseError(DriverLicense);
                         break;
-                } 
+                }
                 return error;
             }
         }
@@ -97,7 +95,7 @@ namespace PTC_Management.EF
         /// </summary>
         string GetPatronymicError(string text)
         {
-            if (string.IsNullOrEmpty(text)) return null; 
+            if (string.IsNullOrEmpty(text)) return null;
             if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
                 return "Поле может содержать только буквы и дефисы";
             if (text.Length > 50)
@@ -108,7 +106,8 @@ namespace PTC_Management.EF
         /// <summary>
         /// Проверяет, что поле не является пустым и содержит только буквы и дефисы
         /// </summary>
-        string GetNullOrNameError(string text) {
+        string GetNullOrNameError(string text)
+        {
             if (string.IsNullOrEmpty(text))
                 return "Поле не может быть пустым";
             if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
@@ -128,7 +127,7 @@ namespace PTC_Management.EF
                 return "Поле не может быть пустым";
             if (Regex.IsMatch(text, "[\\D]+"))
                 return "Поле может содержать только цифры";
-            if (text.Length > 10) 
+            if (text.Length > 10)
                 return SizeError(10);
             return null;
         }

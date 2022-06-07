@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="PTC_Management.ViewModel.Base.BindableBase" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.BindableBase" Collapsed="true">
     <Position X="39.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAEAAAAAAAAAAAAAAAA=</HashCode>
@@ -8,63 +8,63 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="PTC_Management.ViewModel.Base.ViewModelBase" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.ViewModelBase" Collapsed="true">
     <Position X="39.25" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAYAAAAGAAAABAAAAAAAAAAAAAABAAAAAQAAA=</HashCode>
       <FileName>ViewModel\Base\ViewModelBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.Base.ViewModelBaseEntity" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.ViewModelBaseEntity" Collapsed="true">
     <Position X="29" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAACAEACAAABAgAAAAAABCAgAgAgIAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Base\ViewModelBaseEntity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.Base.ViewModelBaseWindow" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.ViewModelBaseWindow" Collapsed="true">
     <Position X="47" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAIAAAEAAAACAAAAIAAAAAACAAAA=</HashCode>
       <FileName>ViewModel\Base\ViewModelBaseWindow.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.DialogViewModels.EmployeeDialogViewModel" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.EmployeeDialogViewModel" Collapsed="true">
     <Position X="49.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Employee\EmployeeDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.DialogViewModels.ItineraryDialogViewModel" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.ItineraryDialogViewModel" Collapsed="true">
     <Position X="40.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAFAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Itinerary\ItineraryDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.DialogViewModels.RouteDialogViewModel" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.RouteDialogViewModel" Collapsed="true">
     <Position X="42.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAAAAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Route\RouteDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.DialogViewModels.LogOfDepartureAndEntryDialogViewModel" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.LogOfDepartureAndEntryDialogViewModel" Collapsed="true">
     <Position X="44.75" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAAEAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.DialogViewModels.MaintanceLogDialogViewModel" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.MaintanceLogDialogViewModel" Collapsed="true">
     <Position X="47" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAAEAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Transport\MaintanceLogView\MaintanceLogDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.DialogViewModels.TransportDialogViewModel" Collapsed="true">
+  <Class Name="PTC_Management.ViewModel.TransportDialogViewModel" Collapsed="true">
     <Position X="51.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAAAAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
@@ -176,28 +176,28 @@
       <FileName>ViewModel\Windows\MainWindowViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.EF.PTC_ManagementContext" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.PTC_ManagementContext" Collapsed="true">
     <Position X="36.25" Y="14.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAEAAAAQAGIAACAABAAABAAAAAAA=</HashCode>
       <FileName>EntityFramework\Context\PTC_ManagementContext.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.EF.Entity" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.Entity" Collapsed="true">
     <Position X="28" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYCAAgAAAAAAAAAAAAABAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>EntityFramework\Entityes\Base\Entity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.EF.Date" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.Date" Collapsed="true">
     <Position X="36.25" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAEIAAQAAAAAAAAAAAgCAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>EntityFramework\Entityes\Date.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.EF.Employee" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.Employee" Collapsed="true">
     <Position X="29.25" Y="14.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAACgAAAACAQAACAAABAQABoAAAAABAAAAEAAAABA=</HashCode>
@@ -205,35 +205,35 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="PTC_Management.EF.Itinerary" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.Itinerary" Collapsed="true">
     <Position X="22.5" Y="14.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAgAAAACAQgACEQABAQACgAAKAAAAAABAAAAABA=</HashCode>
       <FileName>EntityFramework\Entityes\Itinerary.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.EF.LaborShift" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.LaborShift" Collapsed="true">
     <Position X="38" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>EntityFramework\Entityes\LaborShift.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.EF.LogOfDepartureAndEntry" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.LogOfDepartureAndEntry" Collapsed="true">
     <Position X="31.5" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAgAAAACAAAAAAAABAAAAoAAAAABAAAAAAAAABA=</HashCode>
       <FileName>EntityFramework\Entityes\LogOfDepartureAndEntry.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.EF.MaintanceLog" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.MaintanceLog" Collapsed="true">
     <Position X="33.75" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAgEAAACAAAAAAAABAAAAoAAAAABAAAAAACAABA=</HashCode>
       <FileName>EntityFramework\Entityes\MaintanceLog.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.EF.Route" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.Route" Collapsed="true">
     <Position X="24.75" Y="14.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAwAAAACAQAACEAABAQAAoAAAAAAAAAAAAAAABA=</HashCode>
@@ -241,7 +241,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="PTC_Management.EF.Transport" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.Transport" Collapsed="true">
     <Position X="27" Y="14.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAEgAAAACAQAACAAABAQAAoAAAAAAAAAAAAAAABA=</HashCode>
@@ -249,7 +249,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="PTC_Management.EF.Repository&lt;T&gt;" Collapsed="true">
+  <Class Name="PTC_Management.EntityFramework.Repository&lt;T&gt;" Collapsed="true">
     <Position X="38" Y="14.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAgAAAAAAQCAAAAAAgBAAAAgAAAAAACAAIAACAAgI=</HashCode>

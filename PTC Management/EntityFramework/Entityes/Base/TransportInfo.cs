@@ -1,5 +1,4 @@
-﻿using PTC_Management.EF;
-
+﻿
 using System;
 
 namespace PTC_Management.EntityFramework.Entityes.Base

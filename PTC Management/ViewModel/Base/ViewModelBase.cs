@@ -1,8 +1,7 @@
-﻿using PTC_Management.EF;
-using PTC_Management.Model;
+﻿using PTC_Management.EntityFramework;
 using PTC_Management.Model;
 
-namespace PTC_Management.ViewModel.Base
+namespace PTC_Management.ViewModel
 {
     internal class ViewModelBase : BindableBase
     {

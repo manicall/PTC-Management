@@ -1,14 +1,13 @@
-﻿using PTC_Management.ViewModel.Base;
-
+﻿
 using System.ComponentModel;
 
-namespace PTC_Management.EF
+namespace PTC_Management.EntityFramework
 {
     /// <summary>
     /// Позволяет использовать методы
     /// переопределенные в дочерних классах
     /// </summary>
-    
+
     // TODO: доделать валидацию
     public abstract class Entity : IDataErrorInfo
     {

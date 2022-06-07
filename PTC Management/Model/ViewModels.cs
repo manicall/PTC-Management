@@ -1,8 +1,6 @@
-﻿using PTC_Management.EF;
-using PTC_Management.ViewModel;
-using PTC_Management.ViewModel.Base;
+﻿using PTC_Management.ViewModel;
 
-namespace PTC_Management.Model.MainWindow
+namespace PTC_Management.Model
 {
     class ViewModels
     {
@@ -15,9 +13,9 @@ namespace PTC_Management.Model.MainWindow
 
         public T GetNewModelView<T>() where T : ViewModelBaseEntity, new()
         {
-            return new T() 
+            return new T()
             {
-               WindowParameters = WindowParameters
+                WindowParameters = WindowParameters
             };
         }
 
@@ -27,12 +25,12 @@ namespace PTC_Management.Model.MainWindow
         }
 
 
-        public MaintanceLogViewModel GetMaintanceLogVM(int idTransport) 
+        public MaintanceLogViewModel GetMaintanceLogVM(int idTransport)
         {
             return new MaintanceLogViewModel(idTransport) { WindowParameters = WindowParameters };
         }
-        
-        public LogOfDepartureAndEntryViewModel GetLogOfDepartureAndEntryVM(int idTransport) 
+
+        public LogOfDepartureAndEntryViewModel GetLogOfDepartureAndEntryVM(int idTransport)
         {
             return new LogOfDepartureAndEntryViewModel(idTransport) { WindowParameters = WindowParameters };
         }

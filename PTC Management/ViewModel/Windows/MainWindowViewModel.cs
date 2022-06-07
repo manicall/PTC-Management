@@ -2,12 +2,9 @@
 
 using PTC_Management.Commands;
 using PTC_Management.Model;
-using PTC_Management.Model.MainWindow;
-using PTC_Management.ViewModel.Base;
+using PTC_Management.ViewModel;
 
 using System.Windows;
-
-using Size = PTC_Management.Model.MainWindow.Size;
 
 namespace PTC_Management
 {

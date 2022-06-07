@@ -1,12 +1,11 @@
 ﻿using PTC_Management.Commands;
 using PTC_Management.Model;
-using PTC_Management.Model.MainWindow;
 
 using System.Windows;
 
-using Size = PTC_Management.Model.MainWindow.Size;
+using Size = PTC_Management.Model.Size;
 
-namespace PTC_Management.ViewModel.Base
+namespace PTC_Management.ViewModel
 {
     class ViewModelBaseWindow : ViewModelBase
     {
@@ -31,7 +30,7 @@ namespace PTC_Management.ViewModel.Base
 
             WindowParameters = new WindowParameters() { StatusBarMessage = "", WindowSize = new Size() };
             viewModels = new ViewModels(WindowParameters);
-        } 
+        }
 
         /// <summary> Методы вызываемый окном при закрытии </summary>
         protected virtual void Closed() { }

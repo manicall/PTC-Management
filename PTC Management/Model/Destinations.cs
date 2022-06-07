@@ -1,4 +1,4 @@
-﻿namespace PTC_Management.Model.MainWindow
+﻿namespace PTC_Management.Model
 {
     public class Destinations
     {

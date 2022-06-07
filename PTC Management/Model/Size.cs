@@ -1,6 +1,6 @@
-﻿using PTC_Management.ViewModel.Base;
+﻿using PTC_Management.ViewModel;
 
-namespace PTC_Management.Model.MainWindow
+namespace PTC_Management.Model
 {
     internal class Size : BindableBase
     {

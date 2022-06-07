@@ -1,12 +1,6 @@
-﻿using PTC_Management.EF;
-using PTC_Management.Model.MainWindow;
-using PTC_Management.ViewModel.Base;
-using PTC_Management.ViewModel.DialogViewModels;
+﻿using PTC_Management.EntityFramework;
+using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
-
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {

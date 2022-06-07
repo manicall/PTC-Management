@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 
-namespace PTC_Management.ViewModel.Base
+namespace PTC_Management.ViewModel
 {
     /// <summary>
     /// Реализует интерфейс INotifyPropertyChanged

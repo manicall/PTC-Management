@@ -1,8 +1,8 @@
-﻿using PTC_Management.EF;
+﻿using PTC_Management.EntityFramework;
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
-namespace PTC_Management.ViewModel.DialogViewModels
+namespace PTC_Management.ViewModel
 {
     internal class EmployeeDialogViewModel : DialogViewModel
     {
@@ -12,7 +12,7 @@ namespace PTC_Management.ViewModel.DialogViewModels
             CurrentViewModel = this;
         }
 
-        public ViewModelHelper<Employee> ViewModelHelper { get; set ; }
+        public ViewModelHelper<Employee> ViewModelHelper { get; set; }
 
         #region методы
         /// <summary>

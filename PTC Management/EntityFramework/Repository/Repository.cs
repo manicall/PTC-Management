@@ -1,12 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Windows;
 
-namespace PTC_Management.EF
+namespace PTC_Management.EntityFramework
 {
     public class Repository<T> where T : Entity
     {
@@ -84,7 +82,7 @@ namespace PTC_Management.EF
         {
             // если сущность имеет связные сущности,
             // то присоединяем их к контексту
-            if (item is Itinerary) (item as Itinerary).SetEntities(); 
+            if (item is Itinerary) (item as Itinerary).SetEntities();
 
             // отмечаем сущность как добавленную
             db.Entry(item).State = EntityState.Added;
@@ -102,7 +100,7 @@ namespace PTC_Management.EF
             if (item is Itinerary) (item as Itinerary).SetEntities();
 
             // отмечаем сущность как измененную
-            db.Entry(item).State = EntityState.Modified; 
+            db.Entry(item).State = EntityState.Modified;
 
             db.SaveChanges();
 
@@ -163,12 +161,13 @@ namespace PTC_Management.EF
             Update((T)selectedItem);
         }
 
-        private void CopyEntity(Entity selectedItem, T item) {
+        private void CopyEntity(Entity selectedItem, T item)
+        {
             selectedItem.SetFields(item);
             if (selectedItem is Itinerary) (selectedItem as Itinerary).SetEntities();
             if (selectedItem is MaintanceLog) (selectedItem as MaintanceLog).SetEntities();
             if (selectedItem is LogOfDepartureAndEntry) (selectedItem as LogOfDepartureAndEntry).SetEntities();
-            
+
         }
     }
 }

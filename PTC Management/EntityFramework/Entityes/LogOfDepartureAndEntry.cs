@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
-namespace PTC_Management.EF
+namespace PTC_Management.EntityFramework
 {
     [Table("LogOfDepartureAndEntry")]
     public partial class LogOfDepartureAndEntry : TransportInfo

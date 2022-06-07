@@ -6,7 +6,7 @@
        xmlns:model="clr-namespace:PTC_Management.Model"
        xmlns:views = "clr-namespace:PTC_Management.Views" 
        xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
-       xmlns:dialogviewmodels="clr-namespace:PTC_Management.ViewModel.DialogViewModels" 
+       xmlns:dialogviewmodels="clr-namespace:PTC_Management.ViewModel" 
        d:DataContext="{d:DesignInstance Type=dialogviewmodels:RouteDialogViewModel}"
        mc:Ignorable="d" 
 

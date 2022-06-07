@@ -1,7 +1,5 @@
-﻿using PTC_Management.EF;
+﻿using PTC_Management.EntityFramework;
 using PTC_Management.Model;
-using PTC_Management.Model;
-using PTC_Management.ViewModel.Base;
 
 using System.Collections.Generic;
 using System.Windows.Data;
@@ -53,7 +51,7 @@ namespace PTC_Management.ViewModel
                     if (Remove())
                         entityVM.SetStatusBarMessage("Запись успешно удалена");
                     else
-                        entityVM.SetStatusBarMessage("Не удалось удалить запись"); 
+                        entityVM.SetStatusBarMessage("Не удалось удалить запись");
                     break;
                 case Actions.copy:
                     Copy();
@@ -98,8 +96,8 @@ namespace PTC_Management.ViewModel
                 itemsList.Remove(selectedEmployee);
             }
             else
-            { 
-                return false; 
+            {
+                return false;
             }
 
             // обновление представления      

@@ -1,13 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.RegularExpressions;
 
-using static System.Net.Mime.MediaTypeNames;
-
-namespace PTC_Management.EF
+namespace PTC_Management.EntityFramework
 {
     [Table("Route")]
     public partial class Route : Entity
@@ -80,7 +76,7 @@ namespace PTC_Management.EF
         }
 
 
-        public string NumberError(int? number) 
+        public string NumberError(int? number)
         {
             if (!number.HasValue)
                 return "Поле не может быть пустым";

@@ -1,11 +1,4 @@
-﻿using PTC_Management.Model.MainWindow;
-using PTC_Management.ViewModel.Base;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PTC_Management.ViewModel;
 
 namespace PTC_Management.Model
 {
