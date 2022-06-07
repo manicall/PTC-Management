@@ -34,5 +34,15 @@ namespace PTC_Management.EF
         public abstract void SetFields(Entity entity);
 
         public abstract Entity Clone();
+
+        public abstract Entity DeepClone();
+
+        protected Entity Clone<T>() where T : Entity, new()
+        {
+            var item = new T { Id = Id };
+            item.SetFields(this);
+
+            return item;
+        }
     }
 }

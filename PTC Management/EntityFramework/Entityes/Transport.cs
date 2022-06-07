@@ -49,13 +49,9 @@ namespace PTC_Management.EF
             }
         }
 
-        public override Entity Clone()
-        {
-            var transport = new Transport { Id = Id };
-            transport.SetFields(this);
+        public override Entity Clone() => Clone<Transport>();
 
-            return transport;
-        }
+        public override Entity DeepClone() => Clone();
 
         public override string this[string columnName]
         {

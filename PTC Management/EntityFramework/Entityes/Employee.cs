@@ -37,6 +37,7 @@ namespace PTC_Management.EF
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
+
     }
 
 
@@ -66,13 +67,9 @@ namespace PTC_Management.EF
             } 
         }
 
-        public override Entity Clone()
-        {
-            var employee = new Employee { Id = Id };
-            employee.SetFields(this);
+        public override Entity Clone() => Clone<Employee>();
 
-            return employee;
-        }
+        public override Entity DeepClone() => Clone();
 
         // реализация интерфейса IDataErrorInfo
         // позволяет обрабатывать ошибки,

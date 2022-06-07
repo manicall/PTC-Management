@@ -55,13 +55,9 @@ namespace PTC_Management.EF
             }
         }
 
-        public override Entity Clone()
-        {
-            var route = new Route { Id = Id };
-            route.SetFields(this);
+        public override Entity Clone() => Clone<Route>();
 
-            return route;
-        }
+        public override Entity DeepClone() => Clone();
 
         public override string this[string columnName]
         {

@@ -10,20 +10,20 @@ namespace PTC_Management.EF
 {
     public class Repository<T> where T : Entity
     {
-        private readonly PTC_ManagementContext _db;
-        private readonly DbSet<T> _set;
+        private readonly PTC_ManagementContext db;
+        private readonly DbSet<T> set;
 
         public Repository(PTC_ManagementContext db)
         {
-            _db = db;
-            _set = _db.Set<T>();
+            this.db = db;
+            set = db.Set<T>();
         }
 
         /// <summary>
         /// Возвращает запись из базы данных по заданному ключу и 
         /// вызывает исключение, если таких элементов больше одного.
         /// </summary>
-        public T GetSingle(int id) => _set.Single(item => item.Id == id);
+        public T GetSingle(int id) => set.Single(item => item.Id == id);
 
         /// <summary>
         /// Возвращает запись из базы данных по заданному ключу и 
@@ -31,7 +31,7 @@ namespace PTC_Management.EF
         /// </summary>
         public TEntity GetSingle<TEntity>(int id) where TEntity : Entity
         {
-            var set = _db.Set<TEntity>();
+            var set = db.Set<TEntity>();
             return set.Single(item => item.Id == id);
         }
 
@@ -41,7 +41,7 @@ namespace PTC_Management.EF
         /// </summary>
         public List<T> GetFrom(int id)
         {
-            return _set.Where(items => items.Id > id).ToList();
+            return set.Where(items => items.Id > id).ToList();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace PTC_Management.EF
         /// </summary>
         public List<T> GetMaintanceLogs(int idTransport)
         {
-            return _set.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
+            return set.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace PTC_Management.EF
         /// </summary>
         public List<T> GetLogOfDepartureAndEntry(int idTransport)
         {
-            return _set.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == idTransport).ToList();
+            return set.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == idTransport).ToList();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace PTC_Management.EF
         /// </summary>
         public List<T> GetItineraries(int idTransport)
         {
-            return _set.Where(items => (items as Itinerary).Transport.Id == idTransport).ToList();
+            return set.Where(items => (items as Itinerary).Transport.Id == idTransport).ToList();
         }
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace PTC_Management.EF
         /// </summary>
         public List<T> GetList()
         {
-            _set.Load();
-            return _set.Local.ToList();
+            set.Load();
+            return set.Local.ToList();
         }
 
         /// <summary>
@@ -82,21 +82,13 @@ namespace PTC_Management.EF
         /// </summary>
         public void Add(T item)
         {
-            if (item is Itinerary itinerary)
-            {
-                _db.Employee.Attach(itinerary.Employee);
-                _db.Route.Attach(itinerary.Route);
-                _db.Transport.Attach(itinerary.Transport);
+            // если сущность имеет связные сущности,
+            // то присоединяем их к контексту
+            Attach(item);
+            // отмечаем сущность как добавленную
+            db.Entry(item).State = EntityState.Added;
 
-                var set = _db.Set<Itinerary>();
-                set.Add(itinerary);
-            }
-            else
-            {
-                _set.Add(item);
-            }
-
-            _db.SaveChanges();
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -104,22 +96,13 @@ namespace PTC_Management.EF
         /// </summary>
         public void Update(T item)
         {
-            if (item is Itinerary itinerary)
-            {
-                _db.Employee.Attach(itinerary.Employee);
-                _db.Route.Attach(itinerary.Route);
-                _db.Transport.Attach(itinerary.Transport);
+            // если сущность имеет связные сущности,
+            // то присоединяем их к контексту
+            Attach(item);
+            // отмечаем сущность как измененную
+            db.Entry(item).State = EntityState.Modified; 
 
-                _db.Entry(itinerary).State = EntityState.Modified;
-            }
-            else
-            {
-                _db.Entry(item).State = EntityState.Modified;
-            }
-
-            
-
-            _db.SaveChanges();
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -127,23 +110,24 @@ namespace PTC_Management.EF
         /// </summary>
         public bool Remove(T item)
         {
-            if (item is null) throw new ArgumentNullException(nameof(item));
+            // если сущность имеет связные сущности,
+            // то отсоединяем их от контекста
+            Detach(item);
 
-            _db.Entry(item).State = EntityState.Deleted;
+            // отмечаем сущность как удаленную
+            db.Entry(item).State = EntityState.Deleted;
 
             // DONE: Обработать исключение, если сущность имеет связь
-            try
-            {
-                _db.SaveChanges();
-            }
+            try { db.SaveChanges(); }
             catch (DbUpdateException ex)
             {
-                MessageBox.Show(ex.InnerException.InnerException.Message,
+                MessageBox.Show(
+                    ex.InnerException.InnerException.Message,
                     "Ошибка удаления файла из базы данных",
                     MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // отмена удаления
-                _db.Entry(item).State = EntityState.Unchanged;
+                db.Entry(item).State = EntityState.Unchanged;
 
                 return false;
             }
@@ -151,17 +135,48 @@ namespace PTC_Management.EF
             return true;
         }
 
+
+
         /// <summary>
         /// Выполняет добавление заданного числа копий в базу данных
         /// </summary>
         public void Copy(T item, int Count)
         {
+            // если сущность имеет связные сущности,
+            // то присоединяем их к контексту
+            Attach(item);
+
+            //for (int i = 0; i < Count; i++)
+            //{
+            //    Add(item);
+            //}
+
             // Инициализация списка копий
-            List<T> Items = Enumerable.Range(1, Count).Select(i => (T)item.Clone()).ToList();
+            List<T> Items = Enumerable.Range(1, Count).Select(i => (T)item.DeepClone()).ToList();
+            set.AddRange(Items);
 
-            _set.AddRange(Items);
+            db.SaveChanges();
+        }
 
-            _db.SaveChanges();
+
+
+        /// <summary>
+        /// Присоединяет сущности в контекст
+        /// </summary>
+        private void Attach(T item) {
+            if (item is Itinerary) (item as Itinerary).Attach(db);
+            if (item is MaintanceLog) (item as MaintanceLog).Attach(db);
+            if (item is LogOfDepartureAndEntry) (item as LogOfDepartureAndEntry).Attach(db);
+        }
+
+        /// <summary>
+        /// Отсоединяет сущности от контекста
+        /// </summary>
+        private void Detach(T item)
+        {
+            if (item is Itinerary) (item as Itinerary).Detach(db);
+            if (item is MaintanceLog) (item as MaintanceLog).Detach(db);
+            if (item is LogOfDepartureAndEntry) (item as LogOfDepartureAndEntry).Detach(db);
         }
 
     }

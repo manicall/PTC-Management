@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PTC_Management.Views"
              mc:Ignorable="d" 
              xmlns:views = "clr-namespace:PTC_Management.Views" 
-             xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
+             xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" xmlns:dialogviewmodels="clr-namespace:PTC_Management.ViewModel.DialogViewModels" d:DataContext="{d:DesignInstance Type=dialogviewmodels:ItineraryDialogViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
     <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
@@ -88,7 +88,7 @@
     
     <StackPanel >
       <TextBlock Name="textBlockEmployee" Text="Сотрудник" />
-      <TextBox Name="textBoxEmployee" IsReadOnly="True" >
+      <TextBox Name="textBoxEmployee" IsReadOnly="True"  >
         <TextBox.Text>
           <MultiBinding StringFormat="{}{0} {1} {2}" 
               ValidatesOnDataErrors="True" 
@@ -108,7 +108,7 @@
         </TextBox.Text>
       </TextBox>
 
-      <Button    
+      <Button 
               Content="Выбрать"
               Command="{Binding DialogSelectСommand }"
               CommandParameter="{Binding Destinations.Employee}" 
@@ -156,4 +156,5 @@
     </StackPanel>
 
   </StackPanel>
+ 
 </UserControl>
