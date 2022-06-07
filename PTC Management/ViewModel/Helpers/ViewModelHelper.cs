@@ -77,7 +77,8 @@ namespace PTC_Management.ViewModel.Helpers
                     itemsList[selectedIndex].SetFields(item);
                     break;
                 case Actions.copy:
-                    itemsList.AddRange(repository.GetFrom(id));
+                    itemsList.Clear();
+                    itemsList.AddRange(repository.GetList());
                     break;
                 default: return;
             }

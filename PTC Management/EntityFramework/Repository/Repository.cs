@@ -74,7 +74,7 @@ namespace PTC_Management.EF
         public List<T> GetList()
         {
             set.Load();
-            return set.Local.ToList();
+            return set.Select(item => item).ToList();
         }
 
         /// <summary>
@@ -84,7 +84,8 @@ namespace PTC_Management.EF
         {
             // если сущность имеет связные сущности,
             // то присоединяем их к контексту
-            Attach(item);
+            if (item is Itinerary) (item as Itinerary).SetEntities(); 
+
             // отмечаем сущность как добавленную
             db.Entry(item).State = EntityState.Added;
 
@@ -98,11 +99,13 @@ namespace PTC_Management.EF
         {
             // если сущность имеет связные сущности,
             // то присоединяем их к контексту
-            Attach(item);
+            if (item is Itinerary) (item as Itinerary).SetEntities();
+
             // отмечаем сущность как измененную
             db.Entry(item).State = EntityState.Modified; 
 
             db.SaveChanges();
+
         }
 
         /// <summary>
@@ -110,9 +113,11 @@ namespace PTC_Management.EF
         /// </summary>
         public bool Remove(T item)
         {
+            if (item is Itinerary) (item as Itinerary).SetEntities();
+
             // если сущность имеет связные сущности,
             // то отсоединяем их от контекста
-            Detach(item);
+            //Attach(item);
 
             // отмечаем сущность как удаленную
             db.Entry(item).State = EntityState.Deleted;
@@ -135,27 +140,37 @@ namespace PTC_Management.EF
             return true;
         }
 
-
-
         /// <summary>
         /// Выполняет добавление заданного числа копий в базу данных
         /// </summary>
         public void Copy(T item, int Count)
         {
-            // если сущность имеет связные сущности,
-            // то присоединяем их к контексту
-            Attach(item);
 
-            //for (int i = 0; i < Count; i++)
-            //{
-            //    Add(item);
-            //}
+            var original = (T)GetSingle(item.Id);
+
+            var temp = original.Clone();
+
+            if (original is Itinerary)
+            {
+                (original as Itinerary).IdEmployee = (item as Itinerary).IdEmployee;
+                (original as Itinerary).IdTransport = (item as Itinerary).IdTransport;
+                (original as Itinerary).IdRoute = (item as Itinerary).IdRoute;
+
+                (original as Itinerary).SetEntities();
+            } 
 
             // Инициализация списка копий
-            List<T> Items = Enumerable.Range(1, Count).Select(i => (T)item.DeepClone()).ToList();
+            List<T> Items = Enumerable.Range(1, Count).Select(i => (T)original.Clone()).ToList();
+
             set.AddRange(Items);
 
+
+
             db.SaveChanges();
+
+            original.SetFields(temp);
+
+            Update(original);
         }
 
 

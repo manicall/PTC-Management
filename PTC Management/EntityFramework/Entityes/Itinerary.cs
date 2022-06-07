@@ -41,6 +41,14 @@ namespace PTC_Management.EF
         public static readonly Repository<Itinerary> repository =
             new Repository<Itinerary>(new PTC_ManagementContext());
 
+
+        public void SetEntities()
+        {
+            Employee = repository.GetSingle<Employee>(IdEmployee);
+            Route = repository.GetSingle<Route>(IdRoute);
+            Transport = repository.GetSingle<Transport>(IdTransport);
+        }
+
         /// <summary>
         /// Присоединяет сущности в контекст
         /// </summary>
