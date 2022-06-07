@@ -143,56 +143,32 @@ namespace PTC_Management.EF
         /// <summary>
         /// Выполняет добавление заданного числа копий в базу данных
         /// </summary>
-        public void Copy(T item, int Count)
+        public void Copy(Entity selectedItem, T item, int Count)
         {
+            /* для избежания ошибок связанных с несовместимостью 
+             * объектов разных контекстов, необходимо использовать 
+             * selectedItem для создания копий */
+            var temp = selectedItem.Clone();
 
-            var original = (T)GetSingle(item.Id);
-
-            var temp = original.Clone();
-
-            if (original is Itinerary)
-            {
-                (original as Itinerary).IdEmployee = (item as Itinerary).IdEmployee;
-                (original as Itinerary).IdTransport = (item as Itinerary).IdTransport;
-                (original as Itinerary).IdRoute = (item as Itinerary).IdRoute;
-
-                (original as Itinerary).SetEntities();
-            } 
+            CopyEntity(selectedItem, item);
 
             // Инициализация списка копий
-            List<T> Items = Enumerable.Range(1, Count).Select(i => (T)original.Clone()).ToList();
+            List<T> Items = Enumerable.Range(1, Count).Select(i => (T)selectedItem.Clone()).ToList();
 
             set.AddRange(Items);
-
-
-
             db.SaveChanges();
 
-            original.SetFields(temp);
-
-            Update(original);
+            // возвращение selectedItem в исходное состояние
+            selectedItem.SetFields(temp);
+            Update((T)selectedItem);
         }
 
-
-
-        /// <summary>
-        /// Присоединяет сущности в контекст
-        /// </summary>
-        private void Attach(T item) {
-            if (item is Itinerary) (item as Itinerary).Attach(db);
-            if (item is MaintanceLog) (item as MaintanceLog).Attach(db);
-            if (item is LogOfDepartureAndEntry) (item as LogOfDepartureAndEntry).Attach(db);
+        private void CopyEntity(Entity selectedItem, T item) {
+            selectedItem.SetFields(item);
+            if (selectedItem is Itinerary) (selectedItem as Itinerary).SetEntities();
+            if (selectedItem is MaintanceLog) (selectedItem as MaintanceLog).SetEntities();
+            if (selectedItem is LogOfDepartureAndEntry) (selectedItem as LogOfDepartureAndEntry).SetEntities();
+            
         }
-
-        /// <summary>
-        /// Отсоединяет сущности от контекста
-        /// </summary>
-        private void Detach(T item)
-        {
-            if (item is Itinerary) (item as Itinerary).Detach(db);
-            if (item is MaintanceLog) (item as MaintanceLog).Detach(db);
-            if (item is LogOfDepartureAndEntry) (item as LogOfDepartureAndEntry).Detach(db);
-        }
-
     }
 }

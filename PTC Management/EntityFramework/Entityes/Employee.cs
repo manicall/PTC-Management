@@ -36,10 +36,7 @@ namespace PTC_Management.EF
         public virtual ICollection<Date> Date { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
-
-
     }
-
 
 
     public partial class Employee : Entity
@@ -54,7 +51,7 @@ namespace PTC_Management.EF
 
         public override bool Remove() => repository.Remove(this);
 
-        public override void Copy(int count) => repository.Copy(this, count);
+        public override void Copy(Entity selectedItem, int count) => repository.Copy(selectedItem, this, count);
 
         public override void SetFields(Entity entity)
         {
@@ -68,8 +65,6 @@ namespace PTC_Management.EF
         }
 
         public override Entity Clone() => Clone<Employee>();
-
-        public override Entity DeepClone() => Clone();
 
         // реализация интерфейса IDataErrorInfo
         // позволяет обрабатывать ошибки,

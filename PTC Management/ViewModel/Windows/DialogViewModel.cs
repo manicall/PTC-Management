@@ -108,7 +108,7 @@ namespace PTC_Management.ViewModel
                     WindowParameters.StatusBarMessage = "Запись успешно изменена";
                     break;
                 case Actions.copy:
-                    entity.Copy(CopyParameters.Count);
+                    entity.Copy(SelectedItem, CopyParameters.Count);
                     WindowParameters.StatusBarMessage = "Запись успешно скопирована";
                     break;
                 default:

@@ -15,15 +15,15 @@ namespace PTC_Management.ViewModel
     class ActionPerformer<T>
         where T : Entity
     {
-        private ViewModelBaseEntity entityVM;
-
-        private DialogViewModel dialogVM;
-
-        private List<T> itemsList;
+        private readonly ViewModelBaseEntity entityVM;
+        private readonly DialogViewModel dialogVM;
+        private readonly List<T> itemsList;
 
         public ActionPerformer(ViewModelBaseEntity entityVM,
             DialogViewModel dialogVM, List<T> itemsList)
         {
+            dialogVM.SelectedItem = (T)entityVM.SelectedItem;
+
             this.entityVM = entityVM;
             this.dialogVM = dialogVM;
             this.itemsList = itemsList;
@@ -37,9 +37,10 @@ namespace PTC_Management.ViewModel
             // DONE: уведомить пользователя о том, что запись не выбрана
             if (entityVM.SelectedItem is null && action != Actions.add)
             {
-                entityVM.WindowParameters.StatusBarMessage = "Запись не выбрана!";
+                entityVM.SetStatusBarMessage("Запись не выбрана");
                 return;
             }
+
             switch (action)
             {
                 case Actions.add:
@@ -50,15 +51,16 @@ namespace PTC_Management.ViewModel
                     break;
                 case Actions.remove:
                     if (Remove())
-                        entityVM.WindowParameters.StatusBarMessage = "Запись успешно удалена";
+                        entityVM.SetStatusBarMessage("Запись успешно удалена");
                     else
-                        entityVM.WindowParameters.StatusBarMessage = "Не удалось выполнить операцию";
+                        entityVM.SetStatusBarMessage("Не удалось удалить запись"); 
                     break;
                 case Actions.copy:
                     Copy();
                     break;
             }
         }
+
 
         /// <summary>
         /// Выполняет запуск диалогового окна, 
@@ -74,7 +76,6 @@ namespace PTC_Management.ViewModel
         {
             dialogVM.SelectedIndex = entityVM.SelectedIndex;
             dialogVM.DialogItem = ((T)entityVM.SelectedItem).Clone();
-            dialogVM.SelectedItem = (T)entityVM.SelectedItem;
 
             dialogVM.Show();
         }

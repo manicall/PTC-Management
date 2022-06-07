@@ -41,32 +41,16 @@ namespace PTC_Management.EF
         public static readonly Repository<Itinerary> repository =
             new Repository<Itinerary>(new PTC_ManagementContext());
 
-
+        /// <summary>
+        /// Получение связанных сущностей из базы данных
+        /// для избежания ошибки связанной с использованием 
+        /// объектов разных контекстов
+        /// </summary>
         public void SetEntities()
         {
             Employee = repository.GetSingle<Employee>(IdEmployee);
             Route = repository.GetSingle<Route>(IdRoute);
             Transport = repository.GetSingle<Transport>(IdTransport);
-        }
-
-        /// <summary>
-        /// Присоединяет сущности в контекст
-        /// </summary>
-        public void Attach(PTC_ManagementContext db)
-        {
-            db.Employee.Attach(Employee);
-            db.Route.Attach(Route);
-            db.Transport.Attach(Transport);
-        }
-
-        /// <summary>
-        /// Отсоединяет сущности от контекста
-        /// </summary>
-        public void Detach(PTC_ManagementContext db)
-        {
-            db.Entry(Employee).State = EntityState.Detached;
-            db.Entry(Route).State = EntityState.Detached;
-            db.Entry(Transport).State = EntityState.Detached;
         }
 
         // переопределение методов базового класса
@@ -76,7 +60,7 @@ namespace PTC_Management.EF
 
         public override bool Remove() => repository.Remove(this);
 
-        public override void Copy(int count) => repository.Copy(this, count);
+        public override void Copy(Entity selectedItem, int count) => repository.Copy(selectedItem, this, count);
 
         public override void SetFields(Entity entity)
         {
@@ -92,15 +76,6 @@ namespace PTC_Management.EF
         }
 
         public override Entity Clone() => Clone<Itinerary>();
-
-        public override Entity DeepClone() {
-            Itinerary itinerary = (Itinerary)Clone();
-            itinerary.Employee = (Employee)Employee.Clone();
-            itinerary.Route = (Route)Route.Clone();
-            itinerary.Transport = (Transport)Transport.Clone();
-
-            return itinerary;
-        }
 
         /// <summary>
         /// реализация интерфейса IDataErrorInfo

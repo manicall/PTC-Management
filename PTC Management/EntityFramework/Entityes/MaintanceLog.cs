@@ -49,7 +49,7 @@ namespace PTC_Management.EF
 
         public override bool Remove() => repository.Remove(this);
 
-        public override void Copy(int count) => repository.Copy(this, count);
+        public override void Copy(Entity selectedItem, int count) => repository.Copy(selectedItem, this, count);
 
         public override void SetFields(Entity entity)
         {
@@ -68,13 +68,12 @@ namespace PTC_Management.EF
 
         public override Entity Clone() => Clone<MaintanceLog>();
 
-        public override Entity DeepClone()
-        {
-            MaintanceLog maintanceLog = (MaintanceLog)Clone();
-            maintanceLog.Itinerary = (Itinerary)Clone();
-
-            return maintanceLog;
-        }
+        /// <summary>
+        /// Получение связанных сущностей из базы данных
+        /// для избежания ошибки связанной с использованием 
+        /// объектов разных контекстов
+        /// </summary>
+        public void SetEntities() => Itinerary = repository.GetSingle<Itinerary>(IdItinerary);
 
         // реализация интерфейса IDataErrorInfo
         // позволяет обрабатывать ошибки,

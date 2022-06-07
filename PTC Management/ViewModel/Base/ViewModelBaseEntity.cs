@@ -103,5 +103,11 @@ namespace PTC_Management.ViewModel.Base
                 WindowParameters = WindowParameters,
             };
         }
+
+
+        public void SetStatusBarMessage(string message)
+        {
+            WindowParameters.StatusBarMessage = message;
+        }
     }
 }

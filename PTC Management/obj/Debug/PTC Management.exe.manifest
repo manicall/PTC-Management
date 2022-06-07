@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PTC Management.exe" size="163808">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PTC Management.exe" size="162784">
       <assemblyIdentity name="PTC Management" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>p2aJ/SVNH95d1i7k5Ujtn/Y06qfykPEU6UrICHPLv+0=</dsig:DigestValue>
+        <dsig:DigestValue>kScdyFul2g82iRITSnZpgkHMKOfXWA6g/nFV8Yn83Qk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

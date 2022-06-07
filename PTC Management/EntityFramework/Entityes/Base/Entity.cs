@@ -29,13 +29,11 @@ namespace PTC_Management.EF
 
         public abstract bool Remove();
 
-        public abstract void Copy(int count);
+        public abstract void Copy(Entity selectedItem, int count);
 
         public abstract void SetFields(Entity entity);
 
         public abstract Entity Clone();
-
-        public abstract Entity DeepClone();
 
         protected Entity Clone<T>() where T : Entity, new()
         {

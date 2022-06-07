@@ -43,7 +43,7 @@ namespace PTC_Management.EF
 
         public override bool Remove() => repository.Remove(this);
 
-        public override void Copy(int count) => repository.Copy(this, count);
+        public override void Copy(Entity selectedItem, int count) => repository.Copy(selectedItem, this, count);
 
         public override void SetFields(Entity entity)
         {
@@ -56,9 +56,6 @@ namespace PTC_Management.EF
         }
 
         public override Entity Clone() => Clone<Route>();
-
-        public override Entity DeepClone() => Clone();
-
         public override string this[string columnName]
         {
             get
