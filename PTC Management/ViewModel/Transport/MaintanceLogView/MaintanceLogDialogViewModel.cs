@@ -12,9 +12,14 @@ namespace PTC_Management.ViewModel
         {
             DialogItem = new MaintanceLog();
 
-            (DialogItem as MaintanceLog).Itinerary = new Itinerary();
 
-            ((MaintanceLog)DialogItem).Date = DateTime.Now;
+            if (DialogItem is MaintanceLog maintanceLog) {
+                maintanceLog.Itinerary = new Itinerary();
+                maintanceLog.Date = DateTime.Now;
+                //maintanceLog.TimeOnDeparture = new TimeSpan(0);
+            }
+
+
             CurrentViewModel = this;
         }
 

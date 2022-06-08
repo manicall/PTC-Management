@@ -6,7 +6,8 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:views = "clr-namespace:PTC_Management.Views" 
   xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
-  xmlns:h="clr-namespace:PTC_Management.ViewModel.EntityViewModels.Helpers" xmlns:model="clr-namespace:PTC_Management.Model"
+  xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+  xmlns:model="clr-namespace:PTC_Management.Model"
   d:DataContext="{d:DesignInstance Type=viewModels:MaintanceLogDialogViewModel}"
   mc:Ignorable="d" 
   d:DesignHeight="400" d:DesignWidth="400">
@@ -74,7 +75,8 @@
       </Style.Triggers>
     </Style>
 
-    <model:DateConverter x:Key="conv"/>
+    <model:DateConverter x:Key="DateConverter"/>
+    <model:TimeSpanConverter x:Key="TimeSpanConverter"/>
   </UserControl.Resources>
   
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
@@ -148,7 +150,8 @@
         ValidatesOnDataErrors=True, 
         NotifyOnValidationError=True, 
         UpdateSourceTrigger=PropertyChanged,
-        Mode=TwoWay, Converter={StaticResource conv}}" />
+        Mode=TwoWay, Converter={StaticResource DateConverter}
+        }" />
     </StackPanel>
     <GroupBox Header="Время" MaxWidth="500" HorizontalAlignment="Left">
       <StackPanel Orientation="Vertical">
@@ -157,15 +160,18 @@
             Style="{StaticResource TextBlockStyle}"  
             Name="textBlockTimeOnDeparture"
             Text="выезда" Width="149" />
-          <TextBox 
-            Name="textBoxTimeOnDeparture" 
-            Text="{
+
+          <TextBox Width="149" 
+                                   
+              Text="{
               Binding DialogItem.TimeOnDeparture,
-              StringFormat=\{0:hh.mm\},
+              StringFormat=h\\:mm,
               ValidatesOnDataErrors=True, 
               NotifyOnValidationError=True, 
-              UpdateSourceTrigger=PropertyChanged
-            }" />
+              UpdateSourceTrigger=PropertyChanged,
+             Converter={StaticResource TimeSpanConverter} 
+            }"
+                                   />
         </StackPanel>
 
         <StackPanel Margin="0,5,0,0">
@@ -175,7 +181,7 @@
           <TextBox Name="textBoxTimeWhenReturning" 
             Text="{
             Binding DialogItem.TimeWhenReturning,
-            StringFormat={}{0:hh':'mm},
+            StringFormat=h\\:mm,
             ValidatesOnDataErrors=True, 
             NotifyOnValidationError=True, 
             UpdateSourceTrigger=PropertyChanged}" />

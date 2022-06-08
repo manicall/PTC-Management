@@ -81,6 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Converter\TimeSpanConverter.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
@@ -155,9 +156,6 @@
     </Compile>
     <Compile Include="Views\Windows\SelectWindow.xaml.cs">
       <DependentUpon>SelectWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\StartWindow.xaml.cs">
-      <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\TransportInfoWindow.xaml.cs">
       <DependentUpon>TransportInfoWindow.xaml</DependentUpon>
@@ -263,10 +261,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Windows\StartWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Windows\TransportInfoWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -278,7 +272,7 @@
     <Compile Include="Model\CopyParameters.cs" />
     <Compile Include="Model\Destinations.cs" />
     <Compile Include="Model\Size.cs" />
-    <Compile Include="Model\ValidationRule\DateConverter.cs" />
+    <Compile Include="Model\Converter\DateConverter.cs" />
     <Compile Include="Model\ValidationRule\ToDecimalValidationRule.cs" />
     <Compile Include="Model\ValidationRule\ToIntValidationRule.cs" />
     <Compile Include="Model\ViewModels.cs" />
