@@ -19,7 +19,8 @@
     </Grid.ColumnDefinitions>
 
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
-      <Control Template="{StaticResource TableActionControls}"></Control>
+      <Control Template="{StaticResource TableActionControls}" />
+
       <DataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
@@ -31,45 +32,46 @@
             IsReadOnly="True" 
             CanUserAddRows="false"          
             AutoGenerateColumns="False">
-
         <DataGrid.Columns>
           <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
           <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" />
           <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
           <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
-          <DataGridTextColumn Binding="{Binding DriverLicense}" Width="*">
-            <DataGridTextColumn.Header>
-              <TextBlock TextAlignment="Center">
-                  Водительское удостоверение
-              </TextBlock>
-            </DataGridTextColumn.Header>
-          </DataGridTextColumn>
+          <DataGridTextColumn Header="Водительское удостоверение" Binding="{Binding DriverLicense}" Width="*" />
         </DataGrid.Columns>
 
-        <DataGrid.InputBindings >
-          <KeyBinding Command="{Binding TableAction}"
-                CommandParameter="{Binding Actions.Remove}"
-                Key="Delete" />
+        <DataGrid.InputBindings>
+          <KeyBinding 
+            Command="{Binding TableAction}"
+            CommandParameter="{Binding Actions.Remove}"
+            Key="Delete" />
+          <MouseBinding 
+            Command="{Binding TableAction}"
+            CommandParameter="{Binding Actions.Update}"
+            MouseAction="LeftDoubleClick"/>
         </DataGrid.InputBindings>
 
-        <DataGrid.ContextMenu >
-          <ContextMenu Visibility="{Binding TableActionButtonsVisible}" >
-            <MenuItem Header ="Создать" InputGestureText="C"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Add}"/>
-            <MenuItem Header ="Изменить" InputGestureText="U"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Update}"/>
-            <MenuItem Header ="Удалить" InputGestureText="Delete"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Remove}"/>
-            <MenuItem Header ="Копировать" InputGestureText="ALT+C"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Copy}"/>
+        <DataGrid.ContextMenu>
+          <ContextMenu>
+            <MenuItem 
+              Header ="Создать" InputGestureText="C"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Add}"/>
+            <MenuItem 
+              Header ="Изменить" InputGestureText="U"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Update}"/>
+            <MenuItem 
+              Header ="Удалить" InputGestureText="Delete"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Remove}"/>
+            <MenuItem 
+              Header ="Копировать" InputGestureText="ALT+C"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
         </DataGrid.ContextMenu>
       </DataGrid>
-
     </StackPanel>
   </Grid>
 </UserControl>

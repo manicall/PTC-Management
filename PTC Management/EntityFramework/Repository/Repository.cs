@@ -80,9 +80,7 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         public void Add(T item)
         {
-            // если сущность имеет связные сущности,
-            // то присоединяем их к контексту
-            if (item is Itinerary) (item as Itinerary).SetEntities();
+            SetEntities(item);
 
             // отмечаем сущность как добавленную
             db.Entry(item).State = EntityState.Added;
@@ -95,9 +93,8 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         public void Update(T item)
         {
-            // если сущность имеет связные сущности,
-            // то присоединяем их к контексту
-            if (item is Itinerary) (item as Itinerary).SetEntities();
+
+            SetEntities(item);
 
             // отмечаем сущность как измененную
             db.Entry(item).State = EntityState.Modified;
@@ -111,11 +108,7 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         public bool Remove(T item)
         {
-            if (item is Itinerary) (item as Itinerary).SetEntities();
-
-            // если сущность имеет связные сущности,
-            // то отсоединяем их от контекста
-            //Attach(item);
+            SetEntities(item);
 
             // отмечаем сущность как удаленную
             db.Entry(item).State = EntityState.Deleted;
@@ -148,7 +141,7 @@ namespace PTC_Management.EntityFramework
              * selectedItem для создания копий */
             var temp = selectedItem.Clone();
 
-            CopyEntity(selectedItem, item);
+            SetEntities(selectedItem, item);
 
             // Инициализация списка копий
             List<T> Items = Enumerable.Range(1, Count).Select(i => (T)selectedItem.Clone()).ToList();
@@ -161,13 +154,17 @@ namespace PTC_Management.EntityFramework
             Update((T)selectedItem);
         }
 
-        private void CopyEntity(Entity selectedItem, T item)
+        private void SetEntities(Entity selectedItem, T item)
         {
             selectedItem.SetFields(item);
-            if (selectedItem is Itinerary) (selectedItem as Itinerary).SetEntities();
-            if (selectedItem is MaintanceLog) (selectedItem as MaintanceLog).SetEntities();
-            if (selectedItem is LogOfDepartureAndEntry) (selectedItem as LogOfDepartureAndEntry).SetEntities();
+            SetEntities((T)selectedItem);
+        }       
 
+        private void SetEntities(T item)
+        {
+            if (item is Itinerary) (item as Itinerary).SetEntities();
+            if (item is MaintanceLog) (item as MaintanceLog).SetEntities();
+            if (item is LogOfDepartureAndEntry) (item as LogOfDepartureAndEntry).SetEntities();
         }
     }
 }

@@ -3,7 +3,8 @@
    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
-   xmlns:local = "clr-namespace:PTC_Management.Views" 
+   xmlns:viewmodel="clr-namespace:PTC_Management.ViewModel" 
+   d:DataContext="{d:DesignInstance Type=viewmodel:LogOfDepartureAndEntryViewModel}"
    mc:Ignorable = "d" 
    d:DesignHeight = "300" d:DesignWidth = "950">
 
@@ -18,7 +19,7 @@
     </Grid.ColumnDefinitions>
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
       <ContentControl Template="{StaticResource TableActionControls}" />
-      
+
       <DataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
@@ -30,7 +31,7 @@
             IsReadOnly="True" 
             CanUserAddRows="false"          
             AutoGenerateColumns="False">
-        
+
         <DataGrid.Columns>
           <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
           <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}" />
@@ -80,42 +81,37 @@
         </DataGrid.Columns>
 
         <DataGrid.InputBindings>
-          <KeyBinding Command="{Binding TableAction}"
-                CommandParameter="{Binding Actions.Add}"
-                Key="C" />
-          <KeyBinding Command="{Binding TableAction}"
-                CommandParameter="{Binding Actions.Update}"
-                Key="U" />
-          <KeyBinding Command="{Binding TableAction}"
-                CommandParameter="{Binding Actions.Remove}"
-                Key="Delete" />
-          <KeyBinding Command="{Binding TableAction}"
-                CommandParameter="{Binding Actions.Copy}"
-                Gesture="ALT+C" />
-          <MouseBinding Command="{Binding TableAction}"
-                  CommandParameter="{Binding Actions.Update}"
-                  MouseAction="LeftDoubleClick"/>
+          <KeyBinding 
+            Command="{Binding TableAction}"
+            CommandParameter="{Binding Actions.Remove}"
+            Key="Delete" />
+          <MouseBinding 
+            Command="{Binding TableAction}"
+            CommandParameter="{Binding Actions.Update}"
+            MouseAction="LeftDoubleClick"/>
         </DataGrid.InputBindings>
 
         <DataGrid.ContextMenu>
           <ContextMenu>
-            <MenuItem Header ="Создать" InputGestureText="C"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Add}"/>
-            <MenuItem Header ="Изменить" InputGestureText="U"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Update}"/>
-            <MenuItem Header ="Удалить" InputGestureText="Delete"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Remove}"/>
-            <MenuItem Header ="Копировать" InputGestureText="ALT+C"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Copy}"/>
+            <MenuItem 
+              Header ="Создать" InputGestureText="C"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Add}"/>
+            <MenuItem 
+              Header ="Изменить" InputGestureText="U"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Update}"/>
+            <MenuItem 
+              Header ="Удалить" InputGestureText="Delete"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Remove}"/>
+            <MenuItem 
+              Header ="Копировать" InputGestureText="ALT+C"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
         </DataGrid.ContextMenu>
       </DataGrid>
-
     </StackPanel>
   </Grid>
-
 </UserControl>

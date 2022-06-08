@@ -1,4 +1,4 @@
-﻿C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\App.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Resources\Templates\DialogTemplates.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Resources\Templates\EntityTemplates.xaml;;
@@ -18,4 +18,6 @@ FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Windows\Dialog
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Windows\MainWindow.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Windows\SelectWindow.xaml;;
 FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Windows\TransportInfoWindow.xaml;;
+FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Itinerary\ItineraryView.xaml;;
+FC:\Users\maxim\Desktop\repos\PTC Management\PTC Management\Views\Transport\MaintanceLogView\MaintanceLogView.xaml;;
 

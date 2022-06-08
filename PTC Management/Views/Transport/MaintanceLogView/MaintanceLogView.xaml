@@ -3,7 +3,8 @@
    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
-
+   xmlns:viewmodel="clr-namespace:PTC_Management.ViewModel" 
+   d:DataContext="{d:DesignInstance Type=viewmodel:MaintanceLogViewModel}"
    mc:Ignorable = "d" 
    d:DesignHeight = "300" d:DesignWidth = "950">
 
@@ -40,9 +41,7 @@
           <DataGridTextColumn Header="Маршрут"  Binding="{Binding Itinerary.Route.Name}"/>
 
           <DataGridTemplateColumn CanUserResize="False">
-
             <DataGridTemplateColumn.HeaderTemplate>
-
               <DataTemplate>
                 <Grid>
                   <Grid.RowDefinitions >
@@ -53,13 +52,14 @@
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="80"/>
                   </Grid.ColumnDefinitions>
-
+                  
                   <TextBlock Grid.ColumnSpan="2" Text="время" TextAlignment="Center" />
                   <TextBlock Grid.Row="1"  Text="выезда"   TextAlignment="Center" />
                   <TextBlock Grid.Row="1" Grid.Column="2" Text="возвращения" TextAlignment="Center"/>
                 </Grid>
               </DataTemplate>
             </DataGridTemplateColumn.HeaderTemplate>
+            
             <DataGridTemplateColumn.CellTemplate>
               <DataTemplate>
                 <Grid>
@@ -74,6 +74,7 @@
                   <Border Margin="-1,-1,-1,-1" Grid.Column="1" BorderThickness="0.2" BorderBrush="Black">
                     <TextBlock Text="{Binding TimeWhenReturning, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
                   </Border>
+                  
                 </Grid>
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
@@ -93,7 +94,6 @@
                   </Grid.ColumnDefinitions>
                   <TextBlock  Grid.ColumnSpan="2" Text="Показания спидометра" TextAlignment="Center" />
                   <TextBlock Grid.Row="1"  Text="при выезде" TextAlignment="Center"/>
-
                   <TextBlock Grid.Row="1" Grid.Column="1" Text="при возвращении" TextAlignment="Center"/>
                 </Grid>
               </DataTemplate>
@@ -117,48 +117,42 @@
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
-
-          <DataGridTextColumn Header="Пробег, Км" Binding="{Binding Mileage}" Width="*" />
-
+          <DataGridTextColumn Header="Пробег, Км" Binding="{Binding Mileage}"/>
+          <DataGridTextColumn Header="Пробег, Км" Binding="{Binding }" Width="*" />
         </DataGrid.Columns>
 
         <DataGrid.InputBindings>
-          <KeyBinding Command="{Binding TableAction}"
-                CommandParameter="{Binding Actions.Add}"
-                Key="C" />
-          <KeyBinding Command="{Binding TableAction}"
-                CommandParameter="{Binding Actions.Update}"
-                Key="U" />
-          <KeyBinding Command="{Binding TableAction}"
-                CommandParameter="{Binding Actions.Remove}"
-                Key="Delete" />
-          <KeyBinding Command="{Binding TableAction}"
-                CommandParameter="{Binding Actions.Copy}"
-                Gesture="ALT+C" />
-          <MouseBinding Command="{Binding TableAction}"
-                  CommandParameter="{Binding Actions.Update}"
-                  MouseAction="LeftDoubleClick"/>
+          <KeyBinding 
+            Command="{Binding TableAction}"
+            CommandParameter="{Binding Actions.Remove}"
+            Key="Delete" />
+          <MouseBinding 
+            Command="{Binding TableAction}"
+            CommandParameter="{Binding Actions.Update}"
+            MouseAction="LeftDoubleClick"/>
         </DataGrid.InputBindings>
 
         <DataGrid.ContextMenu>
           <ContextMenu>
-            <MenuItem Header ="Создать" InputGestureText="C"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Add}"/>
-            <MenuItem Header ="Изменить" InputGestureText="U"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Update}"/>
-            <MenuItem Header ="Удалить" InputGestureText="Delete"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Remove}"/>
-            <MenuItem Header ="Копировать" InputGestureText="ALT+C"
-                Command = "{Binding TableAction}"
-                CommandParameter="{Binding Actions.Copy}"/>
+            <MenuItem 
+              Header ="Создать" InputGestureText="C"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Add}"/>
+            <MenuItem 
+              Header ="Изменить" InputGestureText="U"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Update}"/>
+            <MenuItem 
+              Header ="Удалить" InputGestureText="Delete"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Remove}"/>
+            <MenuItem 
+              Header ="Копировать" InputGestureText="ALT+C"
+              Command = "{Binding TableAction}"
+              CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
         </DataGrid.ContextMenu>
       </DataGrid>
-
     </StackPanel>
   </Grid>
-
 </UserControl>
