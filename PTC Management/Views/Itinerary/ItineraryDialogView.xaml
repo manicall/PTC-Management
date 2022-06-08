@@ -28,9 +28,10 @@
 
       <Style.Triggers>
         <Trigger Property="Validation.HasError" Value="True">
-          <Setter Property="ToolTip"
-                Value="{Binding RelativeSource={RelativeSource Self},
-                    Path=(Validation.Errors)[0].ErrorContent}" />
+          <Setter 
+            Property="ToolTip" 
+            Value="{Binding RelativeSource={RelativeSource Self}, 
+              Path=(Validation.Errors)[0].ErrorContent}" />
           <Setter Property="Foreground" Value="Red" />
         </Trigger>
       </Style.Triggers>
@@ -62,36 +63,43 @@
 
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
-      <Button Name="buttonWriteAndClose" 
-              Style="{StaticResource BlackConditionButton }" 
-              Command="{Binding DialogActionCommand }"
-              CommandParameter="{Binding Actions.WriteAndClose}" 
-              Margin="0 0 35 0" Width="auto"
-          >Записать и закрыть</Button>
-      <Button Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
-              Command="{Binding DialogActionCommand }" 
-              CommandParameter="{Binding Actions.Write}" 
-           >Записать</Button>
-      <Button Name="buttonClose" Style="{StaticResource BlackButton }" 
-              Command="{Binding DialogActionCommand }" 
-              CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
+      <Button 
+        Name="buttonWriteAndClose" 
+        Style="{StaticResource BlackConditionButton }" 
+        Command="{Binding DialogActionCommand }"
+        CommandParameter="{Binding Actions.WriteAndClose}" 
+        Margin="0 0 35 0" Width="auto"
+        Content="Записать и закрыть" />
+      <Button 
+        Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
+        Command="{Binding DialogActionCommand }" 
+        CommandParameter="{Binding Actions.Write}" 
+        Content="Записать" />
+      <Button 
+        Name="buttonClose" Style="{StaticResource BlackButton }" 
+        Command="{Binding DialogActionCommand }" 
+        CommandParameter="{Binding Actions.Close}"  
+        Content="Закрыть" />
     </StackPanel>
     
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
       <TextBlock Name="textBlockCountCopy" Text="Количество копий" />
-      <TextBox Name ="textBoxCountCopy" Width="50"  
-           Text="{
-        Binding CopyParameters.Count,
-        ValidatesOnDataErrors=True, 
-        NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged}" />
+      <TextBox 
+        Name ="textBoxCountCopy" Width="50"  
+        Text="{
+          Binding CopyParameters.Count,
+          ValidatesOnDataErrors=True, 
+          NotifyOnValidationError=True, 
+          UpdateSourceTrigger=PropertyChanged
+        }" />
     </StackPanel>
     
     <StackPanel >
       <TextBlock Name="textBlockEmployee" Text="Сотрудник" />
       <TextBox Name="textBoxEmployee" IsReadOnly="True"  >
         <TextBox.Text>
-          <MultiBinding StringFormat="{}{0} {1} {2}" 
+          <MultiBinding
+            StringFormat="{}{0} {1} {2}" 
               ValidatesOnDataErrors="True" 
               NotifyOnValidationError="True"
               UpdateSourceTrigger="PropertyChanged" >
@@ -110,10 +118,10 @@
       </TextBox>
 
       <Button 
-              Content="Выбрать"
-              Command="{Binding DialogSelectСommand }"
-              CommandParameter="{Binding Destinations.Employee}" 
-              Margin="0 0 35 0" Width="auto" />
+        Content="Выбрать"
+        Command="{Binding DialogSelectСommand }"
+        CommandParameter="{Binding Destinations.Employee}" 
+        Margin="0 0 35 0" Width="auto" />
     </StackPanel>
     
     <StackPanel >
@@ -136,24 +144,25 @@
       </TextBox>
 
       <Button           
-              Content="Выбрать"
-              Command="{Binding DialogSelectСommand }"
-              CommandParameter="{Binding Destinations.Transport}" 
-              Margin="0 0 35 0" Width="auto" />
+        Content="Выбрать"
+        Command="{Binding DialogSelectСommand }"
+        CommandParameter="{Binding Destinations.Transport}" 
+        Margin="0 0 35 0" Width="auto" />
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockRoute" Text="Маршрут" />
       <TextBox Name="textBoxRoute" IsReadOnly="True"
         Text="{
-        Binding DialogItem.Route.Number,
-        ValidatesOnDataErrors=True, 
-        NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged}" />
+          Binding DialogItem.Route.Number,
+          ValidatesOnDataErrors=True, 
+          NotifyOnValidationError=True, 
+          UpdateSourceTrigger=PropertyChanged
+        }" />
       <Button           
-              Content="Выбрать"
-              Command="{Binding DialogSelectСommand }"
-              CommandParameter="{Binding Destinations.Route}" 
-              Margin="0 0 35 0" Width="auto" />
+        Content="Выбрать"
+        Command="{Binding DialogSelectСommand }"
+        CommandParameter="{Binding Destinations.Route}" 
+        Margin="0 0 35 0" Width="auto" />
     </StackPanel>
 
   </StackPanel>

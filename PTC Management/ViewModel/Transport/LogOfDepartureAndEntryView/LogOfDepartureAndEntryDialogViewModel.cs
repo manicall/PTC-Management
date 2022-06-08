@@ -11,6 +11,9 @@ namespace PTC_Management.ViewModel
         public LogOfDepartureAndEntryDialogViewModel()
         {
             DialogItem = new LogOfDepartureAndEntry();
+
+            (DialogItem as LogOfDepartureAndEntry).Itinerary = new Itinerary();
+
             ((LogOfDepartureAndEntry)DialogItem).Date = DateTime.Now;
             CurrentViewModel = this;
         }
@@ -30,7 +33,7 @@ namespace PTC_Management.ViewModel
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
                 ViewModelHelper.DoActionForList(
-                    MainWindowAction, DialogItem.Id, SelectedIndex, (LogOfDepartureAndEntry)DialogItem);
+                    MainWindowAction, (int)DialogItem.Id, SelectedIndex, (LogOfDepartureAndEntry)DialogItem);
             }
         }
 
@@ -46,7 +49,7 @@ namespace PTC_Management.ViewModel
                 {
                     case Destinations.itinerary:
                         tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem.Clone();
-                        tempDialogItem.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.IdItinerary = (int)((Itinerary)selectWindow.ReturnedItem).Id;
                         break;
 
                     default: break;

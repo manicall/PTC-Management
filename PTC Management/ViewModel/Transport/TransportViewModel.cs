@@ -63,7 +63,7 @@ namespace PTC_Management.ViewModel
             }
 
             new TransportInfoWindowViewModel(
-                destination, ((Transport)SelectedItem).Id
+                destination, (int)((Transport)SelectedItem).Id
                 ).Show();
         }
 
@@ -79,7 +79,7 @@ namespace PTC_Management.ViewModel
             var actionPerformer = new ActionPerformer<Transport>
                  (this, dialogViewModel, viewModelHelper.ItemsList);
 
-            actionPerformer.doAction(action);
+            actionPerformer.DoAction(action);
         }
 
         #endregion

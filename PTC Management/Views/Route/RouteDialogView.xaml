@@ -90,13 +90,13 @@
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockNumber" Text="Номер" />
-      <TextBox 
-        Name="textBoxNumber"  >
+      <TextBox Name="textBoxNumber" >
         <TextBox.Text>
-          <Binding Path="DialogItem.Number"
-                   ValidatesOnDataErrors="True"
-                   NotifyOnValidationError="True"
-                   UpdateSourceTrigger="PropertyChanged">
+          <Binding 
+              Path="DialogItem.Number"       
+              ValidatesOnDataErrors="True"       
+              NotifyOnValidationError="True"       
+              UpdateSourceTrigger="PropertyChanged">
             <Binding.ValidationRules>
               <model:ToIntValidationRule />
             </Binding.ValidationRules>
@@ -122,15 +122,16 @@
       <TextBlock Name="textBlockDistant" Text="Дистанция" />
       <TextBox Name="textBoxDistant" MaxLength="5">
         <TextBox.Text>
-        <Binding Path="DialogItem.Distant"
-                   StringFormat="{}{0:F1}"
-                   ValidatesOnDataErrors="True"
-                   NotifyOnValidationError="True"
-                   UpdateSourceTrigger="PropertyChanged">
-          <Binding.ValidationRules>
-              <model:ToDecimalValidationRule />
-          </Binding.ValidationRules>
-        </Binding>
+          <Binding 
+              Path="DialogItem.Distant"
+              StringFormat="{}{0:F1}"
+              ValidatesOnDataErrors="True"
+              NotifyOnValidationError="True"
+              UpdateSourceTrigger="PropertyChanged">
+            <Binding.ValidationRules>
+                <model:ToDecimalValidationRule />
+            </Binding.ValidationRules>
+          </Binding>
         </TextBox.Text>
 
       </TextBox>

@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace PTC_Management.EntityFramework
 {
@@ -7,21 +6,16 @@ namespace PTC_Management.EntityFramework
     /// Позволяет использовать методы
     /// переопределенные в дочерних классах
     /// </summary>
-
-    // TODO: доделать валидацию
     public abstract class Entity : IDataErrorInfo
     {
-        /* Данное поле следует удалить в дочерних классах,
-         * так как при выполнении метода GetSingle,
-         * Id переменной DialogItem равно 0 (так как изменяется не правильный id),
-         * что приводит к некорректному поведению программы
-         */
-        public int Id { get; set; }
-        public abstract string Error { get; }
+        public int? Id { get; set; }
 
+        // методы интерфейса IDataErrorInfo
         public abstract string this[string columnName] { get; }
 
-        // методы созданы для переопределения в дочерних классах
+        public abstract string Error { get; }
+
+        // методы для переопределения в дочерних классах
         public abstract void Add();
 
         public abstract void Update();

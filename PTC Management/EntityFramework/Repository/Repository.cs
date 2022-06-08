@@ -93,7 +93,6 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         public void Update(T item)
         {
-
             SetEntities(item);
 
             // отмечаем сущность как измененную
@@ -113,7 +112,6 @@ namespace PTC_Management.EntityFramework
             // отмечаем сущность как удаленную
             db.Entry(item).State = EntityState.Deleted;
 
-            // DONE: Обработать исключение, если сущность имеет связь
             try { db.SaveChanges(); }
             catch (DbUpdateException ex)
             {
@@ -127,7 +125,6 @@ namespace PTC_Management.EntityFramework
 
                 return false;
             }
-
             return true;
         }
 
@@ -140,12 +137,10 @@ namespace PTC_Management.EntityFramework
              * объектов разных контекстов, необходимо использовать 
              * selectedItem для создания копий */
             var temp = selectedItem.Clone();
-
             SetEntities(selectedItem, item);
 
             // Инициализация списка копий
             List<T> Items = Enumerable.Range(1, Count).Select(i => (T)selectedItem.Clone()).ToList();
-
             set.AddRange(Items);
             db.SaveChanges();
 
@@ -154,12 +149,20 @@ namespace PTC_Management.EntityFramework
             Update((T)selectedItem);
         }
 
+        /// <summary>
+        /// Заполняет связанные сущности записями из базы данных
+        /// </summary>
         private void SetEntities(Entity selectedItem, T item)
         {
+            // заполняет поля значениями как у копии
             selectedItem.SetFields(item);
+            
             SetEntities((T)selectedItem);
-        }       
+        }
 
+        /// <summary>
+        /// Заполняет связанные сущности записями из базы данных
+        /// </summary>
         private void SetEntities(T item)
         {
             if (item is Itinerary) (item as Itinerary).SetEntities();

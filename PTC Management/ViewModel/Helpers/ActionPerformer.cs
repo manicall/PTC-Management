@@ -30,9 +30,8 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Вызывает действие, которое необходимо выполнить
         /// </summary>
-        public void doAction(string action)
+        public void DoAction(string action)
         {
-            // DONE: уведомить пользователя о том, что запись не выбрана
             if (entityVM.SelectedItem is null && action != Actions.add)
             {
                 entityVM.SetStatusBarMessage("Запись не выбрана");
@@ -41,21 +40,10 @@ namespace PTC_Management.ViewModel
 
             switch (action)
             {
-                case Actions.add:
-                    Add();
-                    break;
-                case Actions.update:
-                    Update();
-                    break;
-                case Actions.remove:
-                    if (Remove())
-                        entityVM.SetStatusBarMessage("Запись успешно удалена");
-                    else
-                        entityVM.SetStatusBarMessage("Не удалось удалить запись");
-                    break;
-                case Actions.copy:
-                    Copy();
-                    break;
+                case Actions.add: Add(); break;
+                case Actions.update: Update(); break;
+                case Actions.remove: Remove(); break;
+                case Actions.copy: Copy(); break;
             }
         }
 
@@ -87,22 +75,23 @@ namespace PTC_Management.ViewModel
             int selectedIndex = entityVM.SelectedIndex;
             T selectedEmployee = (T)entityVM.SelectedItem;
 
-            // DONE: Проверить чтобы элемент не удалялся из таблицы в случае не успеха
-
             // удаление в базе данных
             if (selectedEmployee.Remove())
             {
+                entityVM.SetStatusBarMessage("Запись успешно удалена");
                 // удаление в коллекции
-                itemsList.Remove(selectedEmployee);
+                itemsList.Remove(selectedEmployee);          
             }
             else
             {
+                entityVM.SetStatusBarMessage("Не удалось удалить запись");
                 return false;
             }
 
             // обновление представления      
             CollectionViewSource.GetDefaultView(itemsList).Refresh();
 
+            // изменение индекса выбранной записи
             entityVM.SelectedIndex = selectedIndex < itemsList.Count ? selectedIndex : selectedIndex - 1;
 
             return true;

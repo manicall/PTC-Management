@@ -33,7 +33,7 @@ namespace PTC_Management.ViewModel
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
                 ViewModelHelper.DoActionForList(
-                    MainWindowAction, DialogItem.Id, SelectedIndex, (Itinerary)DialogItem);
+                    MainWindowAction, (int)DialogItem.Id, SelectedIndex, (Itinerary)DialogItem);
             }
         }
 
@@ -49,17 +49,17 @@ namespace PTC_Management.ViewModel
                 {
                     case Destinations.employee:
                         tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem; //.Clone();
-                        tempDialogItem.IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.IdEmployee = (int)((Employee)selectWindow.ReturnedItem).Id;
 
                         break;
                     case Destinations.route:
                         tempDialogItem.Route = (Route)selectWindow.ReturnedItem; //.Clone();
-                        tempDialogItem.IdRoute = ((Route)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.IdRoute = (int)((Route)selectWindow.ReturnedItem).Id;
 
                         break;
                     case Destinations.transport:
                         tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem; //.Clone();
-                        tempDialogItem.IdTransport = ((Transport)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.IdTransport = (int)((Transport)selectWindow.ReturnedItem).Id;
 
                         break;
 

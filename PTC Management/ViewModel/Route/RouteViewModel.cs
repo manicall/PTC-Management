@@ -54,7 +54,7 @@ namespace PTC_Management.ViewModel
                  new ActionPerformer<Route>
                  (this, dialogViewModel, viewModelHelper.ItemsList);
 
-            actionPerformer.doAction(action);
+            actionPerformer.DoAction(action);
         }
 
         #endregion

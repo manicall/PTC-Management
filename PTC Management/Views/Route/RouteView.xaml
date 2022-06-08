@@ -70,7 +70,6 @@
           </ContextMenu>
         </DataGrid.ContextMenu>
       </DataGrid>
-      </DataGrid>
     </StackPanel>
   </Grid>
 </UserControl>

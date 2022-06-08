@@ -27,7 +27,7 @@ namespace PTC_Management.ViewModel
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
                 ViewModelHelper.DoActionForList(
-                    MainWindowAction, DialogItem.Id, SelectedIndex, (Employee)DialogItem);
+                    MainWindowAction, (int)DialogItem.Id, SelectedIndex, (Employee)DialogItem);
             }
         }
 

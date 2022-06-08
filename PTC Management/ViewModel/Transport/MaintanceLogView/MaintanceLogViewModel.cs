@@ -60,7 +60,7 @@ namespace PTC_Management.ViewModel
             var actionPerformer = new ActionPerformer<MaintanceLog>
                  (this, dialogViewModel, viewModelHelper.ItemsList);
 
-            actionPerformer.doAction(action);
+            actionPerformer.DoAction(action);
         }
 
 

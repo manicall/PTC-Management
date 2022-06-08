@@ -11,6 +11,9 @@ namespace PTC_Management.ViewModel
         public MaintanceLogDialogViewModel()
         {
             DialogItem = new MaintanceLog();
+
+            (DialogItem as MaintanceLog).Itinerary = new Itinerary();
+
             ((MaintanceLog)DialogItem).Date = DateTime.Now;
             CurrentViewModel = this;
         }
@@ -30,7 +33,7 @@ namespace PTC_Management.ViewModel
             {
                 // выполняет изменения в коллекции отображающей записи в таблице
                 ViewModelHelper.DoActionForList(
-                    MainWindowAction, DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
+                    MainWindowAction, (int)DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
             }
         }
 
@@ -46,7 +49,7 @@ namespace PTC_Management.ViewModel
                 {
                     case Destinations.itinerary:
                         tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem.Clone();
-                        tempDialogItem.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.IdItinerary = (int)((Itinerary)selectWindow.ReturnedItem).Id;
                         break;
 
                     default: break;

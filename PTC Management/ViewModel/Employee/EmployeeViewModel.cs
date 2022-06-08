@@ -54,7 +54,7 @@ namespace PTC_Management.ViewModel
             var actionPerformer = new ActionPerformer<Employee>
                  (this, dialogViewModel, viewModelHelper.ItemsList);
 
-            actionPerformer.doAction(action);
+            actionPerformer.DoAction(action);
         }
 
         #endregion
