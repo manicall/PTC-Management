@@ -1,9 +1,0 @@
-# Дополнительные сведения о файле EDITORCONFIG: https://aka.ms/editorconfigdocs
-
-# All files
-[*]
-guidelines = 66 1px solid ff0000, 80 1px solid 0b9cbb
-
-# C# or xaml files
-#[*.{cs, xaml}]
-#guidelines = 80 1px solid 0b9cbb

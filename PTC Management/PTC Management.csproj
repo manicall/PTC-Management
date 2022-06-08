@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7FA1EF16-5003-413D-A372-311275D5728C}</ProjectGuid>
+    <ProjectGuid>{E6DF2B7F-636D-4D51-9212-9A26AA9179B9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>PTC_Management</RootNamespace>
     <AssemblyName>PTC Management</AssemblyName>
@@ -17,22 +17,6 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\maxim\Desktop\publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <PublishWizardCompleted>true</PublishWizardCompleted>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,18 +37,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ManifestCertificateThumbprint>AC6DF5E3C095F85C2ED0067913AC6041299738AF</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>PTC Management_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>true</SignManifests>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -76,16 +48,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.IdentityModel" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -98,60 +60,54 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EntityFramework\Context\PTC_ManagementContext.cs" />
-    <Compile Include="EntityFramework\Entityes\Base\Entity.cs" />
-    <Compile Include="EntityFramework\Entityes\Base\TransportInfo.cs" />
-    <Compile Include="EntityFramework\Entityes\Date.cs" />
-    <Compile Include="EntityFramework\Entityes\Employee.cs" />
-    <Compile Include="EntityFramework\Entityes\Itinerary.cs" />
-    <Compile Include="EntityFramework\Entityes\LaborShift.cs" />
-    <Compile Include="EntityFramework\Entityes\LogOfDepartureAndEntry.cs" />
-    <Compile Include="EntityFramework\Entityes\MaintanceLog.cs" />
-    <Compile Include="EntityFramework\Entityes\Route.cs" />
-    <Compile Include="EntityFramework\Entityes\Transport.cs" />
-    <Compile Include="EntityFramework\Repository\Repository.cs" />
-    <Compile Include="Model\Actions.cs" />
-    <Compile Include="Model\ValidationRule\DateConverter.cs" />
-    <Compile Include="Model\ValidationRule\ToDecimalValidationRule.cs" />
-    <Compile Include="Model\ValidationRule\ToIntValidationRule.cs" />
-    <Compile Include="Model\Visibility.cs" />
-    <Compile Include="Model\CopyParameters.cs" />
-    <Compile Include="Model\BackUp.cs" />
-    <Compile Include="Model\Size.cs" />
-    <Compile Include="Model\WindowParameters.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
-    <Compile Include="ViewModel\Helpers\ViewModelHelper.cs" />
-    <Compile Include="ViewModel\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogViewModel.cs" />
-    <Compile Include="ViewModel\Transport\MaintanceLogView\MaintanceLogDialogViewModel.cs" />
-    <Compile Include="ViewModel\Route\RouteDialogViewModel.cs" />
-    <Compile Include="ViewModel\Helpers\ActionPerformer.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
-    <Compile Include="ViewModel\Base\ViewModelBaseWindow.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="ViewModel\Base\ViewModelBaseEntity.cs" />
-    <Compile Include="ViewModel\Windows\DialogViewModel.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBaseWindow.cs" />
     <Compile Include="ViewModel\Employee\EmployeeDialogViewModel.cs" />
-    <Compile Include="ViewModel\Transport\TransportDialogViewModel.cs" />
     <Compile Include="ViewModel\Employee\EmployeeViewModel.cs" />
-    <Compile Include="ViewModel\Helpers\DatePickerDateFormat.cs" />
+    <Compile Include="ViewModel\Helpers\ActionPerformer.cs" />
     <Compile Include="ViewModel\Helpers\DatePickerCalendar.cs" />
-    <Compile Include="ViewModel\Itinerary\ItineraryViewModel.cs" />
-    <Compile Include="ViewModel\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryViewModel.cs" />
-    <Compile Include="ViewModel\Transport\MaintanceLogView\MaintanceLogViewModel.cs" />
+    <Compile Include="ViewModel\Helpers\DatePickerDateFormat.cs" />
+    <Compile Include="ViewModel\Helpers\ViewModelHelper.cs" />
     <Compile Include="ViewModel\Itinerary\ItineraryDialogViewModel.cs" />
-    <Compile Include="ViewModel\Windows\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Itinerary\ItineraryViewModel.cs" />
+    <Compile Include="ViewModel\Route\RouteDialogViewModel.cs" />
     <Compile Include="ViewModel\Route\RouteViewModel.cs" />
     <Compile Include="ViewModel\ScheduleOfEmployee\ScheduleOfEmployeeViewModel.cs" />
-    <Compile Include="ViewModel\Windows\TransportInfoWindowViewModel.cs" />
+    <Compile Include="ViewModel\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogViewModel.cs" />
+    <Compile Include="ViewModel\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryViewModel.cs" />
+    <Compile Include="ViewModel\Transport\MaintanceLogView\MaintanceLogDialogViewModel.cs" />
+    <Compile Include="ViewModel\Transport\MaintanceLogView\MaintanceLogViewModel.cs" />
+    <Compile Include="ViewModel\Transport\TransportDialogViewModel.cs" />
     <Compile Include="ViewModel\Transport\TransportViewModel.cs" />
+    <Compile Include="ViewModel\Windows\DialogViewModel.cs" />
+    <Compile Include="ViewModel\Windows\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Windows\SelectWindowViewModel.cs" />
+    <Compile Include="ViewModel\Windows\TransportInfoWindowViewModel.cs" />
     <Compile Include="Views\Employee\EmployeeDialogView.xaml.cs">
       <DependentUpon>EmployeeDialogView.xaml</DependentUpon>
     </Compile>
@@ -163,6 +119,15 @@
     </Compile>
     <Compile Include="Views\Itinerary\ItineraryView.xaml.cs">
       <DependentUpon>ItineraryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Route\RouteDialogView.xaml.cs">
+      <DependentUpon>RouteDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Route\RouteView.xaml.cs">
+      <DependentUpon>RouteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleOfEmployeeView.xaml.cs">
+      <DependentUpon>ScheduleOfEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.xaml.cs">
       <DependentUpon>LogOfDepartureAndEntryDialogView.xaml</DependentUpon>
@@ -176,15 +141,6 @@
     <Compile Include="Views\Transport\MaintanceLogView\MaintanceLogView.xaml.cs">
       <DependentUpon>MaintanceLogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Route\RouteDialogView.xaml.cs">
-      <DependentUpon>RouteDialogView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Route\RouteView.xaml.cs">
-      <DependentUpon>RouteView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ScheduleOfEmployeeView.xaml.cs">
-      <DependentUpon>ScheduleOfEmployeeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Transport\TransportDialogView.xaml.cs">
       <DependentUpon>TransportDialogView.xaml</DependentUpon>
     </Compile>
@@ -197,36 +153,51 @@
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\SelectWindow.xaml.cs">
+      <DependentUpon>SelectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\TransportInfoWindow.xaml.cs">
+      <DependentUpon>TransportInfoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Views\Windows\SelectWindow.xaml.cs">
-      <DependentUpon>SelectWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Windows\TransportInfoWindow.xaml.cs">
-      <DependentUpon>TransportInfoWindow.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Resources\Templates\ControlTemplates.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="EntityFramework\Context\PTC_ManagementContext.cs" />
+    <Compile Include="EntityFramework\Entityes\Base\Entity.cs" />
+    <Compile Include="EntityFramework\Entityes\Base\TransportInfo.cs" />
+    <Compile Include="EntityFramework\Entityes\Date.cs" />
+    <Compile Include="EntityFramework\Entityes\Employee.cs" />
+    <Compile Include="EntityFramework\Entityes\Itinerary.cs" />
+    <Compile Include="EntityFramework\Entityes\LaborShift.cs" />
+    <Compile Include="EntityFramework\Entityes\LogOfDepartureAndEntry.cs" />
+    <Compile Include="EntityFramework\Entityes\MaintanceLog.cs" />
+    <Compile Include="EntityFramework\Entityes\Route.cs" />
+    <Compile Include="EntityFramework\Entityes\Transport.cs" />
+    <Compile Include="EntityFramework\Repository\Repository.cs" />
     <Page Include="Resources\Styles\GeneralStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Templates\DialogTemplates.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Resources\Templates\ControlTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\DialogTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Templates\EntityTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Templates\TransportInfoTemplate.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Employee\EmployeeDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -237,38 +208,38 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Itinerary\ItineraryDialogView.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Itinerary\ItineraryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Transport\MaintanceLogView\MaintanceLogDialogView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Transport\MaintanceLogView\MaintanceLogView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Route\RouteDialogView.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Route\RouteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ScheduleOfEmployeeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Transport\MaintanceLogView\MaintanceLogDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Transport\MaintanceLogView\MaintanceLogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -289,17 +260,30 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Windows\SelectWindow.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\StartWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Windows\TransportInfoWindow.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Actions.cs" />
+    <Compile Include="Model\BackUp.cs" />
+    <Compile Include="Model\CopyParameters.cs" />
     <Compile Include="Model\Destinations.cs" />
+    <Compile Include="Model\Size.cs" />
+    <Compile Include="Model\ValidationRule\DateConverter.cs" />
+    <Compile Include="Model\ValidationRule\ToDecimalValidationRule.cs" />
+    <Compile Include="Model\ValidationRule\ToIntValidationRule.cs" />
     <Compile Include="Model\ViewModels.cs" />
+    <Compile Include="Model\Visibility.cs" />
+    <Compile Include="Model\WindowParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -317,7 +301,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="диаграмма классов ViewModel.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -326,18 +309,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.8 %28x86 и x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Images\SplashScreen.png" />
