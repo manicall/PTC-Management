@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:PTC_Management.Views"
              xmlns:views = "clr-namespace:PTC_Management.Views" 
              xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
+             d:DataContext="{d:DesignInstance Type=viewModels:MaintanceLogDialogViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
   <UserControl.Resources>

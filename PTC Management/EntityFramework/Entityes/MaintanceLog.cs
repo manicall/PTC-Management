@@ -1,6 +1,7 @@
 using PTC_Management.EntityFramework.Entityes.Base;
 
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
@@ -19,6 +20,9 @@ namespace PTC_Management.EntityFramework
         public int? Mileage { get; set; }
 
         public virtual Itinerary Itinerary { get; set; }
+
+        [StringLength(4)]
+        public string MaintenanceType { get; set; }
     }
 
     public partial class MaintanceLog : TransportInfo

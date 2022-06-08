@@ -112,6 +112,7 @@
       <TextBox Name="textBoxName" 
         Text="{
         Binding DialogItem.Name,
+
         ValidatesOnDataErrors=True, 
         NotifyOnValidationError=True, 
         UpdateSourceTrigger=PropertyChanged}" />
@@ -119,15 +120,15 @@
     
     <StackPanel >
       <TextBlock Name="textBlockDistant" Text="Дистанция" />
-      <TextBox Name="textBoxDistant">
-
+      <TextBox Name="textBoxDistant" MaxLength="5">
         <TextBox.Text>
         <Binding Path="DialogItem.Distant"
+                   StringFormat="{}{0:F1}"
                    ValidatesOnDataErrors="True"
                    NotifyOnValidationError="True"
                    UpdateSourceTrigger="PropertyChanged">
           <Binding.ValidationRules>
-              <model:ToDoubleValidationRule />
+              <model:ToDecimalValidationRule />
           </Binding.ValidationRules>
         </Binding>
         </TextBox.Text>

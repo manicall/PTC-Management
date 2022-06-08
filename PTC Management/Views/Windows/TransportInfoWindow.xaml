@@ -15,14 +15,14 @@
   </Window.DataContext>
 
   <Window.Resources>
-    <ResourceDictionary Source="../../Templates/TransportInfoTemplate.xaml" />
+    <ResourceDictionary Source="../../Resources/Templates/TransportInfoTemplate.xaml" />
   </Window.Resources>
   <DockPanel>
     <StatusBar DockPanel.Dock="Bottom">
       <TextBlock Text="{Binding WindowParameters.StatusBarMessage}" />
     </StatusBar>
+    
     <StackPanel>
-
       <ContentControl Content="{Binding CurrentViewModel}" />
     </StackPanel>
   </DockPanel>

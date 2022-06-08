@@ -35,7 +35,6 @@ C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.CoreCompileInputs.cache
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.CopyComplete
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.AssemblyReference.cache
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Styles\GeneralStyles.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.g.cs
@@ -55,7 +54,6 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFrame
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.xml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\App.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\DialogTemplates.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeDialogView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Employee\EmployeeView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.baml
@@ -78,10 +76,8 @@ C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Itine
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryView.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryDialogView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryDialogView.baml
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Resources\ControlTemplates.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.SuggestedBindingRedirects.cache
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\SelectWindow.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\EntityTemplates.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\SelectWindow.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.g.cs
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.g.cs
@@ -116,7 +112,6 @@ C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Vie
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Windows\TransportInfoWindow.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Templates\TransportInfoTemplate.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfoWindow.g.cs
-C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Templates\TransportInfoTemplate.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Views\Windows\TransportInfoWindow.baml
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.exe.manifest
 C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\bin\Debug\PTC Management.application
@@ -126,3 +121,8 @@ C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\PTC
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\PTC Management.application
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.exe.manifest
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.application
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Resources\Templates\ControlTemplates.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Resources\Styles\GeneralStyles.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Resources\Templates\DialogTemplates.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Resources\Templates\EntityTemplates.baml
+C:\Users\maxim\Desktop\repos\PTC Management\PTC Management\obj\Debug\Resources\Templates\TransportInfoTemplate.baml

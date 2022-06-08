@@ -15,7 +15,7 @@
   </Window.DataContext>
 
   <Window.Resources>
-    <ResourceDictionary Source="../../Templates/EntityTemplates.xaml" />
+    <ResourceDictionary Source="../../Resources/Templates/EntityTemplates.xaml" />
   </Window.Resources>
   
   <StackPanel>

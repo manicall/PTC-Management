@@ -19,8 +19,8 @@ namespace PTC_Management.EntityFramework
         [StringLength(255)]
         public string Name { get; set; }
 
-        [StringLength(10)]
-        public string Distant { get; set; }
+        //[StringLength(10)]
+        public decimal? Distant { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
@@ -85,12 +85,12 @@ namespace PTC_Management.EntityFramework
             return null;
         }
 
-        public string DistantError(string distant)
+        public string DistantError(decimal? distant)
         {
-            if (string.IsNullOrEmpty(distant))
+            if (!distant.HasValue)
                 return "Поле не может быть пустым";
-            float.TryParse(distant, out float i);
-            if (i <= 0)
+            //float.TryParse(distant, out float i);
+            if (distant <= 0)
                 return "Дистанция должна быть больше нуля";
             return null;
         }

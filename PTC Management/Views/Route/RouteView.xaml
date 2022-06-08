@@ -28,16 +28,14 @@
             MinRowHeight="20"
             MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
             ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
-            
             CanUserReorderColumns="False"
             IsReadOnly="True" 
             CanUserAddRows="false"
-            
             AutoGenerateColumns="False">
         <DataGrid.Columns>
           <DataGridTextColumn Header="Номер"     Binding="{Binding Number}"/>
           <DataGridTextColumn Header="Название"  Binding="{Binding Name}"/>
-          <DataGridTextColumn Width="*" Header="Дистанция" Binding="{Binding Distant}"/>
+          <DataGridTextColumn Width="*" Header="Дистанция" Binding="{Binding Distant, StringFormat={}{0:F1}}"/>
         </DataGrid.Columns>
 
         <DataGrid.InputBindings>

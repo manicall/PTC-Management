@@ -117,7 +117,7 @@
     <Compile Include="EntityFramework\Entityes\Transport.cs" />
     <Compile Include="EntityFramework\Repository\Repository.cs" />
     <Compile Include="Model\Actions.cs" />
-    <Compile Include="Model\ValidationRule\ToDoubleValidationRule.cs" />
+    <Compile Include="Model\ValidationRule\ToDecimalValidationRule.cs" />
     <Compile Include="Model\ValidationRule\ToIntValidationRule.cs" />
     <Compile Include="Model\Visibility.cs" />
     <Compile Include="Model\CopyParameters.cs" />
@@ -207,23 +207,23 @@
     <Compile Include="Views\Windows\TransportInfoWindow.xaml.cs">
       <DependentUpon>TransportInfoWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Resources\ControlTemplates.xaml">
+    <Page Include="Resources\Templates\ControlTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\GeneralStyles.xaml">
+    <Page Include="Resources\Styles\GeneralStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Templates\DialogTemplates.xaml">
+    <Page Include="Resources\Templates\DialogTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Templates\EntityTemplates.xaml">
+    <Page Include="Resources\Templates\EntityTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Templates\TransportInfoTemplate.xaml">
+    <Page Include="Resources\Templates\TransportInfoTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

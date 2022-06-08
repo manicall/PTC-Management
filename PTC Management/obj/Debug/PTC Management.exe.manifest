@@ -66,24 +66,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PTC Management.exe" size="162784">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PTC Management.exe" size="163808">
       <assemblyIdentity name="PTC Management" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kScdyFul2g82iRITSnZpgkHMKOfXWA6g/nFV8Yn83Qk=</dsig:DigestValue>
+        <dsig:DigestValue>/pw1c40geDLfk3YWMaA/jBJOVBynVzkJptIOmYY7+q8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="PTC Management.exe.config" size="1426">
+  <file name="PTC Management.exe.config" size="1880">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3zNnR7Nkq4416tow4/9B7Hqj0aQmlQ3iv7cHyNsU8ec=</dsig:DigestValue>
+      <dsig:DigestValue>3YIIvK7KbsbD7QJhuqB9K1SNfVs9DmXIe5VT1Eyamlg=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

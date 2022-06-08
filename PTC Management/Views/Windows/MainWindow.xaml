@@ -2,21 +2,20 @@
    xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
-   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
-   xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006"
    xmlns:local = "clr-namespace:PTC_Management" 
-
+   d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
    mc:Ignorable = "d" 
    Title = "Управление ПАТП" 
    Height = "{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}" 
    Width  = "{Binding WindowParameters.WindowSize.Width,  Mode=TwoWay}" >
-  
+
   <Window.DataContext>
     <local:MainWindowViewModel/>
   </Window.DataContext>
 
   <Window.Resources>
-    <ResourceDictionary Source="../../Templates/EntityTemplates.xaml" />
+    <ResourceDictionary Source="../../Resources/Templates/EntityTemplates.xaml" />
   </Window.Resources>
   
   <DockPanel>
@@ -37,7 +36,7 @@
     <StatusBar DockPanel.Dock="Bottom">
       <TextBlock Text="{Binding WindowParameters.StatusBarMessage}" />
     </StatusBar>
-    
+
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height = "50" />
@@ -55,45 +54,81 @@
           <ColumnDefinition Width = "*" />
 
         </Grid.ColumnDefinitions>
-        
+
         <Button Name="buttonEmployee"
           Content = "Сотрудники" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Employee}"
           Grid.Column = "0" />
-
         <Button Name="buttonRoute"
           Content = "Маршруты" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Route}" 
           Grid.Column = "1" />
-
         <Button Name="buttonTransport"
           Content = "Транспорт" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Transport}" 
           Grid.Column = "2" />
-
         <Button Name="buttonItinerary"
           Content = "Журнал путевых листов" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Itinerary}" 
           Grid.Column = "3" />
-
-
         <Button Name="buttonSchedule"
           Content = "Расписание" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Schedule}" 
           Grid.Column = "4" />
-
       </Grid>
 
       <Grid x:Name = "MainContent" Grid.Row = "1">
         <ContentControl Content = "{Binding CurrentViewModel}" />
       </Grid>
     </Grid>
-
   </DockPanel>
 
+  <Window.InputBindings>
+    <KeyBinding 
+      Command="{Binding CurrentViewModel.TableAction}"
+      CommandParameter="{Binding Actions.Add}"
+      Key="C" />
+    <KeyBinding 
+      Command="{Binding CurrentViewModel.TableAction}"
+      CommandParameter="{Binding Actions.Update}"
+      Key="U" />
+    <KeyBinding 
+      Command="{Binding CurrentViewModel.TableAction}"            
+      CommandParameter="{Binding Actions.Remove}"
+      Key="Delete" />
+    <KeyBinding 
+      Command="{Binding CurrentViewModel.TableAction}"
+      CommandParameter="{Binding Actions.Copy}"
+      Gesture="ALT+C" />
+    <MouseBinding 
+      Command="{Binding CurrentViewModel.TableAction}"
+      CommandParameter="{Binding Actions.Update}"
+      MouseAction="LeftDoubleClick"/>
+  </Window.InputBindings>
+  
+  <Window.ContextMenu >
+    <ContextMenu>
+      <MenuItem 
+        Header ="Создать" InputGestureText="C"
+        Command = "{Binding CurrentViewModel.TableAction}"
+        CommandParameter="{Binding Actions.Add}"/>
+      <MenuItem 
+        Header ="Изменить" InputGestureText="U"
+        Command = "{Binding CurrentViewModel.TableAction}"
+        CommandParameter="{Binding Actions.Update}"/>
+      <MenuItem 
+        Header ="Удалить" InputGestureText="Delete"
+        Command = "{Binding CurrentViewModel.TableAction}"
+        CommandParameter="{Binding Actions.Remove}"/>
+      <MenuItem 
+        Header ="Копировать" InputGestureText="ALT+C"
+        Command = "{Binding CurrentViewModel.TableAction}"
+        CommandParameter="{Binding Actions.Copy}"/>
+    </ContextMenu>
+  </Window.ContextMenu>
 </Window>

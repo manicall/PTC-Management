@@ -6,8 +6,8 @@
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Styles/GeneralStyles.xaml" />
-        <ResourceDictionary Source="Resources/ControlTemplates.xaml" />
+        <ResourceDictionary Source="Resources/Styles/GeneralStyles.xaml" />
+        <ResourceDictionary Source="Resources/Templates/ControlTemplates.xaml" />
         
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
