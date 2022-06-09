@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using PTC_Management.ViewModel;
+
+using System.ComponentModel;
 
 namespace PTC_Management.EntityFramework
 {
@@ -6,7 +8,7 @@ namespace PTC_Management.EntityFramework
     /// Позволяет использовать методы
     /// переопределенные в дочерних классах
     /// </summary>
-    public abstract class Entity : IDataErrorInfo
+    public abstract class Entity : BindableBase, IDataErrorInfo
     {
         public int? Id { get; set; }
 

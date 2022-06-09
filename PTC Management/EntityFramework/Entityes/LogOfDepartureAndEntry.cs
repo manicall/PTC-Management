@@ -20,22 +20,6 @@ namespace PTC_Management.EntityFramework
         public static readonly Repository<LogOfDepartureAndEntry> repository =
             new Repository<LogOfDepartureAndEntry>(new PTC_ManagementContext());
 
-        /// <summary>
-        /// Присоединяет сущности в контекст
-        /// </summary>
-        public void Attach(PTC_ManagementContext db)
-        {
-            db.Itinerary.Attach(Itinerary);
-        }
-
-        /// <summary>
-        /// Отсоединяет сущности от контекста
-        /// </summary>
-        public void Detach(PTC_ManagementContext db)
-        {
-            db.Entry(Itinerary).State = EntityState.Detached;
-        }
-
         // переопределение методов базового класса
         public override void Add() => repository.Add(this);
 

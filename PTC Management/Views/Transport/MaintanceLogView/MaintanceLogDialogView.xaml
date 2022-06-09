@@ -169,7 +169,7 @@
               ValidatesOnDataErrors=True, 
               NotifyOnValidationError=True, 
               UpdateSourceTrigger=PropertyChanged,
-              Converter={StaticResource TimeSpanConverter}, ConverterParameter={x:Reference Name=}
+              Converter={StaticResource TimeSpanConverter}
              
             }" />
         </StackPanel>
@@ -197,12 +197,14 @@
           <TextBlock Style="{StaticResource TextBlockStyle}" 
                      Name="textBlockSpeedometerInfoOnDeparture"
                      Text="при выезде" Width="149" />
-          <TextBox Name="textBoxSpeedometerInfoOnDeparture" 
-                Text="{
-                Binding DialogItem.SpeedometerInfoOnDeparture,
-                ValidatesOnDataErrors=True, 
-                NotifyOnValidationError=True, 
-                UpdateSourceTrigger=PropertyChanged}" />
+          <TextBox
+            Name="textBoxSpeedometerInfoOnDeparture" 
+            IsReadOnly="{Binding IsReadOnly.Field[SpeedometerInfoOnDeparture]}"
+            Text="{
+              Binding DialogItem.SpeedometerInfoOnDeparture,
+              ValidatesOnDataErrors=True, 
+              NotifyOnValidationError=True, 
+              UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <StackPanel  Margin="0,5,0,0">
@@ -227,7 +229,7 @@
         Style="{StaticResource TextBlockStyle}"                 
         Name="textBlockMileage"                 
         Text="Пробег, Км" />
-      <TextBox Name="textBoxMileage" 
+      <TextBox Name="textBoxMileage"  IsReadOnly="{Binding IsReadOnly.Field[Mileage]}"
         Text="{
         Binding DialogItem.Mileage,
         ValidatesOnDataErrors=True, 

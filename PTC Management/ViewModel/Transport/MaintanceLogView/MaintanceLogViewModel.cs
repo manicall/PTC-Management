@@ -57,6 +57,8 @@ namespace PTC_Management.ViewModel
             var dialogViewModel = GetDialogViewModel<MaintanceLogDialogViewModel>(action, Destinations.maintanceLog);
             dialogViewModel.ViewModelHelper = viewModelHelper;
 
+            if (action == Actions.add) dialogViewModel.OnActionAdd();
+
             var actionPerformer = new ActionPerformer<MaintanceLog>
                  (this, dialogViewModel, viewModelHelper.ItemsList);
 

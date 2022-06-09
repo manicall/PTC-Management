@@ -118,7 +118,7 @@
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
           <DataGridTextColumn Header="Пробег, Км" Binding="{Binding Mileage}"/>
-          <DataGridTextColumn Header="Пробег, Км" Binding="{Binding }" Width="*" />
+          <DataGridTextColumn Header="Вид ТО" Binding="{Binding MaintenanceType}" Width="*" />
         </DataGrid.Columns>
 
         <DataGrid.InputBindings>

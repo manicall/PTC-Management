@@ -10,14 +10,42 @@ namespace PTC_Management.EntityFramework
     [Table("MaintanceLog")]
     public partial class MaintanceLog : TransportInfo
     {
+        private int? speedometerInfoOnDeparture;
+        private int? speedometerInfoWhenReturning;
+        private int? mileage;
+
         [Column(TypeName = "date")]
         public DateTime? Date { get; set; }
 
-        public int? SpeedometerInfoOnDeparture { get; set; }
 
-        public int? SpeedometerInfoWhenReturning { get; set; }
 
-        public int? Mileage { get; set; }
+        public int? SpeedometerInfoOnDeparture
+        {
+            get => speedometerInfoOnDeparture;
+            set
+            {
+                speedometerInfoOnDeparture = value;
+                if (speedometerInfoWhenReturning != null)
+                    Mileage = speedometerInfoWhenReturning - speedometerInfoOnDeparture;
+            }
+        }
+
+        public int? SpeedometerInfoWhenReturning
+        {
+            get => speedometerInfoWhenReturning;
+            set
+            {
+                speedometerInfoWhenReturning = value;
+                if (speedometerInfoOnDeparture != null)
+                    Mileage = speedometerInfoWhenReturning - speedometerInfoOnDeparture;
+                
+            }
+        }
+
+        public int? Mileage { 
+            get => mileage; 
+            set => SetProperty(ref mileage, value); 
+        }
 
         public virtual Itinerary Itinerary { get; set; }
 
@@ -29,22 +57,6 @@ namespace PTC_Management.EntityFramework
     {
         public static readonly Repository<MaintanceLog> repository =
              new Repository<MaintanceLog>(new PTC_ManagementContext());
-
-        /// <summary>
-        /// Присоединяет сущности в контекст
-        /// </summary>
-        public void Attach(PTC_ManagementContext db)
-        {
-            db.Itinerary.Attach(Itinerary);
-        }
-
-        /// <summary>
-        /// Отсоединяет сущности от контекста
-        /// </summary>
-        public void Detach(PTC_ManagementContext db)
-        {
-            db.Entry(Itinerary).State = EntityState.Detached;
-        }
 
         // переопределение методов базового класса
         public override void Add() => repository.Add(this);
@@ -67,6 +79,7 @@ namespace PTC_Management.EntityFramework
                 SpeedometerInfoWhenReturning = item.SpeedometerInfoWhenReturning;
                 Mileage = item.Mileage;
                 Itinerary = item.Itinerary;
+                MaintenanceType = item.MaintenanceType;
             }
         }
 
