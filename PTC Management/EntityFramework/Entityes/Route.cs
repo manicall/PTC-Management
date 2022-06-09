@@ -19,7 +19,6 @@ namespace PTC_Management.EntityFramework
         [StringLength(255)]
         public string Name { get; set; }
 
-        //[StringLength(10)]
         public decimal? Distant { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }

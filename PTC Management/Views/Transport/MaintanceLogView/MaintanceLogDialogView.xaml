@@ -161,7 +161,7 @@
             Name="textBlockTimeOnDeparture"
             Text="выезда" Width="149" />
 
-          <TextBox Width="149" 
+          <TextBox 
                                    
               Text="{
               Binding DialogItem.TimeOnDeparture,
@@ -169,9 +169,9 @@
               ValidatesOnDataErrors=True, 
               NotifyOnValidationError=True, 
               UpdateSourceTrigger=PropertyChanged,
-             Converter={StaticResource TimeSpanConverter} 
-            }"
-                                   />
+              Converter={StaticResource TimeSpanConverter}, ConverterParameter={x:Reference Name=}
+             
+            }" />
         </StackPanel>
 
         <StackPanel Margin="0,5,0,0">
@@ -180,11 +180,13 @@
                      Text="возвращения"  Width="149"/>
           <TextBox Name="textBoxTimeWhenReturning" 
             Text="{
-            Binding DialogItem.TimeWhenReturning,
-            StringFormat=h\\:mm,
-            ValidatesOnDataErrors=True, 
-            NotifyOnValidationError=True, 
-            UpdateSourceTrigger=PropertyChanged}" />
+              Binding DialogItem.TimeWhenReturning,
+              StringFormat=h\\:mm,
+              ValidatesOnDataErrors=True, 
+              NotifyOnValidationError=True, 
+              UpdateSourceTrigger=PropertyChanged,
+              Converter={StaticResource TimeSpanConverter} 
+            }" />
         </StackPanel>
       </StackPanel>
     </GroupBox>

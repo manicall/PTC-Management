@@ -30,7 +30,12 @@
       "ProjectGuid": "be85dde5-2a2f-4614-b621-294a6840bc0c",
       "DisplayName": "UnitTests",
       "ColorIndex": 4
+    },
+    "e6df2b7f-636d-4d51-9212-9a26aa9179b9": {
+      "ProjectGuid": "e6df2b7f-636d-4d51-9212-9a26aa9179b9",
+      "DisplayName": "PTC Management",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 6
 }
