@@ -34,8 +34,8 @@
             AutoGenerateColumns="False">
         <DataGrid.Columns>
           <DataGridTextColumn Header="Номер"     Binding="{Binding Number}"/>
-          <DataGridTextColumn Header="Название"  Binding="{Binding Name}"/>
-          <DataGridTextColumn Width="*" Header="Дистанция" Binding="{Binding Distant, StringFormat={}{0:F1}}"/>
+          <DataGridTextColumn Header="Название"  Binding="{Binding Name}"  Width="*" />
+          <DataGridTextColumn Header="Дистанция" Binding="{Binding Distant, StringFormat={}{0:F1}}"/>
         </DataGrid.Columns>
 
         <DataGrid.InputBindings>

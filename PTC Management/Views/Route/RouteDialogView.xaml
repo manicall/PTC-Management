@@ -40,8 +40,7 @@
       <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="BlackConditionButton"
-           BasedOn="{StaticResource BlackButton}">
+    <Style TargetType="Button" x:Key="ConditionButton" >
       <Setter Property="IsEnabled" Value="False"/>
       <Style.Triggers>
         <MultiDataTrigger>
@@ -65,19 +64,23 @@
 
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
-      <Button Name="buttonWriteAndClose" 
-              Style="{StaticResource BlackConditionButton }" 
-              Command="{Binding DialogActionCommand }"
-              CommandParameter="{Binding Actions.WriteAndClose}" 
-              Margin="0 0 35 0" Width="auto"
-          >Записать и закрыть</Button>
-      <Button Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
-              Command="{Binding DialogActionCommand }" 
-              CommandParameter="{Binding Actions.Write}" 
-           >Записать</Button>
-      <Button Name="buttonClose" Style="{StaticResource BlackButton }" 
-              Command="{Binding DialogActionCommand }" 
-              CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
+      <Button 
+        Name="buttonWriteAndClose" 
+        Style="{StaticResource ConditionButton }" 
+        Command="{Binding DialogActionCommand }"
+        CommandParameter="{Binding Actions.WriteAndClose}" 
+        Margin="0 0 35 0" Width="auto"
+        Content="Записать и закрыть" />
+      <Button 
+        Name="buttonWrite" Style="{StaticResource ConditionButton }" 
+        Command="{Binding DialogActionCommand }" 
+        CommandParameter="{Binding Actions.Write}" 
+        Content="Записать" />
+      <Button 
+        Command="{Binding DialogActionCommand }" 
+        CommandParameter="{Binding Actions.Close}"  
+        Content="Закрыть" 
+        Margin="10 0 0 0" />
     </StackPanel>
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
       <TextBlock Name="textBlockCountCopy" Text="Количество копий" />
@@ -94,7 +97,9 @@
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockNumber" Text="Номер" />
-      <TextBox Name="textBoxNumber" >
+      <TextBox 
+        Name="textBoxNumber" 
+        MaxLength="9" >
         <TextBox.Text>
           <Binding 
               Path="DialogItem.Number"       
@@ -113,10 +118,11 @@
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockName" Text="Название" />
-      <TextBox Name="textBoxName" 
+      <TextBox 
+        Name="textBoxName" 
+        MaxLength="255" 
         Text="{
         Binding DialogItem.Name,
-
         ValidatesOnDataErrors=True, 
         NotifyOnValidationError=True, 
         UpdateSourceTrigger=PropertyChanged}" />

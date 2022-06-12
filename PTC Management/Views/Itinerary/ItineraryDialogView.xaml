@@ -38,8 +38,7 @@
     </Style>
 
     <!--Валидация полей для ввода -->
-    <Style TargetType="Button" x:Key="BlackConditionButton"
-           BasedOn="{StaticResource BlackButton}">
+    <Style TargetType="Button" x:Key="ConditionButton" >
       <Setter Property="IsEnabled" Value="False"/>
       <Style.Triggers>
         <MultiDataTrigger>
@@ -58,28 +57,28 @@
       </Style.Triggers>
     </Style>
 
-
+   
   </UserControl.Resources>
 
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
       <Button 
         Name="buttonWriteAndClose" 
-        Style="{StaticResource BlackConditionButton }" 
+        Style="{StaticResource ConditionButton }" 
         Command="{Binding DialogActionCommand }"
         CommandParameter="{Binding Actions.WriteAndClose}" 
         Margin="0 0 35 0" Width="auto"
         Content="Записать и закрыть" />
       <Button 
-        Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
+        Name="buttonWrite" Style="{StaticResource ConditionButton }" 
         Command="{Binding DialogActionCommand }" 
         CommandParameter="{Binding Actions.Write}" 
         Content="Записать" />
       <Button 
-        Name="buttonClose" Style="{StaticResource BlackButton }" 
         Command="{Binding DialogActionCommand }" 
         CommandParameter="{Binding Actions.Close}"  
-        Content="Закрыть" />
+        Content="Закрыть" 
+        Margin="10 0 0 0" />
     </StackPanel>
     
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >

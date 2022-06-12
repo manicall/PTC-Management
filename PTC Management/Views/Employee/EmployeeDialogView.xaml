@@ -5,8 +5,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:views = "clr-namespace:PTC_Management.Views" 
-  xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
-  xmlns:model = "clr-namespace:PTC_Management.Model" 
+  xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel"
   d:DataContext="{d:DesignInstance Type=viewModels:EmployeeDialogViewModel}"
   mc:Ignorable="d" 
   d:DesignHeight="200" d:DesignWidth="350">
@@ -39,8 +38,8 @@
     </Style>
 
     <!--Валидация полей для ввода -->
-    <Style TargetType="Button" x:Key="BlackConditionButton"
-           BasedOn="{StaticResource BlackButton}">
+    <Style TargetType="Button" x:Key="ConditionButton"
+          >
       <Setter Property="IsEnabled" Value="False"/>
       <Style.Triggers>
         <MultiDataTrigger>
@@ -62,21 +61,23 @@
 
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
-      <Button Name="buttonWriteAndClose" 
-              Style="{StaticResource BlackConditionButton }" 
-              Command="{Binding DialogActionCommand }"
-              CommandParameter="{Binding Actions.WriteAndClose}" 
-              Margin="0 0 35 0" Width="auto"
-          >Записать и закрыть</Button>
-      <Button
-        Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
-              Command="{Binding DialogActionCommand }" 
-              CommandParameter="{Binding Actions.Write}" 
-           >Записать</Button>
       <Button 
-        Name="buttonClose" Style="{StaticResource BlackButton }" 
-              Command="{Binding DialogActionCommand }" 
-              CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
+        Name="buttonWriteAndClose" 
+        Style="{StaticResource ConditionButton }" 
+        Command="{Binding DialogActionCommand }"
+        CommandParameter="{Binding Actions.WriteAndClose}" 
+        Margin="0 0 35 0" Width="auto"
+        Content="Записать и закрыть" />
+      <Button 
+        Name="buttonWrite" Style="{StaticResource ConditionButton }" 
+        Command="{Binding DialogActionCommand }" 
+        CommandParameter="{Binding Actions.Write}" 
+        Content="Записать" />
+      <Button 
+        Command="{Binding DialogActionCommand }" 
+        CommandParameter="{Binding Actions.Close}"  
+        Content="Закрыть" 
+        Margin="10 0 0 0" />
     </StackPanel>
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
       <TextBlock
@@ -97,6 +98,7 @@
       <TextBlock Name="textBlockSurname" Text="Фамилия" />
       <TextBox 
         Name="textBoxSurname"  
+        MaxLength="50"
         Text="{
           Binding DialogItem.Surname, 
           ValidatesOnDataErrors=True, 
@@ -106,7 +108,9 @@
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockName" Text="Имя" />
-      <TextBox Name="textBoxName" 
+      <TextBox 
+        Name="textBoxName" 
+        MaxLength="50"
         Text="{
           Binding DialogItem.Name,
           ValidatesOnDataErrors=True, 
@@ -116,7 +120,9 @@
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockPatronymic" Text="Отчество" />
-      <TextBox Name="textBoxPatronymic" 
+      <TextBox 
+        Name="textBoxPatronymic"
+        MaxLength="50"
         Text="{
           Binding DialogItem.Patronymic,
           ValidatesOnDataErrors=True, 
@@ -128,7 +134,9 @@
       <TextBlock 
         Name="textBlockDriverLicense"
         Text="Водительское удостоверение" />
-      <TextBox Name="textBoxDriverLicense" 
+      <TextBox 
+        Name="textBoxDriverLicense" 
+        MaxLength="10"
         Text="{
           Binding DialogItem.DriverLicense,
           ValidatesOnDataErrors=True, 

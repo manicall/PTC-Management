@@ -2,13 +2,13 @@
 {
     public class Destinations
     {
-        public const string employee = "employee";
-        public const string route = "route";
-        public const string transport = "transport";
-        public const string itinerary = "itinerary";
-        public const string schedule = "schedule";
-        public const string maintanceLog = "maintanceLog";
-        public const string logOfDepartureAndEntry = "logOfDepartureAndEntry";
+        public const string employee = "Employee";
+        public const string route = "Route";
+        public const string transport = "Transport";
+        public const string itinerary = "Itinerary";
+        public const string schedule = "Schedule";
+        public const string maintanceLog = "MaintanceLog";
+        public const string logOfDepartureAndEntry = "LogOfDepartureAndEntry";
 
         public string Employee => employee;
         public string Route => route;

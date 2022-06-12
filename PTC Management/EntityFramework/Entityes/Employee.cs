@@ -9,6 +9,8 @@ namespace PTC_Management.EntityFramework
     [Table("Employee")]
     public partial class Employee : Entity
     {
+        private string surname;
+
         public Employee()
         {
             Date = new HashSet<Date>();
@@ -17,7 +19,7 @@ namespace PTC_Management.EntityFramework
 
         [Required]
         [StringLength(50)]
-        public string Surname { get; set; }
+        public string Surname { get => surname; set => SetProperty(ref surname, value); }
 
         [Required]
         [StringLength(50)]
@@ -27,7 +29,7 @@ namespace PTC_Management.EntityFramework
         public string Patronymic { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(10)]
         public string DriverLicense { get; set; }
 
         public virtual ICollection<Date> Date { get; set; }
@@ -98,8 +100,6 @@ namespace PTC_Management.EntityFramework
             if (string.IsNullOrEmpty(text)) return null;
             if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
                 return "Поле может содержать только буквы и дефисы";
-            if (text.Length > 50)
-                return SizeError(50);
             return null;
         }
 
@@ -112,8 +112,6 @@ namespace PTC_Management.EntityFramework
                 return "Поле не может быть пустым";
             if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
                 return "Поле может содержать только буквы и дефисы";
-            if (text.Length > 50)
-                return SizeError(50);
             return null;
         }
 
@@ -127,12 +125,8 @@ namespace PTC_Management.EntityFramework
                 return "Поле не может быть пустым";
             if (Regex.IsMatch(text, "[\\D]+"))
                 return "Поле может содержать только цифры";
-            if (text.Length > 10)
-                return SizeError(10);
             return null;
         }
-
-        string SizeError(int size) { return $"Максимальное количество символов в строке: {size}"; }
 
         public override string Error
         {

@@ -6,7 +6,6 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:views = "clr-namespace:PTC_Management.Views" 
   xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
-  xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
   xmlns:model="clr-namespace:PTC_Management.Model"
   d:DataContext="{d:DesignInstance Type=viewModels:MaintanceLogDialogViewModel}"
   mc:Ignorable="d" 
@@ -39,8 +38,7 @@
     </Style>
 
     <!--Валидация полей для ввода -->
-    <Style TargetType="Button" x:Key="BlackConditionButton"
-           BasedOn="{StaticResource BlackButton}">
+    <Style TargetType="Button" x:Key="ConditionButton">
       <Setter Property="IsEnabled" Value="False"/>
       <Style.Triggers>
         <MultiDataTrigger>
@@ -83,21 +81,21 @@
     <StackPanel >
       <Button 
         Name="buttonWriteAndClose" 
-        Style="{StaticResource BlackConditionButton }" 
+        Style="{StaticResource ConditionButton }" 
         Command="{Binding DialogActionCommand }"
         CommandParameter="{Binding Actions.WriteAndClose}" 
         Margin="0 0 35 0" Width="auto"
         Content="Записать и закрыть" />
       <Button 
-        Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
+        Name="buttonWrite" Style="{StaticResource ConditionButton }" 
         Command="{Binding DialogActionCommand }" 
         CommandParameter="{Binding Actions.Write}" 
         Content="Записать" />
       <Button 
-        Name="buttonClose" Style="{StaticResource BlackButton }" 
         Command="{Binding DialogActionCommand }" 
         CommandParameter="{Binding Actions.Close}"  
-        Content="Закрыть" />
+        Content="Закрыть" 
+        Margin="10 0 0 0" />
     </StackPanel>
 
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
@@ -120,7 +118,7 @@
     <StackPanel >
       <TextBlock 
         Name="textBlockItinerary" 
-        Text="Путевой" 
+        Text="Путевой лист" 
         Style="{StaticResource TextBlockStyle}" />
       <TextBox 
         Name="textBoxItinerary" 
@@ -145,14 +143,17 @@
         Text="Дата"
         Style="{StaticResource TextBlockStyle}" />
 
-      <DatePicker  Name="textBoxDate" MaxWidth="155"
+      <DatePicker  
+        Name="textBoxDate"
+        MaxWidth="155"
         Text="{
-        Binding DialogItem.Date,
-        StringFormat=\{0:dd.MM.yyyy\},
-        ValidatesOnDataErrors=True, 
-        NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged,
-        Mode=TwoWay, Converter={StaticResource DateConverter}
+          Binding DialogItem.Date,
+          StringFormat=\{0:dd.MM.yyyy\},
+          ValidatesOnDataErrors=True, 
+          NotifyOnValidationError=True, 
+          UpdateSourceTrigger=PropertyChanged,
+          Mode=TwoWay,
+          Converter={StaticResource DateConverter}
         }" />
     </StackPanel>
     <GroupBox Header="Время" MaxWidth="500" HorizontalAlignment="Left">
@@ -163,8 +164,7 @@
             Name="textBlockTimeOnDeparture"
             Text="выезда" Width="149" />
 
-          <TextBox 
-                                   
+          <TextBox                           
               Text="{
               Binding DialogItem.TimeOnDeparture,
               StringFormat=h\\:mm,
@@ -172,7 +172,6 @@
               NotifyOnValidationError=True, 
               UpdateSourceTrigger=PropertyChanged,
               Converter={StaticResource TimeSpanConverter}
-             
             }" />
         </StackPanel>
 
@@ -196,17 +195,26 @@
     <GroupBox Header="Показания спидометра" MaxWidth="500" HorizontalAlignment="Left">
       <StackPanel Orientation="Vertical">
         <StackPanel Margin="0,5,0,0">
-          <TextBlock Style="{StaticResource TextBlockStyle}" 
-                     Name="textBlockSpeedometerInfoOnDeparture"
-                     Text="при выезде" Width="149" />
+          <TextBlock 
+            Style="{StaticResource TextBlockStyle}" 
+            Name="textBlockSpeedometerInfoOnDeparture"
+            Text="при выезде" Width="149" />
           <TextBox
-            Name="textBoxSpeedometerInfoOnDeparture" 
-            IsReadOnly="{Binding IsReadOnly.Field[SpeedometerInfoOnDeparture]}"
-            Text="{
-              Binding DialogItem.SpeedometerInfoOnDeparture,
-              ValidatesOnDataErrors=True, 
-              NotifyOnValidationError=True, 
-              UpdateSourceTrigger=PropertyChanged}" />
+              Name="textBoxSpeedometerInfoOnDeparture" 
+              IsReadOnly="{Binding IsReadOnly.Field[SpeedometerInfoOnDeparture]}"
+              MaxLength="9">
+            <TextBox.Text>
+              <Binding 
+                  Path="DialogItem.SpeedometerInfoWhenReturning"       
+                  ValidatesOnDataErrors="True"       
+                  NotifyOnValidationError="True"       
+                  UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                  <model:ToIntValidationRule />
+                </Binding.ValidationRules>
+              </Binding>
+            </TextBox.Text>
+          </TextBox>
         </StackPanel>
 
         <StackPanel  Margin="0,5,0,0">
@@ -216,13 +224,21 @@
             Text="при возвращении"         
             Width="149" />
           <TextBox 
-            Name="textBoxSpeedometerInfoWhenReturning" 
-            Text="{
-              Binding DialogItem.SpeedometerInfoWhenReturning,
-              ValidatesOnDataErrors=True, 
-              NotifyOnValidationError=True, 
-              UpdateSourceTrigger=PropertyChanged
-            }" />
+              Name="textBoxSpeedometerInfoWhenReturning"
+              MaxLength="9">
+            <TextBox.Text>
+              <Binding 
+                  Path="DialogItem.SpeedometerInfoWhenReturning"       
+                  ValidatesOnDataErrors="True"       
+                  NotifyOnValidationError="True"       
+                  UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                  <model:ToIntValidationRule />
+                </Binding.ValidationRules>
+              </Binding>
+            </TextBox.Text>
+          </TextBox>
+
         </StackPanel>
       </StackPanel>
     </GroupBox>
@@ -231,12 +247,14 @@
         Style="{StaticResource TextBlockStyle}"                 
         Name="textBlockMileage"                 
         Text="Пробег, Км" />
-      <TextBox Name="textBoxMileage"  IsReadOnly="{Binding IsReadOnly.Field[Mileage]}"
+      <TextBox 
+        Name="textBoxMileage"        
+        IsReadOnly="{Binding IsReadOnly.Field[Mileage]}"
         Text="{
-        Binding DialogItem.Mileage,
-        ValidatesOnDataErrors=True, 
-        NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged}" />
+          Binding DialogItem.Mileage,
+          ValidatesOnDataErrors=True, 
+          NotifyOnValidationError=True, 
+          UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
 
   </StackPanel>

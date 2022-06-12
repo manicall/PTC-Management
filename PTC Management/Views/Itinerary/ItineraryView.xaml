@@ -40,7 +40,7 @@
           <DataGridTextColumn Header="ФИО сотрудника">
             <DataGridTextColumn.Binding>
               <MultiBinding StringFormat="{}{0} {1} {2}">
-                <Binding Path="Employee.Surname" />
+                <Binding Path="Employee.Surname" UpdateSourceTrigger="PropertyChanged"/>
                 <Binding Path="Employee.Name" />
                 <Binding Path="Employee.Patronymic" />
               </MultiBinding>

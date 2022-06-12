@@ -86,7 +86,7 @@ namespace PTC_Management.EntityFramework
                 {
                     case "Id":
                         if (string.IsNullOrEmpty(Id.ToString()))
-                            error = "пустое";
+                            error = "Поле не может быть пустым";
                         break;
                 }
                 return error;

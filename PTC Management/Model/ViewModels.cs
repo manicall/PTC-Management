@@ -11,22 +11,18 @@ namespace PTC_Management.Model
             WindowParameters = windowParameters;
         }
 
-        public T GetNewModelView<T>(int width) where T : ViewModelBaseEntity, new()
+        public T GetNewModelView<T>() where T : ViewModelBaseEntity, new()
         {
-            var viewModel = new T
+            return new T
             {
                 WindowParameters = WindowParameters
             };
-            viewModel.WindowParameters.WindowSize.Width = width;
-
-            return viewModel;
         }
 
         public ItineraryViewModel GetItineraryVM(int idTransport)
         {
             return new ItineraryViewModel(idTransport) { WindowParameters = WindowParameters };
         }
-
 
         public MaintanceLogViewModel GetMaintanceLogVM(int idTransport)
         {
@@ -42,11 +38,11 @@ namespace PTC_Management.Model
         {
             switch (destination)
             {
-                case Destinations.employee: return GetNewModelView<EmployeeViewModel>(Size.defaultWidth);
-                case Destinations.route: return GetNewModelView<RouteViewModel>(Size.defaultWidth);
-                case Destinations.transport: return GetNewModelView<TransportViewModel>(Size.defaultWidth);
-                case Destinations.itinerary: return GetNewModelView<ItineraryViewModel>(Size.defaultWidth);
-                case Destinations.schedule: return GetNewModelView<ScheduleOfEmployeeViewModel>(1000);
+                case Destinations.employee: return GetNewModelView<EmployeeViewModel>();
+                case Destinations.route: return GetNewModelView<RouteViewModel>();
+                case Destinations.transport: return GetNewModelView<TransportViewModel>();
+                case Destinations.itinerary: return GetNewModelView<ItineraryViewModel>();
+                case Destinations.schedule: return GetNewModelView<ScheduleOfEmployeeViewModel>();
                 default: return null;
             }
         }
@@ -69,9 +65,9 @@ namespace PTC_Management.Model
                     return partOfTitle + " записи технического обслуживания";
                 case Destinations.logOfDepartureAndEntry:
                     return partOfTitle + " записи въезда и выезда";
-                default: return null;
+                default: 
+                    return null;
             }
         }
     }
-
 }

@@ -86,7 +86,7 @@ namespace PTC_Management.EntityFramework
             // отмечаем сущность как добавленную
             db.Entry(item).State = EntityState.Added;
 
-            return TrySaveChanges("Ошибка добавления записи в базу данных");
+            return TrySaveChanges();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace PTC_Management.EntityFramework
             // отмечаем сущность как измененную
             db.Entry(item).State = EntityState.Modified;
 
-            return TrySaveChanges("Ошибка изменения записи в базе данных");
+            return TrySaveChanges();
         }
 
         /// <summary>
@@ -139,13 +139,24 @@ namespace PTC_Management.EntityFramework
             var temp = selectedItem.Clone();
             SetEntities(selectedItem, item);
 
+            // todo делать номера маршрута уникальными при копировании
+            //if (item is Route) {
+            //    var route = set.Local.Max((i) => i);
+
+            //    List<T> Routes = Enumerable.Range(1, Count).Select(i =>
+            //    {
+            //        var r = (T)selectedItem.Clone();
+            //        (r as Route).Number = (route as Route).Number + i;
+            //        return r;
+            //    }).ToList();
+            //    set.AddRange(Routes);
+            //}
+
             // Инициализация списка копий
             List<T> Items = Enumerable.Range(1, Count).Select(i => (T)selectedItem.Clone()).ToList();
             set.AddRange(Items);
 
-
-            if (!TrySaveChanges("Ошибка копирования записей")) 
-                return false;
+            if (!TrySaveChanges()) return false;
 
             // возвращение selectedItem в исходное состояние
             selectedItem.SetFields(temp);
@@ -154,12 +165,13 @@ namespace PTC_Management.EntityFramework
             return true;
         }
 
-        private bool TrySaveChanges(string caption)
+        private bool TrySaveChanges()
         {
             try { db.SaveChanges(); }
             catch (DbUpdateException ex)
             {
-                //MessageBox.Show(
+                // сообщения с подробной информацией об ошибке
+                // MessageBox.Show(
                 //    ex.InnerException.InnerException.Message, caption,
                 //    MessageBoxButton.OK, MessageBoxImage.Error);
 

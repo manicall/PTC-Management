@@ -4,30 +4,26 @@ using PTC_Management.Commands;
 using PTC_Management.Model;
 using PTC_Management.ViewModel;
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
-using System.Windows.Data;
 
 namespace PTC_Management
 {
     class MainWindowViewModel : ViewModelBaseWindow
     {
-
         private Backup backup;
         private Destinations destinations;
         private IsEnabled isEnabled;
 
         public Destinations Destinations
         {
-            get => destinations ?? new Destinations();
+            get => destinations ?? (destinations = new Destinations());
             set => destinations = value;
         }
 
         public Backup Backup
         {
-            get => backup ?? new Backup();
+            get => backup ?? (backup = new Backup());
             set => backup = value;
         }
 
@@ -39,17 +35,21 @@ namespace PTC_Management
                     {
                         Field = new Dictionary<string, string>()
                         {
-                            ["Employee"] = "True",
-                            ["Route"] = "True",
-                            ["Transport"] = "True",
-                            ["Itinerary"] = "True",
-                            ["Schedule"] = "True"
+                            [Destinations.Employee] = "True",
+                            [Destinations.Route] = "True",
+                            [Destinations.Transport] = "True",
+                            [Destinations.Itinerary] = "True",
+                            [Destinations.Schedule] = "True"
                         }
                     };
                 }
                 return isEnabled;
             }
-            set => isEnabled = value; }
+            set => isEnabled = value; 
+        }
+
+        public Command<string> NavigationCommand { get; private set; }
+        public Command<string> BackUpCommand { get; private set; }
 
         public MainWindowViewModel()
         {
@@ -65,17 +65,11 @@ namespace PTC_Management
 
             // установка представления по умолчанию
             CurrentViewModel = viewModels.GetViewModel(Destinations.employee);
-            IsEnabled.Field["Employee"] = "False";
+            IsEnabled.Field[Destinations.employee] = "False";
 
             // для отображения времени запуска
             RunTime.Stop();
         }
-
-        #region Команды
-        public Command<string> NavigationCommand { get; private set; }
-        public Command<string> BackUpCommand { get; private set; }
-
-        #endregion
 
         #region Методы
         /// <summary>
@@ -92,48 +86,21 @@ namespace PTC_Management
         /// </summary>
         private void LockCurrentViewModelButton(string destination)
         {
-            // обнуление состояния кнопки
+            // обнуление состояния кнопок
             IsEnabled.Field = new Dictionary<string, string>()
             {
-                ["Employee"] = "True",
-                ["Route"] = "True",
-                ["Transport"] = "True",
-                ["Itinerary"] = "True",
-                ["Schedule"] = "True"
+                [Destinations.Employee]  = "True",
+                [Destinations.Route]     = "True",
+                [Destinations.Transport] = "True",
+                [Destinations.Itinerary] = "True",
+                [Destinations.Schedule]  = "True"
             };
 
-            // изменение состояния кнопки
-            switch (destination)
-            {
-                case Destinations.employee:
-                    IsEnabled.Field["Employee"] = "False";
-                    break;
-                case Destinations.route:
-                    IsEnabled.Field["Route"] = "False";
-                    break;
-                case Destinations.transport:
-                    IsEnabled.Field["Transport"] = "False";
-                    break;
-                case Destinations.itinerary:
-                    IsEnabled.Field["Itinerary"] = "False";
-                    break;
-                case Destinations.schedule:
-                    IsEnabled.Field["Schedule"] = "False";
-                    break;
-
-            }
+            // блокировка нажатой кнопки
+            IsEnabled.Field[destination] = "False";
 
             // вызов события OnPropertyChanged
-            IsEnabled.Field = new Dictionary<string, string>()
-            {
-                ["Employee"] = IsEnabled.Field["Employee"],
-                ["Route"] = IsEnabled.Field["Route"],
-                ["Transport"] = IsEnabled.Field["Transport"],
-                ["Itinerary"] = IsEnabled.Field["Itinerary"],
-                ["Schedule"] = IsEnabled.Field["Schedule"]
-            };
-
-
+            IsEnabled.RaisePropertyChanged();
         }
 
         /// <summary>
@@ -145,8 +112,10 @@ namespace PTC_Management
             {
                 case Backup._create: CreateBackUp(); break;
                 case Backup._restore: RestoreBackUp(); break;
-                default: break;
+                default: return;
             }
+
+            CurrentViewModel = null;
         }
 
         /// <summary>
@@ -154,9 +123,11 @@ namespace PTC_Management
         /// </summary>
         private void CreateBackUp()
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = GetFilter();
-            dialog.Title = "Создание файла восстановления";
+            SaveFileDialog dialog = new SaveFileDialog
+            {
+                Filter = GetFilter(),
+                Title = "Создание файла восстановления"
+            };
 
             if (dialog.ShowDialog() == true) Backup.CreateBackup(dialog.FileName);
         }
@@ -166,9 +137,11 @@ namespace PTC_Management
         /// </summary>
         private void RestoreBackUp()
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = GetFilter();
-            dialog.Title = "Открытие файла восстановления";
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                Filter = GetFilter(),
+                Title = "Открытие файла восстановления"
+            };
 
             if (dialog.ShowDialog() == true) Backup.RestoreBackup(dialog.FileName);
         }
@@ -184,5 +157,4 @@ namespace PTC_Management
 
         #endregion
     }
-
 }

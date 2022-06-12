@@ -20,9 +20,9 @@
   
   <StackPanel>
     <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-      <Button Style="{StaticResource BlackButton}"
-              Command="{Binding DialogSelectCommand}"
-              Width="auto" Content="Выбрать запись" />
+      <Button 
+        Command="{Binding DialogSelectCommand}"
+        Width="auto" Content="Выбрать запись" />
     </StackPanel>
     
     <ContentControl Content="{Binding CurrentViewModel}" />

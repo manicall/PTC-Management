@@ -10,7 +10,6 @@
        d:DesignHeight="200" d:DesignWidth="350">
 
   <UserControl.Resources>
-
     <DataTemplate DataType="{x:Type viewModels:DialogViewModel}">
       <views:EmployeeDialogView />
     </DataTemplate>
@@ -37,8 +36,7 @@
       <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="BlackConditionButton"
-           BasedOn="{StaticResource BlackButton}">
+    <Style TargetType="Button" x:Key="ConditionButton">
       <Setter Property="IsEnabled" Value="False"/>
       <Style.Triggers>
         <MultiDataTrigger>
@@ -59,19 +57,23 @@
 
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
-      <Button Name="buttonWriteAndClose" 
-              Style="{StaticResource BlackConditionButton }" 
-              Command="{Binding DialogActionCommand }"
-              CommandParameter="{Binding Actions.WriteAndClose}" 
-              Margin="0 0 35 0" Width="auto"
-          >Записать и закрыть</Button>
-      <Button Name="buttonWrite" Style="{StaticResource BlackConditionButton }" 
-              Command="{Binding DialogActionCommand }" 
-              CommandParameter="{Binding Actions.Write}" 
-           >Записать</Button>
-      <Button Name="buttonClose" Style="{StaticResource BlackButton }" 
-              Command="{Binding DialogActionCommand }" 
-              CommandParameter="{Binding Actions.Close}" >Закрыть</Button>
+      <Button 
+        Name="buttonWriteAndClose" 
+        Style="{StaticResource ConditionButton }" 
+        Command="{Binding DialogActionCommand }"
+        CommandParameter="{Binding Actions.WriteAndClose}" 
+        Margin="0 0 35 0" Width="auto"
+        Content="Записать и закрыть" />
+      <Button 
+        Name="buttonWrite" Style="{StaticResource ConditionButton }" 
+        Command="{Binding DialogActionCommand }" 
+        CommandParameter="{Binding Actions.Write}" 
+        Content="Записать" />
+      <Button 
+        Command="{Binding DialogActionCommand }" 
+        CommandParameter="{Binding Actions.Close}"  
+        Content="Закрыть" 
+        Margin="10 0 0 0" />
     </StackPanel>
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
       <TextBlock Name="textBlockCountCopy" Text="Количество копий" />
@@ -88,24 +90,28 @@
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockName" Text="Имя" />
-      <TextBox Name="textBoxName" 
+      <TextBox
+        Name="textBoxName"
+        MaxLength="50"
         Text="{
-        Binding DialogItem.Name,
-        ValidatesOnDataErrors=True, 
-        NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged}" />
+          Binding DialogItem.Name,
+          ValidatesOnDataErrors=True, 
+          NotifyOnValidationError=True, 
+          UpdateSourceTrigger=PropertyChanged
+        }" />
     </StackPanel>
     <StackPanel >
       <TextBlock Name="textBlockLicensePlate" Text="Гос. Номер" />
-      <TextBox Name="textBoxLicensePlate" 
+      <TextBox 
+        Name="textBoxLicensePlate" 
+        MaxLength="10"
         Text="{
-        Binding DialogItem.LicensePlate,
-        ValidatesOnDataErrors=True, 
-        NotifyOnValidationError=True, 
-        UpdateSourceTrigger=PropertyChanged}" />
+          Binding DialogItem.LicensePlate,
+          ValidatesOnDataErrors=True, 
+          NotifyOnValidationError=True, 
+          UpdateSourceTrigger=PropertyChanged
+        }" />
     </StackPanel>
 
   </StackPanel>
-
-
 </UserControl>

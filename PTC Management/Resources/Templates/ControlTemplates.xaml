@@ -5,29 +5,35 @@
     <StackPanel Orientation="Horizontal">
       <StackPanel Visibility="{Binding TableActionButtonsVisible}" 
                     Margin="0,5,0,5" Orientation="Horizontal">
-        <Button Name="create" Style="{StaticResource BlackButton}" 
-              Content="Создать"
-              Command = "{Binding TableAction}"
-              CommandParameter="{Binding Actions.Add}"/>
-        <Button Name="update" Style="{StaticResource BlackButton}" 
-              Content="Изменить"
-              Command = "{Binding TableAction}"
-              CommandParameter="{Binding Actions.Update}"/>
-        <Button Name="delete" Style="{StaticResource BlackButton}" 
-              Content="Удалить" 
-              Command = "{Binding TableAction}"
-              CommandParameter="{Binding Actions.Remove}"/>
-        <Button Name="copy" Style="{StaticResource BlackButton}" 
-              Visibility="{Binding CopyButtonVisibility}"
-              Content="Копировать" 
-              Command = "{Binding TableAction}"
-              CommandParameter="{Binding Actions.Copy}"/>
+        <Button 
+          Name="create" 
+          Style="{StaticResource BlackButton}" 
+          Content="Создать"
+          Command = "{Binding TableAction}"
+          CommandParameter="{Binding Actions.Add}"/>
+        <Button 
+          Name="update" Style="{StaticResource BlackButton}" 
+          Content="Изменить"
+          Command = "{Binding TableAction}"
+          CommandParameter="{Binding Actions.Update}"/>
+        <Button 
+          Name="delete" Style="{StaticResource BlackButton}" 
+          Content="Удалить" 
+          Command = "{Binding TableAction}"
+          CommandParameter="{Binding Actions.Remove}"/>
+        <Button 
+          Name="copy" Style="{StaticResource BlackButton}" 
+          Visibility="{Binding CopyButtonVisibility}"
+          Content="Копировать" 
+          Command = "{Binding TableAction}"
+          CommandParameter="{Binding Actions.Copy}"/>
       </StackPanel>
       <StackPanel Orientation="Horizontal" Height="28" >
         <TextBlock Text="Поиск:" Margin="5"/>
-        <TextBox Name="TextBoxSearch" 
-               Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
-               Width="200" Margin="5"/>
+        <TextBox 
+          Name="TextBoxSearch" 
+          Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
+          Width="200" Margin="5"/>
       </StackPanel>
     </StackPanel>
   </ControlTemplate>

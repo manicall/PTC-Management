@@ -23,19 +23,23 @@ namespace PTC_Management.Model
 
             string hours = null, minutes = null;
 
+
             if (split.Length > 1)
             {
                 hours = split[0];
                 minutes = split[1];
 
-                if (int.TryParse(hours, out _))
+                int res; 
+                while (int.TryParse(hours, out res))
                 {
-                    if (hours.Length > 2) hours = hours.Remove(2);
+                    if (res > 23) hours = hours.Remove(hours.Length - 1);
+                    else break;
                 }
 
-                if (int.TryParse(minutes, out _))
+                while (int.TryParse(minutes, out res))
                 {
-                    if (minutes.Length > 2) minutes = minutes.Remove(2);
+                    if (res > 59) minutes = minutes.Remove(minutes.Length - 1);
+                    else break;
                 }
 
             }

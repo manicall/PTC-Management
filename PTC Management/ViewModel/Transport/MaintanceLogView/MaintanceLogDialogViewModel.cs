@@ -5,6 +5,7 @@ using PTC_Management.ViewModel.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Remoting.Lifetime;
 
 namespace PTC_Management.ViewModel
@@ -74,13 +75,12 @@ namespace PTC_Management.ViewModel
         {
             var itemsList = ViewModelHelper.ItemsList;
             var currentML = DialogItem as MaintanceLog;
-            var index = itemsList.FindLastIndex(maintanceLog => 
-                !string.IsNullOrEmpty(maintanceLog.MaintenanceType));
+            var index = GetIndex(itemsList, "TO-2");
 
             // не найдено TO-2
             if (index == -1)
             {
-                if (itemsList.Sum(maintanceLog => maintanceLog.Mileage) + currentML.Mileage >= 10000)
+                if (GetSum(itemsList) + currentML.Mileage >= 10000)
                 {
                     currentML.MaintenanceType = "TO-2";
                 }
@@ -90,35 +90,32 @@ namespace PTC_Management.ViewModel
 
                     if (index == -1) // Не найдено TO-1
                     {
-                        if (itemsList.Sum(maintanceLog => maintanceLog.Mileage) + currentML.Mileage >= 2500)
+                        if (GetSum(itemsList) + currentML.Mileage >= 2500)
                         {
                             currentML.MaintenanceType = "TO-1";
                         }
                     }
                     else
                     {
-                        if (itemsList
-                            .GetRange(index, itemsList.Count - index - 1)
-                            .Sum(maintanceLog => maintanceLog.Mileage) + currentML.Mileage >= 2500)
+                        if (GetRangeSum(itemsList, index) + currentML.Mileage >= 2500)
                         {
                             currentML.MaintenanceType = "TO-1";
                         }
                     }
-
                 }
             }
             else // TO-2 найдено
             {
-                if (itemsList
-                    .GetRange(index, itemsList.Count - index - 1)
-                    .Sum(maintanceLog => maintanceLog.Mileage) + currentML.Mileage >= 10000)
+                if (GetRangeSum(itemsList, index) + currentML.Mileage >= 10000)
                 {
                     currentML.MaintenanceType = "TO-2";
                 }
                 // ТО-2 еще не нужно проводить
                 else
                 {
-                    if (itemsList.Sum(maintanceLog => maintanceLog.Mileage) + currentML.Mileage >= 2500)
+                    index = GetIndex(itemsList, "TO-1");
+
+                    if (GetRangeSum(itemsList, index) + currentML.Mileage >= 2500)
                     {
                         currentML.MaintenanceType = "TO-1";
                     }
@@ -137,12 +134,24 @@ namespace PTC_Management.ViewModel
 
         }
 
+        int? GetRangeSum(List<MaintanceLog> maintanceLogs, int index)
+        {
+            return maintanceLogs
+                .GetRange(index, maintanceLogs.Count - index - 1)
+                .Sum(maintanceLog => maintanceLog.Mileage);
+        }
+
+        int? GetSum(List<MaintanceLog> maintanceLogs)
+        {
+            return maintanceLogs.Sum(maintanceLog => maintanceLog.Mileage);
+        }
+
+
         int GetIndex(List<MaintanceLog> itemsList, string maintanceType)
         {
             return itemsList.FindLastIndex(maintanceLog =>
                 maintanceLog.MaintenanceType == maintanceType);
         }
-
 
         protected override void OnDialogSelectСommand(string destination)
         {
