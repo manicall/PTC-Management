@@ -9,18 +9,6 @@ using System.Runtime.Remoting.Lifetime;
 
 namespace PTC_Management.ViewModel
 {
-    public class IsReadOnly
-    {
-        public Dictionary<string, string> Field { get; set; }
-
-        public static string Mileage { get => "Mileage"; }
-        public static string SpeedometerInfoOnDeparture { get => "SpeedometerInfoOnDeparture"; }
-
-        public static string True { get => "True"; }
-
-        public static string False { get => "False"; }
-    }
-
     internal class MaintanceLogDialogViewModel : DialogViewModel
     {
         private IsReadOnly isReadOnly;
@@ -32,8 +20,8 @@ namespace PTC_Management.ViewModel
                     {
                         Field = new Dictionary<string, string>()
                         {
-                            [IsReadOnly.Mileage] = IsReadOnly.True,
-                            [IsReadOnly.SpeedometerInfoOnDeparture] = IsReadOnly.True,
+                            ["Mileage"] = "True",
+                            ["SpeedometerInfoOnDeparture"] = "True",
                         }
                     };
                 }
@@ -64,7 +52,7 @@ namespace PTC_Management.ViewModel
 
             if (ItemsList.Count == 0)
             {
-                IsReadOnly.Field[IsReadOnly.SpeedometerInfoOnDeparture] = IsReadOnly.False;
+                IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
             }
             else {
                 if (DialogItem is MaintanceLog maintanceLog) {

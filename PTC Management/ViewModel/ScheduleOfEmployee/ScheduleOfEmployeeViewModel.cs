@@ -39,15 +39,18 @@ namespace PTC_Management.ViewModel
 
             this.sizeQuantityTable = new DataTable();
 
-            ColumnDefinition col1 = new ColumnDefinition();
-            col1.Width = GridLength.Auto;
-            col1.Name = "Сотрудник";
+            ColumnDefinition col1 = new ColumnDefinition
+            {
+                Width = GridLength.Auto,
+                Name = "Сотрудник"
+            };
 
             DataColumn sizeQuantityColumn = new DataColumn();
             sizeQuantityColumn.ColumnName = "Сотрудник";
             
-            sizeQuantityTable.Columns.Add(sizeQuantityColumn);
+            //sizeQuantityTable.Columns.Add(col1);
 
+            
 
 
             for (int i = 1, length = 31; i <= length; i++)

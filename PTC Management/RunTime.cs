@@ -21,7 +21,7 @@ namespace PTC_Management
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
                 ts.Hours, ts.Minutes, ts.Seconds,
                 ts.Milliseconds / 10);
-            Console.WriteLine("\n\n\nRunTime " + elapsedTime);
+            Console.WriteLine("\n\nRunTime " + elapsedTime + "\n\n");
         }
 
     }

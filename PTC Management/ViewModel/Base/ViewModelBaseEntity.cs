@@ -16,6 +16,8 @@ namespace PTC_Management.ViewModel
         /// Поле, именяемое свойством SelectedIndex
         /// </summary>
         private int selectedIndex;
+        private string copyButtonVisibility;
+        private string tableActionButtonsVisible;
 
         /// <summary>
         /// Поле, изменяемое свойством FilterText
@@ -50,15 +52,20 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Определяет видимость кнопок, изменяющих записи таблицы
         /// </summary>
-        public string TableActionButtonsVisible { get; set; }
+        public string TableActionButtonsVisible { 
+            get => tableActionButtonsVisible ?? Visibility.visible; 
+            set => tableActionButtonsVisible = value; 
+        }
 
-        public string CopyButtonVisibility { get; set; }
+        public string CopyButtonVisibility
+        {
+            get => copyButtonVisibility ?? Visibility.visible;
+            set => copyButtonVisibility = value;
+        }
 
         public ViewModelBaseEntity()
         {
             TableAction = new Command<string>(OnTableAction);
-
-            TableActionButtonsVisible = Visibility.visible;
         }
 
         /// <summary>

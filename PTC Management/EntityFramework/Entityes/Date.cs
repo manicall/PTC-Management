@@ -20,10 +20,7 @@ namespace PTC_Management.EntityFramework
 
         public int IdEmployee { get; set; }
 
-        public int IdLaborShift { get; set; }
-
         public virtual Employee Employee { get; set; }
 
-        public virtual LaborShift LaborShift { get; set; }
     }
 }

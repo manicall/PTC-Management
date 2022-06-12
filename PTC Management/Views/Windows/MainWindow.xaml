@@ -60,26 +60,31 @@
           Content = "Сотрудники" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Employee}"
+          IsEnabled="{Binding IsEnabled.Field[Employee]}"
           Grid.Column = "0" />
         <Button Name="buttonRoute"
           Content = "Маршруты" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Route}" 
+          IsEnabled="{Binding IsEnabled.Field[Route]}"
           Grid.Column = "1" />
         <Button Name="buttonTransport"
           Content = "Транспорт" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Transport}" 
+          IsEnabled="{Binding IsEnabled.Field[Transport]}"
           Grid.Column = "2" />
         <Button Name="buttonItinerary"
           Content = "Журнал путевых листов" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Itinerary}" 
+          IsEnabled="{Binding IsEnabled.Field[Itinerary]}"
           Grid.Column = "3" />
         <Button Name="buttonSchedule"
           Content = "Расписание" 
           Command = "{Binding NavigationCommand}" 
           CommandParameter = "{Binding Destinations.Schedule}" 
+          IsEnabled="{Binding IsEnabled.Field[Schedule]}"
           Grid.Column = "4" />
       </Grid>
 
@@ -106,10 +111,6 @@
       Command="{Binding CurrentViewModel.TableAction}"
       CommandParameter="{Binding Actions.Copy}"
       Gesture="ALT+C" />
-    <MouseBinding 
-      Command="{Binding CurrentViewModel.TableAction}"
-      CommandParameter="{Binding Actions.Update}"
-      MouseAction="LeftDoubleClick"/>
   </Window.InputBindings>
   
   <Window.ContextMenu >

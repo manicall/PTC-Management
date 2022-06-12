@@ -85,7 +85,6 @@ C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Itin
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryView.g.cs
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Route\RouteDialogView.g.cs
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Route\RouteView.g.cs
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.g.cs
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.g.cs
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.g.cs
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Transport\MaintanceLogView\MaintanceLogDialogView.g.cs
@@ -110,7 +109,6 @@ C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Itin
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryView.baml
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Route\RouteDialogView.baml
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Route\RouteView.baml
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.baml
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.baml
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.baml
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\Transport\MaintanceLogView\MaintanceLogDialogView.baml
@@ -152,3 +150,5 @@ C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\PTC Manage
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.CoreCompileInputs.cache
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.CopyComplete
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\PTC Management.exe
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\SheduleOfEmployee\ScheduleOfEmployeeView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\SheduleOfEmployee\ScheduleOfEmployeeView.baml

@@ -10,7 +10,6 @@ namespace PTC_Management.EntityFramework
         public virtual DbSet<Date> Date { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Itinerary> Itinerary { get; set; }
-        public virtual DbSet<LaborShift> LaborShift { get; set; }
         public virtual DbSet<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
         public virtual DbSet<MaintanceLog> MaintanceLog { get; set; }
         public virtual DbSet<Route> Route { get; set; }
@@ -21,22 +20,6 @@ namespace PTC_Management.EntityFramework
             modelBuilder.Entity<Date>()
                 .Property(e => e.Status)
                 .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Employee>()
-                .Property(e => e.Surname)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Employee>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Employee>()
-                .Property(e => e.Patronymic)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Employee>()
-                .Property(e => e.DriverLicense)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Employee>()
@@ -63,25 +46,20 @@ namespace PTC_Management.EntityFramework
                 .HasForeignKey(e => e.IdItinerary)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<LaborShift>()
-                .HasMany(e => e.Date)
-                .WithRequired(e => e.LaborShift)
-                .HasForeignKey(e => e.IdLaborShift)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<MaintanceLog>()
+                .Property(e => e.MaintenanceType)
+                .IsFixedLength()
+                .IsUnicode(false);
 
             modelBuilder.Entity<Route>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
+                .Property(e => e.Distant)
+                .HasPrecision(4, 1);
 
             modelBuilder.Entity<Route>()
                 .HasMany(e => e.Itinerary)
                 .WithRequired(e => e.Route)
                 .HasForeignKey(e => e.IdRoute)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Transport>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
 
             modelBuilder.Entity<Transport>()
                 .HasMany(e => e.Itinerary)

@@ -52,6 +52,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -86,6 +88,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Converter\TimeSpanConverter.cs" />
+    <Compile Include="Model\IsEnabled.cs" />
+    <Compile Include="Model\IsReadOnly.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />
@@ -131,7 +135,7 @@
     <Compile Include="Views\Route\RouteView.xaml.cs">
       <DependentUpon>RouteView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScheduleOfEmployeeView.xaml.cs">
+    <Compile Include="Views\SheduleOfEmployee\ScheduleOfEmployeeView.xaml.cs">
       <DependentUpon>ScheduleOfEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.xaml.cs">
@@ -175,7 +179,6 @@
     <Compile Include="EntityFramework\Entityes\Date.cs" />
     <Compile Include="EntityFramework\Entityes\Employee.cs" />
     <Compile Include="EntityFramework\Entityes\Itinerary.cs" />
-    <Compile Include="EntityFramework\Entityes\LaborShift.cs" />
     <Compile Include="EntityFramework\Entityes\LogOfDepartureAndEntry.cs" />
     <Compile Include="EntityFramework\Entityes\MaintanceLog.cs" />
     <Compile Include="EntityFramework\Entityes\Route.cs" />
@@ -225,7 +228,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ScheduleOfEmployeeView.xaml">
+    <Page Include="Views\SheduleOfEmployee\ScheduleOfEmployeeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -313,9 +316,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="app.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\app.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

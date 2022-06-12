@@ -70,7 +70,10 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет действие заданное кнопкой на диалоговом окне
         /// </summary>
-        protected virtual void OnDialogActionCommand(string action) { throw new NotImplementedException(); }
+        protected virtual void OnDialogActionCommand(string action) 
+        {
+            DoDialogActionCommand(action); 
+        }
 
         protected bool DoDialogActionCommand(string action) {
             var result = true;
@@ -120,6 +123,9 @@ namespace PTC_Management.ViewModel
             return result;
         }
 
+        /// <summary>
+        /// Возвращает сообщение которое необходимо передать строке состояния
+        /// </summary>
         private string GetStatusBarMessage(string action, bool result)
         {
             switch (action)
@@ -150,8 +156,7 @@ namespace PTC_Management.ViewModel
         /// <summary> Метод показа модели представления в окне </summary>
         public void Show()
         {
-            window = new Dialog();
-            window.DataContext = this;
+            window = new Dialog { DataContext = this };
             window.Closed += (sender, e) => Closed();
             window.ShowDialog();
         }

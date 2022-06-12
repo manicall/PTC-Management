@@ -82,8 +82,10 @@
       <TextBlock
         Name="textBlockCountCopy" 
         Text="Количество копий" />
-      <TextBox MaxLength="3"
-        Name ="textBoxCountCopy" Width="50"  
+      <TextBox 
+        Name ="textBoxCountCopy"
+        MaxLength="3"
+        Width="50"  
         Text="{
           Binding CopyParameters.Count,
           ValidatesOnDataErrors=True, 

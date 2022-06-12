@@ -106,7 +106,9 @@
         Text="Количество копий" 
         Style="{StaticResource TextBlockStyle}" />
       <TextBox 
-        Name ="textBoxCountCopy" Width="50"  
+        Name ="textBoxCountCopy" 
+        MaxLength="3" 
+        Width="50"  
         Text="{
           Binding CopyParameters.Count,
           ValidatesOnDataErrors=True, 
