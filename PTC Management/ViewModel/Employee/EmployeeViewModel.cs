@@ -6,7 +6,7 @@ namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<Employee> viewModelHelper;
+        readonly ViewModelHelper<Employee> viewModelHelper;
 
         public EmployeeViewModel()
         {
@@ -26,17 +26,12 @@ namespace PTC_Management.ViewModel
         {
             Employee current = entity as Employee;
 
-            if (string.IsNullOrWhiteSpace(FilterText)
+            return string.IsNullOrWhiteSpace(FilterText)
                  // && !current.Id.ToString().Contains(FilterText)
                  || current.Surname.Contains(FilterText)
                  || current.Name.Contains(FilterText)
-                 || current.Patronymic != null &&
-                     current.Patronymic.Contains(FilterText)
-                 || current.DriverLicense.Contains(FilterText))
-            {
-                return true;
-            }
-            return false;
+                 || current.Patronymic != null && current.Patronymic.Contains(FilterText)
+                 || current.DriverLicense.Contains(FilterText);
         }
         #endregion
 

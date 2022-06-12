@@ -70,49 +70,76 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет действие заданное кнопкой на диалоговом окне
         /// </summary>
-        protected virtual void OnDialogActionCommand(string action)
-        {
+        protected virtual void OnDialogActionCommand(string action) { throw new NotImplementedException(); }
+
+        protected bool DoDialogActionCommand(string action) {
+            var result = true;
             switch (action)
             {
                 case Actions.writeAndClose:
-                    DoAction(MainWindowAction);
+                    result = DoAction(MainWindowAction);
                     Close();
                     break;
                 case Actions.write:
-                    DoAction(MainWindowAction);
+                    result = DoAction(MainWindowAction);
                     break;
                 case Actions.close:
                     Close();
                     break;
             }
+            return result;
         }
 
         /// <summary>
         /// Изменяет записи в базе данных
         /// </summary>
-        protected void DoAction(string action)
+        protected bool DoAction(string action)
         {
+            bool result;
             Entity entity = DialogItem.Clone();
+
             switch (action)
             {
                 case Actions.add:
-                    entity.Add();
-                    WindowParameters.StatusBarMessage = "Запись успешно добавлена";
+                    result = entity.Add();
                     break;
                 case Actions.update:
                     SelectedItem.SetFields(DialogItem);
-                    SelectedItem.Update();
-                    WindowParameters.StatusBarMessage = "Запись успешно изменена";
+                    result = SelectedItem.Update();
                     break;
                 case Actions.copy:
-                    entity.Copy(SelectedItem, CopyParameters.Count);
-                    WindowParameters.StatusBarMessage = "Запись успешно скопирована";
+                    result = entity.Copy(SelectedItem, CopyParameters.Count);
                     break;
                 default:
                     throw new ArgumentException("Действие не обработано");
             }
 
+            WindowParameters.StatusBarMessage = GetStatusBarMessage(action, result);
+
             DialogItem.Id = entity.Id;
+            return result;
+        }
+
+        private string GetStatusBarMessage(string action, bool result)
+        {
+            switch (action)
+            {
+                case Actions.add:
+                    if (result) return "Запись успешно добавлена";
+                    else return "Не удалось добавить запись";
+                    
+                case Actions.update:
+                    if (result) return "Запись успешно изменена";
+                    else return "Не удалось изменить запись";
+                    
+                case Actions.copy:
+                    if (result) return "Запись успешно скопирована";
+                    else return "Не удалось скопировать запись";
+
+                default: 
+                    throw new ArgumentException("Действие не обработано");
+            }
+          
         }
 
         /// <summary>

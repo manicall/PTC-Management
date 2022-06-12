@@ -5,16 +5,18 @@ namespace PTC_Management.ViewModel
 {
     internal class TransportInfoWindowViewModel : ViewModelBaseWindow
     {
-        public TransportInfoWindowViewModel()
-        {
-
-        }
+        // необходимо обязательно определить
+        // конструктор без параметров,
+        // так как его пытается найти метод
+        // InitializeComponent() в классе TransportInfoWindow
+        public TransportInfoWindowViewModel() { }
 
         public TransportInfoWindowViewModel(string destination, int idTransport)
         {
             switch (destination)
             {
                 case Destinations.maintanceLog:
+                    WindowParameters.WindowSize.Width = 900;
                     CurrentViewModel = viewModels.GetMaintanceLogVM(idTransport);
                     Title = "Журнал технического обслуживания";
 

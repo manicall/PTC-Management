@@ -1,5 +1,7 @@
 ﻿
 using System.Data;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace PTC_Management.ViewModel
 {
@@ -37,9 +39,16 @@ namespace PTC_Management.ViewModel
 
             this.sizeQuantityTable = new DataTable();
 
+            ColumnDefinition col1 = new ColumnDefinition();
+            col1.Width = GridLength.Auto;
+            col1.Name = "Сотрудник";
+
             DataColumn sizeQuantityColumn = new DataColumn();
             sizeQuantityColumn.ColumnName = "Сотрудник";
+            
             sizeQuantityTable.Columns.Add(sizeQuantityColumn);
+
+
 
             for (int i = 1, length = 31; i <= length; i++)
             {

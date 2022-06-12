@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -78,28 +79,27 @@ namespace PTC_Management.EntityFramework
         /// <summary>
         /// Добавляет запись в таблицу базы данных
         /// </summary>
-        public void Add(T item)
+        public bool Add(T item)
         {
             SetEntities(item);
 
             // отмечаем сущность как добавленную
             db.Entry(item).State = EntityState.Added;
 
-            db.SaveChanges();
+            return TrySaveChanges("Ошибка добавления записи в базу данных");
         }
 
         /// <summary>
-        /// Изменяет запись в таблице базы данных
+        /// Изменяет запись в таблице базы данных1
         /// </summary>
-        public void Update(T item)
+        public bool Update(T item)
         {
             SetEntities(item);
 
             // отмечаем сущность как измененную
             db.Entry(item).State = EntityState.Modified;
 
-            db.SaveChanges();
-
+            return TrySaveChanges("Ошибка изменения записи в базе данных");
         }
 
         /// <summary>
@@ -111,13 +111,13 @@ namespace PTC_Management.EntityFramework
 
             // отмечаем сущность как удаленную
             db.Entry(item).State = EntityState.Deleted;
-
             try { db.SaveChanges(); }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 MessageBox.Show(
-                    ex.InnerException.InnerException.Message,
-                    "Ошибка удаления файла из базы данных",
+                    "Прежде чем совершить удаление, необходимо удалить записи в других таблицах, " +
+                    "которые используют выбранную для удаления запись",
+                    "Ошибка удаления записи из базы данных",
                     MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // отмена удаления
@@ -131,7 +131,7 @@ namespace PTC_Management.EntityFramework
         /// <summary>
         /// Выполняет добавление заданного числа копий в базу данных
         /// </summary>
-        public void Copy(Entity selectedItem, T item, int Count)
+        public bool Copy(Entity selectedItem, T item, int Count)
         {
             /* для избежания ошибок связанных с несовместимостью 
              * объектов разных контекстов, необходимо использовать 
@@ -142,11 +142,32 @@ namespace PTC_Management.EntityFramework
             // Инициализация списка копий
             List<T> Items = Enumerable.Range(1, Count).Select(i => (T)selectedItem.Clone()).ToList();
             set.AddRange(Items);
-            db.SaveChanges();
+
+
+            if (!TrySaveChanges("Ошибка копирования записей")) 
+                return false;
 
             // возвращение selectedItem в исходное состояние
             selectedItem.SetFields(temp);
             Update((T)selectedItem);
+
+            return true;
+        }
+
+        private bool TrySaveChanges(string caption)
+        {
+            try { db.SaveChanges(); }
+            catch (DbUpdateException ex)
+            {
+                //MessageBox.Show(
+                //    ex.InnerException.InnerException.Message, caption,
+                //    MessageBoxButton.OK, MessageBoxImage.Error);
+
+                Console.WriteLine(ex.InnerException.InnerException.Message);
+
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -156,7 +177,6 @@ namespace PTC_Management.EntityFramework
         {
             // заполняет поля значениями как у копии
             selectedItem.SetFields(item);
-            
             SetEntities((T)selectedItem);
         }
 

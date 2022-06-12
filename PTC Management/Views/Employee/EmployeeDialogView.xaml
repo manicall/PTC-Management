@@ -6,6 +6,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:views = "clr-namespace:PTC_Management.Views" 
   xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
+  xmlns:model = "clr-namespace:PTC_Management.Model" 
   d:DataContext="{d:DesignInstance Type=viewModels:EmployeeDialogViewModel}"
   mc:Ignorable="d" 
   d:DesignHeight="200" d:DesignWidth="350">
@@ -57,7 +58,6 @@
         </MultiDataTrigger>
       </Style.Triggers>
     </Style>
-
   </UserControl.Resources>
 
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
@@ -82,7 +82,7 @@
       <TextBlock
         Name="textBlockCountCopy" 
         Text="Количество копий" />
-      <TextBox 
+      <TextBox MaxLength="3"
         Name ="textBoxCountCopy" Width="50"  
         Text="{
           Binding CopyParameters.Count,

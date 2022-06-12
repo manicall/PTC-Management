@@ -26,9 +26,7 @@ namespace PTC_Management.EntityFramework
 
         public virtual Transport Transport { get; set; }
 
-
         public virtual ICollection<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
-
 
         public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
     }
@@ -51,13 +49,13 @@ namespace PTC_Management.EntityFramework
         }
 
         // переопределение методов базового класса
-        public override void Add() => repository.Add(this);
+        public override bool Add() => repository.Add(this);
 
-        public override void Update() => repository.Update(this);
+        public override bool Update() => repository.Update(this);
 
         public override bool Remove() => repository.Remove(this);
 
-        public override void Copy(Entity selectedItem, int count) => repository.Copy(selectedItem, this, count);
+        public override bool Copy(Entity selectedItem, int count) => repository.Copy(selectedItem, this, count);
 
         public override void SetFields(Entity entity)
         {
@@ -94,7 +92,6 @@ namespace PTC_Management.EntityFramework
                 return error;
             }
         }
-
 
         public override string Error
         {

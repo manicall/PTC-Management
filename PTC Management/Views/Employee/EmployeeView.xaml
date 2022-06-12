@@ -28,8 +28,8 @@
             MinRowHeight="20" 
             MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
             ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"         
-            CanUserReorderColumns="False"
             IsReadOnly="True" 
+            CanUserReorderColumns="False"
             CanUserAddRows="false"          
             AutoGenerateColumns="False">
         <DataGrid.Columns>

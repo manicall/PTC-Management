@@ -19,6 +19,7 @@ namespace PTC_Management.Model
         public int Height
         {
             get => height;
+            // вычитание для того, чтобы размер таблицы подстраивался под размер окна
             set => SetProperty(ref height, value - 170);
         }
 

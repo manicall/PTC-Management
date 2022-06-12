@@ -18,6 +18,7 @@
               Command = "{Binding TableAction}"
               CommandParameter="{Binding Actions.Remove}"/>
         <Button Name="copy" Style="{StaticResource BlackButton}" 
+              Visibility="{Binding CopyButtonVisibility}"
               Content="Копировать" 
               Command = "{Binding TableAction}"
               CommandParameter="{Binding Actions.Copy}"/>

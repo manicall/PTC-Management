@@ -24,6 +24,8 @@ namespace PTC_Management.ViewModel
                     Destinations.itinerary,
                     id);
 
+
+
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
         }
@@ -43,7 +45,7 @@ namespace PTC_Management.ViewModel
                 return CheckFIO(current);
             }
 
-            if (string.IsNullOrWhiteSpace(FilterText)
+            return string.IsNullOrWhiteSpace(FilterText)
                  || current.Id.ToString().Contains(FilterText)
                  || current.Employee.DriverLicense.Contains(FilterText)
                  || current.Employee.Surname.Contains(FilterText)
@@ -52,11 +54,7 @@ namespace PTC_Management.ViewModel
                      current.Employee.Patronymic.Contains(FilterText)
                  || current.Transport.Name.Contains(FilterText)
                  || current.Transport.LicensePlate.Contains(FilterText)
-                 || current.Route.Name.Contains(FilterText))
-            {
-                return true;
-            }
-            return false;
+                 || current.Route.Name.Contains(FilterText);
         }
         #endregion
 

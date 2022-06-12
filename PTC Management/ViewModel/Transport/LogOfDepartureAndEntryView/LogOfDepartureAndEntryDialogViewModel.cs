@@ -12,9 +12,15 @@ namespace PTC_Management.ViewModel
         {
             DialogItem = new LogOfDepartureAndEntry();
 
-            (DialogItem as LogOfDepartureAndEntry).Itinerary = new Itinerary();
+            if (DialogItem is LogOfDepartureAndEntry maintanceLog)
+            {
+                maintanceLog.Itinerary = new Itinerary();
+                maintanceLog.Date = DateTime.Now;
 
-            ((LogOfDepartureAndEntry)DialogItem).Date = DateTime.Now;
+                maintanceLog.TimeOnDeparture = new TimeSpan(0);
+                maintanceLog.TimeWhenReturning = new TimeSpan(0);
+            }
+
             CurrentViewModel = this;
         }
 
@@ -48,7 +54,7 @@ namespace PTC_Management.ViewModel
                 switch (destination)
                 {
                     case Destinations.itinerary:
-                        tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem.Clone();
+                        tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem;
                         tempDialogItem.IdItinerary = (int)((Itinerary)selectWindow.ReturnedItem).Id;
                         break;
 

@@ -18,13 +18,13 @@ namespace PTC_Management.EntityFramework
         public abstract string Error { get; }
 
         // методы для переопределения в дочерних классах
-        public abstract void Add();
+        public abstract bool Add();
 
-        public abstract void Update();
+        public abstract bool Update();
 
         public abstract bool Remove();
 
-        public abstract void Copy(Entity selectedItem, int count);
+        public abstract bool Copy(Entity selectedItem, int count);
 
         public abstract void SetFields(Entity entity);
 

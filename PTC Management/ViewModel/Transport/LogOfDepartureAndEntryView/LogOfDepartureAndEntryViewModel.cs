@@ -16,6 +16,8 @@ namespace PTC_Management.ViewModel
                     Destinations.logOfDepartureAndEntry,
                     idTransport);
 
+            CopyButtonVisibility = Visibility.collapsed;
+
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
         }
@@ -27,22 +29,15 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override bool Filter(object entity)
         {
+            
             LogOfDepartureAndEntry current = entity as LogOfDepartureAndEntry;
 
-            //if (!string.IsNullOrWhiteSpace(FilterText)
-            //     && !current.Id.ToString().Contains(FilterText)
-            //     && (current.Surname == null ||
-            //         !current.Surname.Contains(FilterText))
-            //     && (current.Name == null ||
-            //         !current.Name.Contains(FilterText))
-            //     && (current.Patronymic == null ||
-            //         !current.Patronymic.Contains(FilterText))
-            //     && (current.DriverLicense == null ||
-            //         !current.DriverLicense.Contains(FilterText)))
-            //{
-            //    return false;
-            //}
-            return true;
+            return string.IsNullOrWhiteSpace(FilterText)
+                // && !current.Id.ToString().Contains(FilterText)
+                || current.IdItinerary.ToString().Contains(FilterText)
+                || current.Date.ToString().Contains(FilterText)
+                || current.TimeOnDeparture.ToString().Contains(FilterText)
+                || current.TimeWhenReturning.ToString().Contains(FilterText);
         }
         #endregion
 

@@ -52,6 +52,8 @@ namespace PTC_Management.ViewModel
         /// </summary>
         public string TableActionButtonsVisible { get; set; }
 
+        public string CopyButtonVisibility { get; set; }
+
         public ViewModelBaseEntity()
         {
             TableAction = new Command<string>(OnTableAction);

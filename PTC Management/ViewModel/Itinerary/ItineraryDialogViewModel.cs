@@ -48,17 +48,17 @@ namespace PTC_Management.ViewModel
                 switch (destination)
                 {
                     case Destinations.employee:
-                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem; //.Clone();
+                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem;
                         tempDialogItem.IdEmployee = (int)((Employee)selectWindow.ReturnedItem).Id;
 
                         break;
                     case Destinations.route:
-                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem; //.Clone();
+                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem;
                         tempDialogItem.IdRoute = (int)((Route)selectWindow.ReturnedItem).Id;
 
                         break;
                     case Destinations.transport:
-                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem; //.Clone();
+                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem;
                         tempDialogItem.IdTransport = (int)((Transport)selectWindow.ReturnedItem).Id;
 
                         break;

@@ -26,16 +26,11 @@ namespace PTC_Management.ViewModel
         {
             Route current = entity as Route;
 
-            if (string.IsNullOrWhiteSpace(FilterText)
+            return string.IsNullOrWhiteSpace(FilterText)
                  // && !current.Id.ToString().Contains(FilterText)
                  || current.Number.ToString().Contains(FilterText)
                  || current.Name.Contains(FilterText)
-                 || current.Distant != null &&
-                     current.Distant.ToString().Contains(FilterText))
-            {
-                return true;
-            }
-            return false;
+                 || current.Distant.ToString().Contains(FilterText);
         }
         #endregion
 

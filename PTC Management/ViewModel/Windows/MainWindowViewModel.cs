@@ -25,7 +25,6 @@ namespace PTC_Management
             // создание команды работы с бекапом базы данных
             BackUpCommand = new Command<string>(OnBackUp);
 
-
             // установка представления по умолчанию
             CurrentViewModel = viewModels.GetViewModel(Destinations.employee);
 
@@ -44,10 +43,7 @@ namespace PTC_Management
         /// </summary>
         private void OnNavigation(string destination)
         {
-
             CurrentViewModel = viewModels.GetViewModel(destination);
-            //Size.Width = 1000;
-            //Size.Width = Size.defaultWidth;
         }
 
         /// <summary>
@@ -61,7 +57,6 @@ namespace PTC_Management
                 case Backup._restore: RestoreBackUp(); break;
                 default: break;
             }
-
         }
 
         private void CreateBackUp()

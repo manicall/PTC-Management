@@ -9,7 +9,7 @@ namespace PTC_Management.ViewModel
 {
     internal class TransportViewModel : ViewModelBaseEntity
     {
-        ViewModelHelper<Transport> viewModelHelper;
+        readonly ViewModelHelper<Transport> viewModelHelper;
 
         public ICommand TransportInfoCommand { get; set; }
 
@@ -40,14 +40,10 @@ namespace PTC_Management.ViewModel
         {
             Transport current = entity as Transport;
 
-            if (string.IsNullOrWhiteSpace(FilterText)
+            return string.IsNullOrWhiteSpace(FilterText)
                  // || current.Id.ToString().Contains(FilterText)
                  || current.Name.Contains(FilterText)
-                 || current.LicensePlate.Contains(FilterText))
-            {
-                return true;
-            }
-            return false;
+                 || current.LicensePlate.Contains(FilterText);
         }
 
         public Destinations Destinations => new Destinations();
@@ -55,7 +51,6 @@ namespace PTC_Management.ViewModel
         #region Методы
         public void OnTransportInfo(string destination)
         {
-            // DONE: отправить сообщение о том, что должен быть выбран транспорт
             if ((Transport)SelectedItem is null)
             {
                 WindowParameters.StatusBarMessage = "Необходимо выбрать транспорт";

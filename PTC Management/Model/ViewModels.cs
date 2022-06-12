@@ -11,12 +11,15 @@ namespace PTC_Management.Model
             WindowParameters = windowParameters;
         }
 
-        public T GetNewModelView<T>() where T : ViewModelBaseEntity, new()
+        public T GetNewModelView<T>(int width) where T : ViewModelBaseEntity, new()
         {
-            return new T()
+            var viewModel = new T
             {
                 WindowParameters = WindowParameters
             };
+            viewModel.WindowParameters.WindowSize.Width = width;
+
+            return viewModel;
         }
 
         public ItineraryViewModel GetItineraryVM(int idTransport)
@@ -39,11 +42,11 @@ namespace PTC_Management.Model
         {
             switch (destination)
             {
-                case Destinations.employee: return GetNewModelView<EmployeeViewModel>();
-                case Destinations.route: return GetNewModelView<RouteViewModel>();
-                case Destinations.transport: return GetNewModelView<TransportViewModel>();
-                case Destinations.itinerary: return GetNewModelView<ItineraryViewModel>();
-                //case Destinations.schedule: return scheduleOfEmployee;
+                case Destinations.employee: return GetNewModelView<EmployeeViewModel>(Size.defaultWidth);
+                case Destinations.route: return GetNewModelView<RouteViewModel>(Size.defaultWidth);
+                case Destinations.transport: return GetNewModelView<TransportViewModel>(Size.defaultWidth);
+                case Destinations.itinerary: return GetNewModelView<ItineraryViewModel>(Size.defaultWidth);
+                case Destinations.schedule: return GetNewModelView<ScheduleOfEmployeeViewModel>(1000);
                 default: return null;
             }
         }
