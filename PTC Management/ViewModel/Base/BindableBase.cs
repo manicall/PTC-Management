@@ -10,6 +10,8 @@ namespace PTC_Management.ViewModel
     /// </summary>
     public class BindableBase : DependencyObject, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
         /// <summary>
         /// Устанавливает значение свойства генерируя событие PropertyChanged
         /// </summary>
@@ -32,8 +34,9 @@ namespace PTC_Management.ViewModel
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
+        /// <summary>
+        /// Вызов события PropertyChanged
+        /// </summary>
         protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));

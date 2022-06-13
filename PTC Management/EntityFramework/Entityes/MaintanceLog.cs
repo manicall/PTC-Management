@@ -17,8 +17,6 @@ namespace PTC_Management.EntityFramework
         [Column(TypeName = "date")]
         public DateTime? Date { get; set; }
 
-
-
         public int? SpeedometerInfoOnDeparture
         {
             get => speedometerInfoOnDeparture;
@@ -102,22 +100,31 @@ namespace PTC_Management.EntityFramework
                 string error = null;
                 switch (columnName)
                 {
-                    case "Itinerary":
-                        if (Itinerary == null)
-                            error = "Поле не может быть пустым";
+                    case "SpeedometerInfoOnDeparture":
+                        error = 
+                            IntError(SpeedometerInfoOnDeparture,
+                                "Показания спидометра должны быть больше нуля");
                         break;
-                        //    break;
-                        //case "Route":
-                        //    if (Route == null)
-                        //        error = "Поле не может быть пустым";
-                        //    break;
-                        //case "Transport":
-                        //    if (Transport == null)
-                        //        error = "Поле не может быть пустым";
-                        //    break;
+                    case "SpeedometerInfoWhenReturning":
+                        error = 
+                            IntError(SpeedometerInfoWhenReturning,
+                                "Показания спидометра должны быть больше нуля");
+                        break;
+                    case "Mileage":
+                        error = IntError(Mileage,"Пробег должен быть больше нуля");
+                        break;
                 }
                 return error;
             }
+        }
+
+        public string IntError(int? number, string messageOnNegative)
+        {
+            if (!number.HasValue)
+                return "Поле не может быть пустым";
+            if (number <= 0)
+                return messageOnNegative;
+            return null;
         }
 
         public override string Error

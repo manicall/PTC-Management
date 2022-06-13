@@ -12,13 +12,13 @@ namespace PTC_Management.ViewModel
         {
             DialogItem = new LogOfDepartureAndEntry();
 
-            if (DialogItem is LogOfDepartureAndEntry maintanceLog)
+            if (DialogItem is LogOfDepartureAndEntry logOfDAE)
             {
-                maintanceLog.Itinerary = new Itinerary();
-                maintanceLog.Date = DateTime.Now;
+                logOfDAE.Itinerary = new Itinerary();
+                logOfDAE.Date = DateTime.Now;
 
-                maintanceLog.TimeOnDeparture = new TimeSpan(0);
-                maintanceLog.TimeWhenReturning = new TimeSpan(0);
+                logOfDAE.TimeOnDeparture = new TimeSpan(0);
+                logOfDAE.TimeWhenReturning = new TimeSpan(0);
             }
 
             CurrentViewModel = this;

@@ -59,7 +59,7 @@ namespace PTC_Management.EntityFramework
                 switch (columnName)
                 {
                     case "Number":
-                        error = NumberError(Number);
+                        error = IntError(Number);
                         break;
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
@@ -74,8 +74,7 @@ namespace PTC_Management.EntityFramework
             }
         }
 
-
-        public string NumberError(int? number)
+        public string IntError(int? number)
         {
             if (!number.HasValue)
                 return "Поле не может быть пустым";
@@ -88,7 +87,6 @@ namespace PTC_Management.EntityFramework
         {
             if (!distant.HasValue)
                 return "Поле не может быть пустым";
-            //float.TryParse(distant, out float i);
             if (distant <= 0)
                 return "Дистанция должна быть больше нуля";
             return null;

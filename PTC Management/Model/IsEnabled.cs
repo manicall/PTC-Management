@@ -14,8 +14,10 @@ namespace PTC_Management.Model
             set => SetProperty(ref field, value); 
         }
 
-        public void RaisePropertyChanged(
-            string propertyName = "Field")
+        /// <summary>
+        /// Вызов события PropertyChanged
+        /// </summary>
+        public new void RaisePropertyChanged(string propertyName = "Field")
         {
             base.RaisePropertyChanged(propertyName);
         }

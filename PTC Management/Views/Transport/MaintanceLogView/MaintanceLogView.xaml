@@ -38,7 +38,7 @@
           <DataGridTextColumn Header="№ листа" Binding="{Binding Itinerary.Id}"/>
           <DataGridTextColumn Header="Транспорт"  Binding="{Binding Itinerary.Transport.Name}"/>
           <DataGridTextColumn Header="Гос. номер"  Binding="{Binding Itinerary.Transport.LicensePlate}"/>
-          <DataGridTextColumn Header="Маршрут"  Binding="{Binding Itinerary.Route.Name}"/>
+          <DataGridTextColumn Header="Маршрут"  Binding="{Binding Itinerary.Route.Name}"  Width="*"/>
 
           <DataGridTemplateColumn CanUserResize="False">
             <DataGridTemplateColumn.HeaderTemplate>
@@ -118,7 +118,7 @@
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
           <DataGridTextColumn Header="Пробег, Км" Binding="{Binding Mileage}"/>
-          <DataGridTextColumn Header="Вид ТО" Binding="{Binding MaintenanceType}" Width="*" />
+          <DataGridTextColumn Header="Вид ТО" Binding="{Binding MaintenanceType}" />
         </DataGrid.Columns>
 
         <DataGrid.InputBindings>

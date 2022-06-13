@@ -139,19 +139,6 @@ namespace PTC_Management.EntityFramework
             var temp = selectedItem.Clone();
             SetEntities(selectedItem, item);
 
-            // todo делать номера маршрута уникальными при копировании
-            //if (item is Route) {
-            //    var route = set.Local.Max((i) => i);
-
-            //    List<T> Routes = Enumerable.Range(1, Count).Select(i =>
-            //    {
-            //        var r = (T)selectedItem.Clone();
-            //        (r as Route).Number = (route as Route).Number + i;
-            //        return r;
-            //    }).ToList();
-            //    set.AddRange(Routes);
-            //}
-
             // Инициализация списка копий
             List<T> Items = Enumerable.Range(1, Count).Select(i => (T)selectedItem.Clone()).ToList();
             set.AddRange(Items);

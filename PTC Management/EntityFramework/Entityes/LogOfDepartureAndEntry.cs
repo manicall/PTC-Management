@@ -60,18 +60,22 @@ namespace PTC_Management.EntityFramework
                 string error = null;
                 switch (columnName)
                 {
-                    //case "Employee":
-                    //    if (Employee == null)
-                    //        error = "Поле не может быть пустым";
-                    //    break;
-                    //case "Route":
-                    //    if (Route == null)
-                    //        error = "Поле не может быть пустым";
-                    //    break;
-                    //case "Transport":
-                    //    if (Transport == null)
-                    //        error = "Поле не может быть пустым";
-                    //    break;
+                    case "Itinerary":
+                        if (Itinerary == null)
+                            error = "Поле не может быть пустым";
+                        break;
+                        //case "Employee":
+                        //    if (Employee == null)
+                        //        error = "Поле не может быть пустым";
+                        //    break;
+                        //case "Route":
+                        //    if (Route == null)
+                        //        error = "Поле не может быть пустым";
+                        //    break;
+                        //case "Transport":
+                        //    if (Transport == null)
+                        //        error = "Поле не может быть пустым";
+                        //    break;
                 }
                 return error;
             }

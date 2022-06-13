@@ -45,19 +45,10 @@
           <MultiDataTrigger.Conditions>
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxCountCopy}" Value="False"/>
-            
+
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxItinerary}" Value="False"/>
-                        
-            <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBlockDate}" Value="False"/>
-                        
-            <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBlockTimeOnDeparture}" Value="False"/>
-                        
-            <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBlockTimeWhenReturning}" Value="False"/>
-                        
+
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBlockSpeedometerInfoOnDeparture}" Value="False"/>
                         
@@ -205,7 +196,7 @@
               MaxLength="9">
             <TextBox.Text>
               <Binding 
-                  Path="DialogItem.SpeedometerInfoWhenReturning"       
+                  Path="DialogItem.SpeedometerInfoOnDeparture"       
                   ValidatesOnDataErrors="True"       
                   NotifyOnValidationError="True"       
                   UpdateSourceTrigger="PropertyChanged">
