@@ -1,0 +1,60 @@
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Release\PTC Management.exe.config
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Release\PTC Management.exe
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Release\PTC Management.pdb
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Release\EntityFramework.dll
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Release\EntityFramework.xml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management.csproj.AssemblyReference.cache
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management.csproj.SuggestedBindingRedirects.cache
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Resources\Styles\GeneralStyles.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Resources\Templates\ControlTemplates.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Employee\EmployeeDialogView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Employee\EmployeeView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Itinerary\ItineraryDialogView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Itinerary\ItineraryView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Route\RouteDialogView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Route\RouteView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\SheduleOfEmployee\ScheduleOfEmployeeView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\MaintanceLogView\MaintanceLogDialogView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\MaintanceLogView\MaintanceLogView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\TransportDialogView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\TransportView.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Windows\Dialog.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Windows\MainWindow.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Windows\SelectWindow.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Windows\TransportInfoWindow.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\App.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management_MarkupCompile.cache
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management_MarkupCompile.lref
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\App.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Resources\Templates\DialogTemplates.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Resources\Templates\EntityTemplates.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Resources\Templates\TransportInfoTemplate.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Employee\EmployeeDialogView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Employee\EmployeeView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Itinerary\ItineraryDialogView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Itinerary\ItineraryView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Route\RouteDialogView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Route\RouteView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\SheduleOfEmployee\ScheduleOfEmployeeView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\MaintanceLogView\MaintanceLogDialogView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\MaintanceLogView\MaintanceLogView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\TransportDialogView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Transport\TransportView.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Windows\Dialog.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Windows\MainWindow.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Windows\SelectWindow.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\Views\Windows\TransportInfoWindow.baml
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management.g.resources
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC_Management.Properties.Resources.resources
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management.csproj.GenerateResource.cache
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management.csproj.CoreCompileInputs.cache
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management.csproj.CopyComplete
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management.exe
+C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Release\PTC Management.pdb
