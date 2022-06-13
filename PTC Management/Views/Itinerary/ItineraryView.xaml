@@ -47,8 +47,15 @@
             </DataGridTextColumn.Binding>
           </DataGridTextColumn>
           <DataGridTextColumn 
-            Header="Водительское удостоверение" 
-            Binding="{Binding Employee.DriverLicense}"/>
+              Binding="{Binding Employee.DriverLicense}" >
+            <DataGridTextColumn.Header>
+              <TextBlock>
+                Водительское <LineBreak/> 
+                удостоверение
+              </TextBlock>
+            </DataGridTextColumn.Header>
+          </DataGridTextColumn>
+          
           <DataGridTextColumn
             Header="Транспорт"
             Binding="{Binding Transport.Name}"/>
@@ -58,6 +65,17 @@
           <DataGridTextColumn
             Header="Маршрут"
             Binding="{Binding Route.Name}" Width="*"/>
+
+          <DataGridTextColumn 
+              Binding="{Binding Employee.DriverLicense}" >
+            <DataGridTextColumn.Header>
+              <TextBlock>
+                Водительское <LineBreak/> 
+                удостоверение
+              </TextBlock>
+            </DataGridTextColumn.Header>
+          </DataGridTextColumn>
+
           <!--Время выезда и возвращения-->
           <DataGridTemplateColumn CanUserResize="False">
             <DataGridTemplateColumn.HeaderTemplate>

@@ -94,7 +94,12 @@ namespace PTC_Management.ViewModel
             var dialogViewModel = GetDialogViewModel<ItineraryDialogViewModel>(action, Destinations.itinerary);
             dialogViewModel.ViewModelHelper = viewModelHelper;
 
-            if (action == Actions.add) dialogViewModel.OnActionAdd();
+            dialogViewModel.SelectedIndex = SelectedIndex;
+            dialogViewModel.SelectedItem = SelectedItem;
+
+            dialogViewModel.ChangeIsReadOnly();
+
+            SelectedItem = dialogViewModel.SelectedItem;
 
             var actionPerformer = new ActionPerformer<Itinerary>
                  (this, dialogViewModel, viewModelHelper.ItemsList);

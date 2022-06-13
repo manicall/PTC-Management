@@ -52,11 +52,17 @@ namespace PTC_Management.ViewModel
             CurrentViewModel = this;
         }
 
-        public void OnActionAdd()
+        #region методы
+        /// <summary>
+        /// Запрещает изменять поле SpeedometerInfoOnDeparture 
+        /// и устанавливает в него значение 
+        /// SpeedometerInfoWhenReturning из предыдущей записи
+        /// </summary>
+        public void ChangeIsReadOnly()
         {
             var ItemsList = ViewModelHelper.ItemsList;
 
-            if (ItemsList.Count == 0)
+            if (ItemsList.Count == 0 || SelectedIndex == 0)
             {
                 IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
             }
@@ -64,19 +70,29 @@ namespace PTC_Management.ViewModel
             {
                 if (DialogItem is Itinerary itinerary)
                 {
-                    var SpeedometerIWR = ItemsList[ItemsList.Count - 1].SpeedometerInfoWhenReturning;
-
-                    itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
+                    var SpeedometerIWR = ItemsList[SelectedIndex - 1].SpeedometerInfoWhenReturning;
+                    //itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
+                    (SelectedItem as Itinerary).SpeedometerInfoOnDeparture = SpeedometerIWR;
                 }
             }
         }
 
-        #region методы
         /// <summary>
         /// Вызывается при нажатии на кнопку на диалоговом окне.
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
+            if (MainWindowAction == Actions.copy)
+            {
+                if (DialogItem is Itinerary itinerary)
+                {
+                    var ItemsList = ViewModelHelper.ItemsList;
+                    var SpeedometerIWR = ItemsList[ItemsList.Count - 1].SpeedometerInfoWhenReturning;
+                    itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
+                    itinerary.SpeedometerInfoWhenReturning = null;
+                }
+            }
+
             // выполняет изменения в бд
             base.OnDialogActionCommand(dialogAction);
 
@@ -88,6 +104,9 @@ namespace PTC_Management.ViewModel
             }
         }
 
+        /// <summary>
+        /// возвращает результат из таблицы 
+        /// </summary>
         protected override void OnDialogSelectСommand(string destination)
         {
             var selectWindow = new SelectWindowViewModel(destination);

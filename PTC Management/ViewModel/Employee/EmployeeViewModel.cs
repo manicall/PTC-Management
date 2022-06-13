@@ -2,11 +2,15 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections;
+
 namespace PTC_Management.ViewModel
 {
     internal class EmployeeViewModel : ViewModelBaseEntity
     {
         readonly ViewModelHelper<Employee> viewModelHelper;
+
+        public IList SelectedItemsList { get; set; }
 
         public EmployeeViewModel()
         {
@@ -45,6 +49,8 @@ namespace PTC_Management.ViewModel
             // инициализация модели представления диалогового окна
             var dialogViewModel = GetDialogViewModel<EmployeeDialogViewModel>(action, Destinations.employee);
             dialogViewModel.ViewModelHelper = viewModelHelper;
+
+            var i = SelectedItemsList.Count;
 
             var actionPerformer = new ActionPerformer<Employee>
                  (this, dialogViewModel, viewModelHelper.ItemsList);

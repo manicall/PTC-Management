@@ -3,8 +3,8 @@
    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
-   xmlns:viewmodel="clr-namespace:PTC_Management.ViewModel"
-   d:DataContext="{d:DesignInstance Type=viewmodel:EmployeeViewModel}"
+   xmlns:viewmodel="clr-namespace:PTC_Management.ViewModel" xmlns:h="clr-namespace:PTC_Management.ViewModel.Helpers"
+             d:DataContext="{d:DesignInstance Type=viewmodel:EmployeeViewModel}"
    mc:Ignorable = "d" 
    d:DesignHeight = "300" d:DesignWidth = "650">
   
@@ -21,26 +21,27 @@
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
       <Control Template="{StaticResource TableActionControls}" />
 
-      <DataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+      <h:MultiselectDataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
-            Name="dataGridEmployee"
+            x:Name="dataGridEmployee"
             MinRowHeight="20" 
             MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
             ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"         
             IsReadOnly="True" 
             CanUserReorderColumns="False"
             CanUserAddRows="false"          
-            AutoGenerateColumns="False">
-        <DataGrid.Columns>
+            AutoGenerateColumns="False"
+            SelectedItemsList="{Binding SelectedItemsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <h:MultiselectDataGrid.Columns>
           <!--<DataGridTextColumn Header="Код" Binding="{Binding Id}"/>-->
           <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" Width="*"/>
           <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
           <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*"/>
           <DataGridTextColumn Header="Водительское удостоверение" Binding="{Binding DriverLicense}"  />
-        </DataGrid.Columns>
+        </h:MultiselectDataGrid.Columns>
 
-        <DataGrid.InputBindings>
+        <h:MultiselectDataGrid.InputBindings>
           <KeyBinding 
             Command="{Binding TableAction}"
             CommandParameter="{Binding Actions.Remove}"
@@ -49,9 +50,9 @@
             Command="{Binding TableAction}"
             CommandParameter="{Binding Actions.Update}"
             MouseAction="LeftDoubleClick"/>
-        </DataGrid.InputBindings>
+        </h:MultiselectDataGrid.InputBindings>
 
-        <DataGrid.ContextMenu>
+        <h:MultiselectDataGrid.ContextMenu>
           <ContextMenu>
             <MenuItem 
               Header ="Создать" InputGestureText="C"
@@ -70,8 +71,8 @@
               Command = "{Binding TableAction}"
               CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
-        </DataGrid.ContextMenu>
-      </DataGrid>
+        </h:MultiselectDataGrid.ContextMenu>
+      </h:MultiselectDataGrid>
     </StackPanel>
   </Grid>
 </UserControl>

@@ -106,10 +106,6 @@
               Header ="Удалить" InputGestureText="Delete"
               Command = "{Binding TableAction}"
               CommandParameter="{Binding Actions.Remove}"/>
-            <MenuItem 
-              Header ="Копировать" InputGestureText="ALT+C"
-              Command = "{Binding TableAction}"
-              CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
         </DataGrid.ContextMenu>
       </DataGrid>

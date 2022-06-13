@@ -34,7 +34,7 @@
 
         <DataGrid.Columns>
           <!--<DataGridTextColumn Header="№ п\п" Binding="{Binding Id}"/>-->
-          <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}" />
+          <DataGridTextColumn Header="Дата" Binding="{Binding Itinerary.Date, StringFormat=\{0:dd.MM.yyyy\}}" />
           <DataGridTextColumn Header="№ листа" Binding="{Binding Itinerary.Id}"/>
           <DataGridTextColumn Header="Транспорт"  Binding="{Binding Itinerary.Transport.Name}"/>
           <DataGridTextColumn Header="Гос. номер"  Binding="{Binding Itinerary.Transport.LicensePlate}"/>
@@ -107,17 +107,17 @@
                   </Grid.ColumnDefinitions>
 
                   <Border Margin="-1,-1,0,-1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Grid.Column="0" Text="{Binding SpeedometerInfoOnDeparture}" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="{Binding Itinerary.SpeedometerInfoOnDeparture}" TextAlignment="Center"/>
                   </Border>
                   <Border Margin="-1,-1,-1,-1" Grid.Column="1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Grid.Column="1" Text="{Binding SpeedometerInfoWhenReturning }" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="{Binding Itinerary.SpeedometerInfoWhenReturning }" TextAlignment="Center"/>
                   </Border>
 
                 </Grid>
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
-          <DataGridTextColumn Header="Пробег, Км" Binding="{Binding Mileage}"/>
+          <DataGridTextColumn Header="Пробег, Км" Binding="{Binding Itinerary.Mileage}"/>
           <DataGridTextColumn Header="Вид ТО" Binding="{Binding MaintenanceType}" />
         </DataGrid.Columns>
 
@@ -146,10 +146,6 @@
               Header ="Удалить" InputGestureText="Delete"
               Command = "{Binding TableAction}"
               CommandParameter="{Binding Actions.Remove}"/>
-            <MenuItem 
-              Header ="Копировать" InputGestureText="ALT+C"
-              Command = "{Binding TableAction}"
-              CommandParameter="{Binding Actions.Copy}"/>
           </ContextMenu>
         </DataGrid.ContextMenu>
       </DataGrid>

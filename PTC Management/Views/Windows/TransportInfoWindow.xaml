@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"    
-        
+        WindowStartupLocation="CenterScreen"
         xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
         Title="{Binding Title}" 
         Height = "{Binding  WindowParameters.WindowSize.Height, Mode=TwoWay}" 
@@ -17,6 +17,7 @@
   <Window.Resources>
     <ResourceDictionary Source="../../Resources/Templates/TransportInfoTemplate.xaml" />
   </Window.Resources>
+  
   <DockPanel>
     <StatusBar DockPanel.Dock="Bottom">
       <TextBlock Text="{Binding WindowParameters.StatusBarMessage}" />
@@ -26,4 +27,36 @@
       <ContentControl Content="{Binding CurrentViewModel}" />
     </StackPanel>
   </DockPanel>
+
+  <Window.InputBindings>
+    <KeyBinding 
+      Command="{Binding CurrentViewModel.TableAction}"
+      CommandParameter="{Binding Actions.Add}"
+      Key="C" />
+    <KeyBinding 
+      Command="{Binding CurrentViewModel.TableAction}"
+      CommandParameter="{Binding Actions.Update}"
+      Key="U" />
+    <KeyBinding 
+      Command="{Binding CurrentViewModel.TableAction}"            
+      CommandParameter="{Binding Actions.Remove}"
+      Key="Delete" />
+  </Window.InputBindings>
+
+  <Window.ContextMenu >
+    <ContextMenu>
+      <MenuItem 
+        Header ="Создать" InputGestureText="C"
+        Command = "{Binding CurrentViewModel.TableAction}"
+        CommandParameter="{Binding Actions.Add}"/>
+      <MenuItem 
+        Header ="Изменить" InputGestureText="U"
+        Command = "{Binding CurrentViewModel.TableAction}"
+        CommandParameter="{Binding Actions.Update}"/>
+      <MenuItem 
+        Header ="Удалить" InputGestureText="Delete"
+        Command = "{Binding CurrentViewModel.TableAction}"
+        CommandParameter="{Binding Actions.Remove}"/>
+    </ContextMenu>
+  </Window.ContextMenu>
 </Window>
