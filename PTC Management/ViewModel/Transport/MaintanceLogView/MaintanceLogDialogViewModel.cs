@@ -2,11 +2,8 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Remoting.Lifetime;
 
 namespace PTC_Management.ViewModel
 {
@@ -14,23 +11,25 @@ namespace PTC_Management.ViewModel
     {
         private IsReadOnly isReadOnly;
 
-        public IsReadOnly IsReadOnly { 
-            get {
-                if (isReadOnly == null) {
+        public IsReadOnly IsReadOnly
+        {
+            get
+            {
+                if (isReadOnly == null)
+                {
                     IsReadOnly = new IsReadOnly()
                     {
                         Field = new Dictionary<string, string>()
                         {
-                            ["Mileage"] = "True",
+                            ["Itinerary.Itinerary.Mileage"] = "True",
                             ["SpeedometerInfoOnDeparture"] = "True",
                         }
                     };
                 }
-                return isReadOnly; 
-            } 
+                return isReadOnly;
+            }
             set => isReadOnly = value;
         }
-
 
         public MaintanceLogDialogViewModel()
         {
@@ -39,30 +38,26 @@ namespace PTC_Management.ViewModel
             if (DialogItem is MaintanceLog maintanceLog)
             {
                 maintanceLog.Itinerary = new Itinerary();
-                maintanceLog.Date = DateTime.Now;
-
-                maintanceLog.TimeOnDeparture = new TimeSpan(0);
-                maintanceLog.TimeWhenReturning = new TimeSpan(0);
             }
 
             CurrentViewModel = this;
         }
 
-        public void OnActionAdd() {
-            var ItemsList = ViewModelHelper.ItemsList;
+        public void OnActionAdd()
+        {
+            //var ItemsList = ViewModelHelper.ItemsList;
 
-            if (ItemsList.Count == 0)
-            {
-                IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
-            }
-            else {
-                if (DialogItem is MaintanceLog maintanceLog) {
-                    var SpeedometerIWR = ItemsList[ItemsList.Count - 1].SpeedometerInfoWhenReturning;
+            //if (ItemsList.Count == 0)
+            //{
+            //    IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
+            //}
+            //else {
+            //    if (DialogItem is MaintanceLog maintanceLog) {
+            //        var SpeedometerIWR = ItemsList[ItemsList.Count - 1].Itinerary.SpeedometerInfoWhenReturning;
 
-                    maintanceLog.SpeedometerInfoOnDeparture = SpeedometerIWR;
-                    maintanceLog.SpeedometerInfoWhenReturning = SpeedometerIWR;
-                }
-            }
+            //        maintanceLog.Itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
+            //    }
+            //}
         }
 
         internal ViewModelHelper<MaintanceLog> ViewModelHelper { get; set; }
@@ -80,7 +75,7 @@ namespace PTC_Management.ViewModel
             // не найдено TO-2
             if (index == -1)
             {
-                if (GetSum(itemsList) + currentML.Mileage >= 10000)
+                if (GetSum(itemsList) + currentML.Itinerary.Mileage >= 10000)
                 {
                     currentML.MaintenanceType = "TO-2";
                 }
@@ -90,14 +85,14 @@ namespace PTC_Management.ViewModel
 
                     if (index == -1) // Не найдено TO-1
                     {
-                        if (GetSum(itemsList) + currentML.Mileage >= 2500)
+                        if (GetSum(itemsList) + currentML.Itinerary.Mileage >= 2500)
                         {
                             currentML.MaintenanceType = "TO-1";
                         }
                     }
                     else
                     {
-                        if (GetRangeSum(itemsList, index) + currentML.Mileage >= 2500)
+                        if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
                         {
                             currentML.MaintenanceType = "TO-1";
                         }
@@ -106,7 +101,7 @@ namespace PTC_Management.ViewModel
             }
             else // TO-2 найдено
             {
-                if (GetRangeSum(itemsList, index) + currentML.Mileage >= 10000)
+                if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 10000)
                 {
                     currentML.MaintenanceType = "TO-2";
                 }
@@ -115,7 +110,7 @@ namespace PTC_Management.ViewModel
                 {
                     index = GetIndex(itemsList, "TO-1");
 
-                    if (GetRangeSum(itemsList, index) + currentML.Mileage >= 2500)
+                    if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
                     {
                         currentML.MaintenanceType = "TO-1";
                     }
@@ -131,21 +126,19 @@ namespace PTC_Management.ViewModel
                 ViewModelHelper.DoActionForList(
                     MainWindowAction, (int)DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
             }
-
         }
 
         int? GetRangeSum(List<MaintanceLog> maintanceLogs, int index)
         {
             return maintanceLogs
                 .GetRange(index, maintanceLogs.Count - index - 1)
-                .Sum(maintanceLog => maintanceLog.Mileage);
+                .Sum(maintanceLog => maintanceLog.Itinerary.Mileage);
         }
 
         int? GetSum(List<MaintanceLog> maintanceLogs)
         {
-            return maintanceLogs.Sum(maintanceLog => maintanceLog.Mileage);
+            return maintanceLogs.Sum(maintanceLog => maintanceLog.Itinerary.Mileage);
         }
-
 
         int GetIndex(List<MaintanceLog> itemsList, string maintanceType)
         {

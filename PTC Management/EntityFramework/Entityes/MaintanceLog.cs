@@ -1,57 +1,22 @@
-using PTC_Management.EntityFramework.Entityes.Base;
-
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
 
 namespace PTC_Management.EntityFramework
 {
     [Table("MaintanceLog")]
-    public partial class MaintanceLog : TransportInfo
+    public partial class MaintanceLog : Entity
     {
-        private int? speedometerInfoOnDeparture;
-        private int? speedometerInfoWhenReturning;
-        private int? mileage;
-
-        [Column(TypeName = "date")]
-        public DateTime? Date { get; set; }
-
-        public int? SpeedometerInfoOnDeparture
-        {
-            get => speedometerInfoOnDeparture;
-            set
-            {
-                speedometerInfoOnDeparture = value;
-                if (speedometerInfoWhenReturning != null)
-                    Mileage = speedometerInfoWhenReturning - speedometerInfoOnDeparture;
-            }
-        }
-
-        public int? SpeedometerInfoWhenReturning
-        {
-            get => speedometerInfoWhenReturning;
-            set
-            {
-                speedometerInfoWhenReturning = value;
-                if (speedometerInfoOnDeparture != null)
-                    Mileage = speedometerInfoWhenReturning - speedometerInfoOnDeparture;
-                
-            }
-        }
-
-        public int? Mileage { 
-            get => mileage; 
-            set => SetProperty(ref mileage, value); 
-        }
+        public int IdItinerary { get; set; }
 
         public virtual Itinerary Itinerary { get; set; }
 
         [StringLength(4)]
         public string MaintenanceType { get; set; }
+
     }
 
-    public partial class MaintanceLog : TransportInfo
+    public partial class MaintanceLog : Entity
     {
         public static readonly Repository<MaintanceLog> repository =
              new Repository<MaintanceLog>(new PTC_ManagementContext());
@@ -70,12 +35,6 @@ namespace PTC_Management.EntityFramework
             if (entity is MaintanceLog item)
             {
                 IdItinerary = item.IdItinerary;
-                Date = item.Date;
-                TimeOnDeparture = item.TimeOnDeparture;
-                TimeWhenReturning = item.TimeWhenReturning;
-                SpeedometerInfoOnDeparture = item.SpeedometerInfoOnDeparture;
-                SpeedometerInfoWhenReturning = item.SpeedometerInfoWhenReturning;
-                Mileage = item.Mileage;
                 Itinerary = item.Itinerary;
                 MaintenanceType = item.MaintenanceType;
             }
@@ -100,18 +59,7 @@ namespace PTC_Management.EntityFramework
                 string error = null;
                 switch (columnName)
                 {
-                    case "SpeedometerInfoOnDeparture":
-                        error = 
-                            IntError(SpeedometerInfoOnDeparture,
-                                "ѕоказани€ спидометра должны быть больше нул€");
-                        break;
-                    case "SpeedometerInfoWhenReturning":
-                        error = 
-                            IntError(SpeedometerInfoWhenReturning,
-                                "ѕоказани€ спидометра должны быть больше нул€");
-                        break;
-                    case "Mileage":
-                        error = IntError(Mileage,"ѕробег должен быть больше нул€");
+                    default:
                         break;
                 }
                 return error;

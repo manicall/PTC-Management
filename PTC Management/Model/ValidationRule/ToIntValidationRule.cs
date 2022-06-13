@@ -12,8 +12,5 @@ namespace PTC_Management.Model
 
             return new ValidationResult(false, "Ожидалось целое число");
         }
-
     }
-
-
 }

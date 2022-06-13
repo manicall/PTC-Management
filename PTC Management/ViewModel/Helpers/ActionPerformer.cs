@@ -80,7 +80,7 @@ namespace PTC_Management.ViewModel
             {
                 entityVM.SetStatusBarMessage("Запись успешно удалена");
                 // удаление в коллекции
-                itemsList.Remove(selectedEmployee);          
+                itemsList.Remove(selectedEmployee);
             }
             else
             {

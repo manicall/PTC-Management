@@ -126,25 +126,8 @@ C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\PTC Manage
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\PTC Management.pdb
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\EntityFramework.dll
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\Xceed.Wpf.AvalonDock.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\Xceed.Wpf.Toolkit.dll
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\EntityFramework.xml
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\ja-JP\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\PTC_Management.Properties.Resources.resources
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.GenerateResource.cache
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\PTC Management.csproj.CoreCompileInputs.cache

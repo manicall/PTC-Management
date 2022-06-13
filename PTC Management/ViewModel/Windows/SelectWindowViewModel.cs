@@ -14,11 +14,11 @@ namespace PTC_Management.ViewModel
             set => SetProperty(ref returnedItem, value);
         }
 
-        public Command DialogSelectCommand { get; private set; }
+        public Command SelectWindowCommand { get; private set; }
 
         public SelectWindowViewModel()
         {
-            DialogSelectCommand = new Command(OnDialogSelectCommand);
+            SelectWindowCommand = new Command(OnDialogSelectCommand);
         }
 
         public SelectWindowViewModel(string destination) : this()
@@ -64,6 +64,9 @@ namespace PTC_Management.ViewModel
                     if (action == Actions.update)
                         OnDialogSelectCommand();
                 });
+
+            viewModel.SelectWindowCommand = SelectWindowCommand;
+            viewModel.Visibility.Field["SelectButtonVisibility"] = Visibility.visible;
 
             // отключение видимости кнопок с журналом ТО и
             // журналом въезда и выезда у окна со списком транспорта

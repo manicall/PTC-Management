@@ -1,5 +1,4 @@
 ﻿using PTC_Management.ViewModel;
-
 using System.ComponentModel;
 
 namespace PTC_Management.EntityFramework

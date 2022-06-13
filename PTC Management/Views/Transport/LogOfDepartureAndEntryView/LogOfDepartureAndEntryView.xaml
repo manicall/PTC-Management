@@ -39,10 +39,9 @@
           <DataGridTextColumn Header="Транспорт"  Binding="{Binding Itinerary.Transport.Name}"/>
           <DataGridTextColumn Header="Гос. номер"  Binding="{Binding Itinerary.Transport.LicensePlate}"/>
           <DataGridTextColumn Header="Маршрут"  Binding="{Binding Itinerary.Route.Name}" Width="*"/>
-
+          
           <DataGridTemplateColumn CanUserResize="False">
             <DataGridTemplateColumn.HeaderTemplate>
-
               <DataTemplate>
                 <Grid>
                   <Grid.RowDefinitions >
@@ -56,10 +55,11 @@
 
                   <TextBlock Grid.ColumnSpan="2" Text="время" TextAlignment="Center" />
                   <TextBlock Grid.Row="1"  Text="выезда"   TextAlignment="Center" />
-                  <TextBlock Grid.Row="1" Grid.Column="2" Text="возвращения"   TextAlignment="Center"/>
+                  <TextBlock Grid.Row="1" Grid.Column="2" Text="возвращения" TextAlignment="Center"/>
                 </Grid>
               </DataTemplate>
             </DataGridTemplateColumn.HeaderTemplate>
+
             <DataGridTemplateColumn.CellTemplate>
               <DataTemplate>
                 <Grid>
@@ -69,11 +69,12 @@
                   </Grid.ColumnDefinitions>
 
                   <Border Margin="-1,-1,0,-1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Text="{Binding TimeOnDeparture, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding Itinerary.TimeOnDeparture, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
                   </Border>
                   <Border Margin="-1,-1,-1,-1" Grid.Column="1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Text="{Binding TimeWhenReturning, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding Itinerary.TimeWhenReturning, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
                   </Border>
+
                 </Grid>
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>

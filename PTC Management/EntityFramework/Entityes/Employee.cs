@@ -36,8 +36,6 @@ namespace PTC_Management.EntityFramework
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
     }
-
-
     public partial class Employee : Entity
     {
         public static readonly Repository<Employee> repository =

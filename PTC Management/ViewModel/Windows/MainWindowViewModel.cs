@@ -27,8 +27,10 @@ namespace PTC_Management
             set => backup = value;
         }
 
-        public IsEnabled IsEnabled {
-            get {
+        public IsEnabled IsEnabled
+        {
+            get
+            {
                 if (isEnabled == null)
                 {
                     IsEnabled = new IsEnabled()
@@ -45,7 +47,7 @@ namespace PTC_Management
                 }
                 return isEnabled;
             }
-            set => isEnabled = value; 
+            set => isEnabled = value;
         }
 
         public Command<string> NavigationCommand { get; private set; }
@@ -89,11 +91,11 @@ namespace PTC_Management
             // обнуление состояния кнопок
             IsEnabled.Field = new Dictionary<string, string>()
             {
-                [Destinations.Employee]  = "True",
-                [Destinations.Route]     = "True",
+                [Destinations.Employee] = "True",
+                [Destinations.Route] = "True",
                 [Destinations.Transport] = "True",
                 [Destinations.Itinerary] = "True",
-                [Destinations.Schedule]  = "True"
+                [Destinations.Schedule] = "True"
             };
 
             // блокировка нажатой кнопки

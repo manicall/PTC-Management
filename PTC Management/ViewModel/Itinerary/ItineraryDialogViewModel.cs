@@ -2,23 +2,74 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
+using System;
+using System.Collections.Generic;
+
 namespace PTC_Management.ViewModel
 {
     internal class ItineraryDialogViewModel : DialogViewModel
     {
+        private IsReadOnly isReadOnly;
+
+        public IsReadOnly IsReadOnly
+        {
+            get
+            {
+                if (isReadOnly == null)
+                {
+                    IsReadOnly = new IsReadOnly()
+                    {
+                        Field = new Dictionary<string, string>()
+                        {
+                            ["Itinerary.Itinerary.Mileage"] = "True",
+                            ["SpeedometerInfoOnDeparture"] = "True",
+                        }
+                    };
+                }
+                return isReadOnly;
+            }
+            set => isReadOnly = value;
+        }
+
+        public ViewModelHelper<Itinerary> ViewModelHelper { get; set; }
+
         public ItineraryDialogViewModel()
         {
             DialogItem = new Itinerary();
 
-            (DialogItem as Itinerary).Employee = new Employee();
-            (DialogItem as Itinerary).Transport = new Transport();
-            (DialogItem as Itinerary).Route = new Route();
+            if (DialogItem is Itinerary itinerary)
+            {
+                itinerary.Employee = new Employee();
+                itinerary.Transport = new Transport();
+                itinerary.Route = new Route();
+
+                itinerary.Date = DateTime.Now;
+
+                itinerary.TimeOnDeparture = new TimeSpan(0);
+                itinerary.TimeWhenReturning = new TimeSpan(0);
+            }
 
             CurrentViewModel = this;
         }
 
+        public void OnActionAdd()
+        {
+            var ItemsList = ViewModelHelper.ItemsList;
 
-        public ViewModelHelper<Itinerary> ViewModelHelper { get; set; }
+            if (ItemsList.Count == 0)
+            {
+                IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
+            }
+            else
+            {
+                if (DialogItem is Itinerary itinerary)
+                {
+                    var SpeedometerIWR = ItemsList[ItemsList.Count - 1].SpeedometerInfoWhenReturning;
+
+                    itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
+                }
+            }
+        }
 
         #region методы
         /// <summary>

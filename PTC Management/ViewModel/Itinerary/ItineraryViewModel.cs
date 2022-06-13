@@ -24,8 +24,6 @@ namespace PTC_Management.ViewModel
                     Destinations.itinerary,
                     id);
 
-
-
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
         }
@@ -95,6 +93,8 @@ namespace PTC_Management.ViewModel
             // инициализация модели представления диалогового окна
             var dialogViewModel = GetDialogViewModel<ItineraryDialogViewModel>(action, Destinations.itinerary);
             dialogViewModel.ViewModelHelper = viewModelHelper;
+
+            if (action == Actions.add) dialogViewModel.OnActionAdd();
 
             var actionPerformer = new ActionPerformer<Itinerary>
                  (this, dialogViewModel, viewModelHelper.ItemsList);

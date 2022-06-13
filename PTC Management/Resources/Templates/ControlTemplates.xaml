@@ -12,22 +12,33 @@
           Command = "{Binding TableAction}"
           CommandParameter="{Binding Actions.Add}"/>
         <Button 
-          Name="update" Style="{StaticResource BlackButton}" 
+          Name="update" 
+          Style="{StaticResource BlackButton}" 
           Content="Изменить"
           Command = "{Binding TableAction}"
           CommandParameter="{Binding Actions.Update}"/>
         <Button 
-          Name="delete" Style="{StaticResource BlackButton}" 
+          Name="delete" 
+          Style="{StaticResource BlackButton}" 
           Content="Удалить" 
           Command = "{Binding TableAction}"
           CommandParameter="{Binding Actions.Remove}"/>
         <Button 
-          Name="copy" Style="{StaticResource BlackButton}" 
+          Name="copy" 
+          Style="{StaticResource BlackButton}" 
           Visibility="{Binding CopyButtonVisibility}"
           Content="Копировать" 
           Command = "{Binding TableAction}"
           CommandParameter="{Binding Actions.Copy}"/>
       </StackPanel>
+      <StackPanel Margin="5,5,0,5" Orientation="Horizontal">
+        <Button 
+          Command="{Binding SelectWindowCommand}"
+          Visibility="{Binding Visibility.Field[SelectButtonVisibility]}"
+          Width="auto"
+          Content="Выбрать запись" />
+      </StackPanel>
+
       <StackPanel Orientation="Horizontal" Height="28" >
         <TextBlock Text="Поиск:" Margin="5"/>
         <TextBox 

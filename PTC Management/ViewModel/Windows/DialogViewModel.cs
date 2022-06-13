@@ -70,12 +70,13 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет действие заданное кнопкой на диалоговом окне
         /// </summary>
-        protected virtual void OnDialogActionCommand(string action) 
+        protected virtual void OnDialogActionCommand(string action)
         {
-            DoDialogActionCommand(action); 
+            DoDialogActionCommand(action);
         }
 
-        protected bool DoDialogActionCommand(string action) {
+        protected bool DoDialogActionCommand(string action)
+        {
             var result = true;
             switch (action)
             {
@@ -133,19 +134,19 @@ namespace PTC_Management.ViewModel
                 case Actions.add:
                     if (result) return "Запись успешно добавлена";
                     else return "Не удалось добавить запись";
-                    
+
                 case Actions.update:
                     if (result) return "Запись успешно изменена";
                     else return "Не удалось изменить запись";
-                    
+
                 case Actions.copy:
                     if (result) return "Запись успешно скопирована";
                     else return "Не удалось скопировать запись";
 
-                default: 
+                default:
                     throw new ArgumentException("Действие не обработано");
             }
-          
+
         }
 
         /// <summary>

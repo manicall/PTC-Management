@@ -157,13 +157,7 @@ namespace PTC_Management.EntityFramework
             try { db.SaveChanges(); }
             catch (DbUpdateException ex)
             {
-                // сообщения с подробной информацией об ошибке
-                // MessageBox.Show(
-                //    ex.InnerException.InnerException.Message, caption,
-                //    MessageBoxButton.OK, MessageBoxImage.Error);
-
                 Console.WriteLine(ex.InnerException.InnerException.Message);
-
                 return false;
             }
             return true;

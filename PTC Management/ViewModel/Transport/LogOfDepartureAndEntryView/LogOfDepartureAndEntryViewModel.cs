@@ -29,15 +29,15 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override bool Filter(object entity)
         {
-            
+
             LogOfDepartureAndEntry current = entity as LogOfDepartureAndEntry;
 
             return string.IsNullOrWhiteSpace(FilterText)
                 // && !current.Id.ToString().Contains(FilterText)
                 || current.IdItinerary.ToString().Contains(FilterText)
-                || current.Date.ToString().Contains(FilterText)
-                || current.TimeOnDeparture.ToString().Contains(FilterText)
-                || current.TimeWhenReturning.ToString().Contains(FilterText);
+                || current.Itinerary.Date.ToString().Contains(FilterText)
+                || current.Itinerary.TimeOnDeparture.ToString().Contains(FilterText)
+                || current.Itinerary.TimeWhenReturning.ToString().Contains(FilterText);
         }
         #endregion
 

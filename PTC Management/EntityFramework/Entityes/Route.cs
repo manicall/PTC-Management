@@ -24,9 +24,6 @@ namespace PTC_Management.EntityFramework
         public virtual ICollection<Itinerary> Itinerary { get; set; }
 
     }
-
-
-
     public partial class Route : Entity
     {
         public static readonly Repository<Route> repository =

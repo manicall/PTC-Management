@@ -65,7 +65,7 @@ namespace PTC_Management.Model
                     return partOfTitle + " записи технического обслуживания";
                 case Destinations.logOfDepartureAndEntry:
                     return partOfTitle + " записи въезда и выезда";
-                default: 
+                default:
                     return null;
             }
         }

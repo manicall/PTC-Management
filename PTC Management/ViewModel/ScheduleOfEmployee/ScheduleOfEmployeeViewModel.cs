@@ -1,7 +1,7 @@
 ﻿
 using System.Data;
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace PTC_Management.ViewModel
 {
@@ -47,10 +47,10 @@ namespace PTC_Management.ViewModel
 
             DataColumn sizeQuantityColumn = new DataColumn();
             sizeQuantityColumn.ColumnName = "Сотрудник";
-            
+
             //sizeQuantityTable.Columns.Add(col1);
 
-            
+
 
 
             for (int i = 1, length = 31; i <= length; i++)

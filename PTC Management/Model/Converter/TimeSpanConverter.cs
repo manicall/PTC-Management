@@ -6,7 +6,7 @@ namespace PTC_Management.Model
 {
     public class TimeSpanConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, 
+        public object Convert(object value, Type targetType,
             object parameter, CultureInfo culture)
         {
             if (value == null) return null;
@@ -14,7 +14,7 @@ namespace PTC_Management.Model
             return time.ToString("hh':'mm");
         }
 
-        public object ConvertBack(object value, Type targetType, 
+        public object ConvertBack(object value, Type targetType,
             object parameter, CultureInfo culture)
         {
             if (value == null) return null;
@@ -32,7 +32,7 @@ namespace PTC_Management.Model
                 hours = split[0];
                 minutes = split[1];
 
-                int res; 
+                int res;
                 while (int.TryParse(hours, out res) && res > 23)
                 {
                     hours = hours.Remove(hours.Length - 1);

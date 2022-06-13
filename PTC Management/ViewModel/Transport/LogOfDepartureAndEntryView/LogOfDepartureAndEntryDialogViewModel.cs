@@ -2,8 +2,6 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
-using System;
-
 namespace PTC_Management.ViewModel
 {
     internal class LogOfDepartureAndEntryDialogViewModel : DialogViewModel
@@ -15,10 +13,6 @@ namespace PTC_Management.ViewModel
             if (DialogItem is LogOfDepartureAndEntry logOfDAE)
             {
                 logOfDAE.Itinerary = new Itinerary();
-                logOfDAE.Date = DateTime.Now;
-
-                logOfDAE.TimeOnDeparture = new TimeSpan(0);
-                logOfDAE.TimeWhenReturning = new TimeSpan(0);
             }
 
             CurrentViewModel = this;

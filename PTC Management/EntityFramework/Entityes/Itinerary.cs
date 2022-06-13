@@ -7,6 +7,9 @@ namespace PTC_Management.EntityFramework
     [Table("Itinerary")]
     public partial class Itinerary : Entity
     {
+        private int? speedometerInfoOnDeparture;
+        private int? speedometerInfoWhenReturning;
+        private int? mileage;
 
         public Itinerary()
         {
@@ -14,11 +17,47 @@ namespace PTC_Management.EntityFramework
             MaintanceLog = new HashSet<MaintanceLog>();
         }
 
+        public int? SpeedometerInfoOnDeparture
+        {
+            get => speedometerInfoOnDeparture;
+            set
+            {
+                speedometerInfoOnDeparture = value;
+                if (speedometerInfoWhenReturning != null)
+                    Mileage = speedometerInfoWhenReturning - speedometerInfoOnDeparture;
+            }
+        }
+
+        public int? SpeedometerInfoWhenReturning
+        {
+            get => speedometerInfoWhenReturning;
+            set
+            {
+                speedometerInfoWhenReturning = value;
+                if (speedometerInfoOnDeparture != null)
+                    Mileage = speedometerInfoWhenReturning - speedometerInfoOnDeparture;
+
+            }
+        }
+
+        public int? Mileage
+        {
+            get => mileage;
+            set => SetProperty(ref mileage, value);
+        }
+
+        [Column(TypeName = "date")]
+        public DateTime Date { get; set; }
+
         public int IdRoute { get; set; }
 
         public int IdTransport { get; set; }
 
         public int IdEmployee { get; set; }
+
+        public TimeSpan? TimeOnDeparture { get; set; }
+
+        public TimeSpan? TimeWhenReturning { get; set; }
 
         public virtual Employee Employee { get; set; }
 
@@ -26,11 +65,12 @@ namespace PTC_Management.EntityFramework
 
         public virtual Transport Transport { get; set; }
 
+
+
         public virtual ICollection<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
 
         public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
     }
-
     public partial class Itinerary : Entity
     {
         public static readonly Repository<Itinerary> repository =
@@ -67,6 +107,12 @@ namespace PTC_Management.EntityFramework
                 Employee = itinerary.Employee;
                 Route = itinerary.Route;
                 Transport = itinerary.Transport;
+                TimeOnDeparture = itinerary.TimeOnDeparture;
+                TimeWhenReturning = itinerary.TimeWhenReturning;
+                Date = itinerary.Date;
+                SpeedometerInfoOnDeparture = itinerary.SpeedometerInfoOnDeparture;
+                SpeedometerInfoWhenReturning = itinerary.SpeedometerInfoWhenReturning;
+                Mileage = itinerary.Mileage;
             }
         }
 
@@ -88,9 +134,33 @@ namespace PTC_Management.EntityFramework
                         if (string.IsNullOrEmpty(Id.ToString()))
                             error = "Поле не может быть пустым";
                         break;
+                    case "SpeedometerInfoOnDeparture":
+                        error =
+                            IntError(SpeedometerInfoOnDeparture,
+                                "Показания спидометра должны быть больше нуля");
+                        break;
+                    case "SpeedometerInfoWhenReturning":
+                        error =
+                            IntError(SpeedometerInfoWhenReturning,
+                                "Показания спидометра должны быть больше нуля");
+                        break;
+                    case "Mileage":
+                        error = IntError(Mileage, "Пробег должен быть больше нуля");
+                        break;
+
                 }
                 return error;
             }
+        }
+
+
+        public string IntError(int? number, string messageOnNegative)
+        {
+            if (!number.HasValue)
+                return "Поле не может быть пустым";
+            if (number <= 0)
+                return messageOnNegative;
+            return null;
         }
 
         public override string Error

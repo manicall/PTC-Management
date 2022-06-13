@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace PTC_Management.Model
 {
+    /// <summary>
+    /// Приводит дату к корректному формату
+    /// </summary>
     public class DateConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

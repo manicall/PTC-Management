@@ -8,10 +8,10 @@ namespace PTC_Management.Model
     {
         private Dictionary<string, string> field;
 
-        public Dictionary<string, string> Field 
-        { 
-            get => field; 
-            set => SetProperty(ref field, value); 
+        public Dictionary<string, string> Field
+        {
+            get => field;
+            set => SetProperty(ref field, value);
         }
 
         /// <summary>

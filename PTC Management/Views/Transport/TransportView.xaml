@@ -20,30 +20,33 @@
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
       <ContentControl Template="{StaticResource TableActionControls}" />
       <StackPanel Margin="0,5,0,5" Orientation="Horizontal" Visibility="{Binding TansportInfoButtonsVisibility}">
-        <Button Style="{StaticResource BlackButton}" Content="Журнал ТО"
-                Command="{Binding TransportInfoCommand}"
-                CommandParameter="{Binding Destinations.MaintanceLog}" />
-        <Button Width="auto" Style="{StaticResource BlackButton}"
-                Content="Журнал въезда и выезда" 
-                Command="{Binding TransportInfoCommand}"
-                CommandParameter="{Binding Destinations.LogOfDepartureAndEntry}" />
+        <Button 
+          Style="{StaticResource BlackButton}" Content="Журнал ТО"                
+          Command="{Binding TransportInfoCommand}"                
+          CommandParameter="{Binding Destinations.MaintanceLog}" />
+        <Button 
+          Width="auto" Style="{StaticResource BlackButton}"                
+          Content="Журнал въезда и выезда"                 
+          Command="{Binding TransportInfoCommand}"                
+          CommandParameter="{Binding Destinations.LogOfDepartureAndEntry}" />
       </StackPanel>
 
-      <DataGrid SelectedItem="{Binding SelectedItem}" 
-            SelectedIndex="{Binding SelectedIndex}"
-            ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
-            MinRowHeight="20" 
-            MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
-            ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
-            Name="dataGridTransport"
-            CanUserReorderColumns="False"
-            IsReadOnly="True" 
-            CanUserAddRows="false"  
-            AutoGenerateColumns="False">
+      <DataGrid
+          SelectedItem="{Binding SelectedItem}" 
+          SelectedIndex="{Binding SelectedIndex}"
+          ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+          MinRowHeight="20" 
+          MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
+          ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
+          Name="dataGridTransport"
+          CanUserReorderColumns="False"
+          IsReadOnly="True" 
+          CanUserAddRows="false"  
+          AutoGenerateColumns="False">
         <DataGrid.Columns>
           <DataGridTextColumn Header="Название"  Binding="{Binding Name}"/>
           <DataGridTextColumn 
-            Width="*" Header="Гос. Номер"                
+            Header="Гос. Номер"                
             Binding="{Binding LicensePlate}"/>
         </DataGrid.Columns>
 

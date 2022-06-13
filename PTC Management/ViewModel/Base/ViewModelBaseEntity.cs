@@ -2,6 +2,7 @@
 using PTC_Management.Model;
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -12,12 +13,30 @@ namespace PTC_Management.ViewModel
 {
     class ViewModelBaseEntity : ViewModelBase
     {
-        /// <summary>
-        /// Поле, именяемое свойством SelectedIndex
-        /// </summary>
+        private Visibility visibility;
         private int selectedIndex;
         private string copyButtonVisibility;
         private string tableActionButtonsVisible;
+
+        public Visibility Visibility
+        {
+            get
+            {
+                if (visibility == null)
+                {
+                    Visibility = new Visibility()
+                    {
+                        Field = new Dictionary<string, string>()
+                        {
+                            ["SelectButtonVisibility"] = Visibility.collapsed,
+                        }
+                    };
+                }
+                return visibility;
+            }
+            set => visibility = value;
+        }
+
 
         /// <summary>
         /// Поле, изменяемое свойством FilterText
@@ -26,6 +45,11 @@ namespace PTC_Management.ViewModel
             DependencyProperty.Register(
                 "FilterText", typeof(string), typeof(ViewModelBaseEntity),
                 new PropertyMetadata("", FilterText_Changed));
+
+        /// <summary>
+        /// Выполняет действие по выбору записи из таблицы
+        /// </summary>
+        public ICommand SelectWindowCommand { get; set; }
 
         /// <summary>
         /// Представление элементов. 
@@ -52,9 +76,10 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Определяет видимость кнопок, изменяющих записи таблицы
         /// </summary>
-        public string TableActionButtonsVisible { 
-            get => tableActionButtonsVisible ?? Visibility.visible; 
-            set => tableActionButtonsVisible = value; 
+        public string TableActionButtonsVisible
+        {
+            get => tableActionButtonsVisible ?? Visibility.visible;
+            set => tableActionButtonsVisible = value;
         }
 
         public string CopyButtonVisibility

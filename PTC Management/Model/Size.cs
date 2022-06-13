@@ -4,7 +4,7 @@ namespace PTC_Management.Model
 {
     internal class Size : BindableBase
     {
-        public const int defaultWidth = 700;
+        public const int defaultWidth = 1000;
         public const int defaultHeight = 500;
 
         public Size(

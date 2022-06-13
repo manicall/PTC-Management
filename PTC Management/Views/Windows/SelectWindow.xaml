@@ -17,18 +17,12 @@
   <Window.Resources>
     <ResourceDictionary Source="../../Resources/Templates/EntityTemplates.xaml" />
   </Window.Resources>
-  
+
   <StackPanel>
-    <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-      <Button 
-        Command="{Binding DialogSelectCommand}"
-        Width="auto" Content="Выбрать запись" />
-    </StackPanel>
-    
     <ContentControl Content="{Binding CurrentViewModel}" />
   </StackPanel>
 
   <Window.InputBindings>
-    <KeyBinding Key="Enter" Command="{Binding DialogSelectCommand}" />
+    <KeyBinding Key="Enter" Command="{Binding SelectWindowCommand}" />
   </Window.InputBindings>
 </Window>

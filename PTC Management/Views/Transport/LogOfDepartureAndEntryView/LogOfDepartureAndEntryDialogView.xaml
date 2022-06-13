@@ -24,9 +24,10 @@
 
       <Style.Triggers>
         <Trigger Property="Validation.HasError" Value="True">
-          <Setter Property="ToolTip"
-                Value="{Binding RelativeSource={RelativeSource Self},
-                    Path=(Validation.Errors)[0].ErrorContent}" />
+          <Setter
+            Property="ToolTip"
+            Value="{Binding RelativeSource={RelativeSource Self},
+                Path=(Validation.Errors)[0].ErrorContent}" />
           <Setter Property="Foreground" Value="Red" />
         </Trigger>
       </Style.Triggers>
@@ -64,6 +65,7 @@
     <model:DateConverter x:Key="DateConverter"/>
     <model:TimeSpanConverter x:Key="TimeSpanConverter"/>
   </UserControl.Resources>
+
   <StackPanel Orientation="Vertical" Margin="10,0,10,10">
     <StackPanel >
       <Button 
@@ -86,7 +88,10 @@
     </StackPanel>
 
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
-      <TextBlock Style="{StaticResource TextBlockStyle}" Name="textBlockCountCopy" Text="Количество копий" />
+      <TextBlock 
+        Style="{StaticResource TextBlockStyle}"
+        Name="textBlockCountCopy"     
+        Text="Количество копий" />
       <TextBox
         Name ="textBoxCountCopy"
         MaxLength="3"
@@ -100,27 +105,28 @@
     </StackPanel>
 
     <StackPanel >
-      <TextBlock Style="{StaticResource TextBlockStyle}"  
-                 Name="textBlockItinerary" 
-                 Text="Путевой лист" />
+      <TextBlock 
+        Style="{StaticResource TextBlockStyle}"                   
+        Name="textBlockItinerary"                  
+        Text="Путевой лист" />
       <TextBox Name="textBoxItinerary" IsReadOnly="True" Text="{
         Binding DialogItem.Itinerary.Id,
         ValidatesOnDataErrors=True, 
         NotifyOnValidationError=True, 
         UpdateSourceTrigger=PropertyChanged}" />
       <Button           
-              Command="{Binding DialogSelectСommand }"
-              CommandParameter="{Binding Destinations.Itinerary}" 
-              Margin="0 0 35 0" Width="auto">Выбрать</Button>
+        Command="{Binding DialogSelectСommand }"
+        CommandParameter="{Binding Destinations.Itinerary}" 
+        Margin="0 0 35 0" Width="auto">Выбрать</Button>
     </StackPanel>
 
-    <StackPanel >
+    <!--<StackPanel >
       <TextBlock Style="{StaticResource TextBlockStyle}" Name="textBlockDate" Text="Дата" />
       <DatePicker  
         Name="textBoxDate"
         MaxWidth="155"
         Text="{
-          Binding DialogItem.Date,
+          Binding DialogItem.Itinerary.Date,
           StringFormat=\{0:dd.MM.yyyy\},
           ValidatesOnDataErrors=True, 
           NotifyOnValidationError=True, 
@@ -138,7 +144,7 @@
             Text="выезда" Width="149" />
           <TextBox                           
               Text="{
-              Binding DialogItem.TimeOnDeparture,
+              Binding DialogItem.Itinerary.TimeOnDeparture,
               StringFormat=h\\:mm,
               ValidatesOnDataErrors=True, 
               NotifyOnValidationError=True, 
@@ -155,7 +161,7 @@
             Width="149"/>
           <TextBox Name="textBoxTimeWhenReturning" 
             Text="{
-              Binding DialogItem.TimeWhenReturning,
+              Binding DialogItem.Itinerary.TimeWhenReturning,
               StringFormat=h\\:mm,
               ValidatesOnDataErrors=True, 
               NotifyOnValidationError=True, 
@@ -164,7 +170,7 @@
             }" />
         </StackPanel>
       </StackPanel>
-    </GroupBox>
-    
+    </GroupBox>-->
+
   </StackPanel>
 </UserControl>

@@ -2,8 +2,6 @@
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 
-using static System.Net.Mime.MediaTypeNames;
-
 namespace PTC_Management.Model
 {
     public class ToDecimalValidationRule : ValidationRule
