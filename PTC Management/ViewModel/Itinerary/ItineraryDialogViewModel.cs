@@ -65,14 +65,22 @@ namespace PTC_Management.ViewModel
             if (ItemsList.Count == 0 || SelectedIndex == 0)
             {
                 IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
+
+                if (MainWindowAction == Actions.Add)
+                {
+                    if (DialogItem is Itinerary itinerary)
+                    {
+                        var SpeedometerIWR = ItemsList[ItemsList.Count - 1].SpeedometerInfoWhenReturning;
+                        itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
+                    }
+                }
             }
             else
             {
-                if (DialogItem is Itinerary itinerary)
+                if (SelectedItem is Itinerary itinerary)
                 {
                     var SpeedometerIWR = ItemsList[SelectedIndex - 1].SpeedometerInfoWhenReturning;
-                    //itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
-                    (SelectedItem as Itinerary).SpeedometerInfoOnDeparture = SpeedometerIWR;
+                    itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
                 }
             }
         }
@@ -139,8 +147,6 @@ namespace PTC_Management.ViewModel
             }
 
         }
-
-
         #endregion
     }
 }

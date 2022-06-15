@@ -65,8 +65,6 @@ namespace PTC_Management.EntityFramework
 
         public virtual Transport Transport { get; set; }
 
-
-
         public virtual ICollection<LogOfDepartureAndEntry> LogOfDepartureAndEntry { get; set; }
 
         public virtual ICollection<MaintanceLog> MaintanceLog { get; set; }
@@ -152,7 +150,6 @@ namespace PTC_Management.EntityFramework
                 return error;
             }
         }
-
 
         public string IntError(int? number, string messageOnNegative)
         {

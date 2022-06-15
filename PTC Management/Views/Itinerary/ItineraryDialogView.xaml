@@ -55,6 +55,13 @@
               ElementName=textBoxTransport}" Value="False"/>
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxRoute}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxRoute}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxRoute}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxRoute}" Value="False"/>
+            
           </MultiDataTrigger.Conditions>
           <Setter Property="IsEnabled" Value="True"/>
         </MultiDataTrigger>

@@ -11,10 +11,12 @@ namespace PTC_Management.Model
             WindowParameters = windowParameters;
         }
 
+
         public ItineraryViewModel GetItineraryVM(int idTransport)
         {
             return new ItineraryViewModel(idTransport) { WindowParameters = WindowParameters };
         }
+
 
         public MaintanceLogViewModel GetMaintanceLogVM(int idTransport)
         {
@@ -59,6 +61,9 @@ namespace PTC_Management.Model
             };
         }
 
+        /// <summary>
+        /// Возвращает заголовок окна
+        /// </summary>
         public static string GetTitle(string partOfTitle, string destination)
         {
             switch (destination)

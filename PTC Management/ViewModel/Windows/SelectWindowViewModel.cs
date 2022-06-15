@@ -18,13 +18,15 @@ namespace PTC_Management.ViewModel
 
         public SelectWindowViewModel()
         {
-            SelectWindowCommand = new Command(OnDialogSelectCommand);
+            SelectWindowCommand = new Command(OnSelectCommand);
         }
 
         public SelectWindowViewModel(string destination) : this()
         {
             CurrentViewModel = GetViewModel(viewModels.GetViewModel(destination));
             Title = ViewModels.GetTitle("Выбор", destination);
+
+            CurrentViewModel.WindowParameters.WindowSize.HeightDiff = Size.selectHeightDiff;
         }
 
         public SelectWindowViewModel(string destination, int idTransport) : this()
@@ -44,6 +46,8 @@ namespace PTC_Management.ViewModel
                     Title = ViewModels.GetTitle("Выбор", destination);
                     break;
             }
+
+            CurrentViewModel.WindowParameters.WindowSize.HeightDiff = Size.transportInfoHeightDiff;
         }
 
         private ViewModelBaseEntity GetViewModel(ViewModelBaseEntity viewModel)
@@ -59,7 +63,7 @@ namespace PTC_Management.ViewModel
                     // если параметр соответствует параметру,
                     // передаваемому двойным кликом
                     if (action == Actions.update)
-                        OnDialogSelectCommand();
+                        OnSelectCommand();
                 });
 
             viewModel.SelectWindowCommand = SelectWindowCommand;
@@ -73,7 +77,7 @@ namespace PTC_Management.ViewModel
             return viewModel;
         }
 
-        public void OnDialogSelectCommand()
+        public void OnSelectCommand()
         {
             returnedItem = CurrentViewModel.SelectedItem;
             Close();

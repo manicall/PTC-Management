@@ -8,7 +8,8 @@
         xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
         Title="{Binding Title}"
         Height = "{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}" 
-        Width  = "{Binding WindowParameters.WindowSize.Width,  Mode=TwoWay}" >
+        Width  = "{Binding WindowParameters.WindowSize.Width,  Mode=TwoWay}"
+        MinWidth="500">
 
   <Window.DataContext>
     <viewModels:SelectWindowViewModel/>

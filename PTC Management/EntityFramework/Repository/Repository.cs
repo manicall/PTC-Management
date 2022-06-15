@@ -72,7 +72,6 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         public List<T> GetList()
         {
-            set.Load();
             return set.Select(item => item).ToList();
         }
 
@@ -90,7 +89,7 @@ namespace PTC_Management.EntityFramework
         }
 
         /// <summary>
-        /// Изменяет запись в таблице базы данных1
+        /// Изменяет запись в таблице базы данных
         /// </summary>
         public bool Update(T item)
         {

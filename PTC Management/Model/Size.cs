@@ -9,6 +9,7 @@ namespace PTC_Management.Model
     {
         public const int defaultHeightDiff = 170;
         public const int transportInfoHeightDiff = 100;
+        public const int selectHeightDiff = 70;
 
         public const int defaultWidth = 1000;
         public const int defaultHeight = 500;
