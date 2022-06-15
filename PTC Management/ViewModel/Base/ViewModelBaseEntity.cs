@@ -15,7 +15,6 @@ namespace PTC_Management.ViewModel
     {
         private Visibility visibility;
         private int selectedIndex;
-        private string copyButtonVisibility;
         private string tableActionButtonsVisible;
 
         public Visibility Visibility
@@ -82,12 +81,6 @@ namespace PTC_Management.ViewModel
             set => tableActionButtonsVisible = value;
         }
 
-        public string CopyButtonVisibility
-        {
-            get => copyButtonVisibility ?? Visibility.visible;
-            set => copyButtonVisibility = value;
-        }
-
         public ViewModelBaseEntity()
         {
             TableAction = new Command<string>(OnTableAction);
@@ -113,8 +106,7 @@ namespace PTC_Management.ViewModel
         private static void FilterText_Changed(DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
-            ViewModelBaseEntity current = d as ViewModelBaseEntity;
-            if (current != null)
+            if (d is ViewModelBaseEntity current)
             {
                 current.Items.Filter = null;
                 current.Items.Filter = current.Filter;

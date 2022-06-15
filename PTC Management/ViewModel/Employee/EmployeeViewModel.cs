@@ -10,6 +10,9 @@ namespace PTC_Management.ViewModel
     {
         readonly ViewModelHelper<Employee> viewModelHelper;
 
+        /// <summary>
+        /// Список выбранных элементов таблицы
+        /// </summary>
         public IList SelectedItemsList { get; set; }
 
         public EmployeeViewModel()
@@ -22,7 +25,6 @@ namespace PTC_Management.ViewModel
         }
 
         #region FilterText
-
         /// <summary>
         /// Проверка подходит ли заданный текст под условие фильтра.
         /// </summary>
@@ -31,7 +33,6 @@ namespace PTC_Management.ViewModel
             Employee current = entity as Employee;
 
             return string.IsNullOrWhiteSpace(FilterText)
-                 // && !current.Id.ToString().Contains(FilterText)
                  || current.Surname.Contains(FilterText)
                  || current.Name.Contains(FilterText)
                  || current.Patronymic != null && current.Patronymic.Contains(FilterText)
@@ -40,17 +41,16 @@ namespace PTC_Management.ViewModel
         #endregion
 
         #region Методы
-
         /// <summary>
         /// Выполняет заданное действие для вызывающей кнопки.
         /// </summary>
         public override void OnTableAction(string action)
         {
             // инициализация модели представления диалогового окна
-            var dialogViewModel = GetDialogViewModel<EmployeeDialogViewModel>(action, Destinations.employee);
-            dialogViewModel.ViewModelHelper = viewModelHelper;
+            var dialogViewModel = 
+                GetDialogViewModel<EmployeeDialogViewModel>(action, Destinations.employee);
 
-            var i = SelectedItemsList.Count;
+            dialogViewModel.ViewModelHelper = viewModelHelper;
 
             var actionPerformer = new ActionPerformer<Employee>
                  (this, dialogViewModel, viewModelHelper.ItemsList);

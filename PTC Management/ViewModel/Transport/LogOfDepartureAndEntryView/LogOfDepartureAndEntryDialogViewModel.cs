@@ -36,7 +36,6 @@ namespace PTC_Management.ViewModel
                     MainWindowAction, (int)DialogItem.Id, SelectedIndex, (LogOfDepartureAndEntry)DialogItem);
             }
         }
-
         protected override void OnDialogSelectСommand(string destination)
         {
             var selectWindow = new SelectWindowViewModel(destination, ViewModelHelper.IdTransport);
@@ -52,12 +51,12 @@ namespace PTC_Management.ViewModel
                         tempDialogItem.IdItinerary = (int)((Itinerary)selectWindow.ReturnedItem).Id;
                         break;
 
-                    default: break;
+                    default: 
+                        break;
                 }
 
                 DialogItem = tempDialogItem;
             }
-
         }
 
         #endregion

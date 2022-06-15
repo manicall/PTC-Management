@@ -26,7 +26,7 @@
         <Button 
           Name="copy" 
           Style="{StaticResource BlackButton}" 
-          Visibility="{Binding CopyButtonVisibility}"
+          Visibility="{Binding Visibility.Field[CopyButtonVisibility]}"
           Content="Копировать" 
           Command = "{Binding TableAction}"
           CommandParameter="{Binding Actions.Copy}"/>

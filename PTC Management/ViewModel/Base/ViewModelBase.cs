@@ -15,7 +15,8 @@ namespace PTC_Management.ViewModel
         public Actions Actions { get => new Actions(); }
 
         /// <summary>
-        /// Текущая модель представления. Определяет какое представление необходимо отобразить в окне.
+        /// Текущая модель представления. 
+        /// Определяет какое представление необходимо отобразить в окне.
         /// </summary>
         public ViewModelBase CurrentViewModel
         {

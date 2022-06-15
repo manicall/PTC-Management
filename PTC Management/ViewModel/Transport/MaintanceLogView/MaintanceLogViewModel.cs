@@ -16,7 +16,7 @@ namespace PTC_Management.ViewModel
                     Destinations.maintanceLog,
                     idTransport);
 
-            CopyButtonVisibility = Visibility.collapsed;
+            Visibility.Field["CopyButtonVisibility"] = Visibility.collapsed;
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
@@ -40,7 +40,7 @@ namespace PTC_Management.ViewModel
                 || current.Itinerary.SpeedometerInfoOnDeparture.ToString().Contains(FilterText)
                 || current.Itinerary.SpeedometerInfoWhenReturning.ToString().Contains(FilterText)
                 || current.Itinerary.Mileage.ToString().Contains(FilterText)
-                || current.MaintenanceType.Contains(FilterText);
+                || current.MaintenanceType != null && current.MaintenanceType.Contains(FilterText)  ;
         }
         #endregion
 
@@ -54,8 +54,6 @@ namespace PTC_Management.ViewModel
             // инициализация модели представления диалогового окна
             var dialogViewModel = GetDialogViewModel<MaintanceLogDialogViewModel>(action, Destinations.maintanceLog);
             dialogViewModel.ViewModelHelper = viewModelHelper;
-
-            if (action == Actions.add) dialogViewModel.OnActionAdd();
 
             var actionPerformer = new ActionPerformer<MaintanceLog>
                  (this, dialogViewModel, viewModelHelper.ItemsList);

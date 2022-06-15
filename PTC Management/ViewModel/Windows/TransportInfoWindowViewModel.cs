@@ -16,7 +16,6 @@ namespace PTC_Management.ViewModel
             switch (destination)
             {
                 case Destinations.maintanceLog:
-                    WindowParameters.WindowSize.Width = 900;
                     CurrentViewModel = viewModels.GetMaintanceLogVM(idTransport);
                     Title = "Журнал технического обслуживания";
 
@@ -28,6 +27,8 @@ namespace PTC_Management.ViewModel
 
                     break;
             }
+
+            CurrentViewModel.WindowParameters.WindowSize.HeightDiff = Size.transportInfoHeightDiff;
         }
 
         /// <summary> Метод показа ViewModel в окне </summary>

@@ -43,23 +43,6 @@ namespace PTC_Management.ViewModel
             CurrentViewModel = this;
         }
 
-        public void OnActionAdd()
-        {
-            //var ItemsList = ViewModelHelper.ItemsList;
-
-            //if (ItemsList.Count == 0)
-            //{
-            //    IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
-            //}
-            //else {
-            //    if (DialogItem is MaintanceLog maintanceLog) {
-            //        var SpeedometerIWR = ItemsList[ItemsList.Count - 1].Itinerary.SpeedometerInfoWhenReturning;
-
-            //        maintanceLog.Itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
-            //    }
-            //}
-        }
-
         internal ViewModelHelper<MaintanceLog> ViewModelHelper { get; set; }
 
         #region методы
@@ -68,51 +51,54 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
+            const string TO_1 = "ТО-1";
+            const string TO_2 = "ТО-2";
+
             var itemsList = ViewModelHelper.ItemsList;
             var currentML = DialogItem as MaintanceLog;
-            var index = GetIndex(itemsList, "TO-2");
+            var index = GetIndex(itemsList, TO_2);
 
-            // не найдено TO-2
+            // не найдено ТО-2
             if (index == -1)
             {
                 if (GetSum(itemsList) + currentML.Itinerary.Mileage >= 10000)
                 {
-                    currentML.MaintenanceType = "TO-2";
+                    currentML.MaintenanceType = TO_2;
                 }
                 else  // ТО-2 еще не нужно проводить
                 {
-                    index = GetIndex(itemsList, "TO-1");
+                    index = GetIndex(itemsList, TO_1);
 
-                    if (index == -1) // Не найдено TO-1
+                    if (index == -1) // Не найдено ТО-1
                     {
                         if (GetSum(itemsList) + currentML.Itinerary.Mileage >= 2500)
                         {
-                            currentML.MaintenanceType = "TO-1";
+                            currentML.MaintenanceType = TO_1;
                         }
                     }
                     else
                     {
                         if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
                         {
-                            currentML.MaintenanceType = "TO-1";
+                            currentML.MaintenanceType = TO_1;
                         }
                     }
                 }
             }
-            else // TO-2 найдено
+            else // ТО-2 найдено
             {
                 if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 10000)
                 {
-                    currentML.MaintenanceType = "TO-2";
+                    currentML.MaintenanceType = TO_2;
                 }
                 // ТО-2 еще не нужно проводить
                 else
                 {
-                    index = GetIndex(itemsList, "TO-1");
+                    index = GetIndex(itemsList, TO_1);
 
                     if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
                     {
-                        currentML.MaintenanceType = "TO-1";
+                        currentML.MaintenanceType = TO_1;
                     }
                 }
             }
@@ -166,7 +152,6 @@ namespace PTC_Management.ViewModel
 
                 DialogItem = tempDialogItem;
             }
-
         }
 
         #endregion

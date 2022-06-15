@@ -11,14 +11,6 @@ namespace PTC_Management.Model
             WindowParameters = windowParameters;
         }
 
-        public T GetNewModelView<T>() where T : ViewModelBaseEntity, new()
-        {
-            return new T
-            {
-                WindowParameters = WindowParameters
-            };
-        }
-
         public ItineraryViewModel GetItineraryVM(int idTransport)
         {
             return new ItineraryViewModel(idTransport) { WindowParameters = WindowParameters };
@@ -33,18 +25,38 @@ namespace PTC_Management.Model
         {
             return new LogOfDepartureAndEntryViewModel(idTransport) { WindowParameters = WindowParameters };
         }
-
+        
+        /// <summary>
+        /// Возвращает модель представления 
+        /// на основе заданного параметра
+        /// </summary>
         public ViewModelBaseEntity GetViewModel(string destination)
         {
             switch (destination)
             {
-                case Destinations.employee: return GetNewModelView<EmployeeViewModel>();
-                case Destinations.route: return GetNewModelView<RouteViewModel>();
-                case Destinations.transport: return GetNewModelView<TransportViewModel>();
-                case Destinations.itinerary: return GetNewModelView<ItineraryViewModel>();
-                case Destinations.schedule: return GetNewModelView<ScheduleOfEmployeeViewModel>();
+                case Destinations.employee: 
+                    return GetNewModelView<EmployeeViewModel>();
+                case Destinations.route: 
+                    return GetNewModelView<RouteViewModel>();
+                case Destinations.transport: 
+                    return GetNewModelView<TransportViewModel>();
+                case Destinations.itinerary: 
+                    return GetNewModelView<ItineraryViewModel>();
+                case Destinations.schedule: 
+                    return GetNewModelView<ScheduleOfEmployeeViewModel>();
                 default: return null;
             }
+        }
+
+        /// <summary>
+        /// Универсальный метод для возврата модели представления 
+        /// </summary>
+        public T GetNewModelView<T>() where T : ViewModelBaseEntity, new()
+        {
+            return new T
+            {
+                WindowParameters = WindowParameters
+            };
         }
 
         public static string GetTitle(string partOfTitle, string destination)

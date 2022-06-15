@@ -15,11 +15,15 @@ i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc manag
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:
 ++Context
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\context\
+++PTC_ManagementContext.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\context\ptc_managementcontext.cs
 ++Entityes
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\entityes\
 ++Base
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\entityes\base\
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\base\
+++Entity.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\entityes\base\entity.cs
 ++Date.cs
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\entityes\date.cs
 ++Employee.cs
@@ -36,8 +40,12 @@ i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc manag
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\entityes\transport.cs
 ++Repository
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\repository\
+++Repository.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\repository\repository.cs
 ++Images
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\images\
+++SplashScreen.png
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\images\splashscreen.png
 ++Model
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\model\
 ++Converter
@@ -74,10 +82,127 @@ i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc manag
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\model\windowparameters.cs
 ++Resources
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\
+++Styles
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\styles\
+++GeneralStyles.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\styles\generalstyles.xaml
+++Templates
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\
+++ControlTemplates.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\controltemplates.xaml
+++DialogTemplates.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\dialogtemplates.xaml
+++EntityTemplates.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\entitytemplates.xaml
+++TransportInfoTemplate.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\transportinfotemplate.xaml
 ++ViewModel
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\
+++BindableBase.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\base\bindablebase.cs
+++ViewModelBase.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\base\viewmodelbase.cs
+++ViewModelBaseEntity.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\base\viewmodelbaseentity.cs
+++ViewModelBaseWindow.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\base\viewmodelbasewindow.cs
+++Employee
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\employee\
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\employee\
+++Helpers
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\
+++ActionPerformer.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\actionperformer.cs
+++DatePickerCalendar.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\datepickercalendar.cs
+++DatePickerDateFormat.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\datepickerdateformat.cs
+++ViewModelHelper.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\viewmodelhelper.cs
+++Itinerary
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\itinerary\
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\itinerary\
+++ItineraryDialogViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\itinerary\itinerarydialogviewmodel.cs
+++ItineraryViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\itinerary\itineraryviewmodel.cs
+++Route
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\route\
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\route\
+++ScheduleOfEmployee
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\scheduleofemployee\
+++ScheduleOfEmployeeViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\scheduleofemployee\scheduleofemployeeviewmodel.cs
+++Transport
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\
+++LogOfDepartureAndEntryView
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\logofdepartureandentryview\
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\
+++LogOfDepartureAndEntryDialogViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\logofdepartureandentryview\logofdepartureandentrydialogviewmodel.cs
+++LogOfDepartureAndEntryViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\logofdepartureandentryview\logofdepartureandentryviewmodel.cs
+++MaintanceLogView
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\maintancelogview\
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\
+++MaintanceLogDialogViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\maintancelogview\maintancelogdialogviewmodel.cs
+++MaintanceLogViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\maintancelogview\maintancelogviewmodel.cs
+++TransportDialogViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\transportdialogviewmodel.cs
+++TransportViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\transportviewmodel.cs
+++Windows
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\
+++DialogViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\dialogviewmodel.cs
+++MainWindowViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\mainwindowviewmodel.cs
+++SelectWindowViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\selectwindowviewmodel.cs
+++TransportInfoWindowViewModel.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\transportinfowindowviewmodel.cs
 ++Views
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\
+++EmployeeDialogView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\employee\employeedialogview.xaml
+++EmployeeView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\employee\employeeview.xaml
+++ItineraryDialogView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\itinerary\itinerarydialogview.xaml
+++ItineraryView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\itinerary\itineraryview.xaml
+++RouteDialogView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\route\routedialogview.xaml
+++RouteView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\route\routeview.xaml
+++SheduleOfEmployee
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\sheduleofemployee\
+++ScheduleOfEmployeeView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\sheduleofemployee\scheduleofemployeeview.xaml
+++LogOfDepartureAndEntryDialogView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\logofdepartureandentrydialogview.xaml
+++LogOfDepartureAndEntryView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\logofdepartureandentryview.xaml
+++MaintanceLogDialogView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\maintancelogdialogview.xaml
+++MaintanceLogView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\maintancelogview.xaml
+++TransportDialogView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\transportdialogview.xaml
+++TransportView.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\transportview.xaml
+++Dialog.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\dialog.xaml
+++MainWindow.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\mainwindow.xaml
+++SelectWindow.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\selectwindow.xaml
+++TransportInfoWindow.xaml
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\transportinfowindow.xaml
 ++App.config
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\app.config
 ++app.ico
@@ -130,138 +255,14 @@ i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:
 ++WindowsBase
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:
-++PTC_ManagementContext.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\context\ptc_managementcontext.cs
-++Entity.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\entityes\base\entity.cs
-++TransportInfo.cs
-++Repository.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\entityframework\repository\repository.cs
-++SplashScreen.png
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\images\splashscreen.png
-++Styles
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\styles\
-++Templates
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\
-++Employee
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\employee\
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\employee\
-++Helpers
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\
-++Itinerary
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\itinerary\
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\itinerary\
-++Route
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\route\
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\route\
-++ScheduleOfEmployee
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\scheduleofemployee\
-++Transport
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\
-++Windows
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\
-++SheduleOfEmployee
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\sheduleofemployee\
-++App.xaml.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\app.xaml.cs
-++Resources.Designer.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\properties\resources.designer.cs
-++Settings.Designer.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\properties\settings.designer.cs
-++GeneralStyles.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\styles\generalstyles.xaml
-++ControlTemplates.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\controltemplates.xaml
-++DialogTemplates.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\dialogtemplates.xaml
-++EntityTemplates.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\entitytemplates.xaml
-++TransportInfoTemplate.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\resources\templates\transportinfotemplate.xaml
-++BindableBase.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\base\bindablebase.cs
-++ViewModelBase.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\base\viewmodelbase.cs
-++ViewModelBaseEntity.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\base\viewmodelbaseentity.cs
-++ViewModelBaseWindow.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\base\viewmodelbasewindow.cs
 ++EmployeeDialogViewModel.cs
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\employee\employeedialogviewmodel.cs
 ++EmployeeViewModel.cs
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\employee\employeeviewmodel.cs
-++ActionPerformer.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\actionperformer.cs
-++DatePickerCalendar.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\datepickercalendar.cs
-++DatePickerDateFormat.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\datepickerdateformat.cs
-++ViewModelHelper.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\viewmodelhelper.cs
-++ItineraryDialogViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\itinerary\itinerarydialogviewmodel.cs
-++ItineraryViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\itinerary\itineraryviewmodel.cs
 ++RouteDialogViewModel.cs
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\route\routedialogviewmodel.cs
 ++RouteViewModel.cs
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\route\routeviewmodel.cs
-++ScheduleOfEmployeeViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\scheduleofemployee\scheduleofemployeeviewmodel.cs
-++LogOfDepartureAndEntryView
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\logofdepartureandentryview\
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\
-++MaintanceLogView
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\maintancelogview\
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\
-++TransportDialogViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\transportdialogviewmodel.cs
-++TransportViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\transportviewmodel.cs
-++DialogViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\dialogviewmodel.cs
-++MainWindowViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\mainwindowviewmodel.cs
-++SelectWindowViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\selectwindowviewmodel.cs
-++TransportInfoWindowViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\windows\transportinfowindowviewmodel.cs
-++EmployeeDialogView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\employee\employeedialogview.xaml
-++EmployeeView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\employee\employeeview.xaml
-++ItineraryDialogView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\itinerary\itinerarydialogview.xaml
-++ItineraryView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\itinerary\itineraryview.xaml
-++RouteDialogView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\route\routedialogview.xaml
-++RouteView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\route\routeview.xaml
-++ScheduleOfEmployeeView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\sheduleofemployee\scheduleofemployeeview.xaml
-++TransportDialogView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\transportdialogview.xaml
-++TransportView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\transportview.xaml
-++Dialog.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\dialog.xaml
-++MainWindow.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\mainwindow.xaml
-++SelectWindow.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\selectwindow.xaml
-++TransportInfoWindow.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\transportinfowindow.xaml
-++LogOfDepartureAndEntryDialogViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\logofdepartureandentryview\logofdepartureandentrydialogviewmodel.cs
-++LogOfDepartureAndEntryViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\logofdepartureandentryview\logofdepartureandentryviewmodel.cs
-++MaintanceLogDialogViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\maintancelogview\maintancelogdialogviewmodel.cs
-++MaintanceLogViewModel.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\transport\maintancelogview\maintancelogviewmodel.cs
 ++EmployeeDialogView.xaml.cs
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\employee\employeedialogview.xaml.cs
 ++EmployeeView.xaml.cs
@@ -276,14 +277,14 @@ i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc manag
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\route\routeview.xaml.cs
 ++ScheduleOfEmployeeView.xaml.cs
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\sheduleofemployee\scheduleofemployeeview.xaml.cs
-++LogOfDepartureAndEntryDialogView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\logofdepartureandentrydialogview.xaml
-++LogOfDepartureAndEntryView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\logofdepartureandentryview.xaml
-++MaintanceLogDialogView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\maintancelogdialogview.xaml
-++MaintanceLogView.xaml
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\maintancelogview.xaml
+++LogOfDepartureAndEntryDialogView.xaml.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\logofdepartureandentrydialogview.xaml.cs
+++LogOfDepartureAndEntryView.xaml.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\logofdepartureandentryview.xaml.cs
+++MaintanceLogDialogView.xaml.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\maintancelogdialogview.xaml.cs
+++MaintanceLogView.xaml.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\maintancelogview.xaml.cs
 ++TransportDialogView.xaml.cs
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\transportdialogview.xaml.cs
 ++TransportView.xaml.cs
@@ -296,12 +297,11 @@ i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc manag
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\selectwindow.xaml.cs
 ++TransportInfoWindow.xaml.cs
 i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\windows\transportinfowindow.xaml.cs
-++LogOfDepartureAndEntryDialogView.xaml.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\logofdepartureandentrydialogview.xaml.cs
-++LogOfDepartureAndEntryView.xaml.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\logofdepartureandentryview\logofdepartureandentryview.xaml.cs
-++MaintanceLogDialogView.xaml.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\maintancelogdialogview.xaml.cs
-++MaintanceLogView.xaml.cs
-i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\views\transport\maintancelogview\maintancelogview.xaml.cs
-++Model1.cs
+++App.xaml.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\app.xaml.cs
+++Resources.Designer.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\properties\resources.designer.cs
+++Settings.Designer.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\properties\settings.designer.cs
+++MultiselectDataGrid.cs
+i:{e6df2b7f-636d-4d51-9212-9a26aa9179b9}:c:\users\maxim\desktop\repos1\ptc management\ptc management\viewmodel\helpers\multiselectdatagrid.cs

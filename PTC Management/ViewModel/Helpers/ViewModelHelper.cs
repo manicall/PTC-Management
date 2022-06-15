@@ -8,7 +8,7 @@ using System.Windows.Data;
 namespace PTC_Management.ViewModel.Helpers
 {
     /// <summary>
-    /// Используется для инициализации преставление-модели.
+    /// Используется для инициализации модели представления.
     /// Выполняет действия определяемые диалоговым окном.
     /// </summary>
     internal class ViewModelHelper<T>

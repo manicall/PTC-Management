@@ -38,8 +38,7 @@
     </Style>
 
     <!--Валидация полей для ввода -->
-    <Style TargetType="Button" x:Key="ConditionButton"
-          >
+    <Style TargetType="Button" x:Key="ConditionButton" >
       <Setter Property="IsEnabled" Value="False"/>
       <Style.Triggers>
         <MultiDataTrigger>
@@ -50,6 +49,8 @@
               ElementName=textBoxSurname}" Value="False"/>
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxName}" Value="False"/>
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxPatronymic}" Value="False"/>
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxDriverLicense}" Value="False"/>
           </MultiDataTrigger.Conditions>
@@ -144,6 +145,5 @@
           UpdateSourceTrigger=PropertyChanged
         }" />
     </StackPanel>
-
   </StackPanel>
 </UserControl>

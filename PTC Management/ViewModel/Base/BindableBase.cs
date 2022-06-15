@@ -18,25 +18,17 @@ namespace PTC_Management.ViewModel
            [CallerMemberName] string propertyName = null)
         {
 
-            if (object.Equals(member, val)) return;
+            if (Equals(member, val)) return;
 
             member = val;
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
-        /// <summary>
-        /// Вызывается при генерации события PropertyChanged
-        /// </summary>
-        protected virtual void OnPropertyChanged(
-            [CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>
         /// Вызов события PropertyChanged
         /// </summary>
-        protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }

@@ -16,7 +16,7 @@ namespace PTC_Management.ViewModel
                     Destinations.logOfDepartureAndEntry,
                     idTransport);
 
-            CopyButtonVisibility = Visibility.collapsed;
+            Visibility.Field["CopyButtonVisibility"] = Visibility.collapsed;
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;

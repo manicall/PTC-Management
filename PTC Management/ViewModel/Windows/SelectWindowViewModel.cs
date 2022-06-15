@@ -27,7 +27,6 @@ namespace PTC_Management.ViewModel
             Title = ViewModels.GetTitle("Выбор", destination);
         }
 
-
         public SelectWindowViewModel(string destination, int idTransport) : this()
         {
             switch (destination)
@@ -45,8 +44,6 @@ namespace PTC_Management.ViewModel
                     Title = ViewModels.GetTitle("Выбор", destination);
                     break;
             }
-
-
         }
 
         private ViewModelBaseEntity GetViewModel(ViewModelBaseEntity viewModel)
@@ -75,7 +72,6 @@ namespace PTC_Management.ViewModel
 
             return viewModel;
         }
-
 
         public void OnDialogSelectCommand()
         {

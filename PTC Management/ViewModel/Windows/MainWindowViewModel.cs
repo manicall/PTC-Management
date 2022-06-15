@@ -68,9 +68,6 @@ namespace PTC_Management
             // установка представления по умолчанию
             CurrentViewModel = viewModels.GetViewModel(Destinations.employee);
             IsEnabled.Field[Destinations.employee] = "False";
-
-            // для отображения времени запуска
-            RunTime.Stop();
         }
 
         #region Методы

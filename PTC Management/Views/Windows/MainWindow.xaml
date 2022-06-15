@@ -9,7 +9,8 @@
    mc:Ignorable = "d" 
    Title = "Управление ПАТП" 
    Height = "{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}" 
-   Width  = "{Binding WindowParameters.WindowSize.Width,  Mode=TwoWay}" >
+   Width  = "{Binding WindowParameters.WindowSize.Width,  Mode=TwoWay}" 
+   MinWidth="700">
 
   <Window.DataContext>
     <local:MainWindowViewModel/>
@@ -26,12 +27,14 @@
       </MenuItem>
       
       <MenuItem Header="Управление базой данных">
-        <MenuItem Header="Создать бекап" 
-                  Command="{Binding BackUpCommand}"
-                  CommandParameter="{Binding Backup.Create}" />
-        <MenuItem Header="Восстановить бекап"
-                  Command="{Binding BackUpCommand}" 
-                  CommandParameter="{Binding Backup.Restore}" />
+        <MenuItem 
+          Header="Создать файл резервного копирования"                   
+          Command="{Binding BackUpCommand}"                  
+          CommandParameter="{Binding Backup.Create}" />
+        <MenuItem 
+          Header="Восстановить базу данных"                  
+          Command="{Binding BackUpCommand}"                   
+          CommandParameter="{Binding Backup.Restore}" />
       </MenuItem>
     </Menu>
     <StatusBar DockPanel.Dock="Bottom">

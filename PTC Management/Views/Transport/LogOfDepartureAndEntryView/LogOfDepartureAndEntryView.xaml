@@ -20,7 +20,9 @@
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
       <ContentControl Template="{StaticResource TableActionControls}" />
 
-      <DataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+      <DataGrid 
+         Style="{StaticResource DataGridStyle}"
+        SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
             Name="dataGridLogOfDepartureAndEntry"

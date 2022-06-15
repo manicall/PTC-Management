@@ -20,21 +20,22 @@
 
     <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2">
       <Control Template="{StaticResource TableActionControls}" />
-
-      <h:MultiselectDataGrid SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
-            SelectedIndex="{Binding SelectedIndex}"
-            ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
-            x:Name="dataGridEmployee"
-            MinRowHeight="20" 
-            MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
-            ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"         
-            IsReadOnly="True" 
-            CanUserReorderColumns="False"
-            CanUserAddRows="false"          
-            AutoGenerateColumns="False"
-            SelectedItemsList="{Binding SelectedItemsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+      
+      <h:MultiselectDataGrid
+        Style="{StaticResource DataGridStyle}"
+        SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+        SelectedIndex="{Binding SelectedIndex}"
+        ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+        x:Name="dataGridEmployee"
+        MinRowHeight="20" 
+        MaxHeight="{Binding WindowParameters.WindowSize.Height, Mode=TwoWay}"
+        ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"         
+        IsReadOnly="True" 
+        CanUserReorderColumns="False"
+        CanUserAddRows="false"          
+        AutoGenerateColumns="False"
+        SelectedItemsList="{Binding SelectedItemsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <h:MultiselectDataGrid.Columns>
-          <!--<DataGridTextColumn Header="Код" Binding="{Binding Id}"/>-->
           <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname }" Width="*"/>
           <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
           <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*"/>
