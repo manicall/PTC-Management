@@ -43,6 +43,7 @@
         </h:MultiselectDataGrid.Columns>
 
         <h:MultiselectDataGrid.InputBindings>
+          <KeyBinding Key="Enter" Command="{Binding SelectWindowCommand}" />
           <KeyBinding 
             Command="{Binding TableAction}"
             CommandParameter="{Binding Actions.Remove}"

@@ -35,10 +35,10 @@ namespace PTC_Management.ViewModel
         {
             DialogItem = new MaintanceLog();
 
-            if (DialogItem is MaintanceLog maintanceLog)
-            {
-                maintanceLog.Itinerary = new Itinerary();
-            }
+            //if (DialogItem is MaintanceLog maintanceLog)
+            //{
+            //    maintanceLog.Itinerary = new Itinerary();
+            //}
 
             CurrentViewModel = this;
         }
@@ -51,6 +51,20 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
+            SetMaintenceType();
+
+            // выполняет изменения в бд
+            if (DoDialogActionCommand(dialogAction))
+                if (dialogAction != Actions.close)
+                {
+                    // выполняет изменения в коллекции отображающей записи в таблице
+                    ViewModelHelper.DoActionForList(
+                        MainWindowAction, DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
+                }
+        }
+
+
+        void SetMaintenceType() {
             const string TO_1 = "ТО-1";
             const string TO_2 = "ТО-2";
 
@@ -102,16 +116,6 @@ namespace PTC_Management.ViewModel
                     }
                 }
             }
-
-            // выполняет изменения в бд
-            base.OnDialogActionCommand(dialogAction);
-
-            if (dialogAction != Actions.close)
-            {
-                // выполняет изменения в коллекции отображающей записи в таблице
-                ViewModelHelper.DoActionForList(
-                    MainWindowAction, (int)DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
-            }
         }
 
         int? GetRangeSum(List<MaintanceLog> maintanceLogs, int index)
@@ -139,18 +143,22 @@ namespace PTC_Management.ViewModel
 
             if (selectWindow.ReturnedItem != null)
             {
-                MaintanceLog tempDialogItem = (MaintanceLog)DialogItem.Clone();
-                switch (destination)
+                if (DialogItem is MaintanceLog maintanceLog)
                 {
-                    case Destinations.itinerary:
-                        tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem;
-                        tempDialogItem.IdItinerary = (int)((Itinerary)selectWindow.ReturnedItem).Id;
-                        break;
+                    switch (destination)
+                    {
+                        case Destinations.itinerary:
+                            maintanceLog.Itinerary = (Itinerary)selectWindow.ReturnedItem;
+                            maintanceLog.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
+                            break;
 
-                    default: break;
+                        default: 
+                            break;
+                    }
                 }
 
-                DialogItem = tempDialogItem;
+                // уведомление о том, что свойство было изменено
+                RaisePropertyChanged("DialogItem");
             }
         }
 

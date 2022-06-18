@@ -9,9 +9,6 @@ namespace PTC_Management.ViewModel
 {
     class DialogViewModel : ViewModelBaseWindow
     {
-        private CopyParameters copyParameters;
-        private Entity dialogItem;
-
         /// <summary>
         /// Содержит константы, которые определяют 
         /// с какой моделью представления взаимодействовать
@@ -21,22 +18,14 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Копия выбранного элемента таблицы
         /// </summary>
-        public Entity DialogItem
-        {
-            get => dialogItem;
-            set => SetProperty(ref dialogItem, value);
-        }
+        public Entity DialogItem { get; set; }
 
         /// <summary>
         /// Используется для отображения поля,
         /// в которое воодится количество копий выбранной записи,
         /// которые необходимо создать 
         /// </summary>
-        public CopyParameters CopyParameters
-        {
-            get => copyParameters;
-            set => SetProperty(ref copyParameters, value);
-        }
+        public CopyParameters CopyParameters { get; set; }
 
         /// <summary>
         /// Действие которое было выбрано в главном окне
@@ -70,10 +59,7 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Выполняет действие заданное кнопкой на диалоговом окне
         /// </summary>
-        protected virtual void OnDialogActionCommand(string action)
-        {
-            DoDialogActionCommand(action);
-        }
+        protected virtual void OnDialogActionCommand(string action) { }
 
         protected bool DoDialogActionCommand(string action)
         {
@@ -82,7 +68,8 @@ namespace PTC_Management.ViewModel
             {
                 case Actions.writeAndClose:
                     result = DoAction(MainWindowAction);
-                    Close();
+                    if (result) 
+                        Close();
                     break;
                 case Actions.write:
                     result = DoAction(MainWindowAction);
@@ -100,6 +87,9 @@ namespace PTC_Management.ViewModel
         protected bool DoAction(string action)
         {
             bool result;
+
+            //if (!DialogItem.CheckNulls()) return false;
+
             Entity entity = DialogItem.Clone();
 
             switch (action)
@@ -146,7 +136,6 @@ namespace PTC_Management.ViewModel
                 default:
                     throw new ArgumentException("Действие не обработано");
             }
-
         }
 
         /// <summary>

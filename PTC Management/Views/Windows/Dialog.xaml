@@ -21,4 +21,11 @@
   <StackPanel>
     <ContentControl Content="{Binding CurrentViewModel}" />
   </StackPanel>
+
+  <Window.InputBindings>
+    <KeyBinding 
+      Command="{Binding CurrentViewModel.TableAction}"
+      CommandParameter="{Binding Actions.WriteAndClose}"
+      Key="C" />
+  </Window.InputBindings>
 </Window>

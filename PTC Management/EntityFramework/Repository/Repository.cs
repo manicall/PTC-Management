@@ -9,13 +9,13 @@ namespace PTC_Management.EntityFramework
 {
     public class Repository<T> where T : Entity
     {
-        private readonly PTC_ManagementContext db;
+        private readonly AppContext db = new AppContext();
         private readonly DbSet<T> set;
 
-        public Repository(PTC_ManagementContext db)
+        public Repository(AppContext db)
         {
-            this.db = db;
-            set = db.Set<T>();
+            //this.db = db;
+            set = this.db.Set<T>();
         }
 
         /// <summary>
@@ -72,7 +72,9 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         public List<T> GetList()
         {
-            return set.Select(item => item).ToList();
+            set.Load();
+            return set.Local.ToList();
+            //return set.Select(item => item).ToList();
         }
 
         /// <summary>
@@ -81,6 +83,8 @@ namespace PTC_Management.EntityFramework
         public bool Add(T item)
         {
             SetEntities(item);
+
+           
 
             // отмечаем сущность как добавленную
             db.Entry(item).State = EntityState.Added;
@@ -94,7 +98,7 @@ namespace PTC_Management.EntityFramework
         public bool Update(T item)
         {
             SetEntities(item);
-
+            if (item is Itinerary itinerary) db.Employee.Attach(itinerary.Employee);
             // отмечаем сущность как измененную
             db.Entry(item).State = EntityState.Modified;
 
@@ -107,6 +111,12 @@ namespace PTC_Management.EntityFramework
         public bool Remove(T item)
         {
             SetEntities(item);
+
+            var dialogResult = MessageBox.Show(
+                "Удалить запись?", "Удаление записи", 
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (dialogResult == MessageBoxResult.No) return false;
 
             // отмечаем сущность как удаленную
             db.Entry(item).State = EntityState.Deleted;

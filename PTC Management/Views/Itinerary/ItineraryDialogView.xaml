@@ -47,6 +47,7 @@
       <Style.Triggers>
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
+            
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxCountCopy}" Value="False"/>
             <Condition Binding="{Binding Path=(Validation.HasError), 
@@ -56,11 +57,11 @@
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxRoute}" Value="False"/>
             <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBoxRoute}" Value="False"/>
+              ElementName=textBoxSpeedometerInfoOnDeparture}" Value="False"/>
             <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBoxRoute}" Value="False"/>
+              ElementName=textBoxSpeedometerInfoWhenReturning}" Value="False"/>
             <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBoxRoute}" Value="False"/>
+              ElementName=textBoxMileage}" Value="False"/>
             
           </MultiDataTrigger.Conditions>
           <Setter Property="IsEnabled" Value="True"/>

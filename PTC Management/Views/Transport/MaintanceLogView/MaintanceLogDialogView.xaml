@@ -15,8 +15,12 @@
       <views:MaintanceLogDialogView />
     </DataTemplate>
 
+    <Style x:Key="GroupTextBlockStyle" TargetType="TextBlock" >
+      <Setter Property="Width" Value="140"/>
+    </Style>
+
     <Style x:Key="TextBlockStyle" TargetType="TextBlock" >
-      <Setter Property="Width" Value="155"/>
+      <Setter Property="Width" Value="145"/>
     </Style>
 
     <Style TargetType="TextBox" >
@@ -37,26 +41,26 @@
       <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
 
-    <!--Валидация полей для ввода -->
+   
     <Style TargetType="Button" x:Key="ConditionButton">
       <Setter Property="IsEnabled" Value="False"/>
       <Style.Triggers>
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
-            <!--<Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBoxCountCopy}" Value="False"/>-->
+            <Condition Binding="{Binding Path=(Validation.HasError), 
+              ElementName=textBoxCountCopy}" Value="False"/>
 
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBoxItinerary}" Value="False"/>
 
-            <!--<Condition Binding="{Binding Path=(Validation.HasError), 
+            <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBlockSpeedometerInfoOnDeparture}" Value="False"/>
                         
             <Condition Binding="{Binding Path=(Validation.HasError), 
               ElementName=textBlockSpeedometerInfoWhenReturning}" Value="False"/>   
             
             <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBlockMileage}" Value="False"/>-->
+              ElementName=textBlockMileage}" Value="False"/>
 
           </MultiDataTrigger.Conditions>
           <Setter Property="IsEnabled" Value="True"/>
@@ -89,7 +93,7 @@
         Margin="10 0 0 0" />
     </StackPanel>
 
-    <!--<StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
+    <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >
       <TextBlock 
         Name="textBlockCountCopy" 
         Text="Количество копий" 
@@ -104,7 +108,7 @@
           NotifyOnValidationError=True, 
           UpdateSourceTrigger=PropertyChanged
         }" />
-    </StackPanel>-->
+    </StackPanel>
 
     <StackPanel >
       <TextBlock 
@@ -128,7 +132,7 @@
         Width="auto" />
     </StackPanel>
 
-    <!--<StackPanel >
+    <StackPanel >
       <TextBlock 
         Name="textBlockDate" 
         Text="Дата"
@@ -151,9 +155,9 @@
       <StackPanel Orientation="Vertical">
         <StackPanel  Margin="0,5,0,0">
           <TextBlock 
-            Style="{StaticResource TextBlockStyle}"  
+            Style="{StaticResource GroupTextBlockStyle}"
             Name="textBlockTimeOnDeparture"
-            Text="выезда" Width="149" />
+            Text="выезда" />
 
           <TextBox                           
               Text="{
@@ -167,9 +171,9 @@
         </StackPanel>
 
         <StackPanel Margin="0,5,0,0">
-          <TextBlock Style="{StaticResource TextBlockStyle}" 
+          <TextBlock Style="{StaticResource GroupTextBlockStyle}" 
                      Name="textBlockTimeWhenReturning" 
-                     Text="возвращения"  Width="149"/>
+                     Text="возвращения"/>
           <TextBox Name="textBoxTimeWhenReturning" 
             Text="{
               Binding DialogItem.Itinerary.TimeWhenReturning,
@@ -187,9 +191,9 @@
       <StackPanel Orientation="Vertical">
         <StackPanel Margin="0,5,0,0">
           <TextBlock 
-            Style="{StaticResource TextBlockStyle}" 
+            Style="{StaticResource GroupTextBlockStyle}" 
             Name="textBlockSpeedometerInfoOnDeparture"
-            Text="при выезде" Width="149" />
+            Text="при выезде"  />
           <TextBox
               Name="textBoxSpeedometerInfoOnDeparture" 
               IsReadOnly="{Binding IsReadOnly.Field[SpeedometerInfoOnDeparture]}"
@@ -210,10 +214,10 @@
 
         <StackPanel  Margin="0,5,0,0">
           <TextBlock 
-            Style="{StaticResource TextBlockStyle}" 
+            Style="{StaticResource GroupTextBlockStyle}" 
             Name="textBlockSpeedometerInfoWhenReturning" 
             Text="при возвращении"         
-            Width="149" />
+            />
           <TextBox 
               Name="textBoxSpeedometerInfoWhenReturning"
               MaxLength="9">
@@ -246,7 +250,7 @@
           ValidatesOnDataErrors=True, 
           NotifyOnValidationError=True, 
           UpdateSourceTrigger=PropertyChanged}" />
-    </StackPanel>-->
+    </StackPanel>
 
   </StackPanel>
 </UserControl>

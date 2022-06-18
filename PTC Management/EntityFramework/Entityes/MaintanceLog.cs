@@ -19,7 +19,7 @@ namespace PTC_Management.EntityFramework
     public partial class MaintanceLog : Entity
     {
         public static readonly Repository<MaintanceLog> repository =
-             new Repository<MaintanceLog>(new PTC_ManagementContext());
+             new Repository<MaintanceLog>(new AppContext());
 
         // переопределение методов базового класса
         public override bool Add() => repository.Add(this);
@@ -28,7 +28,8 @@ namespace PTC_Management.EntityFramework
 
         public override bool Remove() => repository.Remove(this);
 
-        public override bool Copy(Entity selectedItem, int count) => repository.Copy(selectedItem, this, count);
+        public override bool Copy(Entity selectedItem, int count) =>
+            repository.Copy(selectedItem, this, count);
 
         public override void SetFields(Entity entity)
         {
@@ -38,6 +39,11 @@ namespace PTC_Management.EntityFramework
                 Itinerary = item.Itinerary;
                 MaintenanceType = item.MaintenanceType;
             }
+        }
+
+        public override bool CheckNulls()
+        {
+            throw new NotImplementedException();
         }
 
         public override Entity Clone() => Clone<MaintanceLog>();

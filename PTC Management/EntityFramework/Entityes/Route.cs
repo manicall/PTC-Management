@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PTC_Management.EntityFramework
 {
@@ -13,12 +16,14 @@ namespace PTC_Management.EntityFramework
             Itinerary = new HashSet<Itinerary>();
         }
 
+        [Required]
         public int? Number { get; set; }
 
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
 
+        [Required]
         public decimal? Distant { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
@@ -27,7 +32,7 @@ namespace PTC_Management.EntityFramework
     public partial class Route : Entity
     {
         public static readonly Repository<Route> repository =
-            new Repository<Route>(new PTC_ManagementContext());
+            new Repository<Route>(new AppContext());
 
         public override bool Add() => repository.Add(this);
 
@@ -45,6 +50,31 @@ namespace PTC_Management.EntityFramework
                 Name = route.Name;
                 Distant = route.Distant;
             }
+        }
+
+        public override bool CheckNulls()
+        {
+            bool result = true;
+
+            var properties = GetType()
+                .GetProperties()
+                .Where(item => item.DeclaringType == typeof(Employee)
+                && item.Name != "Item"
+                && item.Name != "Error"
+                && item.PropertyType.Name != "ICollection`1").ToArray();
+
+            for (int i = 0; i < properties.Length; i++)
+            {
+                if (properties[i].GetValue(this) == null)
+                {
+                    // провер€ть тип данных в других классах
+                    properties[i].SetValue(this, "");
+                    result = false;
+                    RaisePropertyChanged(properties[i].Name);
+                }
+            }
+
+            return result;
         }
 
         public override Entity Clone() => Clone<Route>();
@@ -73,7 +103,7 @@ namespace PTC_Management.EntityFramework
 
         public string IntError(int? number)
         {
-            if (!number.HasValue)
+            if (number == null)
                 return "ѕоле не может быть пустым";
             if (number <= 0)
                 return "Ќомер должен быть больше нул€";
@@ -82,7 +112,7 @@ namespace PTC_Management.EntityFramework
 
         public string DistantError(decimal? distant)
         {
-            if (!distant.HasValue)
+            if (distant == null)
                 return "ѕоле не может быть пустым";
             if (distant <= 0)
                 return "ƒистанци€ должна быть больше нул€";

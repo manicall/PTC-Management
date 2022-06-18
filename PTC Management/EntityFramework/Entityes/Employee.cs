@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace PTC_Management.EntityFramework
@@ -9,8 +11,6 @@ namespace PTC_Management.EntityFramework
     [Table("Employee")]
     public partial class Employee : Entity
     {
-        private string surname;
-
         public Employee()
         {
             Date = new HashSet<Date>();
@@ -19,7 +19,7 @@ namespace PTC_Management.EntityFramework
 
         [Required]
         [StringLength(50)]
-        public string Surname { get => surname; set => SetProperty(ref surname, value); }
+        public string Surname { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -35,11 +35,12 @@ namespace PTC_Management.EntityFramework
         public virtual ICollection<Date> Date { get; set; }
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
+
     }
     public partial class Employee : Entity
     {
         public static readonly Repository<Employee> repository =
-            new Repository<Employee>(new PTC_ManagementContext());
+            new Repository<Employee>(new AppContext());
 
         // переопределение методов базового класса
         public override bool Add() => repository.Add(this);
@@ -60,6 +61,37 @@ namespace PTC_Management.EntityFramework
                 DriverLicense = employee.DriverLicense;
             }
         }
+
+         
+
+
+        public override bool CheckNulls()
+        {
+            bool result = true;
+
+            var properties = GetType()
+                .GetProperties()
+                .Where(item => item.DeclaringType == typeof(Employee)
+                && item.Name != "Item"
+                && item.Name != "Error" 
+                && item.PropertyType.Name != "ICollection`1").ToArray();
+
+            for (int i = 0; i < properties.Length; i++)
+            {
+                if (properties[i].GetValue(this) == null)
+                {
+                    // проверять тип данных в других классах
+                    properties[i].SetValue(this, "");
+                    result = false;
+                    RaisePropertyChanged(properties[i].Name);
+                }
+            }
+
+            return result;
+        }
+
+
+
 
         public override Entity Clone() => Clone<Employee>();
 
@@ -95,8 +127,8 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         string GetPatronymicError(string text)
         {
-            if (string.IsNullOrEmpty(text)) return null;
-            if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
+            if (text == "") return null;
+            if (text != null && Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
                 return "Поле может содержать только буквы и дефисы";
             return null;
         }
@@ -106,9 +138,9 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         string GetNullOrNameError(string text)
         {
-            if (string.IsNullOrEmpty(text))
+            if (text == "")
                 return "Поле не может быть пустым";
-            if (Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
+            if (text != null && Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
                 return "Поле может содержать только буквы и дефисы";
             return null;
         }
@@ -119,9 +151,9 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         string GetDriverLicenseError(string text)
         {
-            if (string.IsNullOrEmpty(text))
+            if (text == "")
                 return "Поле не может быть пустым";
-            if (Regex.IsMatch(text, "[\\D]+"))
+            if (text != null && Regex.IsMatch(text, "[\\D]+"))
                 return "Поле может содержать только цифры";
             return null;
         }

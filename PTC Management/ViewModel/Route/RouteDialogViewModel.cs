@@ -2,10 +2,14 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections.Generic;
+
 namespace PTC_Management.ViewModel
 {
     internal class RouteDialogViewModel : DialogViewModel
     {
+
+
         public RouteDialogViewModel()
         {
             DialogItem = new Route();
@@ -26,10 +30,11 @@ namespace PTC_Management.ViewModel
                 {
                     // выполняет изменения в коллекции отображающей записи в таблице
                     ViewModelHelper.DoActionForList(
-                        MainWindowAction, (int)DialogItem.Id, SelectedIndex, (Route)DialogItem);
+                        MainWindowAction, DialogItem.Id, SelectedIndex, (Route)DialogItem);
                 }
         }
 
-        #endregion
     }
+
+    #endregion
 }

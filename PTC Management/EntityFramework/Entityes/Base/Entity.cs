@@ -1,4 +1,6 @@
 ﻿using PTC_Management.ViewModel;
+
+using System;
 using System.ComponentModel;
 
 namespace PTC_Management.EntityFramework
@@ -9,7 +11,7 @@ namespace PTC_Management.EntityFramework
     /// </summary>
     public abstract class Entity : BindableBase, IDataErrorInfo
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         // методы интерфейса IDataErrorInfo
         public abstract string this[string columnName] { get; }
@@ -36,5 +38,7 @@ namespace PTC_Management.EntityFramework
 
             return item;
         }
+
+        public abstract bool CheckNulls();
     }
 }

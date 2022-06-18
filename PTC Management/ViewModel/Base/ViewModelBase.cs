@@ -6,7 +6,6 @@ namespace PTC_Management.ViewModel
     internal class ViewModelBase : BindableBase
     {
         private ViewModelBase currentViewModel;
-
         private Entity selectedItem;
 
         /// <summary>
@@ -32,9 +31,6 @@ namespace PTC_Management.ViewModel
             get => selectedItem;
             set => SetProperty(ref selectedItem, value);
         }
-
-        /// <summary> Заголовок окна </summary>
-        public string Title { get; set; }
 
         /// <summary>
         /// Параметры окна

@@ -2,24 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace PTC_Management.EntityFramework
 {
     [Table("Transport")]
     public partial class Transport : Entity
     {
-
         public Transport()
         {
             Itinerary = new HashSet<Itinerary>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Required]
         [StringLength(10)]
         public string LicensePlate { get; set; }
-
 
         public virtual ICollection<Itinerary> Itinerary { get; set; }
     }
@@ -27,7 +28,7 @@ namespace PTC_Management.EntityFramework
     public partial class Transport : Entity
     {
         public static readonly Repository<Transport> repository =
-            new Repository<Transport>(new PTC_ManagementContext());
+            new Repository<Transport>(new AppContext());
 
         public override bool Add() => repository.Add(this);
 
@@ -44,6 +45,31 @@ namespace PTC_Management.EntityFramework
                 Name = transport.Name;
                 LicensePlate = transport.LicensePlate;
             }
+        }
+
+        public override bool CheckNulls()
+        {
+            bool result = true;
+
+            var properties = GetType()
+                .GetProperties()
+                .Where(item => item.DeclaringType == typeof(Employee)
+                && item.Name != "Item"
+                && item.Name != "Error"
+                && item.PropertyType.Name != "ICollection`1").ToArray();
+
+            for (int i = 0; i < properties.Length; i++)
+            {
+                if (properties[i].GetValue(this) == null)
+                {
+                    // проверять тип данных в других классах
+                    properties[i].SetValue(this, "");
+                    result = false;
+                    RaisePropertyChanged(properties[i].Name);
+                }
+            }
+
+            return result;
         }
 
         public override Entity Clone() => Clone<Transport>();
@@ -66,6 +92,7 @@ namespace PTC_Management.EntityFramework
                 return error;
             }
         }
+         
         public override string Error
         {
             get { throw new NotImplementedException(); }

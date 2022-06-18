@@ -105,7 +105,7 @@
               Path="DialogItem.Number"       
               ValidatesOnDataErrors="True"       
               NotifyOnValidationError="True"       
-              UpdateSourceTrigger="PropertyChanged">
+              UpdateSourceTrigger="PropertyChanged" >
             <Binding.ValidationRules>
               <model:ToIntValidationRule />
             </Binding.ValidationRules>

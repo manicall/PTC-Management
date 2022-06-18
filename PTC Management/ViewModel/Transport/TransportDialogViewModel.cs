@@ -21,14 +21,13 @@ namespace PTC_Management.ViewModel
         protected override void OnDialogActionCommand(string dialogAction)
         {
             // выполняет изменения в бд
-            base.OnDialogActionCommand(dialogAction);
-
-            if (dialogAction != Actions.close)
-            {
-                // выполняет изменения в коллекции отображающей записи в таблице
-                ViewModelHelper.DoActionForList(
-                    MainWindowAction, (int)DialogItem.Id, SelectedIndex, (Transport)DialogItem);
-            }
+            if (DoDialogActionCommand(dialogAction))
+                if (dialogAction != Actions.close)
+                {
+                    // выполняет изменения в коллекции отображающей записи в таблице
+                    ViewModelHelper.DoActionForList(
+                        MainWindowAction, DialogItem.Id, SelectedIndex, (Transport)DialogItem);
+                }
         }
 
 

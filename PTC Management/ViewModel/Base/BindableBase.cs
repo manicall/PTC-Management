@@ -17,12 +17,11 @@ namespace PTC_Management.ViewModel
         protected virtual void SetProperty<T>(ref T member, T val,
            [CallerMemberName] string propertyName = null)
         {
-
-            if (Equals(member, val)) return;
-
-            member = val;
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-
+            if (!Equals(member, val))
+            {
+                member = val;
+                RaisePropertyChanged(propertyName);
+            }
         }
 
         /// <summary>

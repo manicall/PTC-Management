@@ -19,6 +19,9 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected Window window = null;
 
+        /// <summary> Заголовок окна </summary>
+        public string Title { get; set; }
+
         /// <summary>
         /// Комадна вызывающая закрытие окна
         /// </summary>
@@ -28,7 +31,11 @@ namespace PTC_Management.ViewModel
         {
             CloseCommand = new Command(() => Close());
 
-            WindowParameters = new WindowParameters() { StatusBarMessage = "", WindowSize = new Size() };
+            WindowParameters = new WindowParameters() { 
+                StatusBarMessage = "",
+                WindowSize = new Size()
+            };
+
             viewModels = new ViewModels(WindowParameters);
         }
 
@@ -49,6 +56,5 @@ namespace PTC_Management.ViewModel
             }
             return result;
         }
-
     }
 }

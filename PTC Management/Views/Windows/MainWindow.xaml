@@ -101,11 +101,11 @@
     <KeyBinding 
       Command="{Binding CurrentViewModel.TableAction}"
       CommandParameter="{Binding Actions.Add}"
-      Key="C" />
+      Gesture="ALT+C" />
     <KeyBinding 
       Command="{Binding CurrentViewModel.TableAction}"
       CommandParameter="{Binding Actions.Update}"
-      Key="U" />
+      Gesture="ALT+U" />
     <KeyBinding 
       Command="{Binding CurrentViewModel.TableAction}"            
       CommandParameter="{Binding Actions.Remove}"
@@ -113,17 +113,17 @@
     <KeyBinding 
       Command="{Binding CurrentViewModel.TableAction}"
       CommandParameter="{Binding Actions.Copy}"
-      Gesture="ALT+C" />
+      Gesture="CTRL+ALT+C" />
   </Window.InputBindings>
   
   <Window.ContextMenu >
     <ContextMenu>
       <MenuItem 
-        Header ="Создать" InputGestureText="C"
+        Header ="Создать" InputGestureText="ALT+C"
         Command = "{Binding CurrentViewModel.TableAction}"
         CommandParameter="{Binding Actions.Add}"/>
       <MenuItem 
-        Header ="Изменить" InputGestureText="U"
+        Header ="Изменить" InputGestureText="ALT+U"
         Command = "{Binding CurrentViewModel.TableAction}"
         CommandParameter="{Binding Actions.Update}"/>
       <MenuItem 
@@ -131,7 +131,7 @@
         Command = "{Binding CurrentViewModel.TableAction}"
         CommandParameter="{Binding Actions.Remove}"/>
       <MenuItem 
-        Header ="Копировать" InputGestureText="ALT+C"
+        Header ="Копировать" InputGestureText="CTRL+ALT+C"
         Command = "{Binding CurrentViewModel.TableAction}"
         CommandParameter="{Binding Actions.Copy}"/>
     </ContextMenu>

@@ -127,7 +127,7 @@ namespace PTC_Management
             SaveFileDialog dialog = new SaveFileDialog
             {
                 Filter = GetFilter(),
-                Title = "Создание файла восстановления"
+                Title = "Сохранения файла резервного копирования"
             };
 
             if (dialog.ShowDialog() == true) Backup.CreateBackup(dialog.FileName);
@@ -141,7 +141,7 @@ namespace PTC_Management
             OpenFileDialog dialog = new OpenFileDialog
             {
                 Filter = GetFilter(),
-                Title = "Открытие файла восстановления"
+                Title = "Открытие файла резервного копирования"
             };
 
             if (dialog.ShowDialog() == true) Backup.RestoreBackup(dialog.FileName);

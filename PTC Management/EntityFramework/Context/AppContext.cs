@@ -2,9 +2,9 @@ using System.Data.Entity;
 
 namespace PTC_Management.EntityFramework
 {
-    public partial class PTC_ManagementContext : DbContext
+    public partial class AppContext : DbContext
     {
-        public PTC_ManagementContext()
+        public AppContext()
             : base("name=PTC_ManagementConnection") { }
 
         public virtual DbSet<Date> Date { get; set; }

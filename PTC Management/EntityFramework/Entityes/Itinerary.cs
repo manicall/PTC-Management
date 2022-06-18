@@ -72,7 +72,7 @@ namespace PTC_Management.EntityFramework
     public partial class Itinerary : Entity
     {
         public static readonly Repository<Itinerary> repository =
-            new Repository<Itinerary>(new PTC_ManagementContext());
+            new Repository<Itinerary>(new AppContext());
 
         /// <summary>
         /// Получение связанных сущностей из базы данных
@@ -112,6 +112,11 @@ namespace PTC_Management.EntityFramework
                 SpeedometerInfoWhenReturning = itinerary.SpeedometerInfoWhenReturning;
                 Mileage = itinerary.Mileage;
             }
+        }
+
+        public override bool CheckNulls()
+        {
+            throw new NotImplementedException();
         }
 
         public override Entity Clone() => Clone<Itinerary>();

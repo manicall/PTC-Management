@@ -27,15 +27,15 @@ namespace PTC_Management.ViewModel
         protected override void OnDialogActionCommand(string dialogAction)
         {
             // выполняет изменения в бд
-            base.OnDialogActionCommand(dialogAction);
-
-            if (dialogAction != Actions.close)
-            {
-                // выполняет изменения в коллекции отображающей записи в таблице
-                ViewModelHelper.DoActionForList(
-                    MainWindowAction, (int)DialogItem.Id, SelectedIndex, (LogOfDepartureAndEntry)DialogItem);
-            }
+            if (DoDialogActionCommand(dialogAction))
+                if (dialogAction != Actions.close)
+                {
+                    // выполняет изменения в коллекции отображающей записи в таблице
+                    ViewModelHelper.DoActionForList(
+                        MainWindowAction, DialogItem.Id, SelectedIndex, (LogOfDepartureAndEntry)DialogItem);
+                }
         }
+
         protected override void OnDialogSelectСommand(string destination)
         {
             var selectWindow = new SelectWindowViewModel(destination, ViewModelHelper.IdTransport);
@@ -48,7 +48,7 @@ namespace PTC_Management.ViewModel
                 {
                     case Destinations.itinerary:
                         tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem;
-                        tempDialogItem.IdItinerary = (int)((Itinerary)selectWindow.ReturnedItem).Id;
+                        tempDialogItem.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
                         break;
 
                     default: 
@@ -58,7 +58,6 @@ namespace PTC_Management.ViewModel
                 DialogItem = tempDialogItem;
             }
         }
-
         #endregion
     }
 }

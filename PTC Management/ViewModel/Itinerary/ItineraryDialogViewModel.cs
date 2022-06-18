@@ -66,7 +66,7 @@ namespace PTC_Management.ViewModel
             {
                 IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
 
-                if (MainWindowAction == Actions.Add)
+                if (MainWindowAction == Actions.Add && ItemsList.Count > 0)
                 {
                     if (DialogItem is Itinerary itinerary)
                     {
@@ -102,14 +102,13 @@ namespace PTC_Management.ViewModel
             }
 
             // выполняет изменения в бд
-            base.OnDialogActionCommand(dialogAction);
-
-            if (dialogAction != Actions.close)
-            {
-                // выполняет изменения в коллекции отображающей записи в таблице
-                ViewModelHelper.DoActionForList(
-                    MainWindowAction, (int)DialogItem.Id, SelectedIndex, (Itinerary)DialogItem);
-            }
+            if (DoDialogActionCommand(dialogAction))
+                if (dialogAction != Actions.close)
+                {
+                    // выполняет изменения в коллекции отображающей записи в таблице
+                    ViewModelHelper.DoActionForList(
+                        MainWindowAction, DialogItem.Id, SelectedIndex, (Itinerary)DialogItem);
+                }
         }
 
         /// <summary>
@@ -122,28 +121,33 @@ namespace PTC_Management.ViewModel
 
             if (selectWindow.ReturnedItem != null)
             {
-                Itinerary tempDialogItem = (Itinerary)DialogItem.Clone();
-                switch (destination)
+                if (DialogItem is Itinerary itinerary)
                 {
-                    case Destinations.employee:
-                        tempDialogItem.Employee = (Employee)selectWindow.ReturnedItem;
-                        tempDialogItem.IdEmployee = (int)((Employee)selectWindow.ReturnedItem).Id;
+                    switch (destination)
+                    {
+                        case Destinations.employee:
+                            itinerary.Employee = (Employee)selectWindow.ReturnedItem;
+                            itinerary.IdEmployee = ((Employee)selectWindow.ReturnedItem).Id;
 
-                        break;
-                    case Destinations.route:
-                        tempDialogItem.Route = (Route)selectWindow.ReturnedItem;
-                        tempDialogItem.IdRoute = (int)((Route)selectWindow.ReturnedItem).Id;
+                            break;
+                        case Destinations.route:
+                            itinerary.Route = (Route)selectWindow.ReturnedItem;
+                            itinerary.IdRoute = ((Route)selectWindow.ReturnedItem).Id;
 
-                        break;
-                    case Destinations.transport:
-                        tempDialogItem.Transport = (Transport)selectWindow.ReturnedItem;
-                        tempDialogItem.IdTransport = (int)((Transport)selectWindow.ReturnedItem).Id;
+                            break;
+                        case Destinations.transport:
+                            itinerary.Transport = (Transport)selectWindow.ReturnedItem;
+                            itinerary.IdTransport = ((Transport)selectWindow.ReturnedItem).Id;
 
-                        break;
+                            break;
 
-                    default: break;
+                        default: 
+                            break;
+                    }
                 }
-                DialogItem = tempDialogItem;
+
+                // уведомление о том, что свойство было изменено
+                RaisePropertyChanged("DialogItem");
             }
 
         }
