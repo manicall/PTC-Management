@@ -27,13 +27,13 @@
         
       <Button 
         Margin="10,0,0,0"
-        Command="{Binding UNKNOWN_COMMAND}"
+        Command="{Binding SelectEmployees}"
         Width="auto" 
         Content="Добавить сотрудников" /> 
       
       <Button 
         Margin="10,0,0,0"
-        Command="{Binding UNKNOWN_COMMAND}"
+        Command="{Binding RemoveEmployee}"
         Width="auto" 
         Content="Убрать сотрудника" />
     </StackPanel>
@@ -63,10 +63,14 @@
 
 
     <GroupBox Grid.Column="2" Header="График">
-      <DataGrid AutoGenerateColumns="True" 
-            Name="dataGridEmployee"
-            MinRowHeight="20"
-            ItemsSource="{Binding SizeQuantityTable}" />
+      <DataGrid 
+         SelectionMode="Extended"
+        SelectionUnit="Cell"
+          AutoGenerateColumns="True" 
+          Name="dataGridEmployee"
+          MinRowHeight="20"
+          
+          ItemsSource="{Binding SizeQuantityTable, UpdateSourceTrigger=PropertyChanged}" />
 
 
     </GroupBox>
