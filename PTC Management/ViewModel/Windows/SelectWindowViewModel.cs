@@ -3,16 +3,15 @@ using PTC_Management.EntityFramework;
 using PTC_Management.Model;
 using PTC_Management.Views.Windows;
 
+using System.Collections;
+
 namespace PTC_Management.ViewModel
 {
     internal class SelectWindowViewModel : ViewModelBaseWindow
     {
-        private Entity returnedItem;
-        public Entity ReturnedItem
-        {
-            get => returnedItem;
-            set => SetProperty(ref returnedItem, value);
-        }
+        public Entity ReturnedItem { get; set; }
+
+        public IList ReturnedItems { get; set; }
 
         public Command SelectWindowCommand { get; private set; }
 
@@ -79,7 +78,11 @@ namespace PTC_Management.ViewModel
 
         public void OnSelectCommand()
         {
-            returnedItem = CurrentViewModel.SelectedItem;
+            ReturnedItem = CurrentViewModel.SelectedItem;
+
+            if (CurrentViewModel is EmployeeViewModel employeeVM)
+                ReturnedItems = employeeVM.SelectedItemsList;
+
             Close();
         }
 
@@ -90,7 +93,6 @@ namespace PTC_Management.ViewModel
             window.Closed += (sender, e) => Closed();
             window.ShowDialog();
         }
-
     }
 }
 

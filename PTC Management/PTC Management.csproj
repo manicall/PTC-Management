@@ -75,6 +75,7 @@
     <Compile Include="Model\Converter\TimeSpanConverter.cs" />
     <Compile Include="Model\IsEnabled.cs" />
     <Compile Include="Model\IsReadOnly.cs" />
+    <Compile Include="Model\Status.cs" />
     <Compile Include="RunTime.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\Base\BindableBase.cs" />

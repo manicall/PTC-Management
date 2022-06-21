@@ -8,14 +8,14 @@
 
     internal class Actions
     {
-        internal const string add = "add";
-        internal const string update = "update";
-        internal const string remove = "remove";
-        internal const string copy = "copy";
+        public const string add = "add";
+        public const string update = "update";
+        public const string remove = "remove";
+        public const string copy = "copy";
 
-        internal const string writeAndClose = "writeAndClose";
-        internal const string write = "write";
-        internal const string close = "close";
+        public const string writeAndClose = "writeAndClose";
+        public const string write = "write";
+        public const string close = "close";
 
         public string Add => add;
         public string Update => update;

@@ -12,9 +12,5 @@ namespace PTC_Management.Views
             InitializeComponent();
         }
 
-        private void DatePicker_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
-        {
-
-        }
     }
 }

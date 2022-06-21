@@ -31,5 +31,6 @@ namespace PTC_Management.ViewModel
         {
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

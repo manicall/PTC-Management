@@ -1,65 +1,145 @@
 ﻿
+using PTC_Management.EntityFramework;
+using System;
 using System.Data;
-using System.Windows;
-using System.Windows.Controls;
+using PTC_Management.Commands;
+using PTC_Management.Model;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.ComponentModel;
 
 namespace PTC_Management.ViewModel
 {
     class DateAdapter
     {
+        public DateTime Date { get; set; }
 
-        string[] field = new string[2] { "орел", "щука" };
-        public string[] Field { get => field; set => field = value; }
+        public int Id { get; set; }
+
+        public string Status { get; set; }
+
+        public int IdEmployee { get; set; }
+
+        public virtual Employee Employee { get; set; }
+
+    }
+
+    class ScheduleDataColumns
+    {
+        public DataColumn employee = new DataColumn();
+        public DataColumn[] days = new DataColumn[31];
+
+        public ScheduleDataColumns()
+        {
+            employee.ColumnName = "Сотрудник";
+
+            CreateDayColumns();
+        }
+
+        void CreateDayColumns()
+        {
+            for (int i = 1, length = 31; i <= length; i++)
+            {
+                days[i - 1] = new DataColumn
+                {
+                    ColumnName = i.ToString()
+                };
+            }
+        }
     }
 
     internal class ScheduleOfEmployeeViewModel : ViewModelBaseEntity
     {
-        private string dataPickerValue;
-        public string DataPickerValue
+        private string datePickerValue;
+        private Status status;
+
+        public string DatePickerValue
         {
-            get => dataPickerValue;
-            set => SetProperty(ref dataPickerValue, value);
+            get => datePickerValue;
+            set
+            {
+                if(datePickerValue != value && value.Length == 7)
+                    SetProperty(ref datePickerValue, value);
+            }
         }
 
-        private DataTable sizeQuantityTable;
+        public DataTable ScheduleTable { get; set; }
 
-        public DataTable SizeQuantityTable
-        {
-            get => sizeQuantityTable;
-            set => SetProperty(ref sizeQuantityTable, value);
-        }
+        public ScheduleDataColumns Columns { get; set; }
+
+        public Status Status { get => status ?? (status = new Status()); }
+
+        public Command SelectEmployees { get; private set; }
+
+        public Command RemoveEmployee { get; private set; }
+
+        public Command<string> SetStatus { get; private set; }
 
         public ScheduleOfEmployeeViewModel()
         {
+            SelectEmployees = new Command(OnSelectEmployees);
+            RemoveEmployee = new Command(OnRemoveEmployee);
+            SetStatus = new Command<string>(OnSetStatus);
 
-            //DataColumn mColumn = new DataColumn();
-            //mColumn.ColumnName = "M";
-            //this.sizeQuantityTable.Columns.Add(mColumn);
+            PropertyChanged += new PropertyChangedEventHandler(DatePickerValue_PropertyChanged);
 
-            //DataRow row1 = this.sizeQuantityTable.NewRow();
-            //row1[sizeQuantityColumn] = "Blue";
-            //row1[sColumn] = "12";
-            //row1[mColumn] = "15";
-            //this.sizeQuantityTable.Rows.Add(row1);
+            DatePickerValue = DateTime.Now.ToString("MM.yyyy");
 
 
-            this.sizeQuantityTable = new DataTable();
-
-
-            DataColumn col1 = new DataColumn();
-            col1.ColumnName = "Сотрудник";
-
-            sizeQuantityTable.Columns.Add(col1);
-
-            for (int i = 1, length = 31; i <= length; i++)
-            {
-                DataColumn sColumn = new DataColumn
-                {
-                    ColumnName = i.ToString(),
-                };
-                sizeQuantityTable.Columns.Add(sColumn);
-            }
 
         }
+
+        private void DatePickerValue_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+
+            if (e.PropertyName == nameof(DatePickerValue))
+            {
+
+                Console.WriteLine(DatePickerValue);
+
+                ScheduleTable = new DataTable();
+                Columns = new ScheduleDataColumns();
+
+                ScheduleTable.Columns.Add(Columns.employee);
+                ScheduleTable.Columns.AddRange(Columns.days);
+
+                RaisePropertyChanged(nameof(ScheduleTable));
+
+                // todo проверка существующих записей в базе данных
+            }
+        }
+
+        private void OnSetStatus(string status)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnRemoveEmployee()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnSelectEmployees()
+        {
+            var selectWindow = new SelectWindowViewModel(Destinations.employee);
+            selectWindow.Show();
+
+            if (selectWindow.ReturnedItem != null) // если были выбраны элементы списка
+            {
+                if (selectWindow.ReturnedItems == null)
+                    selectWindow.ReturnedItems = new List<Employee> 
+                    { 
+                        selectWindow.SelectedItem as Employee
+                    };
+
+                foreach (var item in selectWindow.ReturnedItems) {
+                    DataRow row = ScheduleTable.NewRow();
+                    if (item is Employee employee)
+                        row[Columns.employee] = employee.Name;
+                    ScheduleTable.Rows.Add(row);
+                }
+            }
+        }
+
     }
 }
