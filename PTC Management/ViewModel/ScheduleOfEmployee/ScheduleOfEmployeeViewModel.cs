@@ -5,6 +5,12 @@ using System.Windows.Controls;
 
 namespace PTC_Management.ViewModel
 {
+    class DateAdapter
+    {
+
+        string[] field = new string[2] { "орел", "щука" };
+        public string[] Field { get => field; set => field = value; }
+    }
 
     internal class ScheduleOfEmployeeViewModel : ViewModelBaseEntity
     {
@@ -39,19 +45,11 @@ namespace PTC_Management.ViewModel
 
             this.sizeQuantityTable = new DataTable();
 
-            ColumnDefinition col1 = new ColumnDefinition
-            {
-                Width = GridLength.Auto,
-                Name = "Сотрудник"
-            };
 
-            DataColumn sizeQuantityColumn = new DataColumn();
-            sizeQuantityColumn.ColumnName = "Сотрудник";
+            DataColumn col1 = new DataColumn();
+            col1.ColumnName = "Сотрудник";
 
-            //sizeQuantityTable.Columns.Add(col1);
-
-
-
+            sizeQuantityTable.Columns.Add(col1);
 
             for (int i = 1, length = 31; i <= length; i++)
             {

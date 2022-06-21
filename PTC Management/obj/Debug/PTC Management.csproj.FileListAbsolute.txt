@@ -3,25 +3,8 @@ C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\PTC
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\PTC Management.pdb
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\EntityFramework.dll
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\Xceed.Wpf.AvalonDock.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\Xceed.Wpf.Toolkit.dll
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\EntityFramework.xml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\ja-JP\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.AssemblyReference.cache
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\PTC Management.csproj.SuggestedBindingRedirects.cache
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Resources\Styles\GeneralStyles.baml
@@ -32,7 +15,6 @@ C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Vie
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryView.g.cs
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Route\RouteDialogView.g.cs
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Route\RouteView.g.cs
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.g.cs
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.g.cs
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.g.cs
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Transport\MaintanceLogView\MaintanceLogDialogView.g.cs
@@ -57,7 +39,6 @@ C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Vie
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Itinerary\ItineraryView.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Route\RouteDialogView.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Route\RouteView.baml
-C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\ScheduleOfEmployeeView.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogView.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryView.baml
 C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\Transport\MaintanceLogView\MaintanceLogDialogView.baml
@@ -135,3 +116,5 @@ C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\PTC Manage
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\PTC Management.exe
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\SheduleOfEmployee\ScheduleOfEmployeeView.g.cs
 C:\Users\maxim\Desktop\repos1\PTC Management\PTC Management\obj\Debug\Views\SheduleOfEmployee\ScheduleOfEmployeeView.baml
+C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\SheduleOfEmployee\ScheduleOfEmployeeView.g.cs
+C:\Users\maxim\source\repos\manicall\PTC-Management\PTC Management\obj\Debug\Views\SheduleOfEmployee\ScheduleOfEmployeeView.baml
