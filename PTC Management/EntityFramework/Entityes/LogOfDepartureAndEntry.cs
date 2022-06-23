@@ -13,7 +13,7 @@ namespace PTC_Management.EntityFramework
     public partial class LogOfDepartureAndEntry : Entity
     {
         public static readonly Repository<LogOfDepartureAndEntry> repository =
-            new Repository<LogOfDepartureAndEntry>(new AppContext());
+            new Repository<LogOfDepartureAndEntry>();
 
         // переопределение методов базового класса
         public override bool Add() => repository.Add(this);
@@ -32,12 +32,6 @@ namespace PTC_Management.EntityFramework
                 Itinerary = item.Itinerary;
             }
         }
-
-        public override bool CheckNulls()
-        {
-            throw new NotImplementedException();
-        }
-
         public override Entity Clone() => Clone<LogOfDepartureAndEntry>();
 
         /// <summary>

@@ -19,7 +19,7 @@ namespace PTC_Management.EntityFramework
     public partial class MaintanceLog : Entity
     {
         public static readonly Repository<MaintanceLog> repository =
-             new Repository<MaintanceLog>(new AppContext());
+             new Repository<MaintanceLog>();
 
         // переопределение методов базового класса
         public override bool Add() => repository.Add(this);
@@ -40,12 +40,6 @@ namespace PTC_Management.EntityFramework
                 MaintenanceType = item.MaintenanceType;
             }
         }
-
-        public override bool CheckNulls()
-        {
-            throw new NotImplementedException();
-        }
-
         public override Entity Clone() => Clone<MaintanceLog>();
 
         /// <summary>

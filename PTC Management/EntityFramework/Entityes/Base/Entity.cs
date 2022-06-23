@@ -1,6 +1,5 @@
 ﻿using PTC_Management.ViewModel;
 
-using System;
 using System.ComponentModel;
 
 namespace PTC_Management.EntityFramework
@@ -38,7 +37,5 @@ namespace PTC_Management.EntityFramework
 
             return item;
         }
-
-        public abstract bool CheckNulls();
     }
 }

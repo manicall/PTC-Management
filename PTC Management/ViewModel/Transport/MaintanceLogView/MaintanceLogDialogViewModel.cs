@@ -21,8 +21,7 @@ namespace PTC_Management.ViewModel
                     {
                         Field = new Dictionary<string, string>()
                         {
-                            ["Itinerary.Itinerary.Mileage"] = "True",
-                            ["SpeedometerInfoOnDeparture"] = "True",
+                            ["Itinerary.Mileage"] = "True",
                         }
                     };
                 }
@@ -64,7 +63,8 @@ namespace PTC_Management.ViewModel
         }
 
 
-        void SetMaintenceType() {
+        void SetMaintenceType()
+        {
             const string TO_1 = "ТО-1";
             const string TO_2 = "ТО-2";
 
@@ -152,7 +152,7 @@ namespace PTC_Management.ViewModel
                             maintanceLog.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
                             break;
 
-                        default: 
+                        default:
                             break;
                     }
                 }

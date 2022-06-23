@@ -35,7 +35,7 @@
       </StackPanel>
 
       <DataGrid
-         Style="{StaticResource DataGridStyle}"
+         
           SelectedItem="{Binding SelectedItem}" 
           SelectedIndex="{Binding SelectedIndex}"
           ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"

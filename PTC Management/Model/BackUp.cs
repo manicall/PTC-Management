@@ -60,7 +60,6 @@ namespace PTC_Management.Model
                 "ALTER DATABASE [PTC Management] " +
                 "SET MULTI_USER";
 
-
             // если не удастся выполнить запрос
             try
             {

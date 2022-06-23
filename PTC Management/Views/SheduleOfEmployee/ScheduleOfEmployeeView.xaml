@@ -3,9 +3,9 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:h="clr-namespace:PTC_Management.ViewModel.EntityViewModels.Helpers" 
+       xmlns:h="clr-namespace:PTC_Management.ViewModel.Helpers" 
        xmlns:viewmodel="clr-namespace:PTC_Management.ViewModel"
-       d:DataContext="{d:DesignInstance Type=viewmodel:ScheduleOfEmployeeViewModel}"
+        d:DataContext="{d:DesignInstance Type=viewmodel:ScheduleOfEmployeeViewModel}"
        mc:Ignorable="d" 
        d:DesignHeight="450" d:DesignWidth="800">
 
@@ -13,9 +13,10 @@
 
     <Style TargetType="Button" x:Key="ButtonStyle">
       <Setter Property="Margin" Value="5,0,0,0" />
-      <Setter Property="Width" Value="120" />
+      <Setter Property="Width" Value="130" />
+      <Setter Property="Height" Value="23" />
     </Style>
-    
+
   </UserControl.Resources>
 
   <DockPanel>
@@ -26,15 +27,14 @@
         h:DatePickerCalendar.IsMonthYear="True"    
         h:DatePickerDateFormat.DateFormat="MM/yyyy"/>
 
-
       <Button 
-        Margin="10,0,0,0"
+        Margin="35,0,0,0"
         Command="{Binding SelectEmployees}"
         Width="auto" 
         Content="Добавить сотрудников" /> 
       
       <Button 
-        Margin="10,0,0,0"
+        Margin="5,0,0,0"
         Command="{Binding RemoveEmployee}"
         Width="auto" 
         Content="Убрать сотрудника" />
@@ -43,42 +43,64 @@
 
     <StackPanel DockPanel.Dock="Top" Margin="0,5,0,5" Orientation="Horizontal">
       <Button 
+        Background="LimeGreen"
         Style="{StaticResource ButtonStyle}"
         Command="{Binding SetStatus}"
         CommandParameter = "{Binding Status.Working}"
-        Content="Должен работать" />    
-      
+        Content="Должен работать" />
+
       <Button 
+        Background="DarkGray"
         Style="{StaticResource ButtonStyle}"
         Command="{Binding SetStatus}"
         CommandParameter = "{Binding Status.Free}"
         Content="Свободен" />
-      
+
       <Button 
+        Background="DeepPink"
         Style="{StaticResource ButtonStyle}"
         Command="{Binding SetStatus}"
-        CommandParameter="{Binding Status.NoWork}"
+        CommandParameter="{Binding Status.NoWorking}"
         Content="Не хочет работать" />
 
       <Button 
+        Background="DeepSkyBlue"
         Style="{StaticResource ButtonStyle}"
         Command="{Binding SetStatus}"
         CommandParameter ="{Binding Status.Vacation}"
-        Content="Отпуск/больничный" /> 
+        Content="Отпуск/больничный" />
     </StackPanel>
 
-
     <GroupBox Grid.Column="2" Header="График">
-      <DataGrid 
-          SelectionMode="Extended"
-          SelectionUnit="Cell"
-          AutoGenerateColumns="True" 
-          Name="dataGridEmployee"
-          MinRowHeight="20"
-          CanUserAddRows="False"
-          CanUserDeleteRows="False"
-          IsReadOnly="True"
-          ItemsSource="{Binding ScheduleTable, UpdateSourceTrigger=PropertyChanged}" />
+      <h:ScheduleDataGrid 
+        ItemsList = "{Binding Items, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
+        ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
+        SelectedCellsList="{Binding SelectedCells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
+        SelectionMode="Extended"
+        SelectionUnit="Cell"
+        CanUserResizeColumns="False"
+        CanUserSortColumns="False"
+        CanUserReorderColumns="False"
+        AutoGenerateColumns="True" 
+        MinRowHeight="20"
+        CanUserAddRows="False"
+        CanUserDeleteRows="False"
+        IsReadOnly="True"
+        ItemsSource="{Binding ScheduleTable, UpdateSourceTrigger=PropertyChanged}">
+        <h:ScheduleDataGrid.CellStyle>
+          <Style TargetType="DataGridCell">
+            <Style.Triggers>
+              <Trigger Property="IsSelected" Value="True" >
+                <Setter Property="BorderThickness" Value="3" />
+                <Setter Property="BorderBrush" Value="Blue" />
+              </Trigger>
+
+            </Style.Triggers>
+          </Style>
+        </h:ScheduleDataGrid.CellStyle>
+
+      </h:ScheduleDataGrid>
+
 
 
     </GroupBox>

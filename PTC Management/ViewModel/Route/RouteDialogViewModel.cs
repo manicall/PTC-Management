@@ -2,8 +2,6 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
-using System.Collections.Generic;
-
 namespace PTC_Management.ViewModel
 {
     internal class RouteDialogViewModel : DialogViewModel

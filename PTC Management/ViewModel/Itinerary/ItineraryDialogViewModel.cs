@@ -141,7 +141,7 @@ namespace PTC_Management.ViewModel
 
                             break;
 
-                        default: 
+                        default:
                             break;
                     }
                 }

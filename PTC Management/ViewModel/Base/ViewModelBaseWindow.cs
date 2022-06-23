@@ -31,7 +31,8 @@ namespace PTC_Management.ViewModel
         {
             CloseCommand = new Command(() => Close());
 
-            WindowParameters = new WindowParameters() { 
+            WindowParameters = new WindowParameters()
+            {
                 StatusBarMessage = "",
                 WindowSize = new Size()
             };

@@ -6,7 +6,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace PTC_Management.ViewModel.EntityViewModels.Helpers
+namespace PTC_Management.ViewModel.Helpers
 {
     public class DatePickerDateFormat
     {

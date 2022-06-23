@@ -6,7 +6,7 @@ using System.Windows.Threading;
 
 using Calendar = System.Windows.Controls.Calendar;
 
-namespace PTC_Management.ViewModel.EntityViewModels.Helpers
+namespace PTC_Management.ViewModel.Helpers
 {
     public class DatePickerCalendar
     {

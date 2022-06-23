@@ -22,7 +22,7 @@
       <Control Template="{StaticResource TableActionControls}" />
       
       <h:MultiselectDataGrid
-        Style="{StaticResource DataGridStyle}"
+        
         SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
         SelectedIndex="{Binding SelectedIndex}"
         ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"

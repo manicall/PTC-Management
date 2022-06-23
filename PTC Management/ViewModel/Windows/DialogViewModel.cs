@@ -68,7 +68,7 @@ namespace PTC_Management.ViewModel
             {
                 case Actions.writeAndClose:
                     result = DoAction(MainWindowAction);
-                    if (result) 
+                    if (result)
                         Close();
                     break;
                 case Actions.write:

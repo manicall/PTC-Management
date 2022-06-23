@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace PTC_Management.EntityFramework
 {
@@ -28,7 +27,7 @@ namespace PTC_Management.EntityFramework
     public partial class Transport : Entity
     {
         public static readonly Repository<Transport> repository =
-            new Repository<Transport>(new AppContext());
+            new Repository<Transport>();
 
         public override bool Add() => repository.Add(this);
 
@@ -47,32 +46,8 @@ namespace PTC_Management.EntityFramework
             }
         }
 
-        public override bool CheckNulls()
-        {
-            bool result = true;
-
-            var properties = GetType()
-                .GetProperties()
-                .Where(item => item.DeclaringType == typeof(Employee)
-                && item.Name != "Item"
-                && item.Name != "Error"
-                && item.PropertyType.Name != "ICollection`1").ToArray();
-
-            for (int i = 0; i < properties.Length; i++)
-            {
-                if (properties[i].GetValue(this) == null)
-                {
-                    // проверять тип данных в других классах
-                    properties[i].SetValue(this, "");
-                    result = false;
-                    RaisePropertyChanged(properties[i].Name);
-                }
-            }
-
-            return result;
-        }
-
         public override Entity Clone() => Clone<Transport>();
+
         public override string this[string columnName]
         {
             get
@@ -92,7 +67,7 @@ namespace PTC_Management.EntityFramework
                 return error;
             }
         }
-         
+
         public override string Error
         {
             get { throw new NotImplementedException(); }

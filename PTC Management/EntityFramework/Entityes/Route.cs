@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-
-using static System.Net.Mime.MediaTypeNames;
 
 namespace PTC_Management.EntityFramework
 {
@@ -32,7 +29,7 @@ namespace PTC_Management.EntityFramework
     public partial class Route : Entity
     {
         public static readonly Repository<Route> repository =
-            new Repository<Route>(new AppContext());
+            new Repository<Route>();
 
         public override bool Add() => repository.Add(this);
 
@@ -52,32 +49,8 @@ namespace PTC_Management.EntityFramework
             }
         }
 
-        public override bool CheckNulls()
-        {
-            bool result = true;
-
-            var properties = GetType()
-                .GetProperties()
-                .Where(item => item.DeclaringType == typeof(Employee)
-                && item.Name != "Item"
-                && item.Name != "Error"
-                && item.PropertyType.Name != "ICollection`1").ToArray();
-
-            for (int i = 0; i < properties.Length; i++)
-            {
-                if (properties[i].GetValue(this) == null)
-                {
-                    // проверять тип данных в других классах
-                    properties[i].SetValue(this, "");
-                    result = false;
-                    RaisePropertyChanged(properties[i].Name);
-                }
-            }
-
-            return result;
-        }
-
         public override Entity Clone() => Clone<Route>();
+
         public override string this[string columnName]
         {
             get

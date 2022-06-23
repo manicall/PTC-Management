@@ -17,7 +17,6 @@ namespace PTC_Management.Model
             return new ItineraryViewModel(idTransport) { WindowParameters = WindowParameters };
         }
 
-
         public MaintanceLogViewModel GetMaintanceLogVM(int idTransport)
         {
             return new MaintanceLogViewModel(idTransport) { WindowParameters = WindowParameters };
@@ -27,7 +26,7 @@ namespace PTC_Management.Model
         {
             return new LogOfDepartureAndEntryViewModel(idTransport) { WindowParameters = WindowParameters };
         }
-        
+
         /// <summary>
         /// Возвращает модель представления 
         /// на основе заданного параметра
@@ -36,15 +35,15 @@ namespace PTC_Management.Model
         {
             switch (destination)
             {
-                case Destinations.employee: 
+                case Destinations.employee:
                     return GetNewModelView<EmployeeViewModel>();
-                case Destinations.route: 
+                case Destinations.route:
                     return GetNewModelView<RouteViewModel>();
-                case Destinations.transport: 
+                case Destinations.transport:
                     return GetNewModelView<TransportViewModel>();
-                case Destinations.itinerary: 
+                case Destinations.itinerary:
                     return GetNewModelView<ItineraryViewModel>();
-                case Destinations.schedule: 
+                case Destinations.schedule:
                     return GetNewModelView<ScheduleOfEmployeeViewModel>();
                 default: return null;
             }

@@ -40,7 +40,7 @@ namespace PTC_Management.ViewModel
                 || current.Itinerary.SpeedometerInfoOnDeparture.ToString().Contains(FilterText)
                 || current.Itinerary.SpeedometerInfoWhenReturning.ToString().Contains(FilterText)
                 || current.Itinerary.Mileage.ToString().Contains(FilterText)
-                || current.MaintenanceType != null && current.MaintenanceType.Contains(FilterText)  ;
+                || current.MaintenanceType != null && current.MaintenanceType.Contains(FilterText);
         }
         #endregion
 

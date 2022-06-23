@@ -12,10 +12,14 @@ namespace PTC_Management.EntityFramework
         private readonly AppContext db = new AppContext();
         private readonly DbSet<T> set;
 
-        public Repository(AppContext db)
-        {
-            //this.db = db;
-            set = this.db.Set<T>();
+        public Repository() => set = db.Set<T>();
+
+        public List<IGrouping<int, Date>> GetDates(DateTime dateTime) {
+            var datesSet = db.Set<Date>();
+
+            return datesSet.Where(item =>
+                item.Date1.Month == dateTime.Month
+                && item.Date1.Year == dateTime.Year).GroupBy(i => i.IdEmployee).ToList();
         }
 
         /// <summary>
@@ -84,8 +88,6 @@ namespace PTC_Management.EntityFramework
         {
             SetEntities(item);
 
-           
-
             // отмечаем сущность как добавленную
             db.Entry(item).State = EntityState.Added;
 
@@ -113,7 +115,7 @@ namespace PTC_Management.EntityFramework
             SetEntities(item);
 
             var dialogResult = MessageBox.Show(
-                "Удалить запись?", "Удаление записи", 
+                "Удалить запись?", "Удаление записи",
                 MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (dialogResult == MessageBoxResult.No) return false;
@@ -131,6 +133,41 @@ namespace PTC_Management.EntityFramework
 
                 // отмена удаления
                 db.Entry(item).State = EntityState.Unchanged;
+
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Выполняет удаление записи из базы данных
+        /// </summary>
+        public bool RemoveRange(List<T> items)
+        {
+            //SetEntities(item);
+
+            var dialogResult = MessageBox.Show(
+                "Удалить запись?", "Удаление записи",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (dialogResult == MessageBoxResult.No) return false;
+
+            // отмечаем сущность как удаленную
+            //db.Entry(item).State = EntityState.Deleted;
+
+            set.RemoveRange(items);
+
+            try { db.SaveChanges(); }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Прежде чем совершить удаление, необходимо удалить записи в других таблицах, " +
+                    "которые используют выбранную для удаления запись",
+                    "Ошибка удаления записи из базы данных",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+
+                // отмена удаления
+                //db.Entry(item).State = EntityState.Unchanged;
 
                 return false;
             }
@@ -188,6 +225,7 @@ namespace PTC_Management.EntityFramework
         private void SetEntities(T item)
         {
             if (item is Itinerary) (item as Itinerary).SetEntities();
+            if (item is Date) (item as Date).SetEntities();
             if (item is MaintanceLog) (item as MaintanceLog).SetEntities();
             if (item is LogOfDepartureAndEntry) (item as LogOfDepartureAndEntry).SetEntities();
         }

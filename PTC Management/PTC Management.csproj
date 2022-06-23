@@ -88,6 +88,7 @@
     <Compile Include="ViewModel\Helpers\DatePickerCalendar.cs" />
     <Compile Include="ViewModel\Helpers\DatePickerDateFormat.cs" />
     <Compile Include="ViewModel\Helpers\MultiselectDataGrid.cs" />
+    <Compile Include="ViewModel\Helpers\ScheduleDataGrid.cs" />
     <Compile Include="ViewModel\Helpers\ViewModelHelper.cs" />
     <Compile Include="ViewModel\Itinerary\ItineraryDialogViewModel.cs" />
     <Compile Include="ViewModel\Itinerary\ItineraryViewModel.cs" />

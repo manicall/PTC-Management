@@ -51,7 +51,7 @@ namespace PTC_Management.ViewModel
                         tempDialogItem.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
                         break;
 
-                    default: 
+                    default:
                         break;
                 }
 

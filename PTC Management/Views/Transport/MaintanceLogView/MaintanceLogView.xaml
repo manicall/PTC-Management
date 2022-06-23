@@ -21,7 +21,7 @@
       <ContentControl Template="{StaticResource TableActionControls}" />
 
       <DataGrid 
-         Style="{StaticResource DataGridStyle}"
+         
         SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
             SelectedIndex="{Binding SelectedIndex}"
             ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
