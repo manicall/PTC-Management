@@ -7,7 +7,7 @@ using System;
 
 namespace PTC_Management.ViewModel
 {
-    class DialogViewModel : ViewModelBaseWindow
+    public class DialogViewModel : ViewModelBaseWindow
     {
         /// <summary>
         /// Содержит константы, которые определяют 
@@ -88,7 +88,35 @@ namespace PTC_Management.ViewModel
         {
             bool result;
 
-            //if (!DialogItem.CheckNulls()) return false;
+            if (DialogItem is Employee employee)
+                if (!employee.GetCanExecute())
+                {
+                    employee.SetCanExecute();
+                    return false;
+                }
+
+            if (DialogItem is Route route)
+                if (!route.GetCanExecute())
+                {
+                    route.SetCanExecute();
+                    return false;
+                }
+
+
+            if (DialogItem is Transport transport)
+                if (!transport.GetCanExecute())
+                {
+                    transport.SetCanExecute();
+                    return false;
+                }
+
+            if (DialogItem is Itinerary itinerary)
+                if (!itinerary.GetCanExecute())
+                {
+                    itinerary.SetCanExecute();
+                    return false;
+                }
+
 
             Entity entity = DialogItem.Clone();
 

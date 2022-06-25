@@ -2,15 +2,26 @@
 
 namespace PTC_Management.Model
 {
-    class ViewModels
+    public class ViewModels
     {
         public WindowParameters WindowParameters { get; set; }
+        
+        private EmployeeViewModel employeeVM;
+        private RouteViewModel routeVM;
+        private TransportViewModel transportVM ;
+        private ItineraryViewModel itineraryVM;
+        private ScheduleOfEmployeeViewModel scheduleOfEmployeeVM;
+
+        public EmployeeViewModel EmployeeVM { get => employeeVM ?? (employeeVM = GetNewModelView<EmployeeViewModel>()); }
+        public RouteViewModel RouteVM { get => routeVM ?? (routeVM = GetNewModelView<RouteViewModel>()); }
+        public TransportViewModel TransportVM { get => transportVM ?? (transportVM = GetNewModelView<TransportViewModel>()); }
+        public ItineraryViewModel ItineraryVM { get => itineraryVM ?? (itineraryVM = GetNewModelView<ItineraryViewModel>()); }
+        public ScheduleOfEmployeeViewModel ScheduleOfEmployeeVM { get => scheduleOfEmployeeVM ?? (scheduleOfEmployeeVM = GetNewModelView<ScheduleOfEmployeeViewModel>()); }
 
         public ViewModels(WindowParameters windowParameters)
         {
             WindowParameters = windowParameters;
         }
-
 
         public ItineraryViewModel GetItineraryVM(int idTransport)
         {
@@ -36,16 +47,17 @@ namespace PTC_Management.Model
             switch (destination)
             {
                 case Destinations.employee:
-                    return GetNewModelView<EmployeeViewModel>();
+                    return EmployeeVM;
                 case Destinations.route:
-                    return GetNewModelView<RouteViewModel>();
+                    return RouteVM;
                 case Destinations.transport:
-                    return GetNewModelView<TransportViewModel>();
+                    return TransportVM;
                 case Destinations.itinerary:
-                    return GetNewModelView<ItineraryViewModel>();
+                    return ItineraryVM;
                 case Destinations.schedule:
-                    return GetNewModelView<ScheduleOfEmployeeViewModel>();
-                default: return null;
+                    return ScheduleOfEmployeeVM;
+                default: 
+                    return null;
             }
         }
 

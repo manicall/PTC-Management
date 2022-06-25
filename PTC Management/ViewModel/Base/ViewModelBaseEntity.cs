@@ -11,11 +11,12 @@ using Visibility = PTC_Management.Model.Visibility;
 
 namespace PTC_Management.ViewModel
 {
-    class ViewModelBaseEntity : ViewModelBase
+    public class ViewModelBaseEntity : ViewModelBase
     {
         private Visibility visibility;
         private int selectedIndex;
         private string tableActionButtonsVisible;
+        private ICollectionView items;
 
         public Visibility Visibility
         {
@@ -55,7 +56,7 @@ namespace PTC_Management.ViewModel
         /// Используется для предоставления 
         /// возможности фильтрации элементов в таблице.
         /// </summary>
-        public ICollectionView Items { get; set; }
+        public ICollectionView Items { get => items; set => SetProperty(ref items, value); }
 
         /// <summary>
         /// Индекс выбранной записи в таблице

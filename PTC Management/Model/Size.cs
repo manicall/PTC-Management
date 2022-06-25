@@ -5,7 +5,7 @@ namespace PTC_Management.Model
     /// <summary>
     /// Параметры определяющие размеры элемента управления или окна
     /// </summary>
-    internal class Size : BindableBase
+    public class Size : BindableBase
     {
         public const int defaultHeightDiff = 170;
         public const int transportInfoHeightDiff = 100;

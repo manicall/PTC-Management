@@ -2,17 +2,24 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections.Generic;
+
 namespace PTC_Management.ViewModel
 {
-    internal class ItineraryViewModel : ViewModelBaseEntity
+    public class ItineraryViewModel : ViewModelBaseEntity
     {
         ViewModelHelper<Itinerary> viewModelHelper;
+
+        public List<Itinerary> ItemsList { get; set; }
+
 
         public ItineraryViewModel()
         {
             Itinerary itinerary = new Itinerary();
 
-            viewModelHelper = new ViewModelHelper<Itinerary>(Itinerary.repository);
+            viewModelHelper = new ViewModelHelper<Itinerary>(Itinerary.repository, viewModels);
+
+            ItemsList = viewModelHelper.ItemsList;
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
@@ -25,8 +32,11 @@ namespace PTC_Management.ViewModel
             viewModelHelper =
                 new ViewModelHelper<Itinerary>(
                     Itinerary.repository,
+                    viewModels,
                     Destinations.itinerary,
                     id);
+
+            ItemsList = viewModelHelper.ItemsList;
 
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;

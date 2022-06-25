@@ -4,6 +4,10 @@ using PTC_Management.Model;
 using PTC_Management.Views.Windows;
 
 using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
 {
@@ -17,6 +21,7 @@ namespace PTC_Management.ViewModel
 
         public SelectWindowViewModel()
         {
+            CanShow = true;
             SelectWindowCommand = new Command(OnSelectCommand);
         }
 
@@ -28,23 +33,74 @@ namespace PTC_Management.ViewModel
             CurrentViewModel.WindowParameters.WindowSize.HeightDiff = Size.selectHeightDiff;
         }
 
-        public SelectWindowViewModel(string destination, int idTransport) : this()
+        public bool CanShow { get; set; }
+
+        public SelectWindowViewModel(
+            List<List<Date>> datesList, 
+            ScheduleOfEmployeeViewModel scheduleVM) : this(Destinations.employee)
         {
-            switch (destination)
+            var employees = (CurrentViewModel as EmployeeViewModel).ItemsList;
+
+            foreach (var dates in datesList)
             {
-                case Destinations.itinerary:
-                    CurrentViewModel = GetViewModel(viewModels.GetItineraryVM(idTransport));
-                    Title = ViewModels.GetTitle("Выбор", destination);
-                    break;
-                case Destinations.maintanceLog:
-                    CurrentViewModel = GetViewModel(viewModels.GetMaintanceLogVM(idTransport));
-                    Title = ViewModels.GetTitle("Выбор", destination);
-                    break;
-                case Destinations.logOfDepartureAndEntry:
-                    CurrentViewModel = GetViewModel(viewModels.GetLogOfDepartureAndEntryVM(idTransport));
-                    Title = ViewModels.GetTitle("Выбор", destination);
-                    break;
+                var employee = employees.Find(e => e.Id == dates[0].Employee.Id);
+                employees.Remove(employee);
             }
+
+            if (employees.Count == 0)
+            {
+                scheduleVM.WindowParameters.StatusBarMessage = "Невозможно добавить новых сотрудников";
+                CanShow = false;
+            }
+
+            (CurrentViewModel as EmployeeViewModel).Items = CollectionViewSource.GetDefaultView(employees);
+            (CurrentViewModel as EmployeeViewModel).Items.Refresh();
+        }
+
+        public SelectWindowViewModel(int idTransport, List<MaintanceLog> maintanceLogs) : this()
+        {
+            Title = ViewModels.GetTitle("Выбор", Destinations.itinerary);
+
+            CurrentViewModel = GetViewModel(viewModels.GetItineraryVM(idTransport));
+            var itineraries = (CurrentViewModel as ItineraryViewModel).ItemsList;
+
+            foreach (var maintance in maintanceLogs)
+            {
+                var itinerary = itineraries.Find(i => i.Id == maintance.IdItinerary);
+                itineraries.Remove(itinerary);
+            }
+
+            if (itineraries.Count == 0)
+            {     
+                CanShow = false;
+            }
+
+            (CurrentViewModel as ItineraryViewModel).Items = CollectionViewSource.GetDefaultView(itineraries);
+            (CurrentViewModel as ItineraryViewModel).Items.Refresh();
+
+            CurrentViewModel.WindowParameters.WindowSize.HeightDiff = Size.transportInfoHeightDiff;
+        }
+
+        public SelectWindowViewModel(int idTransport, List<LogOfDepartureAndEntry> maintanceLogs) : this()
+        {
+            Title = ViewModels.GetTitle("Выбор", Destinations.itinerary);
+
+            CurrentViewModel = GetViewModel(viewModels.GetItineraryVM(idTransport));
+            var itineraries = (CurrentViewModel as ItineraryViewModel).ItemsList;
+
+            foreach (var maintance in maintanceLogs)
+            {
+                var itinerary = itineraries.Find(i => i.Id == maintance.IdItinerary);
+                itineraries.Remove(itinerary);
+            }
+
+            if (itineraries.Count == 0)
+            {
+                CanShow = false;
+            }
+
+            (CurrentViewModel as ItineraryViewModel).Items = CollectionViewSource.GetDefaultView(itineraries);
+            (CurrentViewModel as ItineraryViewModel).Items.Refresh();
 
             CurrentViewModel.WindowParameters.WindowSize.HeightDiff = Size.transportInfoHeightDiff;
         }

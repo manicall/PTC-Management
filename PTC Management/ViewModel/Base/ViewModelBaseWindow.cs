@@ -7,12 +7,8 @@ using Size = PTC_Management.Model.Size;
 
 namespace PTC_Management.ViewModel
 {
-    class ViewModelBaseWindow : ViewModelBase
+    public class ViewModelBaseWindow : ViewModelBase
     {
-        /// <summary>
-        /// Позволяет выбрать модель представления
-        /// </summary>
-        protected ViewModels viewModels;
 
         /// <summary>
         /// Окно в котором показывается представление
@@ -30,14 +26,6 @@ namespace PTC_Management.ViewModel
         public ViewModelBaseWindow()
         {
             CloseCommand = new Command(() => Close());
-
-            WindowParameters = new WindowParameters()
-            {
-                StatusBarMessage = "",
-                WindowSize = new Size()
-            };
-
-            viewModels = new ViewModels(WindowParameters);
         }
 
         /// <summary> Методы вызываемый окном при закрытии </summary>

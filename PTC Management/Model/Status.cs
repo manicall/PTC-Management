@@ -1,6 +1,6 @@
 ﻿namespace PTC_Management.Model
 {
-    internal class Status
+    public class Status
     {
         public const string noWorking = "Н";
         public const string vacation = "О";

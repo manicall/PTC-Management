@@ -6,7 +6,7 @@ namespace PTC_Management.Model
     /// <summary>
     /// Параметры копирования
     /// </summary>
-    class CopyParameters : IDataErrorInfo
+    public class CopyParameters : IDataErrorInfo
     {
         /// <summary>
         /// Количество копирований

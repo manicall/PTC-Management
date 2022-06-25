@@ -67,6 +67,31 @@ namespace PTC_Management.EntityFramework
         // реализация интерфейса IDataErrorInfo
         // позволяет обрабатывать ошибки,
         // допускаемые в полях для ввода
+
+        // используется, чтобы поля не подсвечивались при открытии окна
+        bool [] canExecute = new bool[3];
+
+        public bool GetCanExecute() {
+            for (int i = 0; i < canExecute.Length; i++)
+            {
+                if (canExecute[i] != true) return false;
+            }
+            return true;
+        }
+
+        public void SetCanExecute()
+        {
+            for (int i = 0; i < canExecute.Length; i++)
+            {
+                canExecute[i] = true;
+            }
+
+            // вызов события, на которое среагирует проверка валидации
+            RaisePropertyChanged(nameof(Surname));
+            RaisePropertyChanged(nameof(Name));
+            RaisePropertyChanged(nameof(DriverLicense));
+        }
+
         public override string this[string columnName]
         {
             get
@@ -75,16 +100,28 @@ namespace PTC_Management.EntityFramework
                 switch (columnName)
                 {
                     case "Surname":
-                        error = GetNullOrNameError(Surname);
+                        if (!string.IsNullOrEmpty(Surname)) 
+                            canExecute[0] = true;
+
+                        if (canExecute[0])
+                            error = GetNullOrNameError(Surname);
                         break;
                     case "Name":
-                        error = GetNullOrNameError(Name);
+                        if (!string.IsNullOrEmpty(Name))
+                            canExecute[1] = true;
+
+                        if (canExecute[1])
+                            error = GetNullOrNameError(Name);
                         break;
                     case "Patronymic":
                         error = GetPatronymicError(Patronymic);
                         break;
                     case "DriverLicense":
-                        error = GetDriverLicenseError(DriverLicense);
+                        if (!string.IsNullOrEmpty(Name))
+                            canExecute[2] = true;
+
+                        if (canExecute[2])
+                            error = GetDriverLicenseError(DriverLicense);
                         break;
                 }
                 return error;
@@ -96,7 +133,7 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         string GetPatronymicError(string text)
         {
-            if (text == "") return null;
+            if (string.IsNullOrEmpty(text)) return null;
             if (text != null && Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
                 return "Поле может содержать только буквы и дефисы";
             return null;
@@ -107,7 +144,7 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         string GetNullOrNameError(string text)
         {
-            if (text == "")
+            if (string.IsNullOrEmpty(text))
                 return "Поле не может быть пустым";
             if (text != null && Regex.IsMatch(text, "[^А-Яа-яA-Za-z-]+"))
                 return "Поле может содержать только буквы и дефисы";
@@ -120,7 +157,7 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         string GetDriverLicenseError(string text)
         {
-            if (text == "")
+            if (string.IsNullOrEmpty(text))
                 return "Поле не может быть пустым";
             if (text != null && Regex.IsMatch(text, "[\\D]+"))
                 return "Поле может содержать только цифры";

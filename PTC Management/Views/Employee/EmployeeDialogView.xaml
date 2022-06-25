@@ -68,17 +68,20 @@
         Style="{StaticResource ConditionButton }" 
         Command="{Binding DialogActionCommand }"
         CommandParameter="{Binding Actions.WriteAndClose}" 
-        Margin="0 0 35 0" Width="auto"
+        Margin="0 0 58 0" 
+        Width="auto"
         Content="Записать и закрыть" />
       <Button 
         Name="buttonWrite" Style="{StaticResource ConditionButton }" 
         Command="{Binding DialogActionCommand }" 
         CommandParameter="{Binding Actions.Write}" 
+        Width="70"
         Content="Записать" />
       <Button 
         Command="{Binding DialogActionCommand }" 
         CommandParameter="{Binding Actions.Close}"  
         Content="Закрыть" 
+        Width="70"
         Margin="10 0 0 0" />
     </StackPanel>
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >

@@ -16,7 +16,7 @@ using System.Windows.Media;
 
 namespace PTC_Management.ViewModel
 {
-    class ScheduleDataColumns
+    public class ScheduleDataColumns
     {
         public DataColumn Employee { get; set; } 
 
@@ -47,7 +47,7 @@ namespace PTC_Management.ViewModel
         }
     }
 
-    internal class ScheduleOfEmployeeViewModel : ViewModelBaseEntity
+    public class ScheduleOfEmployeeViewModel : ViewModelBaseEntity
     {
         public IList<DataGridCellInfo> SelectedCells { get; set; }
         public new ItemCollection Items { get; set; }
@@ -138,7 +138,6 @@ namespace PTC_Management.ViewModel
                 {
                     var content = cellInfo.Column.GetCellContent(cellInfo.Item);
 
-                    
                     var rowIndex = Items.IndexOf(cellInfo.Item);
                     var columnIndex = cellInfo.Column.DisplayIndex;
 
@@ -197,10 +196,13 @@ namespace PTC_Management.ViewModel
                 }
             }
 
-            for (int i = 0; i < rows.Count; i++)
+            if (Date.RemoveRange(datesList, rowIndexes))
             {
-                if (Date.RemoveRange(datesList[rowIndexes[i]]))
+                for (int i = 0; i < rows.Count; i++)
+                {
                     ScheduleTable.Rows.Remove(rows[i].Row);
+                    datesList.RemoveAt(rowIndexes[i]);
+                }
             }
 
 
@@ -213,8 +215,8 @@ namespace PTC_Management.ViewModel
             // todo изменять цвет добавленных записей
 
 
-            var selectWindow = new SelectWindowViewModel(Destinations.employee);
-            selectWindow.Show();
+            var selectWindow = new SelectWindowViewModel(datesList, this);
+            if (selectWindow.CanShow) selectWindow.Show();
 
             if (selectWindow.ReturnedItem != null) // если были выбраны элементы списка
             {

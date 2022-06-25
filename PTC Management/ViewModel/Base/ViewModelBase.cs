@@ -3,10 +3,16 @@ using PTC_Management.Model;
 
 namespace PTC_Management.ViewModel
 {
-    internal class ViewModelBase : BindableBase
+    public class ViewModelBase : BindableBase
     {
         private ViewModelBase currentViewModel;
         private Entity selectedItem;
+
+                /// <summary>
+        /// Позволяет выбрать модель представления
+        /// </summary>
+        protected ViewModels viewModels;
+
 
         /// <summary>
         /// Содержит константы, определяющие какое действие следует выполнить
@@ -36,5 +42,15 @@ namespace PTC_Management.ViewModel
         /// Параметры окна
         /// </summary>
         public WindowParameters WindowParameters { get; set; }
+
+        public ViewModelBase()
+        {
+            WindowParameters = new WindowParameters()
+            {
+                StatusBarMessage = "",
+                WindowSize = new Size()
+            };
+            viewModels = new ViewModels(WindowParameters);
+        }
     }
 }

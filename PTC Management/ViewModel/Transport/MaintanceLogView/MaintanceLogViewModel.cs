@@ -2,17 +2,22 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections.Generic;
+
 namespace PTC_Management.ViewModel
 {
-    internal class MaintanceLogViewModel : ViewModelBaseEntity
+    public class MaintanceLogViewModel : ViewModelBaseEntity
     {
         readonly ViewModelHelper<MaintanceLog> viewModelHelper;
+
+        public List<MaintanceLog> ItemsList { get; set; }
 
         public MaintanceLogViewModel(int idTransport)
         {
             viewModelHelper =
                 new ViewModelHelper<MaintanceLog>(
                     MaintanceLog.repository,
+                    viewModels,
                     Destinations.maintanceLog,
                     idTransport);
 

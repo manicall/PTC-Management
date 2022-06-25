@@ -34,11 +34,6 @@ namespace PTC_Management.ViewModel
         {
             DialogItem = new MaintanceLog();
 
-            //if (DialogItem is MaintanceLog maintanceLog)
-            //{
-            //    maintanceLog.Itinerary = new Itinerary();
-            //}
-
             CurrentViewModel = this;
         }
 
@@ -50,7 +45,7 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
-            SetMaintenceType();
+            if (MainWindowAction != Actions.update) SetMaintenceType();
 
             // выполняет изменения в бд
             if (DoDialogActionCommand(dialogAction))
@@ -62,7 +57,6 @@ namespace PTC_Management.ViewModel
                 }
         }
 
-
         void SetMaintenceType()
         {
             const string TO_1 = "ТО-1";
@@ -70,6 +64,10 @@ namespace PTC_Management.ViewModel
 
             var itemsList = ViewModelHelper.ItemsList;
             var currentML = DialogItem as MaintanceLog;
+
+
+
+            // todo работает если не выполняется изменение записи
             var index = GetIndex(itemsList, TO_2);
 
             // не найдено ТО-2
@@ -138,7 +136,7 @@ namespace PTC_Management.ViewModel
 
         protected override void OnDialogSelectСommand(string destination)
         {
-            var selectWindow = new SelectWindowViewModel(destination, ViewModelHelper.IdTransport);
+            var selectWindow = new SelectWindowViewModel(ViewModelHelper.IdTransport, ViewModelHelper.ItemsList);
             selectWindow.Show();
 
             if (selectWindow.ReturnedItem != null)

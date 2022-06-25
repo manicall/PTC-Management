@@ -19,11 +19,11 @@
     </DataTemplate>
 
     <Style TargetType="TextBlock" >
-      <Setter Property="Width" Value="170"/>
+      <Setter Property="Width" Value="139"/>
     </Style>
 
     <Style TargetType="TextBox" >
-      <Setter Property="Width" Value="150"/>
+      <Setter Property="Width" Value="200"/>
 
       <Style.Triggers>
         <Trigger Property="Validation.HasError" Value="True">
@@ -69,17 +69,19 @@
         Style="{StaticResource ConditionButton }" 
         Command="{Binding DialogActionCommand }"
         CommandParameter="{Binding Actions.WriteAndClose}" 
-        Margin="0 0 35 0" Width="auto"
+        Margin="0 0 28 0" Width="auto"
         Content="Записать и закрыть" />
       <Button 
         Name="buttonWrite" Style="{StaticResource ConditionButton }" 
         Command="{Binding DialogActionCommand }" 
         CommandParameter="{Binding Actions.Write}" 
+        Width="95"
         Content="Записать" />
       <Button 
         Command="{Binding DialogActionCommand }" 
         CommandParameter="{Binding Actions.Close}"  
         Content="Закрыть" 
+        Width="95"
         Margin="10 0 0 0" />
     </StackPanel>
     <StackPanel Visibility="{Binding CopyParameters.CountVisibility}" >

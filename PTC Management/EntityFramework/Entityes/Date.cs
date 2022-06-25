@@ -42,7 +42,7 @@ namespace PTC_Management.EntityFramework
         }
 
         public override bool Remove() => repository.Remove(this);
-        public static bool RemoveRange(List<Date> dates) => repository.RemoveRange(dates);
+        public static bool RemoveRange(List<List<Date>> datesList, List<int> rowIndexes) => repository.RemoveRange(datesList, rowIndexes);
 
         public override void SetFields(Entity entity)
         {

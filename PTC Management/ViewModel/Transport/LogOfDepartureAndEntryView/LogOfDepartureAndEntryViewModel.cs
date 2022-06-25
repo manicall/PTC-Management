@@ -4,7 +4,7 @@ using PTC_Management.ViewModel.Helpers;
 
 namespace PTC_Management.ViewModel
 {
-    internal class LogOfDepartureAndEntryViewModel : ViewModelBaseEntity
+    public class LogOfDepartureAndEntryViewModel : ViewModelBaseEntity
     {
         ViewModelHelper<LogOfDepartureAndEntry> viewModelHelper;
 
@@ -13,6 +13,7 @@ namespace PTC_Management.ViewModel
             viewModelHelper =
                 new ViewModelHelper<LogOfDepartureAndEntry>(
                     LogOfDepartureAndEntry.repository,
+                    viewModels,
                     Destinations.logOfDepartureAndEntry,
                     idTransport);
 

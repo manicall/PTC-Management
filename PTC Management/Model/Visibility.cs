@@ -2,7 +2,7 @@
 
 namespace PTC_Management.Model
 {
-    internal class Visibility
+    public class Visibility
     {
         public Dictionary<string, string> Field { get; set; }
 

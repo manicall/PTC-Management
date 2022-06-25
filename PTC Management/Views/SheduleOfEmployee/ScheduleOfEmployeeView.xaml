@@ -29,15 +29,14 @@
 
       <Button 
         Margin="35,0,0,0"
+        Style="{StaticResource ButtonStyle}"
         Command="{Binding SelectEmployees}"
-        Width="auto" 
         Content="Добавить сотрудников" /> 
       
       <Button 
-        Margin="5,0,0,0"
+        Style="{StaticResource ButtonStyle}"
         Command="{Binding RemoveEmployee}"
-        Width="auto" 
-        Content="Убрать сотрудника" />
+        Content="Убрать сотрудников" />
     </StackPanel>
 
 
@@ -94,8 +93,10 @@
                 <Setter Property="BorderThickness" Value="3" />
                 <Setter Property="BorderBrush" Value="Blue" />
               </Trigger>
-
+            
             </Style.Triggers>
+
+            <!--<Setter Property="VerticalAlignment" Value="Center" />-->
           </Style>
         </h:ScheduleDataGrid.CellStyle>
 

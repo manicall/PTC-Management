@@ -22,7 +22,7 @@
       <ContentControl Template="{StaticResource TableActionControls}" />
 
       <DataGrid 
-         
+          CanUserSortColumns="False"
           SelectedItem="{Binding SelectedItem}" 
           SelectedIndex="{Binding SelectedIndex}"
           ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"

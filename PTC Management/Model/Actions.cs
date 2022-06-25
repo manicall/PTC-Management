@@ -5,7 +5,7 @@
     /// которое необходимо выполнить
     /// </summary>
 
-    internal class Actions
+    public class Actions
     {
         public const string add = "add";
         public const string update = "update";

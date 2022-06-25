@@ -79,6 +79,7 @@ namespace PTC_Management
         private void OnNavigation(string destination)
         {
             CurrentViewModel = viewModels.GetViewModel(destination);
+            CurrentViewModel.WindowParameters.StatusBarMessage = "";
             LockCurrentViewModelButton(destination);
         }
 

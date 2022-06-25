@@ -38,7 +38,7 @@ namespace PTC_Management.ViewModel
 
         protected override void OnDialogSelectСommand(string destination)
         {
-            var selectWindow = new SelectWindowViewModel(destination, ViewModelHelper.IdTransport);
+            var selectWindow = new SelectWindowViewModel(ViewModelHelper.IdTransport, ViewModelHelper.ItemsList);
             selectWindow.Show();
 
             if (selectWindow.ReturnedItem != null)

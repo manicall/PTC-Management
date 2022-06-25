@@ -51,6 +51,33 @@ namespace PTC_Management.EntityFramework
 
         public override Entity Clone() => Clone<Route>();
 
+
+
+        // используется, чтобы поля не подсвечивались при открытии окна
+        bool[] canExecute = new bool[3];
+
+        public bool GetCanExecute()
+        {
+            for (int i = 0; i < canExecute.Length; i++)
+            {
+                if (canExecute[i] != true) return false;
+            }
+            return true;
+        }
+
+        public void SetCanExecute()
+        {
+            for (int i = 0; i < canExecute.Length; i++)
+            {
+                canExecute[i] = true;
+            }
+
+            // вызов события, на которое среагирует проверка валидации
+            RaisePropertyChanged(nameof(Number));
+            RaisePropertyChanged(nameof(Name));
+            RaisePropertyChanged(nameof(Distant));
+        }
+
         public override string this[string columnName]
         {
             get
@@ -59,14 +86,26 @@ namespace PTC_Management.EntityFramework
                 switch (columnName)
                 {
                     case "Number":
-                        error = IntError(Number);
+                        if (Number.HasValue)
+                            canExecute[0] = true;
+
+                        if (canExecute[0])
+                            error = IntError(Number);
                         break;
                     case "Name":
-                        if (string.IsNullOrEmpty(Name))
-                            error = "Поле не может быть пустым";
+                        if (!string.IsNullOrEmpty(Name))
+                            canExecute[1] = true;
+
+                        if (canExecute[1]) 
+                            if (string.IsNullOrEmpty(Name))
+                                error = "Поле не может быть пустым";
                         break;
                     case "Distant":
-                        error = DistantError(Distant);
+                        if (Distant.HasValue)
+                            canExecute[2] = true;
+
+                        if (canExecute[2])
+                            error = DistantError(Distant);
                         break;
 
                 }
@@ -76,7 +115,7 @@ namespace PTC_Management.EntityFramework
 
         public string IntError(int? number)
         {
-            if (number == null)
+            if (!number.HasValue)
                 return "Поле не может быть пустым";
             if (number <= 0)
                 return "Номер должен быть больше нуля";
@@ -85,7 +124,7 @@ namespace PTC_Management.EntityFramework
 
         public string DistantError(decimal? distant)
         {
-            if (distant == null)
+            if (!distant.HasValue)
                 return "Поле не может быть пустым";
             if (distant <= 0)
                 return "Дистанция должна быть больше нуля";

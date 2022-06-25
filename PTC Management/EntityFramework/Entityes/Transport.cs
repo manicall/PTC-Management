@@ -48,6 +48,30 @@ namespace PTC_Management.EntityFramework
 
         public override Entity Clone() => Clone<Transport>();
 
+        // используетс€, чтобы пол€ не подсвечивались при открытии окна
+        bool[] canExecute = new bool[2];
+
+        public bool GetCanExecute()
+        {
+            for (int i = 0; i < canExecute.Length; i++)
+            {
+                if (canExecute[i] != true) return false;
+            }
+            return true;
+        }
+
+        public void SetCanExecute()
+        {
+            for (int i = 0; i < canExecute.Length; i++)
+            {
+                canExecute[i] = true;
+            }
+
+            // вызов событи€, на которое среагирует проверка валидации
+            RaisePropertyChanged(nameof(Name));
+            RaisePropertyChanged(nameof(LicensePlate));
+        }
+
         public override string this[string columnName]
         {
             get
@@ -56,11 +80,19 @@ namespace PTC_Management.EntityFramework
                 switch (columnName)
                 {
                     case "Name":
-                        if (string.IsNullOrEmpty(Name))
+                        if (!string.IsNullOrEmpty(Name))
+                            canExecute[0] = true;
+
+                        if (canExecute[0])
+                            if (string.IsNullOrEmpty(Name))
                             error = "ѕоле не может быть пустым";
                         break;
                     case "LicensePlate":
-                        if (string.IsNullOrEmpty(LicensePlate))
+                        if (!string.IsNullOrEmpty(LicensePlate))
+                            canExecute[1] = true;
+
+                        if (canExecute[1])
+                            if (string.IsNullOrEmpty(LicensePlate))
                             error = "ѕоле не может быть пустым";
                         break;
                 }

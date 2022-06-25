@@ -2,7 +2,7 @@
 
 namespace PTC_Management.Model
 {
-    internal class WindowParameters : BindableBase
+    public class WindowParameters : BindableBase
     {
         private Size windowSize;
         private string sbMessage;

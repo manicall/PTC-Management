@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 namespace PTC_Management.EntityFramework
 {
@@ -115,6 +116,31 @@ namespace PTC_Management.EntityFramework
         }
 
         public override Entity Clone() => Clone<Itinerary>();
+
+        // используется, чтобы поля не подсвечивались при открытии окна
+        bool[] canExecute = new bool[3];
+
+        public bool GetCanExecute()
+        {
+            var result = true;
+            if (!Employee.GetCanExecute()) result = false;
+            if (!Route.GetCanExecute()) result = false;
+            if (!Transport.GetCanExecute()) result = false;
+            return result;
+        }
+
+        public void SetCanExecute()
+        {
+
+            Employee.SetCanExecute(); 
+            Route.SetCanExecute();
+            Transport.SetCanExecute(); 
+
+            // вызов события, на которое среагирует проверка валидации
+            RaisePropertyChanged(nameof(Employee));
+            RaisePropertyChanged(nameof(Route));
+            RaisePropertyChanged(nameof(Transport));
+        }
 
         /// <summary>
         /// реализация интерфейса IDataErrorInfo

@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace PTC_Management.ViewModel
 {
-    internal class TransportViewModel : ViewModelBaseEntity
+    public class TransportViewModel : ViewModelBaseEntity
     {
         readonly ViewModelHelper<Transport> viewModelHelper;
 

@@ -4,6 +4,7 @@ using PTC_Management.Model;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Linq;
 
 namespace PTC_Management.ViewModel.Helpers
 {
@@ -19,15 +20,18 @@ namespace PTC_Management.ViewModel.Helpers
         // для взаимодействия с базой данных
         private Repository<T> repository;
 
-        public ViewModelHelper(Repository<T> repository)
+        private ViewModels viewModels;
+
+        public ViewModelHelper(Repository<T> repository, ViewModels viewModels = null)
         {
             this.repository = repository;
-            itemsList = repository.GetList();
+            this.viewModels = viewModels;
+            itemsList = repository.GetList(viewModels);
         }
 
         public int IdTransport { get; set; }
 
-        public ViewModelHelper(Repository<T> repository, string destination, int id)
+        public ViewModelHelper(Repository<T> repository, ViewModels viewModels, string destination, int id)
         {
             this.repository = repository;
             IdTransport = id;
@@ -37,7 +41,7 @@ namespace PTC_Management.ViewModel.Helpers
                     itemsList = repository.GetItineraries(id);
                     break;
                 case Destinations.maintanceLog:
-                    itemsList = repository.GetMaintanceLogs(id);
+                    itemsList = repository.GetMaintanceLogs(id, viewModels);
                     break;
                 case Destinations.logOfDepartureAndEntry:
                     itemsList = repository.GetLogOfDepartureAndEntry(id);
@@ -68,7 +72,15 @@ namespace PTC_Management.ViewModel.Helpers
             switch (MainWindowAction)
             {
                 case Actions.add:
-                    itemsList.Add(repository.GetSingle(id));
+                    var single = repository.GetSingle(id);
+
+                    if (typeof(T) == typeof(Itinerary))
+                    {
+                        var employee = viewModels.EmployeeVM.ItemsList.Find(e => e.Id == (item as Itinerary).IdEmployee);
+                        (single as Itinerary).Employee = employee;
+                    }
+
+                    itemsList.Add(single);
                     break;
                 case Actions.update:
                     itemsList[selectedIndex].SetFields(item);

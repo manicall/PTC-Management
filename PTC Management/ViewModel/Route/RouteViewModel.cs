@@ -4,7 +4,7 @@ using PTC_Management.ViewModel.Helpers;
 
 namespace PTC_Management.ViewModel
 {
-    internal class RouteViewModel : ViewModelBaseEntity
+    public class RouteViewModel : ViewModelBaseEntity
     {
         ViewModelHelper<Route> viewModelHelper;
 

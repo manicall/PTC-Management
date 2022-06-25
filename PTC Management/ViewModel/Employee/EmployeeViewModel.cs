@@ -3,13 +3,14 @@ using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
 using System.Collections;
+using System.Collections.Generic;
 
 namespace PTC_Management.ViewModel
 {
-    internal class EmployeeViewModel : ViewModelBaseEntity
+    public class EmployeeViewModel : ViewModelBaseEntity
     {
         readonly ViewModelHelper<Employee> viewModelHelper;
-
+        public List<Employee> ItemsList { get; set; }
         /// <summary>
         /// Список выбранных элементов таблицы
         /// </summary>
@@ -20,6 +21,7 @@ namespace PTC_Management.ViewModel
             viewModelHelper =
                 new ViewModelHelper<Employee>(Employee.repository);
 
+            ItemsList = viewModelHelper.ItemsList;
             Items = viewModelHelper.GetItems();
             Items.Filter = Filter;
         }
