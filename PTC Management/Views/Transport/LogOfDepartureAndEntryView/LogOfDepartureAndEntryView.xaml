@@ -36,7 +36,7 @@
 
         <DataGrid.Columns>
           <!--<DataGridTextColumn Header="№ п\п" Binding="{Binding Id}"/>-->
-          <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}" />
+          <DataGridTextColumn Header="Дата" Binding="{Binding Itinerary.Date, StringFormat=\{0:dd.MM.yyyy\}}" />
           <DataGridTextColumn Header="№ листа" Binding="{Binding Itinerary.Id}"/>
           <DataGridTextColumn Header="Транспорт"  Binding="{Binding Itinerary.Transport.Name}"/>
           <DataGridTextColumn Header="Гос. номер"  Binding="{Binding Itinerary.Transport.LicensePlate}"/>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PTC_Management.EntityFramework.Employee">
+    <Position X="9.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAACgAAUACQQQACAAABARAJoAAAAAJAAAAEAAAABA=</HashCode>
+      <FileName>EntityFramework\Entityes\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PTC_Management.EntityFramework.AppContext" Collapsed="true">
+    <Position X="17.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAQAGIAACAABAAABAAAAAAA=</HashCode>
+      <FileName>EntityFramework\Context\AppContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PTC_Management.EntityFramework.Entity" Collapsed="true">
+    <Position X="16" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYCAAgAAAAAAQAACAAABAAAAgAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>EntityFramework\Entityes\Base\Entity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PTC_Management.EntityFramework.Date">
+    <Position X="16" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAgEAAACAQAACAAABAAgCgAAIBAAAAAAAIAAABA=</HashCode>
+      <FileName>EntityFramework\Entityes\Date.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PTC_Management.EntityFramework.Itinerary">
+    <Position X="20.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAgEQEACAQwACEQAJARACgAAKBMBAAABQACCABA=</HashCode>
+      <FileName>EntityFramework\Entityes\Itinerary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PTC_Management.EntityFramework.LogOfDepartureAndEntry">
+    <Position X="11.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAgAAAACAQAACAAABAAAAoAAABAAAAAAQAAAABA=</HashCode>
+      <FileName>EntityFramework\Entityes\LogOfDepartureAndEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PTC_Management.EntityFramework.MaintanceLog">
+    <Position X="13.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAgAAAQCAQAACAAAJAAAAoAAABAAAAAAQAAAABA=</HashCode>
+      <FileName>EntityFramework\Entityes\MaintanceLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PTC_Management.EntityFramework.Route">
+    <Position X="18.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAZAAAwAAEACAQQACEAAJARAAoAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>EntityFramework\Entityes\Route.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PTC_Management.EntityFramework.Transport">
+    <Position X="22.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAEgAAEACAQQACAAABARAAoAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>EntityFramework\Entityes\Transport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PTC_Management.EntityFramework.Repository&lt;T&gt;" Collapsed="true">
+    <Position X="19" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYAAAAIAAAQAAgAAAQgJAAAAgAAABAACAAIAICAAgI=</HashCode>
+      <FileName>EntityFramework\Repository\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

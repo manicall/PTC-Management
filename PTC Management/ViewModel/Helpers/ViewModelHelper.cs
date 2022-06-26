@@ -20,18 +20,15 @@ namespace PTC_Management.ViewModel.Helpers
         // для взаимодействия с базой данных
         private Repository<T> repository;
 
-        private ViewModels viewModels;
-
-        public ViewModelHelper(Repository<T> repository, ViewModels viewModels = null)
+        public ViewModelHelper(Repository<T> repository)
         {
             this.repository = repository;
-            this.viewModels = viewModels;
             itemsList = repository.GetList();
         }
 
         public int IdTransport { get; set; }
 
-        public ViewModelHelper(Repository<T> repository, ViewModels viewModels, string destination, int id)
+        public ViewModelHelper(Repository<T> repository, string destination, int id)
         {
             this.repository = repository;
             IdTransport = id;
@@ -41,7 +38,7 @@ namespace PTC_Management.ViewModel.Helpers
                     itemsList = repository.GetItineraries(id);
                     break;
                 case Destinations.maintanceLog:
-                    itemsList = repository.GetMaintanceLogs(id, viewModels);
+                    itemsList = repository.GetMaintanceLogs(id);
                     break;
                 case Destinations.logOfDepartureAndEntry:
                     itemsList = repository.GetLogOfDepartureAndEntry(id);
@@ -69,33 +66,22 @@ namespace PTC_Management.ViewModel.Helpers
         public void DoActionForList(string MainWindowAction,
             int id, int selectedIndex, T item)
         {
-            switch (MainWindowAction)
+            if (item is MaintanceLog maintance)
             {
-                case Actions.add:
-                    //var single = repository.GetSingle(id);
-
-                    //if (typeof(T) == typeof(Itinerary))
-                    //{
-                    //    var employee = viewModels.EmployeeVM.ItemsList.Find(e => e.Id == (item as Itinerary).IdEmployee);
-                    //    (single as Itinerary).Employee = employee;
-                    //}
-
-                    //itemsList.Add(single);
-
-                    itemsList.Clear();
-                    itemsList.AddRange(repository.GetList());
-                    break;
-                case Actions.update:
-                    itemsList.Clear();
-                    itemsList.AddRange(repository.GetList());
-                    //itemsList[selectedIndex].SetFields(item);
-                    break;
-                case Actions.copy:
-                    itemsList.Clear();
-                    itemsList.AddRange(repository.GetList());
-                    break;
-                default: return;
+                itemsList.Clear();
+                itemsList.AddRange(repository.GetMaintanceLogs(maintance.Itinerary.Transport.Id));
             }
+            else if (item is LogOfDepartureAndEntry logOfDAE)
+            {
+                itemsList.Clear();
+                itemsList.AddRange(repository.GetLogOfDepartureAndEntry(logOfDAE.Itinerary.Transport.Id));
+            }
+            else
+            {
+                itemsList.Clear();
+                itemsList.AddRange(repository.GetList());
+            }
+
             GetItems().Refresh();
         }
 

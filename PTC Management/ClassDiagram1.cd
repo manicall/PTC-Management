@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="PTC_Management.ViewModel.BindableBase" Collapsed="true">
-    <Position X="20" Y="6.5" Width="1.5" />
+    <Position X="31.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAAAAAAAAAAAAgAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Base\BindableBase.cs</FileName>
@@ -9,162 +9,187 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PTC_Management.ViewModel.ViewModelBase" Collapsed="true">
-    <Position X="20" Y="7.5" Width="1.5" />
+    <Position X="31.25" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAIAAAAEAAAABAAAAAAAAAAAAAABAAAAAQAAA=</HashCode>
+      <HashCode>AAAEAAAAIAAAAEAAAABAAAAAAACAAAAAABAAAAAQAAA=</HashCode>
       <FileName>ViewModel\Base\ViewModelBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.ViewModelBaseEntity" Collapsed="true">
-    <Position X="15.75" Y="8.75" Width="1.5" />
-    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBase" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="20.75" Y="8.191" />
-        <Point X="20.75" Y="9.125" />
-        <Point X="17.25" Y="9.125" />
-      </Path>
-    </InheritanceLine>
+    <Position X="28.75" Y="8" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>gEAoAQAACAAACAAAAgAAEAgAADAAgAAAAMAAAABAAAA=</HashCode>
+      <HashCode>gEAoAQAACAAACAAAAggAEAgAADAAgAAAAMAAAABAAAA=</HashCode>
       <FileName>ViewModel\Base\ViewModelBaseEntity.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.ViewModelBaseWindow" Collapsed="true">
-    <Position X="23.25" Y="8.75" Width="1.5" />
-    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBase" FixedToPoint="true">
-      <Path>
-        <Point X="20.75" Y="8.191" />
-        <Point X="20.75" Y="9.125" />
-        <Point X="23.25" Y="9.125" />
-      </Path>
-    </InheritanceLine>
+    <Position X="33.75" Y="8" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAAAEAAAACAAAAIAAAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAEAAAAAAAAAIAAAAAACAAAA=</HashCode>
       <FileName>ViewModel\Base\ViewModelBaseWindow.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.EmployeeDialogViewModel" Collapsed="true">
-    <Position X="22.5" Y="14.25" Width="1.5" />
+    <Position X="37" Y="10" Width="2.25" />
+    <InheritanceLine Type="PTC_Management.ViewModel.DialogViewModel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="35.5" Y="10.688" />
+        <Point X="35.875" Y="10.688" />
+        <Point X="35.875" Y="10.312" />
+        <Point X="37" Y="10.312" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Employee\EmployeeDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.EmployeeViewModel" Collapsed="true">
-    <Position X="17.5" Y="11.5" Width="2" />
+    <Position X="24.75" Y="7.25" Width="1.75" />
+    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseEntity" FixedFromPoint="true">
+      <Path>
+        <Point X="28.75" Y="8.438" />
+        <Point X="28.375" Y="8.438" />
+        <Point X="28.375" Y="7.596" />
+        <Point X="26.5" Y="7.596" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAQEAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAIAAAAAAQEAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Employee\EmployeeViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.ActionPerformer&lt;T&gt;">
-    <Position X="41.75" Y="14.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAYAAAAAAIAAAAAAgAAABAAAAgAIAAAAAAAAAAAAACA=</HashCode>
-      <FileName>ViewModel\Helpers\ActionPerformer.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="PTC_Management.ViewModel.ItineraryDialogViewModel" Collapsed="true">
-    <Position X="15.75" Y="14.25" Width="1.5" />
+    <Position X="32.25" Y="12.25" Width="2" />
+    <InheritanceLine Type="PTC_Management.ViewModel.DialogViewModel" FixedToPoint="true">
+      <Path>
+        <Point X="34.625" Y="10.941" />
+        <Point X="34.625" Y="11.875" />
+        <Point X="33.125" Y="11.875" />
+        <Point X="33.125" Y="12.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAQAAAEAABAAAAAEAAQAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Itinerary\ItineraryDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.ItineraryViewModel" Collapsed="true">
-    <Position X="10.75" Y="11.5" Width="1.5" />
+    <Position X="24.75" Y="9.25" Width="1.75" />
+    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseEntity" FixedFromPoint="true">
+      <Path>
+        <Point X="28.75" Y="8.438" />
+        <Point X="28.375" Y="8.438" />
+        <Point X="28.375" Y="9.563" />
+        <Point X="26.5" Y="9.563" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAIAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAIAAAAAIAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Itinerary\ItineraryViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.RouteDialogViewModel" Collapsed="true">
-    <Position X="20.25" Y="14.25" Width="1.5" />
+    <Position X="37" Y="11" Width="2" />
+    <InheritanceLine Type="PTC_Management.ViewModel.DialogViewModel" FixedFromPoint="true">
+      <Path>
+        <Point X="35.5" Y="10.688" />
+        <Point X="35.875" Y="10.688" />
+        <Point X="35.875" Y="11.346" />
+        <Point X="37" Y="11.346" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Route\RouteDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.RouteViewModel" Collapsed="true">
-    <Position X="15.75" Y="11.5" Width="1.5" />
+    <Position X="25" Y="6.25" Width="1.5" />
+    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseEntity" FixedFromPoint="true">
+      <Path>
+        <Point X="28.75" Y="8.438" />
+        <Point X="28.375" Y="8.438" />
+        <Point X="28.375" Y="6.596" />
+        <Point X="26.5" Y="6.596" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Route\RouteViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.ScheduleOfEmployeeViewModel" Collapsed="true">
-    <Position X="11.25" Y="9.25" Width="1.5" />
-    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseEntity" FixedFromPoint="true">
-      <Path>
-        <Point X="15.75" Y="9.125" />
-        <Point X="15.375" Y="9.125" />
-        <Point X="15.375" Y="9.596" />
-        <Point X="12.75" Y="9.596" />
-      </Path>
-    </InheritanceLine>
+    <Position X="25.75" Y="10.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAwAAAAEAAAAAAAAACCAACAEwAAgABCAAIAAAAgAAQE=</HashCode>
+      <HashCode>AAwAgAAEAAAACEAAACCAACAAwAAgABCAAIAAAAgAAQE=</HashCode>
       <FileName>ViewModel\ScheduleOfEmployee\ScheduleOfEmployeeViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.LogOfDepartureAndEntryDialogViewModel" Collapsed="true">
-    <Position X="13.5" Y="14.25" Width="1.5" />
+    <Position X="28.25" Y="12.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.LogOfDepartureAndEntryViewModel" Collapsed="true">
-    <Position X="9" Y="11.5" Width="1.5" />
+    <Position X="23.75" Y="8.25" Width="2.75" />
+    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseEntity" FixedFromPoint="true">
+      <Path>
+        <Point X="28.75" Y="8.438" />
+        <Point X="28.375" Y="8.438" />
+        <Point X="28.375" Y="8.689" />
+        <Point X="26.5" Y="8.689" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Transport\LogOfDepartureAndEntryView\LogOfDepartureAndEntryViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.MaintanceLogDialogViewModel" Collapsed="true">
-    <Position X="18" Y="14.25" Width="1.5" />
+    <Position X="35" Y="12.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAiAAQAAAEAABAAAAAEAAQAAAABAAAAAA=</HashCode>
       <FileName>ViewModel\Transport\MaintanceLogView\MaintanceLogDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.MaintanceLogViewModel" Collapsed="true">
-    <Position X="13" Y="11.5" Width="1.5" />
+    <Position X="31" Y="10.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAIAAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Transport\MaintanceLogView\MaintanceLogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.TransportDialogViewModel" Collapsed="true">
-    <Position X="24.75" Y="14.25" Width="1.5" />
+    <Position X="37.75" Y="12.25" Width="2.25" />
+    <InheritanceLine Type="PTC_Management.ViewModel.DialogViewModel" FixedFromPoint="true">
+      <Path>
+        <Point X="34.625" Y="10.941" />
+        <Point X="34.625" Y="11.875" />
+        <Point X="38.875" Y="11.875" />
+        <Point X="38.875" Y="12.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Transport\TransportDialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.TransportViewModel" Collapsed="true">
-    <Position X="11.25" Y="8.25" Width="1.5" />
-    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseEntity" FixedFromPoint="true">
-      <Path>
-        <Point X="15.75" Y="9.125" />
-        <Point X="15.375" Y="9.125" />
-        <Point X="15.375" Y="8.596" />
-        <Point X="12.75" Y="8.596" />
-      </Path>
-    </InheritanceLine>
+    <Position X="28.75" Y="10.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAEAAAAAAAAAIAADAAAAIEAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Transport\TransportViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.DialogViewModel" Collapsed="true">
-    <Position X="19.25" Y="12.75" Width="1.5" />
-    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseWindow" ManuallyRouted="true">
+    <Position X="33.75" Y="10.25" Width="1.75" />
+    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseWindow" FixedToPoint="true">
       <Path>
-        <Point X="24" Y="9.441" />
-        <Point X="24" Y="9.696" />
-        <Point X="20" Y="9.696" />
-        <Point X="20" Y="12.75" />
+        <Point X="34.75" Y="8.691" />
+        <Point X="34.75" Y="10.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -172,172 +197,46 @@
       <FileName>ViewModel\Windows\DialogViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PTC_Management.ViewModel.Helpers.DatePickerCalendar" Collapsed="true">
-    <Position X="41" Y="9.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAgCAABAACAAAAAAAABEAiAAQAEAAAACAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModel\Helpers\DatePickerCalendar.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.ViewModel.Helpers.DatePickerDateFormat" Collapsed="true">
-    <Position X="42.75" Y="9.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAADAAAAAAAACBAAgAIAAAAAAAQAAAgAAAAAA=</HashCode>
-      <FileName>ViewModel\Helpers\DatePickerDateFormat.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.ViewModel.Helpers.MultiselectDataGrid" Collapsed="true">
-    <Position X="39.25" Y="9.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAAAAAAAACAAgAIAAAAAgAAAABAAAA=</HashCode>
-      <FileName>ViewModel\Helpers\MultiselectDataGrid.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.ViewModel.Helpers.ViewModelHelper&lt;T&gt;">
-    <Position X="44.5" Y="14.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAEAAAACAAgAAAAAAAAAAAAAAgAAAAAAAAAAACA=</HashCode>
-      <FileName>ViewModel\Helpers\ViewModelHelper.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.EntityFramework.AppContext">
-    <Position X="51.25" Y="18.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAEAAAAQAGIAACAABAAABAAAAAAA=</HashCode>
-      <FileName>EntityFramework\Context\AppContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.EntityFramework.Date">
-    <Position X="46.5" Y="18.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAEAAAAAAAAAAAAAAAgCAAAIAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EntityFramework\Entityes\Date.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.EntityFramework.Repository&lt;T&gt;">
-    <Position X="49" Y="18.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAYAAAAIAAAQAAAAAAQgBAAAAgAAABAACAAIAACAAgI=</HashCode>
-      <FileName>EntityFramework\Repository\Repository.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.Actions">
-    <Position X="12.25" Y="1" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAYAAAAAAAAAABAEAAAABAAAAgAAAAIAAYAAQAGGAEA=</HashCode>
-      <FileName>Model\Actions.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.Backup">
-    <Position X="1.75" Y="1" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ACAAAAAAAACAAAgAAgACAAgAAAAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\BackUp.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.DateConverter" BaseTypeListCollapsed="true">
-    <Position X="7" Y="1" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\Converter\DateConverter.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="PTC_Management.Model.TimeSpanConverter" BaseTypeListCollapsed="true">
-    <Position X="10.5" Y="1" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\Converter\TimeSpanConverter.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="PTC_Management.Model.CopyParameters" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="1" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQAADAAABAQAAAQAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\CopyParameters.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="PTC_Management.Model.Destinations">
-    <Position X="3.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAAAEAIAARACMAECADAAAABAAAAAQA=</HashCode>
-      <FileName>Model\Destinations.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.IsEnabled">
-    <Position X="24.25" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
-      <FileName>Model\IsEnabled.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.IsReadOnly">
-    <Position X="3.5" Y="1" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
-      <FileName>Model\IsReadOnly.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.Size">
-    <Position X="16.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAgAABAAAAARAQCAAAEAAAIAAAEAAAAgAAAAAAAA=</HashCode>
-      <FileName>Model\Size.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.ToDecimalValidationRule">
-    <Position X="5.25" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\ValidationRule\ToDecimalValidationRule.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.ToIntValidationRule">
-    <Position X="5.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\ValidationRule\ToIntValidationRule.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.ViewModels">
-    <Position X="7" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAEAAAAUAAIAAAAAAAAAAAAABAAAAAAgAAAAAABAAA=</HashCode>
-      <FileName>Model\ViewModels.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.Visibility">
-    <Position X="5.25" Y="1" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAgIA=</HashCode>
-      <FileName>Model\Visibility.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PTC_Management.Model.WindowParameters">
-    <Position X="22" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAgAQAAAAEAAAAAAA=</HashCode>
-      <FileName>Model\WindowParameters.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="PTC_Management.ViewModel.SelectWindowViewModel" Collapsed="true">
-    <Position X="21" Y="12.75" Width="1.5" />
+    <Position X="37" Y="8.75" Width="2" />
+    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseWindow" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="8.375" />
+        <Point X="36.125" Y="8.375" />
+        <Point X="36.125" Y="9.096" />
+        <Point X="37" Y="9.096" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAFAAAAAAAAgAAAAAAAAAEAAAAAAAAAAJAAAA=</HashCode>
+      <HashCode>AAAAAAAAFAAAAAAAAgAAAAAAAAAEAAAABAAAAAJAAAA=</HashCode>
       <FileName>ViewModel\Windows\SelectWindowViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.ViewModel.TransportInfoWindowViewModel" Collapsed="true">
-    <Position X="25.5" Y="12.75" Width="1.5" />
+    <Position X="36.5" Y="6.75" Width="2.5" />
+    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseWindow" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="8.375" />
+        <Point X="36.125" Y="8.375" />
+        <Point X="36.125" Y="7.096" />
+        <Point X="36.5" Y="7.096" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModel\Windows\TransportInfoWindowViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PTC_Management.MainWindowViewModel" Collapsed="true">
-    <Position X="23.25" Y="12.75" Width="1.5" />
+    <Position X="37" Y="7.75" Width="2" />
+    <InheritanceLine Type="PTC_Management.ViewModel.ViewModelBaseWindow" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="8.375" />
+        <Point X="36.125" Y="8.375" />
+        <Point X="36.125" Y="8.063" />
+        <Point X="37" Y="8.063" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AiAAAAIAABAAAQAAABEAEAAAAAAAAAAEAgAABCAEAAA=</HashCode>
       <FileName>ViewModel\Windows\MainWindowViewModel.cs</FileName>

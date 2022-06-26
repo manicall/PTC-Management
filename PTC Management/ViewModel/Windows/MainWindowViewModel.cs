@@ -113,11 +113,14 @@ namespace PTC_Management
             switch (command)
             {
                 case Backup._create: CreateBackUp(); break;
-                case Backup._restore: RestoreBackUp(); break;
+                case Backup._restore: 
+                    RestoreBackUp();
+                    OnNavigation(Destinations.Employee);
+                    break;
                 default: return;
             }
 
-            CurrentViewModel = null;
+            
         }
 
         /// <summary>

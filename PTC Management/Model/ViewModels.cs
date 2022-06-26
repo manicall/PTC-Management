@@ -12,11 +12,11 @@ namespace PTC_Management.Model
         private ItineraryViewModel itineraryVM;
         private ScheduleOfEmployeeViewModel scheduleOfEmployeeVM;
 
-        public EmployeeViewModel EmployeeVM { get => employeeVM ?? (employeeVM = GetNewModelView<EmployeeViewModel>()); }
-        public RouteViewModel RouteVM { get => routeVM ?? (routeVM = GetNewModelView<RouteViewModel>()); }
-        public TransportViewModel TransportVM { get => transportVM ?? (transportVM = GetNewModelView<TransportViewModel>()); }
-        public ItineraryViewModel ItineraryVM { get => itineraryVM ?? (itineraryVM = GetNewModelView<ItineraryViewModel>()); }
-        public ScheduleOfEmployeeViewModel ScheduleOfEmployeeVM { get => scheduleOfEmployeeVM ?? (scheduleOfEmployeeVM = GetNewModelView<ScheduleOfEmployeeViewModel>()); }
+        public EmployeeViewModel EmployeeVM { get => employeeVM ?? (/*employeeVM = */ GetNewModelView<EmployeeViewModel>()); }
+        public RouteViewModel RouteVM { get => routeVM ?? (/*routeVM = */ GetNewModelView<RouteViewModel>()); }
+        public TransportViewModel TransportVM { get => transportVM ?? (/*transportVM = */ GetNewModelView<TransportViewModel>()); }
+        public ItineraryViewModel ItineraryVM { get => itineraryVM ?? (/*itineraryVM = */ GetNewModelView<ItineraryViewModel>()); }
+        public ScheduleOfEmployeeViewModel ScheduleOfEmployeeVM { get => /*scheduleOfEmployeeVM ?? */ (scheduleOfEmployeeVM = GetNewModelView<ScheduleOfEmployeeViewModel>()); }
 
         public ViewModels(WindowParameters windowParameters)
         {

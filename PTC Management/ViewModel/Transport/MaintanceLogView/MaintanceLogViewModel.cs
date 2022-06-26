@@ -17,7 +17,6 @@ namespace PTC_Management.ViewModel
             viewModelHelper =
                 new ViewModelHelper<MaintanceLog>(
                     MaintanceLog.repository,
-                    viewModels,
                     Destinations.maintanceLog,
                     idTransport);
 

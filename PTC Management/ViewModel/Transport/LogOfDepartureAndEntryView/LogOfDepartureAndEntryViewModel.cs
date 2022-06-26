@@ -13,7 +13,6 @@ namespace PTC_Management.ViewModel
             viewModelHelper =
                 new ViewModelHelper<LogOfDepartureAndEntry>(
                     LogOfDepartureAndEntry.repository,
-                    viewModels,
                     Destinations.logOfDepartureAndEntry,
                     idTransport);
 

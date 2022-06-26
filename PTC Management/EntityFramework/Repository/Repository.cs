@@ -9,6 +9,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting.Lifetime;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 
@@ -62,9 +63,18 @@ namespace PTC_Management.EntityFramework
         /// Возвращает набор записей, которые содержат указанный id транспорта
         /// </summary>
         /// 
-        public List<T> GetMaintanceLogs(int idTransport, ViewModels viewModels)
+        public List<T> GetMaintanceLogs(int idTransport)
         {
+            Itinerary.repository.GetList();
             List<T> list = set.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i] is MaintanceLog maintance)
+                {
+                    maintance.Itinerary.SetFields(Itinerary.repository.GetSingle(maintance.IdItinerary));
+                }
+            }
 
             return list;
         }
@@ -74,7 +84,18 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         public List<T> GetLogOfDepartureAndEntry(int idTransport)
         {
-            return set.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == idTransport).ToList();
+            Itinerary.repository.GetList();
+            List<T> list = set.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i] is LogOfDepartureAndEntry LogOfDAE)
+                {
+                    LogOfDAE.Itinerary.SetFields(Itinerary.repository.GetSingle(LogOfDAE.IdItinerary));
+                }
+            }
+
+            return list;
         }
 
         /// <summary>
@@ -91,20 +112,22 @@ namespace PTC_Management.EntityFramework
         public List<T> GetList()
         {
             set.Load();
+            var list = set.Select(i => i).ToList();
 
             if (typeof(T) == typeof(Itinerary)) { 
 
-                var list = set.Select(i => i).ToList();
+                //.For(0, list.Count i =>
 
-                // todo нужно использовать один класс repository
-
-                return list;
+                for (int i = 0; i < list.Count; i++) {
+                    if (list[i] is Itinerary itinerary) {
+                        itinerary.Employee.SetFields(Employee.repository.GetSingle(itinerary.IdEmployee));
+                        itinerary.Route.SetFields(Route.repository.GetSingle(itinerary.IdRoute));
+                        itinerary.Transport.SetFields(Transport.repository.GetSingle(itinerary.IdTransport));
+                    }
+                }
             }
 
-
-            //var i = set.Select(item => item).ToList();
-
-            return set.Select(item => item).ToList();
+            return list;
         }
 
 
@@ -114,8 +137,6 @@ namespace PTC_Management.EntityFramework
         public bool Add(T item)
         {
             SetEntities(item);
-
-
 
             // отмечаем сущность как добавленную
             db.Entry(item).State = EntityState.Added;

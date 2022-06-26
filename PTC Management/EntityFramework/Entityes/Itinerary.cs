@@ -86,7 +86,6 @@ namespace PTC_Management.EntityFramework
             Route = repository.GetSingle<Route>(IdRoute);
             Transport = repository.GetSingle<Transport>(IdTransport);
         }
-
         // переопределение методов базового класса
         public override bool Add() => repository.Add(this);
 
@@ -122,24 +121,20 @@ namespace PTC_Management.EntityFramework
 
         public bool GetCanExecute()
         {
-
             for (int i = 0; i < canExecute.Length; i++)
             {
                 if (canExecute[i] != true) return false;
             }
 
-            return true;
+            if (Employee.Id == 0) return false;
+            if (Route.Id == 0) return false;
+            if (Transport.Id == 0) return false;
 
-            //var result = true;
-            //if (!Employee.GetCanExecute()) result = false;
-            //if (!Route.GetCanExecute()) result = false;
-            //if (!Transport.GetCanExecute()) result = false;
-            //return result;
+            return true;
         }
 
         public void SetCanExecute()
         {
-
             for (int i = 0; i < canExecute.Length; i++)
             {
                 canExecute[i] = true;
@@ -152,12 +147,7 @@ namespace PTC_Management.EntityFramework
 
             Employee.SetCanExecute(); 
             Route.SetCanExecute();
-            Transport.SetCanExecute(); 
-
-            // вызов события, на которое среагирует проверка валидации
-            RaisePropertyChanged(nameof(Employee));
-            RaisePropertyChanged(nameof(Route));
-            RaisePropertyChanged(nameof(Transport));
+            Transport.SetCanExecute();
         }
 
 

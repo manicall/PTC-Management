@@ -45,6 +45,15 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
+            // todo
+            //if (DialogItem is MaintanceLog maintance)
+            //    if (!maintance.GetCanExecute())
+            //    {
+            //        maintance.SetCanExecute();
+            //        return false;
+            //    }
+
+
             if (MainWindowAction != Actions.update) SetMaintenceType();
 
             // выполняет изменения в бд

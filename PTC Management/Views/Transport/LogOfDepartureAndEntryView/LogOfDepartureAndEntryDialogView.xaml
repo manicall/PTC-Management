@@ -7,7 +7,7 @@
   xmlns:views = "clr-namespace:PTC_Management.Views" 
   xmlns:viewModels = "clr-namespace:PTC_Management.ViewModel" 
   xmlns:model="clr-namespace:PTC_Management.Model"
-  d:DataContext="{d:DesignInstance Type=viewModels:LogOfDepartureAndEntryViewModel}"
+  d:DataContext="{d:DesignInstance Type=viewModels:LogOfDepartureAndEntryDialogViewModel}"
   mc:Ignorable="d" 
   d:DesignHeight="400" d:DesignWidth="400">
   <UserControl.Resources>
@@ -133,7 +133,7 @@
         Name="textBoxDate"
         MaxWidth="155"
         Text="{
-          Binding DialogIte.Itinerarym.Date,
+          Binding DialogItem.Itinerary.Date,
           StringFormat=\{0:dd.MM.yyyy\},
           ValidatesOnDataErrors=True, 
           NotifyOnValidationError=True, 

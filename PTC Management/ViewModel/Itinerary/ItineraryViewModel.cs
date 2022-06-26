@@ -17,7 +17,7 @@ namespace PTC_Management.ViewModel
         {
             Itinerary itinerary = new Itinerary();
 
-            viewModelHelper = new ViewModelHelper<Itinerary>(Itinerary.repository, viewModels);
+            viewModelHelper = new ViewModelHelper<Itinerary>(Itinerary.repository);
 
             ItemsList = viewModelHelper.ItemsList;
 
@@ -32,7 +32,7 @@ namespace PTC_Management.ViewModel
             viewModelHelper =
                 new ViewModelHelper<Itinerary>(
                     Itinerary.repository,
-                    viewModels,
+                    
                     Destinations.itinerary,
                     id);
 
