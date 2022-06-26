@@ -26,7 +26,7 @@ namespace PTC_Management.ViewModel.Helpers
         {
             this.repository = repository;
             this.viewModels = viewModels;
-            itemsList = repository.GetList(viewModels);
+            itemsList = repository.GetList();
         }
 
         public int IdTransport { get; set; }
@@ -72,18 +72,23 @@ namespace PTC_Management.ViewModel.Helpers
             switch (MainWindowAction)
             {
                 case Actions.add:
-                    var single = repository.GetSingle(id);
+                    //var single = repository.GetSingle(id);
 
-                    if (typeof(T) == typeof(Itinerary))
-                    {
-                        var employee = viewModels.EmployeeVM.ItemsList.Find(e => e.Id == (item as Itinerary).IdEmployee);
-                        (single as Itinerary).Employee = employee;
-                    }
+                    //if (typeof(T) == typeof(Itinerary))
+                    //{
+                    //    var employee = viewModels.EmployeeVM.ItemsList.Find(e => e.Id == (item as Itinerary).IdEmployee);
+                    //    (single as Itinerary).Employee = employee;
+                    //}
 
-                    itemsList.Add(single);
+                    //itemsList.Add(single);
+
+                    itemsList.Clear();
+                    itemsList.AddRange(repository.GetList());
                     break;
                 case Actions.update:
-                    itemsList[selectedIndex].SetFields(item);
+                    itemsList.Clear();
+                    itemsList.AddRange(repository.GetList());
+                    //itemsList[selectedIndex].SetFields(item);
                     break;
                 case Actions.copy:
                     itemsList.Clear();

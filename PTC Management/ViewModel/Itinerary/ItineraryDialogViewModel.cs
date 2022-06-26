@@ -22,7 +22,7 @@ namespace PTC_Management.ViewModel
                         Field = new Dictionary<string, string>()
                         {
                             ["Mileage"] = "True",
-                            ["SpeedometerInfoOnDeparture"] = "True",
+                            //["SpeedometerInfoOnDeparture"] = "True",
                         }
                     };
                 }
@@ -64,7 +64,7 @@ namespace PTC_Management.ViewModel
 
             if (ItemsList.Count == 0 || SelectedIndex == 0)
             {
-                IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
+                //IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
 
                 if (MainWindowAction == Actions.Add && ItemsList.Count > 0)
                 {

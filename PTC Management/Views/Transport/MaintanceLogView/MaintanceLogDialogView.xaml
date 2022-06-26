@@ -54,13 +54,13 @@
               ElementName=textBoxItinerary}" Value="False"/>
 
             <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBlockSpeedometerInfoOnDeparture}" Value="False"/>
+              ElementName=textBoxSpeedometerInfoOnDeparture}" Value="False"/>
                         
             <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBlockSpeedometerInfoWhenReturning}" Value="False"/>   
+              ElementName=textBoxSpeedometerInfoWhenReturning}" Value="False"/>   
             
             <Condition Binding="{Binding Path=(Validation.HasError), 
-              ElementName=textBlockMileage}" Value="False"/>
+              ElementName=textBoxMileage}" Value="False"/>
 
           </MultiDataTrigger.Conditions>
           <Setter Property="IsEnabled" Value="True"/>

@@ -118,19 +118,37 @@ namespace PTC_Management.EntityFramework
         public override Entity Clone() => Clone<Itinerary>();
 
         // используетс€, чтобы пол€ не подсвечивались при открытии окна
-        bool[] canExecute = new bool[3];
+        bool[] canExecute = new bool[2];
 
         public bool GetCanExecute()
         {
-            var result = true;
-            if (!Employee.GetCanExecute()) result = false;
-            if (!Route.GetCanExecute()) result = false;
-            if (!Transport.GetCanExecute()) result = false;
-            return result;
+
+            for (int i = 0; i < canExecute.Length; i++)
+            {
+                if (canExecute[i] != true) return false;
+            }
+
+            return true;
+
+            //var result = true;
+            //if (!Employee.GetCanExecute()) result = false;
+            //if (!Route.GetCanExecute()) result = false;
+            //if (!Transport.GetCanExecute()) result = false;
+            //return result;
         }
 
         public void SetCanExecute()
         {
+
+            for (int i = 0; i < canExecute.Length; i++)
+            {
+                canExecute[i] = true;
+            }
+
+            // вызов событи€, на которое среагирует проверка валидации
+            RaisePropertyChanged(nameof(SpeedometerInfoOnDeparture));
+            RaisePropertyChanged(nameof(SpeedometerInfoWhenReturning));
+            RaisePropertyChanged(nameof(Mileage));
 
             Employee.SetCanExecute(); 
             Route.SetCanExecute();
@@ -141,6 +159,7 @@ namespace PTC_Management.EntityFramework
             RaisePropertyChanged(nameof(Route));
             RaisePropertyChanged(nameof(Transport));
         }
+
 
         /// <summary>
         /// реализаци€ интерфейса IDataErrorInfo
@@ -159,17 +178,26 @@ namespace PTC_Management.EntityFramework
                             error = "ѕоле не может быть пустым";
                         break;
                     case "SpeedometerInfoOnDeparture":
-                        error =
+                        if (SpeedometerInfoOnDeparture.HasValue)
+                            canExecute[0] = true;
+
+                        if (canExecute[0])
+                            error =
                             IntError(SpeedometerInfoOnDeparture,
                                 "ѕоказани€ спидометра должны быть больше нул€");
                         break;
                     case "SpeedometerInfoWhenReturning":
-                        error =
+                        if (SpeedometerInfoWhenReturning.HasValue)
+                            canExecute[1] = true;
+
+                        if (canExecute[1])
+                            error =
                             IntError(SpeedometerInfoWhenReturning,
                                 "ѕоказани€ спидометра должны быть больше нул€");
                         break;
                     case "Mileage":
-                        error = IntError(Mileage, "ѕробег должен быть больше нул€");
+                            if (Mileage <= 0) error =
+                                     "ѕробег должен быть больше нул€";
                         break;
 
                 }

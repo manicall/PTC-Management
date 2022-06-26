@@ -2,18 +2,17 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace PTC_Management.ViewModel
 {
     internal class LogOfDepartureAndEntryDialogViewModel : DialogViewModel
     {
+      
         public LogOfDepartureAndEntryDialogViewModel()
         {
             DialogItem = new LogOfDepartureAndEntry();
-
-            if (DialogItem is LogOfDepartureAndEntry logOfDAE)
-            {
-                logOfDAE.Itinerary = new Itinerary();
-            }
 
             CurrentViewModel = this;
         }
@@ -43,21 +42,25 @@ namespace PTC_Management.ViewModel
 
             if (selectWindow.ReturnedItem != null)
             {
-                LogOfDepartureAndEntry tempDialogItem = (LogOfDepartureAndEntry)DialogItem.Clone();
-                switch (destination)
+                if (DialogItem is LogOfDepartureAndEntry maintanceLog)
                 {
-                    case Destinations.itinerary:
-                        tempDialogItem.Itinerary = (Itinerary)selectWindow.ReturnedItem;
-                        tempDialogItem.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
-                        break;
+                    switch (destination)
+                    {
+                        case Destinations.itinerary:
+                            maintanceLog.Itinerary = (Itinerary)selectWindow.ReturnedItem;
+                            maintanceLog.IdItinerary = ((Itinerary)selectWindow.ReturnedItem).Id;
+                            break;
 
-                    default:
-                        break;
+                        default:
+                            break;
+                    }
                 }
 
-                DialogItem = tempDialogItem;
+                // уведомление о том, что свойство было изменено
+                RaisePropertyChanged("DialogItem");
             }
         }
+
         #endregion
     }
 }

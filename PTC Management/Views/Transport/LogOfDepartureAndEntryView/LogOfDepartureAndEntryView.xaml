@@ -51,13 +51,12 @@
                     <RowDefinition Height="20"/>
                   </Grid.RowDefinitions>
                   <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
                   </Grid.ColumnDefinitions>
 
                   <TextBlock Grid.ColumnSpan="2" Text="время" TextAlignment="Center" />
                   <TextBlock Grid.Row="1"  Text="выезда"   TextAlignment="Center" />
-                  <TextBlock Grid.Row="1" Grid.Column="2" Text="возвращения" TextAlignment="Center"/>
+
                 </Grid>
               </DataTemplate>
             </DataGridTemplateColumn.HeaderTemplate>
@@ -67,13 +66,45 @@
                 <Grid>
                   <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+
+                  <Border Margin="-1,-1,-1,-1" BorderThickness="0.2" BorderBrush="Black">
+                    <TextBlock Text="{Binding Itinerary.TimeOnDeparture, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
+                  </Border>
+
+                </Grid>
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+
+          <DataGridTextColumn Header="Подпись" Width="100"/>
+
+          <DataGridTemplateColumn CanUserResize="False">
+            <DataGridTemplateColumn.HeaderTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid.RowDefinitions >
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20"/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="*"/>
                   </Grid.ColumnDefinitions>
 
-                  <Border Margin="-1,-1,0,-1" BorderThickness="0.2" BorderBrush="Black">
-                    <TextBlock Text="{Binding Itinerary.TimeOnDeparture, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
-                  </Border>
-                  <Border Margin="-1,-1,-1,-1" Grid.Column="1" BorderThickness="0.2" BorderBrush="Black">
+                  <TextBlock Text="время" TextAlignment="Center" />
+                  <TextBlock Grid.Row="1" Text="возвращения" TextAlignment="Center"/>
+                </Grid>
+              </DataTemplate>
+            </DataGridTemplateColumn.HeaderTemplate>
+
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+
+                  <Border Margin="-1,-1,-1,-1" BorderThickness="0.2" BorderBrush="Black">
                     <TextBlock Text="{Binding Itinerary.TimeWhenReturning, StringFormat={}{0:hh':'mm}}" TextAlignment="Center"/>
                   </Border>
 
@@ -81,6 +112,9 @@
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
+
+          <DataGridTextColumn Header="Подпись" Width="100"/>
+
         </DataGrid.Columns>
 
         <DataGrid.InputBindings>

@@ -55,7 +55,7 @@ namespace PTC_Management.ViewModel
         private string datePickerValue;
         private Status status;
 
-        private List<List<Date>> datesList = new List<List<Date>>();
+        private List<List<Date>> datesList;
 
         public string DatePickerValue
         {
@@ -93,9 +93,7 @@ namespace PTC_Management.ViewModel
         {
             if (e.PropertyName == nameof(DatePickerValue))
             {
-                // todo извлечение записей из базы данных
-                //dates = new List<Date>[Columns.Days.Length];
-
+                datesList = new List<List<Date>>();
                 ScheduleTable = new DataTable();
                 Columns = new ScheduleDataColumns(DatePickerValue);
                 

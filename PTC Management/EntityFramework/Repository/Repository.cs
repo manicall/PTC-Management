@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -17,7 +18,11 @@ namespace PTC_Management.EntityFramework
     {
         private static readonly AppContext db = new AppContext();
         private readonly DbSet<T> set;
-        
+
+        static readonly string connectionString =
+            ConfigurationManager
+            .ConnectionStrings["PTC_ManagementConnection"].ConnectionString;
+
         public Repository() => set = db.Set<T>();
 
         public List<IGrouping<int, Date>> GetDates(DateTime dateTime) {
@@ -53,7 +58,6 @@ namespace PTC_Management.EntityFramework
             return set.Where(items => items.Id > id).ToList();
         }
 
-
         /// <summary>
         /// Возвращает набор записей, которые содержат указанный id транспорта
         /// </summary>
@@ -62,11 +66,6 @@ namespace PTC_Management.EntityFramework
         {
             List<T> list = set.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
 
-            for (int i = 0; i < list.Count; i++)
-            {
-                (list[i] as MaintanceLog).Itinerary = viewModels.ItineraryVM.ItemsList.Find(itinerary => itinerary.Id == (list[i] as MaintanceLog).IdItinerary);
-            }
-            
             return list;
         }
 
@@ -89,72 +88,39 @@ namespace PTC_Management.EntityFramework
         /// <summary>
         /// Инициализация и возврат всех записей из таблицы.
         /// </summary>
-        public List<T> GetList(ViewModels viewModels = null)
+        public List<T> GetList()
         {
             set.Load();
 
-            if (typeof(T) == typeof(Itinerary))
-            {
-                return GetItineraryList(viewModels);
+            if (typeof(T) == typeof(Itinerary)) { 
+
+                var list = set.Select(i => i).ToList();
+
+                // todo нужно использовать один класс repository
+
+                return list;
             }
+
+
+            //var i = set.Select(item => item).ToList();
 
             return set.Select(item => item).ToList();
         }
 
-        List<T> GetItineraryList(ViewModels viewModels) {
-            List<Itinerary> list1 = new List<Itinerary>();
-            List<Itinerary> list2 = new List<Itinerary>();
-            List<Itinerary> list3 = new List<Itinerary>();
-
-            foreach (var e in viewModels.EmployeeVM.Items)
-            {
-                var employee = (e as Employee);
-
-                foreach (var i in employee.Itinerary)
-                    list1.Add(i);
-            }
-
-            foreach (var t in viewModels.TransportVM.Items)
-            {
-                var transport = (t as Transport);
-
-                foreach (var i in transport.Itinerary)
-                    list2.Add(i);
-            }
-
-            foreach (var r in viewModels.RouteVM.Items)
-            {
-                var route = (r as Route);
-
-                foreach (var i in route.Itinerary)
-                    list3.Add(i);
-            }
-
-            List<T> itineraries = new List<T>();
-            for (int i = 0; i < list1.Count; i++)
-            {
-                itineraries.Add((T)list1[i].Clone());
-                (itineraries[i] as Itinerary).Employee = list1[i].Employee;
-                (itineraries[i] as Itinerary).Transport = list2[i].Transport;
-                (itineraries[i] as Itinerary).Route = list3[i].Route;
-            }
-
-            return itineraries.OrderBy(i => i.Id).ToList();
-        }
 
         /// <summary>
         /// Добавляет запись в таблицу базы данных
         /// </summary>
         public bool Add(T item)
         {
-            //SetEntities(item);
+            SetEntities(item);
 
-            
+
+
             // отмечаем сущность как добавленную
             db.Entry(item).State = EntityState.Added;
-            
 
-            return TrySaveChanges();
+            return TrySaveChanges(item);
         }
 
         /// <summary>
@@ -162,45 +128,14 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         public bool Update(T item)
         {
+            SetEntities(item);
+
             if (item is Employee e) { 
                 foreach (var i in e.Itinerary)
                     Console.WriteLine(i.Employee.GetFullName());
             }
 
-            T single;
-            if (item is Itinerary itinerary)
-            {
-                single = GetSingle(itinerary.Id);
-                if (single is Itinerary s){
-                    s.IdEmployee = itinerary.IdEmployee;
-                    s.IdRoute = itinerary.IdRoute;
-                    s.IdTransport = itinerary.IdTransport;
-                }
-                db.Entry(single).State = EntityState.Modified;
-            }
-            else if (item is MaintanceLog m)
-            {
-                single = set.Single(i => i.Id == m.Id);
-
-                (single as MaintanceLog).Itinerary = GetSingle<Itinerary>(m.IdItinerary);
-                (single as MaintanceLog).Itinerary.SetFields((item as MaintanceLog).Itinerary);
-
-                db.Entry(single).State = EntityState.Modified;
-            }
-            else if (item is LogOfDepartureAndEntry logOfDAE)
-            {
-                single = set.Single(i => i.Id == logOfDAE.Id);
-
-                (single as LogOfDepartureAndEntry).Itinerary = GetSingle<Itinerary>(logOfDAE.IdItinerary);
-
-                db.Entry(single).State = EntityState.Deleted;
-            }
-            else
-            {
-                db.Entry(item).State = EntityState.Modified;
-            }
-
-            return TrySaveChanges();
+            return TrySaveChanges(item);
         }
 
         /// <summary>
@@ -216,37 +151,16 @@ namespace PTC_Management.EntityFramework
 
             if (dialogResult == MessageBoxResult.No) return false;
 
-            T single;
-            if (item is Itinerary itinerary)
-            {
-                single = GetSingle(itinerary.Id);
-            }
-            else if (item is MaintanceLog maintance)
-            {
-                single = set.Single(i => i.Id == maintance.Id);
-
-                (single as MaintanceLog).Itinerary = GetSingle<Itinerary>(maintance.IdItinerary);
-            }     
-            else if (item is LogOfDepartureAndEntry logOfDAE)
-            {
-                single = set.Single(i => i.Id == logOfDAE.Id);
-
-                (single as LogOfDepartureAndEntry).Itinerary = GetSingle<Itinerary>(logOfDAE.IdItinerary);
-            }
-            else
-            {
-                // отмечаем сущность как удаленную
-                db.Entry(item).State = EntityState.Deleted;
-                return TrySaveRemoveChanges(item);
-            }
-
-            db.Entry(single).State = EntityState.Deleted;
-            return TrySaveRemoveChanges(single);
-
+            // отмечаем сущность как удаленную
+            db.Entry(item).State = EntityState.Deleted;
+            return TrySaveRemoveChanges(item);
+           
         }
 
         public bool TrySaveRemoveChanges(T item) {
-            try { db.SaveChanges(); }
+            try { db.SaveChanges();
+
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(
@@ -254,11 +168,6 @@ namespace PTC_Management.EntityFramework
                     "которые используют выбранную для удаления запись",
                     "Ошибка удаления записи из базы данных",
                     MessageBoxButton.OK, MessageBoxImage.Error);
-
-                //MessageBox.Show(
-                //   ex.InnerException.InnerException.Message,
-                //   "Ошибка удаления записи из базы данных",
-                //   MessageBoxButton.OK, MessageBoxImage.Error);
 
                 //отмена удаления
                 db.Entry(item).State = EntityState.Unchanged;
@@ -303,7 +212,7 @@ namespace PTC_Management.EntityFramework
             List<T> Items = Enumerable.Range(1, Count).Select(i => (T)selectedItem.Clone()).ToList();
             set.AddRange(Items);
 
-            if (!TrySaveChanges()) return false;
+            if (!TrySaveChanges(item)) return false;
 
             // возвращение selectedItem в исходное состояние
             selectedItem.SetFields(temp);
@@ -312,7 +221,7 @@ namespace PTC_Management.EntityFramework
             return true;
         }
 
-        private bool TrySaveChanges()
+        private bool TrySaveChanges(T item)
         {
             try { db.SaveChanges(); }
             catch (DbUpdateException ex)

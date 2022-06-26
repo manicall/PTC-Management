@@ -117,7 +117,6 @@ namespace PTC_Management.ViewModel
                     return false;
                 }
 
-
             Entity entity = DialogItem.Clone();
 
             switch (action)
