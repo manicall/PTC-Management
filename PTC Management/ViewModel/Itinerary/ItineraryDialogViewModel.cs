@@ -4,6 +4,7 @@ using PTC_Management.ViewModel.Helpers;
 
 using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace PTC_Management.ViewModel
 {
@@ -98,6 +99,26 @@ namespace PTC_Management.ViewModel
                     var SpeedometerIWR = ItemsList[ItemsList.Count - 1].SpeedometerInfoWhenReturning;
                     itinerary.SpeedometerInfoOnDeparture = null;
                     itinerary.SpeedometerInfoWhenReturning = null;
+                }
+            }
+
+            if (MainWindowAction == Actions.Update)
+            {
+                if (DialogItem is Itinerary itinerary)
+                {
+                    var ItemsList = ViewModelHelper.ItemsList;
+
+                    if (SelectedIndex > 0)
+                    {
+                        ItemsList[SelectedIndex - 1].SpeedometerInfoWhenReturning = itinerary.SpeedometerInfoOnDeparture;
+                        ItemsList[SelectedIndex - 1].Update();
+                    }
+
+                    if (SelectedIndex < ItemsList.Count - 1)
+                    {
+                        ItemsList[SelectedIndex + 1].SpeedometerInfoOnDeparture = itinerary.SpeedometerInfoWhenReturning;
+                        ItemsList[SelectedIndex + 1].Update();
+                    }
                 }
             }
 

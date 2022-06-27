@@ -59,6 +59,7 @@ namespace PTC_Management.ViewModel
 
             return string.IsNullOrWhiteSpace(FilterText)
                  || current.Id.ToString().Contains(FilterText)
+                 || current.Date.ToString().Contains(FilterText)
                  || current.Employee.DriverLicense.Contains(FilterText)
                  || current.Employee.Surname.Contains(FilterText)
                  || current.Employee.Name.Contains(FilterText)

@@ -73,11 +73,6 @@ namespace PTC_Management.ViewModel
                     if (result) Close();
                     break;
                 case Actions.write:
-                    //if (DialogItem is MaintanceLog m)
-                    //{
-                    //    if MaintanceLog.repository.FindFirst(m.Id);
-
-                    //}
                     result = DoAction(MainWindowAction);
                     break;
                 case Actions.close:
