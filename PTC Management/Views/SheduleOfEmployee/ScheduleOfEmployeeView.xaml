@@ -29,14 +29,13 @@
                 Converter="{StaticResource CellColorConverter}" >
             <MultiBinding.Bindings >
               <Binding UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource Self}"/>
-              <Binding UpdateSourceTrigger="PropertyChanged" Path="Row" Mode="TwoWay"/>
+              <Binding UpdateSourceTrigger="PropertyChanged" Path="Row"/>
 
+            
             </MultiBinding.Bindings>
           </MultiBinding>
         </Setter.Value>
       </Setter>
-
-
 
       <Setter Property="TextBlock.TextAlignment">
         <Setter.Value>
@@ -50,8 +49,6 @@
           </MultiBinding>
         </Setter.Value>
       </Setter>
-
-
 
       <Setter Property="DataGridCell.MinHeight" Value="22"/>
       <Setter Property="DataGridCell.MinWidth" Value="22"/>

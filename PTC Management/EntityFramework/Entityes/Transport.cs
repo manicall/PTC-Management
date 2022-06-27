@@ -85,7 +85,7 @@ namespace PTC_Management.EntityFramework
 
                         if (canExecute[0])
                             if (string.IsNullOrEmpty(Name))
-                            error = "Поле не может быть пустым";
+                                error = "Поле не может быть пустым";
                         break;
                     case "LicensePlate":
                         if (!string.IsNullOrEmpty(LicensePlate))
@@ -93,7 +93,7 @@ namespace PTC_Management.EntityFramework
 
                         if (canExecute[1])
                             if (string.IsNullOrEmpty(LicensePlate))
-                            error = "Поле не может быть пустым";
+                                error = "Поле не может быть пустым";
                         break;
                 }
                 return error;

@@ -5,8 +5,6 @@ using PTC_Management.Views.Windows;
 
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Windows.Data;
 
 namespace PTC_Management.ViewModel
@@ -36,7 +34,7 @@ namespace PTC_Management.ViewModel
         public bool CanShow { get; set; }
 
         public SelectWindowViewModel(
-            List<List<Date>> datesList, 
+            List<List<Date>> datesList,
             ScheduleOfEmployeeViewModel scheduleVM) : this(Destinations.employee)
         {
             var employees = (CurrentViewModel as EmployeeViewModel).ItemsList;
@@ -71,7 +69,7 @@ namespace PTC_Management.ViewModel
             }
 
             if (itineraries.Count == 0)
-            {     
+            {
                 CanShow = false;
             }
 

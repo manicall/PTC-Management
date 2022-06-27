@@ -2,14 +2,11 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
-using System.Collections.Generic;
-using System.Linq;
-
 namespace PTC_Management.ViewModel
 {
     internal class LogOfDepartureAndEntryDialogViewModel : DialogViewModel
     {
-      
+
         public LogOfDepartureAndEntryDialogViewModel()
         {
             DialogItem = new LogOfDepartureAndEntry();

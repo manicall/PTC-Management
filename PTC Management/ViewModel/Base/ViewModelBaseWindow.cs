@@ -1,9 +1,6 @@
 ﻿using PTC_Management.Commands;
-using PTC_Management.Model;
 
 using System.Windows;
-
-using Size = PTC_Management.Model.Size;
 
 namespace PTC_Management.ViewModel
 {

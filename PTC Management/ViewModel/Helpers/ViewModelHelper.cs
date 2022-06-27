@@ -4,7 +4,6 @@ using PTC_Management.Model;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
-using System.Linq;
 
 namespace PTC_Management.ViewModel.Helpers
 {

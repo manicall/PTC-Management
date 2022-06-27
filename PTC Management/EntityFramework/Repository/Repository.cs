@@ -1,17 +1,10 @@
-﻿using PTC_Management.Model;
-
+﻿
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Remoting.Lifetime;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Documents;
 
 namespace PTC_Management.EntityFramework
 {
@@ -20,7 +13,7 @@ namespace PTC_Management.EntityFramework
         private readonly AppContext db = new AppContext();
         private readonly DbSet<T> set;
 
-        public AppContext Db {get; set;}
+        public AppContext Db { get; set; }
 
         public Repository() => set = db.Set<T>();
 
@@ -151,7 +144,8 @@ namespace PTC_Management.EntityFramework
         {
             SetEntities(item);
 
-            if (item is MaintanceLog m) {
+            if (item is MaintanceLog m)
+            {
                 var i = Itinerary.repository.GetSingle(m.IdItinerary);
                 i.SetFields(m.Itinerary);
                 Itinerary.repository.db.Entry(i).State = EntityState.Modified;

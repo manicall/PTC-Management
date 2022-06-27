@@ -69,9 +69,10 @@ namespace PTC_Management.EntityFramework
         // допускаемые в полях для ввода
 
         // используется, чтобы поля не подсвечивались при открытии окна
-        bool [] canExecute = new bool[3];
+        bool[] canExecute = new bool[3];
 
-        public bool GetCanExecute() {
+        public bool GetCanExecute()
+        {
             for (int i = 0; i < canExecute.Length; i++)
             {
                 if (canExecute[i] != true) return false;
@@ -100,7 +101,7 @@ namespace PTC_Management.EntityFramework
                 switch (columnName)
                 {
                     case "Surname":
-                        if (!string.IsNullOrEmpty(Surname)) 
+                        if (!string.IsNullOrEmpty(Surname))
                             canExecute[0] = true;
 
                         if (canExecute[0])

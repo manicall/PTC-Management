@@ -8,7 +8,7 @@ namespace PTC_Management.ViewModel
         private ViewModelBase currentViewModel;
         private Entity selectedItem;
 
-                /// <summary>
+        /// <summary>
         /// Позволяет выбрать модель представления
         /// </summary>
         protected ViewModels viewModels;

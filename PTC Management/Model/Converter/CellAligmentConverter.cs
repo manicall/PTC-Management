@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
-using System.Windows;
 
 namespace PTC_Management.Model.Converter
 {
@@ -21,6 +16,7 @@ namespace PTC_Management.Model.Converter
                 var cell = (DataGridCell)values[0];
                 var row = (DataRow)values[1];
                 var columnName = cell.Column.SortMemberPath;
+
                 string input = (row[columnName] as string);
 
                 switch (input)

@@ -5,7 +5,7 @@ namespace PTC_Management.Model
     public class ViewModels
     {
         public WindowParameters WindowParameters { get; set; }
-        
+
         public ViewModels(WindowParameters windowParameters)
         {
             WindowParameters = windowParameters;
@@ -44,7 +44,7 @@ namespace PTC_Management.Model
                     return GetModelView<ItineraryViewModel>();
                 case Destinations.schedule:
                     return GetModelView<ScheduleOfEmployeeViewModel>();
-                default: 
+                default:
                     return null;
             }
         }

@@ -32,7 +32,7 @@ namespace PTC_Management.ViewModel
             viewModelHelper =
                 new ViewModelHelper<Itinerary>(
                     Itinerary.repository,
-                    
+
                     Destinations.itinerary,
                     id);
 

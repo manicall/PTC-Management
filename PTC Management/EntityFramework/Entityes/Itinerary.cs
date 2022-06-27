@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace PTC_Management.EntityFramework
 {
@@ -159,7 +158,7 @@ namespace PTC_Management.EntityFramework
             RaisePropertyChanged(nameof(SpeedometerInfoWhenReturning));
             RaisePropertyChanged(nameof(Mileage));
 
-            Employee.SetCanExecute(); 
+            Employee.SetCanExecute();
             Route.SetCanExecute();
             Transport.SetCanExecute();
         }
@@ -200,8 +199,8 @@ namespace PTC_Management.EntityFramework
                                 "Показания спидометра должны быть больше нуля");
                         break;
                     case "Mileage":
-                            if (Mileage <= 0) error =
-                                     "Пробег должен быть больше нуля";
+                        if (Mileage <= 0) error =
+                                 "Пробег должен быть больше нуля";
                         break;
 
                 }

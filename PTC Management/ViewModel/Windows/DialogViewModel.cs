@@ -4,7 +4,6 @@ using PTC_Management.Model;
 using PTC_Management.Windows;
 
 using System;
-using System.Runtime.Remoting.Lifetime;
 
 namespace PTC_Management.ViewModel
 {
@@ -151,8 +150,9 @@ namespace PTC_Management.ViewModel
                             i.Mileage = it.Mileage;
                         }
                     }
-                    else { 
-                        SelectedItem.SetFields(DialogItem); 
+                    else
+                    {
+                        SelectedItem.SetFields(DialogItem);
                     }
 
                     result = SelectedItem.Update();

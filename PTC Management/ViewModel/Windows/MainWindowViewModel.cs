@@ -113,14 +113,14 @@ namespace PTC_Management
             switch (commandParametr)
             {
                 case Backup.create: CreateBackUp(); break;
-                case Backup.restore: 
+                case Backup.restore:
                     RestoreBackUp();
                     OnNavigation(Destinations.Employee);
                     break;
                 default: return;
             }
 
-            
+
         }
 
         /// <summary>

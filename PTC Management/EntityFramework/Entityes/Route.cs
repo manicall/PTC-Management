@@ -96,7 +96,7 @@ namespace PTC_Management.EntityFramework
                         if (!string.IsNullOrEmpty(Name))
                             canExecute[1] = true;
 
-                        if (canExecute[1]) 
+                        if (canExecute[1])
                             if (string.IsNullOrEmpty(Name))
                                 error = "Поле не может быть пустым";
                         break;

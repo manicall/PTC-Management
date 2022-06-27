@@ -7,18 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.Dynamic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace PTC_Management.ViewModel
 {
     public class ScheduleDataColumns
     {
-        public DataColumn Employee { get; set; } 
+        public DataColumn Employee { get; set; }
 
         public DataColumn[] Days { get; set; }
 
@@ -93,38 +89,45 @@ namespace PTC_Management.ViewModel
         {
             if (e.PropertyName == nameof(DatePickerValue))
             {
-                datesList = new List<List<Date>>();
-                ScheduleTable = new DataTable();
-                Columns = new ScheduleDataColumns(DatePickerValue);
-                
-                ScheduleTable.Columns.Add(Columns.Employee);
-                ScheduleTable.Columns.AddRange(Columns.Days);
+                CreateTable();
 
-                DateTime.TryParse(datePickerValue, out DateTime dateTime);
-                var groupedDates = Date.repository.GetDates(dateTime);
-
-                foreach (var item in groupedDates)
-                {
-                    DataRow row = ScheduleTable.NewRow();
-                    var dates = item.ToList();
-
-                    row[0] = dates[0].Employee.GetFullName();
-                    for (int i = 1; i < dates.Count + 1; i++)
-                    {
-                        row[i] = dates[i - 1].Status;
-                    }
-
-                    datesList.Add(dates);
-                    ScheduleTable.Rows.Add(row);
-                }
-
-                RaisePropertyChanged(nameof(ScheduleTable));      
+                RaisePropertyChanged(nameof(ScheduleTable));
             }
+        }
+
+        private void CreateTable()
+        {
+            datesList = new List<List<Date>>();
+            ScheduleTable = new DataTable();
+            Columns = new ScheduleDataColumns(DatePickerValue);
+
+            ScheduleTable.Columns.Add(Columns.Employee);
+            ScheduleTable.Columns.AddRange(Columns.Days);
+
+            DateTime.TryParse(datePickerValue, out DateTime dateTime);
+            var groupedDates = Date.repository.GetDates(dateTime);
+
+            foreach (var item in groupedDates)
+            {
+                DataRow row = ScheduleTable.NewRow();
+                var dates = item.ToList();
+
+                row[0] = dates[0].Employee.GetFullName();
+                for (int i = 1; i < dates.Count + 1; i++)
+                {
+                    row[i] = dates[i - 1].Status;
+                }
+                
+                datesList.Add(dates);
+                ScheduleTable.Rows.Add(row);
+            }
+            RaisePropertyChanged(nameof(ScheduleTable));
         }
 
         private void OnSetStatus(string status)
         {
-            if (SelectedCells == null) {
+            if (SelectedCells == null)
+            {
                 WindowParameters.StatusBarMessage = "Дни не выбраны";
                 return;
             }
@@ -145,15 +148,11 @@ namespace PTC_Management.ViewModel
 
                     RowRaisePropertyChanged(row, nameof(row.Row));
 
-
-
                     // изменение базы данных
                     datesList[rowIndex][columnIndex - 1].Status = status;
                     datesList[rowIndex][columnIndex - 1].Update();
                 }
             }
-
-          
         }
 
         private void OnRemoveEmployee()
@@ -165,28 +164,29 @@ namespace PTC_Management.ViewModel
                 if (cellInfo.Column.Header.ToString() != Columns.Employee.ColumnName) continue;
                 if (cellInfo.IsValid)
                 {
-                    var content = cellInfo.Column.GetCellContent(cellInfo.Item);
-                    rows.Add((DataRowView)content.DataContext);
+                    //var content = cellInfo.Column.GetCellContent(cellInfo.Item);
+                    //rows.Add((DataRowView)content.DataContext);
                     rowIndexes.Add(ItemsList.IndexOf(cellInfo.Item));
                 }
             }
 
-            if (Date.RemoveRange(datesList, rowIndexes))
-            {
-                for (int i = 0; i < rows.Count; i++)
-                {
-                    ScheduleTable.Rows.Remove(rows[i].Row);
-                    datesList.RemoveAt(rowIndexes[i]);
-                }
-            }
+            Date.RemoveRange(datesList, rowIndexes);
 
+            //if (Date.RemoveRange(datesList, rowIndexes))
+            //{
+            //    for (int i = 0; i < rows.Count; i++)
+            //    {
+            //        datesList.RemoveAt(rowIndexes[i] - i);
+            //    }
+            //}
+
+            CreateTable();
 
             // todo изменение базы данных
         }
 
         private void OnSelectEmployees()
         {
-
             // todo изменять цвет добавленных записей
             var selectWindow = new SelectWindowViewModel(datesList, this);
             if (selectWindow.CanShow) selectWindow.Show();
@@ -201,10 +201,9 @@ namespace PTC_Management.ViewModel
 
                 foreach (var item in selectWindow.ReturnedItems)
                 {
-                    FillDataTable(item);
-                    var dates = new List<Date>();
+                    //FillDataTable(item);
 
-
+                    //var dates = new List<Date>();
                     foreach (var day in Columns.Days)
                     {
                         var date = new Date();
@@ -220,19 +219,22 @@ namespace PTC_Management.ViewModel
                         date.Status = Status.Free;
 
                         date.Add();
-                        dates.Add(date);
+                        //dates.Add(date);
                     }
 
-                    datesList.Add(dates);
+                    //datesList.Add(dates);
                 }
 
-                RaisePropertyChanged(nameof(ScheduleTable));
+                
             }
 
+            //ScheduleTable.Rows.So
+            CreateTable();
+            //RaisePropertyChanged(nameof(ScheduleTable));
             // todo изменение базы данных
         }
 
-        void FillDataTable(object item) 
+        void FillDataTable(object item)
         {
             DataRow row = ScheduleTable.NewRow();
             if (item is Employee employee) row[Columns.Employee] = employee.GetFullName();
