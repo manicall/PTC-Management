@@ -142,7 +142,7 @@
         Name="textBoxDate"
         MaxWidth="155"
         Text="{
-          Binding DialogIte.Itinerarym.Date,
+          Binding DialogItem.Itinerary.Date,
           StringFormat=\{0:dd.MM.yyyy\},
           ValidatesOnDataErrors=True, 
           NotifyOnValidationError=True, 

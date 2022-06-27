@@ -23,7 +23,6 @@ namespace PTC_Management.ViewModel
                         Field = new Dictionary<string, string>()
                         {
                             ["Mileage"] = "True",
-                            //["SpeedometerInfoOnDeparture"] = "True",
                         }
                     };
                 }

@@ -2,6 +2,7 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,7 +22,7 @@ namespace PTC_Management.ViewModel
                     {
                         Field = new Dictionary<string, string>()
                         {
-                            ["Itinerary.Mileage"] = "True",
+                            ["Mileage"] = "True",
                         }
                     };
                 }
@@ -34,6 +35,12 @@ namespace PTC_Management.ViewModel
         {
             DialogItem = new MaintanceLog();
 
+            if (DialogItem is MaintanceLog maintance)
+            {
+                maintance.Itinerary = new Itinerary();
+                maintance.Itinerary.Date = DateTime.Now;
+            }
+
             CurrentViewModel = this;
         }
 
@@ -45,13 +52,12 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
-            // todo
-            //if (DialogItem is MaintanceLog maintance)
-            //    if (!maintance.GetCanExecute())
-            //    {
-            //        maintance.SetCanExecute();
-            //        return false;
-            //    }
+            if (DialogItem is MaintanceLog maintance)
+                if (!maintance.GetCanExecute())
+                {
+                    maintance.SetCanExecute();
+                    return;
+                }
 
 
             if (MainWindowAction != Actions.update) SetMaintenceType();
@@ -68,6 +74,8 @@ namespace PTC_Management.ViewModel
 
         void SetMaintenceType()
         {
+            // todo check this
+
             const string TO_1 = "ТО-1";
             const string TO_2 = "ТО-2";
 

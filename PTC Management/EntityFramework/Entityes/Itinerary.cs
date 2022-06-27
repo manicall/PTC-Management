@@ -130,7 +130,7 @@ namespace PTC_Management.EntityFramework
         public override Entity Clone() => Clone<Itinerary>();
 
         // используетс€, чтобы пол€ не подсвечивались при открытии окна
-        bool[] canExecute = new bool[2];
+        bool[] canExecute = new bool[3];
 
         public bool GetCanExecute()
         {
@@ -146,7 +146,7 @@ namespace PTC_Management.EntityFramework
             return true;
         }
 
-        public void SetCanExecute()
+        public void SetCanExecute(bool includeSet = true)
         {
             for (int i = 0; i < canExecute.Length; i++)
             {
@@ -154,13 +154,18 @@ namespace PTC_Management.EntityFramework
             }
 
             // вызов событи€, на которое среагирует проверка валидации
-            RaisePropertyChanged(nameof(SpeedometerInfoOnDeparture));
-            RaisePropertyChanged(nameof(SpeedometerInfoWhenReturning));
-            RaisePropertyChanged(nameof(Mileage));
+            RaisePropertyChanged(nameof(Id));
 
-            Employee.SetCanExecute();
-            Route.SetCanExecute();
-            Transport.SetCanExecute();
+            if (includeSet)
+            {
+                RaisePropertyChanged(nameof(SpeedometerInfoOnDeparture));
+                RaisePropertyChanged(nameof(SpeedometerInfoWhenReturning));
+
+           
+                Employee.SetCanExecute();
+                Route.SetCanExecute();
+                Transport.SetCanExecute();
+            }
         }
 
 
@@ -173,27 +178,35 @@ namespace PTC_Management.EntityFramework
         {
             get
             {
+                int i  = 0;
                 string error = null;
                 switch (columnName)
                 {
                     case "Id":
-                        if (string.IsNullOrEmpty(Id.ToString()))
-                            error = "ѕоле не может быть пустым";
-                        break;
-                    case "SpeedometerInfoOnDeparture":
+                        //if (string.IsNullOrEmpty(Id.ToString()))
+                        //    error = "ѕоле не может быть пустым";
+
                         if (SpeedometerInfoOnDeparture.HasValue)
                             canExecute[0] = true;
 
                         if (canExecute[0])
+                            if (Id == 0)
+                                error = "¬ыберите запись";
+                        break;
+                    case "SpeedometerInfoOnDeparture":
+                        if (SpeedometerInfoOnDeparture.HasValue)
+                            canExecute[1] = true;
+
+                        if (canExecute[1])
                             error =
                             IntError(SpeedometerInfoOnDeparture,
                                 "ѕоказани€ спидометра должны быть больше нул€");
                         break;
                     case "SpeedometerInfoWhenReturning":
                         if (SpeedometerInfoWhenReturning.HasValue)
-                            canExecute[1] = true;
+                            canExecute[2] = true;
 
-                        if (canExecute[1])
+                        if (canExecute[2])
                             error =
                             IntError(SpeedometerInfoWhenReturning,
                                 "ѕоказани€ спидометра должны быть больше нул€");

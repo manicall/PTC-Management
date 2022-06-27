@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Remoting.Lifetime;
 
 namespace PTC_Management.EntityFramework
 {
@@ -40,6 +41,8 @@ namespace PTC_Management.EntityFramework
                 MaintenanceType = item.MaintenanceType;
             }
         }
+
+
         public override Entity Clone() => Clone<MaintanceLog>();
 
         /// <summary>
@@ -48,6 +51,19 @@ namespace PTC_Management.EntityFramework
         /// объектов разных контекстов
         /// </summary>
         public void SetEntities() => Itinerary = repository.GetSingle<Itinerary>(IdItinerary);
+
+
+        public bool GetCanExecute()
+        {
+            if (Itinerary.Id == 0) return false;
+
+            return true;
+        }
+
+        public void SetCanExecute()
+        {
+            Itinerary.SetCanExecute(false);
+        }
 
         // реализация интерфейса IDataErrorInfo
         // позволяет обрабатывать ошибки,

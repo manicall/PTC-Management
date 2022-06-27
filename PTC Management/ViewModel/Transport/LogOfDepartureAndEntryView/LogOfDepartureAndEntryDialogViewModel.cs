@@ -2,6 +2,8 @@
 using PTC_Management.Model;
 using PTC_Management.ViewModel.Helpers;
 
+using System;
+
 namespace PTC_Management.ViewModel
 {
     internal class LogOfDepartureAndEntryDialogViewModel : DialogViewModel
@@ -10,6 +12,12 @@ namespace PTC_Management.ViewModel
         public LogOfDepartureAndEntryDialogViewModel()
         {
             DialogItem = new LogOfDepartureAndEntry();
+
+            if (DialogItem is LogOfDepartureAndEntry logOfDAE)
+            {
+                logOfDAE.Itinerary = new Itinerary();
+                logOfDAE.Itinerary.Date = DateTime.Now;
+            }
 
             CurrentViewModel = this;
         }
@@ -22,6 +30,13 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
+            if (DialogItem is LogOfDepartureAndEntry LogOfDAE)
+                if (!LogOfDAE.GetCanExecute())
+                {
+                    LogOfDAE.SetCanExecute();
+                    return;
+                }
+
             // выполняет изменения в бд
             if (DoDialogActionCommand(dialogAction))
                 if (dialogAction != Actions.close)

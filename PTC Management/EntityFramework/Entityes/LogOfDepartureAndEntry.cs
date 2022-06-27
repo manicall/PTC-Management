@@ -41,6 +41,18 @@ namespace PTC_Management.EntityFramework
         /// </summary>
         public void SetEntities() => Itinerary = repository.GetSingle<Itinerary>(IdItinerary);
 
+        public bool GetCanExecute()
+        {
+            if (Itinerary.Id == 0) return false;
+
+            return true;
+        }
+
+        public void SetCanExecute()
+        {
+            Itinerary.SetCanExecute(false);
+        }
+
         // реализация интерфейса IDataErrorInfo
         // позволяет обрабатывать ошибки,
         // допускаемые в полях для ввода
