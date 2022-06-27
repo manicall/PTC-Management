@@ -11,11 +11,11 @@ namespace PTC_Management.Model
             ConfigurationManager
             .ConnectionStrings["PTC_ManagementConnection"].ConnectionString;
 
-        internal const string _restore = "restore";
-        internal const string _create = "create";
+        internal const string restore = "restore";
+        internal const string create = "create";
 
-        public static string Restore => _restore;
-        public string Create => _create;
+        public static string Restore => restore;
+        public string Create => create;
 
         internal static void CreateBackup(string backupFile)
         {

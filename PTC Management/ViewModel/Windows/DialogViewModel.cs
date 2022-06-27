@@ -4,11 +4,14 @@ using PTC_Management.Model;
 using PTC_Management.Windows;
 
 using System;
+using System.Runtime.Remoting.Lifetime;
 
 namespace PTC_Management.ViewModel
 {
     public class DialogViewModel : ViewModelBaseWindow
     {
+        private Entity dialogItem;
+
         /// <summary>
         /// Содержит константы, которые определяют 
         /// с какой моделью представления взаимодействовать
@@ -18,7 +21,7 @@ namespace PTC_Management.ViewModel
         /// <summary>
         /// Копия выбранного элемента таблицы
         /// </summary>
-        public Entity DialogItem { get; set; }
+        public Entity DialogItem { get => dialogItem; set => SetProperty(ref dialogItem, value); }
 
         /// <summary>
         /// Используется для отображения поля,
@@ -68,10 +71,14 @@ namespace PTC_Management.ViewModel
             {
                 case Actions.writeAndClose:
                     result = DoAction(MainWindowAction);
-                    if (result)
-                        Close();
+                    if (result) Close();
                     break;
                 case Actions.write:
+                    //if (DialogItem is MaintanceLog m)
+                    //{
+                    //    if MaintanceLog.repository.FindFirst(m.Id);
+
+                    //}
                     result = DoAction(MainWindowAction);
                     break;
                 case Actions.close:
@@ -102,7 +109,6 @@ namespace PTC_Management.ViewModel
                     return false;
                 }
 
-
             if (DialogItem is Transport transport)
                 if (!transport.GetCanExecute())
                 {
@@ -125,7 +131,30 @@ namespace PTC_Management.ViewModel
                     result = entity.Add();
                     break;
                 case Actions.update:
-                    SelectedItem.SetFields(DialogItem);
+
+                    if (SelectedItem is Itinerary i)
+                    {
+                        if (DialogItem is Itinerary it)
+                        {
+                            i.IdRoute = it.IdRoute;
+                            i.IdTransport = it.IdTransport;
+                            i.IdEmployee = it.IdEmployee;
+                            i.Employee = (DialogItem as Itinerary).Employee;
+                            i.Route = (DialogItem as Itinerary).Route;
+                            i.Transport = (DialogItem as Itinerary).Transport;
+
+                            i.TimeOnDeparture = it.TimeOnDeparture;
+                            i.TimeWhenReturning = it.TimeWhenReturning;
+                            i.Date = it.Date;
+                            i.SpeedometerInfoOnDeparture = it.SpeedometerInfoOnDeparture;
+                            i.SpeedometerInfoWhenReturning = it.SpeedometerInfoWhenReturning;
+                            i.Mileage = it.Mileage;
+                        }
+                    }
+                    else { 
+                        SelectedItem.SetFields(DialogItem); 
+                    }
+
                     result = SelectedItem.Update();
                     break;
                 case Actions.copy:
@@ -136,6 +165,7 @@ namespace PTC_Management.ViewModel
             }
 
             WindowParameters.StatusBarMessage = GetStatusBarMessage(action, result);
+
 
             DialogItem.Id = entity.Id;
             return result;

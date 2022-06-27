@@ -102,9 +102,23 @@ namespace PTC_Management.EntityFramework
                 IdRoute = itinerary.IdRoute;
                 IdTransport = itinerary.IdTransport;
                 IdEmployee = itinerary.IdEmployee;
-                Employee = itinerary.Employee;
-                Route = itinerary.Route;
-                Transport = itinerary.Transport;
+
+                if (Employee == null)
+                    Employee = itinerary.Employee;
+                else
+                    Employee.SetFields(itinerary.Employee);
+
+                if (Route == null)
+                    Route = itinerary.Route;
+                else
+                    Route.SetFields(itinerary.Route);
+
+                if (Transport == null)
+                    Transport = itinerary.Transport;
+                else
+                    Transport.SetFields(itinerary.Transport);
+
+
                 TimeOnDeparture = itinerary.TimeOnDeparture;
                 TimeWhenReturning = itinerary.TimeWhenReturning;
                 Date = itinerary.Date;

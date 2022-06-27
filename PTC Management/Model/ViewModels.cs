@@ -6,18 +6,6 @@ namespace PTC_Management.Model
     {
         public WindowParameters WindowParameters { get; set; }
         
-        private EmployeeViewModel employeeVM;
-        private RouteViewModel routeVM;
-        private TransportViewModel transportVM ;
-        private ItineraryViewModel itineraryVM;
-        private ScheduleOfEmployeeViewModel scheduleOfEmployeeVM;
-
-        public EmployeeViewModel EmployeeVM { get => employeeVM ?? (/*employeeVM = */ GetNewModelView<EmployeeViewModel>()); }
-        public RouteViewModel RouteVM { get => routeVM ?? (/*routeVM = */ GetNewModelView<RouteViewModel>()); }
-        public TransportViewModel TransportVM { get => transportVM ?? (/*transportVM = */ GetNewModelView<TransportViewModel>()); }
-        public ItineraryViewModel ItineraryVM { get => itineraryVM ?? (/*itineraryVM = */ GetNewModelView<ItineraryViewModel>()); }
-        public ScheduleOfEmployeeViewModel ScheduleOfEmployeeVM { get => /*scheduleOfEmployeeVM ?? */ (scheduleOfEmployeeVM = GetNewModelView<ScheduleOfEmployeeViewModel>()); }
-
         public ViewModels(WindowParameters windowParameters)
         {
             WindowParameters = windowParameters;
@@ -47,15 +35,15 @@ namespace PTC_Management.Model
             switch (destination)
             {
                 case Destinations.employee:
-                    return EmployeeVM;
+                    return GetModelView<EmployeeViewModel>();
                 case Destinations.route:
-                    return RouteVM;
+                    return GetModelView<RouteViewModel>();
                 case Destinations.transport:
-                    return TransportVM;
+                    return GetModelView<TransportViewModel>();
                 case Destinations.itinerary:
-                    return ItineraryVM;
+                    return GetModelView<ItineraryViewModel>();
                 case Destinations.schedule:
-                    return ScheduleOfEmployeeVM;
+                    return GetModelView<ScheduleOfEmployeeViewModel>();
                 default: 
                     return null;
             }
@@ -64,7 +52,7 @@ namespace PTC_Management.Model
         /// <summary>
         /// Универсальный метод для возврата модели представления 
         /// </summary>
-        public T GetNewModelView<T>() where T : ViewModelBaseEntity, new()
+        public T GetModelView<T>() where T : ViewModelBaseEntity, new()
         {
             return new T
             {

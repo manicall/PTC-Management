@@ -38,6 +38,9 @@
           <DataGridTextColumn
             Header="№ Листа"
             Binding="{Binding Id}"/>
+          
+          <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}" />
+          
           <DataGridTextColumn Header="ФИО сотрудника">
             <DataGridTextColumn.Binding>
               <MultiBinding StringFormat="{}{0} {1} {2}">
@@ -47,6 +50,7 @@
               </MultiBinding>
             </DataGridTextColumn.Binding>
           </DataGridTextColumn>
+
           <DataGridTextColumn 
               Binding="{Binding Employee.DriverLicense}" >
             <DataGridTextColumn.Header>
@@ -68,12 +72,11 @@
             Binding="{Binding Route.Name}" Width="*"/>
 
           <DataGridTextColumn 
-              Binding="{Binding Employee.DriverLicense}" >
+              Binding="{Binding Route.Distant}" >
             <DataGridTextColumn.Header>
               <TextBlock>
-                Водительское <LineBreak/> 
-                удостоверение
-              </TextBlock>
+                Дистанция
+                </TextBlock>
             </DataGridTextColumn.Header>
           </DataGridTextColumn>
 

@@ -17,16 +17,15 @@ namespace PTC_Management.EntityFramework
 {
     public class Repository<T> where T : Entity
     {
-        private static readonly AppContext db = new AppContext();
+        private readonly AppContext db = new AppContext();
         private readonly DbSet<T> set;
 
-        static readonly string connectionString =
-            ConfigurationManager
-            .ConnectionStrings["PTC_ManagementConnection"].ConnectionString;
+        public AppContext Db {get; set;}
 
         public Repository() => set = db.Set<T>();
 
-        public List<IGrouping<int, Date>> GetDates(DateTime dateTime) {
+        public List<IGrouping<int, Date>> GetDates(DateTime dateTime)
+        {
             var datesSet = db.Set<Date>();
 
             return datesSet.Where(item =>
@@ -68,6 +67,7 @@ namespace PTC_Management.EntityFramework
             Itinerary.repository.GetList();
             List<T> list = set.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
 
+
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i] is MaintanceLog maintance)
@@ -85,7 +85,7 @@ namespace PTC_Management.EntityFramework
         public List<T> GetLogOfDepartureAndEntry(int idTransport)
         {
             Itinerary.repository.GetList();
-            List<T> list = set.Where(items => (items as MaintanceLog).Itinerary.Transport.Id == idTransport).ToList();
+            List<T> list = set.Where(items => (items as LogOfDepartureAndEntry).Itinerary.Transport.Id == idTransport).ToList();
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -116,20 +116,6 @@ namespace PTC_Management.EntityFramework
 
             if (typeof(T) == typeof(Itinerary))
             {
-                var e = Employee.repository.GetList();
-                var r = Route.repository.GetList();
-                var t = Transport.repository.GetList();
-
-                //Parallel.For(0, list.Count, i =>
-                //{
-                //    if (list[i] is Itinerary itinerary)
-                //    {
-                //        itinerary.Employee.SetFields(e.Single(item => item.Id == itinerary.IdEmployee));
-                //        itinerary.Route.SetFields(r.Single(item => item.Id == itinerary.IdRoute));
-                //        itinerary.Transport.SetFields(t.Single(item => item.Id == itinerary.IdTransport
-                //    }
-                //});
-
                 for (int i = 0; i < list.Count; i++)
                 {
                     if (list[i] is Itinerary itinerary)
@@ -165,10 +151,19 @@ namespace PTC_Management.EntityFramework
         {
             SetEntities(item);
 
-            if (item is Employee e) { 
-                foreach (var i in e.Itinerary)
-                    Console.WriteLine(i.Employee.GetFullName());
+            if (item is MaintanceLog m) {
+                var i = Itinerary.repository.GetSingle(m.IdItinerary);
+                i.SetFields(m.Itinerary);
+                Itinerary.repository.db.Entry(i).State = EntityState.Modified;
             }
+            if (item is LogOfDepartureAndEntry l)
+            {
+                var i = Itinerary.repository.GetSingle(l.IdItinerary);
+                i.SetFields(l.Itinerary);
+                Itinerary.repository.db.Entry(i).State = EntityState.Modified;
+            }
+
+            db.Entry(item).State = EntityState.Modified;
 
             return TrySaveChanges(item);
         }
@@ -189,11 +184,14 @@ namespace PTC_Management.EntityFramework
             // отмечаем сущность как удаленную
             db.Entry(item).State = EntityState.Deleted;
             return TrySaveRemoveChanges(item);
-           
+
         }
 
-        public bool TrySaveRemoveChanges(T item) {
-            try { db.SaveChanges();
+        public bool TrySaveRemoveChanges(T item)
+        {
+            try
+            {
+                db.SaveChanges();
 
             }
             catch (Exception ex)

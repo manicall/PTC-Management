@@ -96,7 +96,7 @@ namespace PTC_Management.ViewModel
                 {
                     var ItemsList = ViewModelHelper.ItemsList;
                     var SpeedometerIWR = ItemsList[ItemsList.Count - 1].SpeedometerInfoWhenReturning;
-                    itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
+                    itinerary.SpeedometerInfoOnDeparture = null;
                     itinerary.SpeedometerInfoWhenReturning = null;
                 }
             }

@@ -13,7 +13,7 @@ namespace PTC_Management.ViewModel.Helpers
     /// Выполняет действия определяемые диалоговым окном.
     /// </summary>
     internal class ViewModelHelper<T>
-        where T : Entity
+        where T : Entity, new()
     {
         // хранит записи, которые будут отображены в таблице
         private List<T> itemsList;

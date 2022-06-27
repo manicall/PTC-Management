@@ -108,12 +108,12 @@ namespace PTC_Management
         /// <summary>
         ///  управление резервным копированием базы данных
         /// </summary>
-        private void OnBackUp(string command)
+        private void OnBackUp(string commandParametr)
         {
-            switch (command)
+            switch (commandParametr)
             {
-                case Backup._create: CreateBackUp(); break;
-                case Backup._restore: 
+                case Backup.create: CreateBackUp(); break;
+                case Backup.restore: 
                     RestoreBackUp();
                     OnNavigation(Destinations.Employee);
                     break;
