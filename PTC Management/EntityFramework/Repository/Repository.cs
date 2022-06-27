@@ -114,12 +114,26 @@ namespace PTC_Management.EntityFramework
             set.Load();
             var list = set.Select(i => i).ToList();
 
-            if (typeof(T) == typeof(Itinerary)) { 
+            if (typeof(T) == typeof(Itinerary))
+            {
+                var e = Employee.repository.GetList();
+                var r = Route.repository.GetList();
+                var t = Transport.repository.GetList();
 
-                //.For(0, list.Count i =>
+                //Parallel.For(0, list.Count, i =>
+                //{
+                //    if (list[i] is Itinerary itinerary)
+                //    {
+                //        itinerary.Employee.SetFields(e.Single(item => item.Id == itinerary.IdEmployee));
+                //        itinerary.Route.SetFields(r.Single(item => item.Id == itinerary.IdRoute));
+                //        itinerary.Transport.SetFields(t.Single(item => item.Id == itinerary.IdTransport
+                //    }
+                //});
 
-                for (int i = 0; i < list.Count; i++) {
-                    if (list[i] is Itinerary itinerary) {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i] is Itinerary itinerary)
+                    {
                         itinerary.Employee.SetFields(Employee.repository.GetSingle(itinerary.IdEmployee));
                         itinerary.Route.SetFields(Route.repository.GetSingle(itinerary.IdRoute));
                         itinerary.Transport.SetFields(Transport.repository.GetSingle(itinerary.IdTransport));

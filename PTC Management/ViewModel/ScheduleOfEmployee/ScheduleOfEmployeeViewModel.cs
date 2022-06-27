@@ -50,7 +50,7 @@ namespace PTC_Management.ViewModel
     public class ScheduleOfEmployeeViewModel : ViewModelBaseEntity
     {
         public IList<DataGridCellInfo> SelectedCells { get; set; }
-        public new ItemCollection Items { get; set; }
+        public ItemCollection ItemsList { get; set; }
 
         private string datePickerValue;
         private Status status;
@@ -136,22 +136,15 @@ namespace PTC_Management.ViewModel
                 {
                     var content = cellInfo.Column.GetCellContent(cellInfo.Item);
 
-                    var rowIndex = Items.IndexOf(cellInfo.Item);
+                    var rowIndex = ItemsList.IndexOf(cellInfo.Item);
                     var columnIndex = cellInfo.Column.DisplayIndex;
 
-                    if (content is TextBlock textBlock)
-                    {
-                        if (textBlock.Background == null)
-                        {
-                            textBlock.Margin = new Thickness(-1, -1, -1, -1);
-                            textBlock.TextAlignment = TextAlignment.Center;
-                        }
-
-                        textBlock.Background = new SolidColorBrush(GetColor(status));
-                    }
-
                     var row = (DataRowView)content.DataContext;
+
                     row[cellInfo.Column.Header.ToString()] = status;
+
+                    RowRaisePropertyChanged(row, nameof(row.Row));
+
 
 
                     // изменение базы данных
@@ -159,24 +152,8 @@ namespace PTC_Management.ViewModel
                     datesList[rowIndex][columnIndex - 1].Update();
                 }
             }
-        }
 
-        Color GetColor(string status)
-        {
-            switch (status)
-            {
-                case Status.working:
-                    return (Color)ColorConverter.ConvertFromString("LimeGreen");
-                case Status.noWorking:
-                    return (Color)ColorConverter.ConvertFromString("DeepPink");
-                case Status.free:
-                    return (Color)ColorConverter.ConvertFromString("DarkGray");
-                case Status.vacation:
-                    return (Color)ColorConverter.ConvertFromString("DeepSkyBlue");
-
-                default:
-                    return new Color();
-            }
+          
         }
 
         private void OnRemoveEmployee()
@@ -190,7 +167,7 @@ namespace PTC_Management.ViewModel
                 {
                     var content = cellInfo.Column.GetCellContent(cellInfo.Item);
                     rows.Add((DataRowView)content.DataContext);
-                    rowIndexes.Add(Items.IndexOf(cellInfo.Item));
+                    rowIndexes.Add(ItemsList.IndexOf(cellInfo.Item));
                 }
             }
 
@@ -211,8 +188,6 @@ namespace PTC_Management.ViewModel
         {
 
             // todo изменять цвет добавленных записей
-
-
             var selectWindow = new SelectWindowViewModel(datesList, this);
             if (selectWindow.CanShow) selectWindow.Show();
 
@@ -228,6 +203,8 @@ namespace PTC_Management.ViewModel
                 {
                     FillDataTable(item);
                     var dates = new List<Date>();
+
+
                     foreach (var day in Columns.Days)
                     {
                         var date = new Date();
@@ -245,8 +222,11 @@ namespace PTC_Management.ViewModel
                         date.Add();
                         dates.Add(date);
                     }
+
                     datesList.Add(dates);
                 }
+
+                RaisePropertyChanged(nameof(ScheduleTable));
             }
 
             // todo изменение базы данных

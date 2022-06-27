@@ -4,12 +4,40 @@
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
        xmlns:h="clr-namespace:PTC_Management.ViewModel.Helpers" 
-       xmlns:viewmodel="clr-namespace:PTC_Management.ViewModel"
-        d:DataContext="{d:DesignInstance Type=viewmodel:ScheduleOfEmployeeViewModel}"
+       xmlns:viewmodel="clr-namespace:PTC_Management.ViewModel" xmlns:converter="clr-namespace:PTC_Management.Model.Converter"
+             d:DataContext="{d:DesignInstance Type=viewmodel:ScheduleOfEmployeeViewModel}"
        mc:Ignorable="d" 
        d:DesignHeight="450" d:DesignWidth="800">
 
   <UserControl.Resources>
+
+    <converter:ConverterHoldoffGridColor x:Key="bgHoldoffGridColor" />
+    <Style x:Key="CellHighlighterStyle">
+
+      <Style.Triggers>
+        <Trigger Property="DataGridCell.IsSelected" Value="True" >
+          <Setter Property="DataGridCell.BorderThickness" Value="2" />
+          <Setter Property="DataGridCell.BorderBrush" Value="Blue" />
+        </Trigger>
+
+      </Style.Triggers>
+
+      <Setter Property="DataGridCell.Background">
+        <Setter.Value>
+          <MultiBinding UpdateSourceTrigger="PropertyChanged"
+                Converter="{StaticResource bgHoldoffGridColor}" >
+            <MultiBinding.Bindings >
+              <Binding UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource Self}"/>
+              <Binding UpdateSourceTrigger="PropertyChanged" Path="Row" Mode="TwoWay"/>
+
+            </MultiBinding.Bindings>
+          </MultiBinding>
+        </Setter.Value>
+      </Setter>
+
+      <Setter Property="DataGridCell.Foreground" Value="Black"></Setter>
+      <Setter Property="DataGridCell.Margin" Value="-0.5 -0.5 -0.5 -0.5"></Setter>
+    </Style>
 
     <Style TargetType="Button" x:Key="ButtonStyle">
       <Setter Property="Margin" Value="5,0,0,0" />
@@ -72,7 +100,8 @@
 
     <GroupBox Grid.Column="2" Header="График">
       <h:ScheduleDataGrid 
-        ItemsList = "{Binding Items, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
+        CellStyle="{StaticResource CellHighlighterStyle}" 
+        ItemsList = "{Binding ItemsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
         ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}"
         SelectedCellsList="{Binding SelectedCells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
         SelectionMode="Extended"
@@ -84,21 +113,10 @@
         MinRowHeight="20"
         CanUserAddRows="False"
         CanUserDeleteRows="False"
+        DataContext="{Binding }" 
         IsReadOnly="True"
-        ItemsSource="{Binding ScheduleTable, UpdateSourceTrigger=PropertyChanged}">
-        <h:ScheduleDataGrid.CellStyle>
-          <Style TargetType="DataGridCell">
-            <Style.Triggers>
-              <Trigger Property="IsSelected" Value="True" >
-                <Setter Property="BorderThickness" Value="3" />
-                <Setter Property="BorderBrush" Value="Blue" />
-              </Trigger>
-            
-            </Style.Triggers>
-
-            <!--<Setter Property="VerticalAlignment" Value="Center" />-->
-          </Style>
-        </h:ScheduleDataGrid.CellStyle>
+        
+        ItemsSource="{Binding ScheduleTable, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
 
       </h:ScheduleDataGrid>
 

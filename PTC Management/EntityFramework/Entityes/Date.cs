@@ -14,10 +14,10 @@ namespace PTC_Management.EntityFramework
 
         [Column("Date", TypeName = "date")]
         public DateTime Date1 { get; set; }
-  
+
         [Required]
         [StringLength(1)]
-        public string Status { get; set; }
+        public string Status { get => status; set => SetProperty(ref status, value); }
 
         public int IdEmployee { get; set; }
 
@@ -28,6 +28,7 @@ namespace PTC_Management.EntityFramework
 
         public static readonly Repository<Date> repository =
             new Repository<Date>();
+        private string status;
 
         public override bool Add() => repository.Add(this);
 

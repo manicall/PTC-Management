@@ -12,7 +12,6 @@ namespace PTC_Management.ViewModel.Helpers
     {
         public ScheduleDataGrid()
         {
-            Loaded += CustomDataGrid_Loaded;
             SelectedCellsChanged += CustomDataGrid_SelectedCellsChanged;
         }
 
@@ -20,54 +19,6 @@ namespace PTC_Management.ViewModel.Helpers
         {
             ItemsList = Items;
             SelectedCellsList = SelectedCells;
-        }
-
-        void CustomDataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            SelectAllCells();
-
-            foreach (DataGridCellInfo cellInfo in SelectedCells)
-            {
-                if (cellInfo.Column.DisplayIndex == 0) continue;
-                if (cellInfo.IsValid)
-                {
-                    var content = cellInfo.Column.GetCellContent(cellInfo.Item);
-
-                    if (content is TextBlock textBlock)
-                    {
-                        if (textBlock.Background == null)
-                        {
-                            textBlock.Margin = new Thickness(-1, -1, -1, -1);
-                            textBlock.TextAlignment = TextAlignment.Center;
-                        }
-
-                        textBlock.Background = new SolidColorBrush(GetColor(textBlock.Text));
-
-                        var row = (DataRowView)content.DataContext;
-                        row[cellInfo.Column.Header.ToString()] = textBlock.Text;
-                    }
-                }
-            }
-
-            UnselectAllCells();
-        }
-
-        Color GetColor(string status)
-        {
-            switch (status)
-            {
-                case Status.working:
-                    return (Color)ColorConverter.ConvertFromString("LimeGreen");
-                case Status.noWorking:
-                    return (Color)ColorConverter.ConvertFromString("DeepPink");
-                case Status.free:
-                    return (Color)ColorConverter.ConvertFromString("DarkGray");
-                case Status.vacation:
-                    return (Color)ColorConverter.ConvertFromString("DeepSkyBlue");
-
-                default:
-                    return new Color();
-            }
         }
 
         #region SelectedItemsList

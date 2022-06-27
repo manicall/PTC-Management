@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Data;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
@@ -32,5 +33,10 @@ namespace PTC_Management.ViewModel
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
+        protected virtual void RowRaisePropertyChanged(DataRowView dataRowView, [CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged(dataRowView, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

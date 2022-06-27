@@ -72,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Converter\ConverterHoldoffGridColor.cs" />
     <Compile Include="Model\Converter\TimeSpanConverter.cs" />
     <Compile Include="Model\IsEnabled.cs" />
     <Compile Include="Model\IsReadOnly.cs" />
