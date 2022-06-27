@@ -123,7 +123,6 @@ namespace PTC_Management.EntityFramework
             return list;
         }
 
-
         /// <summary>
         /// Добавляет запись в таблицу базы данных
         /// </summary>
@@ -256,6 +255,12 @@ namespace PTC_Management.EntityFramework
                 Console.WriteLine(ex.InnerException.InnerException.Message);
                 return false;
             }
+            catch (InvalidOperationException ex)
+            {
+                //Console.WriteLine(ex.InnerException.InnerException.Message);
+                //return false;
+            }
+
             return true;
         }
 
