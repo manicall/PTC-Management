@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace PTC_Management.Model.Converter
 {
-    public class ConverterHoldoffGridColor : IMultiValueConverter
+    public class CellColorConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

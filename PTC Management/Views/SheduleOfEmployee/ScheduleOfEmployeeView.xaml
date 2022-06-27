@@ -11,12 +11,13 @@
 
   <UserControl.Resources>
 
-    <converter:ConverterHoldoffGridColor x:Key="bgHoldoffGridColor" />
+    <converter:CellColorConverter x:Key="CellColorConverter" />
+    <converter:CellAligmentConverter x:Key="CellAligmentConverter" />
     <Style x:Key="CellHighlighterStyle">
 
       <Style.Triggers>
         <Trigger Property="DataGridCell.IsSelected" Value="True" >
-          <Setter Property="DataGridCell.BorderThickness" Value="2" />
+          <Setter Property="DataGridCell.BorderThickness" Value="3" />
           <Setter Property="DataGridCell.BorderBrush" Value="Blue" />
         </Trigger>
 
@@ -25,7 +26,7 @@
       <Setter Property="DataGridCell.Background">
         <Setter.Value>
           <MultiBinding UpdateSourceTrigger="PropertyChanged"
-                Converter="{StaticResource bgHoldoffGridColor}" >
+                Converter="{StaticResource CellColorConverter}" >
             <MultiBinding.Bindings >
               <Binding UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource Self}"/>
               <Binding UpdateSourceTrigger="PropertyChanged" Path="Row" Mode="TwoWay"/>
@@ -35,10 +36,31 @@
         </Setter.Value>
       </Setter>
 
+
+
+      <Setter Property="TextBlock.TextAlignment">
+        <Setter.Value>
+          <MultiBinding UpdateSourceTrigger="PropertyChanged"
+                Converter="{StaticResource CellAligmentConverter}" >
+            <MultiBinding.Bindings >
+              <Binding UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource Self}"/>
+              <Binding UpdateSourceTrigger="PropertyChanged" Path="Row" Mode="TwoWay"/>
+
+            </MultiBinding.Bindings>
+          </MultiBinding>
+        </Setter.Value>
+      </Setter>
+
+
+
+      <Setter Property="DataGridCell.MinHeight" Value="22"/>
+      <Setter Property="DataGridCell.MinWidth" Value="22"/>
+      <Setter Property="DataGridCell.BorderThickness" Value="1" />
+      <Setter Property="DataGridCell.BorderBrush" Value="Black" />
       <Setter Property="DataGridCell.Foreground" Value="Black"></Setter>
       <Setter Property="DataGridCell.Margin" Value="-0.5 -0.5 -0.5 -0.5"></Setter>
     </Style>
-
+  
     <Style TargetType="Button" x:Key="ButtonStyle">
       <Setter Property="Margin" Value="5,0,0,0" />
       <Setter Property="Width" Value="130" />
@@ -115,7 +137,7 @@
         CanUserDeleteRows="False"
         DataContext="{Binding }" 
         IsReadOnly="True"
-        
+        GridLinesVisibility="None"
         ItemsSource="{Binding ScheduleTable, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
 
       </h:ScheduleDataGrid>
