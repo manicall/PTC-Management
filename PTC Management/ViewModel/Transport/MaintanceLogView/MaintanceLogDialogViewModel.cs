@@ -60,18 +60,21 @@ namespace PTC_Management.ViewModel
                 return;
             }
 
-            // todo check this
+
             //if (MainWindowAction != Actions.update) SetMaintenceType();
 
-            if (MainWindowAction != Actions.update) SetMaintenceType();
+            SetMaintenceType();
 
             // выполняет изменения в бд
             if (DoDialogActionCommand(dialogAction))
                 if (dialogAction != Actions.close)
                 {
-                    // выполняет изменения в коллекции отображающей записи в таблице
-                    ViewModelHelper.DoActionForList(
-                        MainWindowAction, DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
+                    if (MainWindowAction != Actions.Update)
+                    {
+                        // выполняет изменения в коллекции отображающей записи в таблице
+                        ViewModelHelper.DoActionForList(
+                            MainWindowAction, DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
+                    }
                 }
 
             if (MainWindowAction == Actions.add)
@@ -85,72 +88,99 @@ namespace PTC_Management.ViewModel
 
         void SetMaintenceType()
         {
-            // todo check this
-
             const string TO_1 = "ТО-1";
             const string TO_2 = "ТО-2";
 
             var itemsList = ViewModelHelper.ItemsList;
-            var currentML = DialogItem as MaintanceLog;
+            if (MainWindowAction == Actions.add) itemsList.Add(DialogItem as MaintanceLog);
+            itemsList = itemsList.OrderBy(i => i.IdItinerary).ToList();
 
-            currentML.MaintenanceType = "";
+            int sum1 = 0;
+            int sum2 = 0;
+            for (int i = 0; i < itemsList.Count; i++) {
+                sum1 += (int)itemsList[i].Itinerary.Mileage;
+                sum2 += (int)itemsList[i].Itinerary.Mileage;
 
-            var index = GetIndex(itemsList, TO_2);
-
-            // не найдено ТО-2
-            if (index == -1)
-            {
-                if (GetSum(itemsList) + currentML.Itinerary.Mileage >= 10000)
-                {
-                    currentML.MaintenanceType = TO_2;
+                if (sum1 >= 2500) {
+                    sum1 += (int)itemsList[i].Itinerary.Mileage;
+                    itemsList[i].MaintenanceType = TO_1;
+                    if (itemsList[i].Id != 0) itemsList[i].Update();
+                    sum1 = 0;
                 }
-                else  // ТО-2 еще не нужно проводить
-                {
-                    index = GetIndex(itemsList, TO_1);
 
-                    if (index == -1) // Не найдено ТО-1
-                    {
-                        if (GetSum(itemsList) + currentML.Itinerary.Mileage >= 2500)
-                        {
-                            currentML.MaintenanceType = TO_1;
-                        }
-                    }
-                    else
-                    {
-                        if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
-                        {
-                            currentML.MaintenanceType = TO_1;
-                        }
-                    }
+                if (sum2 >= 10000)
+                {
+                    sum2 += (int)itemsList[i].Itinerary.Mileage;
+                    itemsList[i].MaintenanceType = TO_2;
+                    if (itemsList[i].Id != 0) itemsList[i].Update();
+                    sum2 = 0;
                 }
             }
-            else // ТО-2 найдено
-            {
-                if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 10000)
-                {
-                    currentML.MaintenanceType = TO_2;
-                }
-                // ТО-2 еще не нужно проводить
-                else
-                {
-                    var newIndex = GetIndex(itemsList, TO_1);
 
-                    if (newIndex < index)
-                    {
-                        if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
-                        {
-                            currentML.MaintenanceType = TO_1;
-                        }
-                    }
+            //const string TO_1 = "ТО-1";
+            //const string TO_2 = "ТО-2";
+
+            //var itemsList = ViewModelHelper.ItemsList;
+            //var currentML = DialogItem as MaintanceLog;
+
+            //currentML.MaintenanceType = "";
+
+            //var index = GetIndex(itemsList, TO_2);
+
+            //// не найдено ТО-2
+            //if (index == -1)
+            //{
+            //    if (GetSum(itemsList) + currentML.Itinerary.Mileage >= 10000)
+            //    {
+            //        currentML.MaintenanceType = TO_2;
+            //    }
+            //    else  // ТО-2 еще не нужно проводить
+            //    {
+            //        index = GetIndex(itemsList, TO_1);
+
+            //        if (index == -1) // Не найдено ТО-1
+            //        {
+            //            if (GetSum(itemsList) + currentML.Itinerary.Mileage >= 2500)
+            //            {
+            //                currentML.MaintenanceType = TO_1;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
+            //            {
+            //                currentML.MaintenanceType = TO_1;
+            //            }
+            //        }
+            //    }
+            //}
+            //else // ТО-2 найдено
+            //{
+            //    if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 10000)
+            //    {
+            //        currentML.MaintenanceType = TO_2;
+            //    }
+            //    // ТО-2 еще не нужно проводить
+            //    else
+            //    {
+            //        var newIndex = GetIndex(itemsList, TO_1);
+
+            //        if (newIndex < index)
+            //        {
+            //            if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
+            //            {
+            //                currentML.MaintenanceType = TO_1;
+            //            }
+            //        }
                     
-                    else
-                        if (GetRangeSum(itemsList, newIndex) + currentML.Itinerary.Mileage >= 2500)
-                    {
-                        currentML.MaintenanceType = TO_1;
-                    }
+            //        else
+            //            if (GetRangeSum(itemsList, newIndex) + currentML.Itinerary.Mileage >= 2500)
+            //        {
+            //            currentML.MaintenanceType = TO_1;
+            //        }
 
-                }
-            }
+            //    }
+            //}
         }
 
         int? GetRangeSum(List<MaintanceLog> maintanceLogs, int index)
