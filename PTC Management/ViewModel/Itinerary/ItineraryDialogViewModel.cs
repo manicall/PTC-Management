@@ -58,31 +58,31 @@ namespace PTC_Management.ViewModel
         /// и устанавливает в него значение 
         /// SpeedometerInfoWhenReturning из предыдущей записи
         /// </summary>
-        public void ChangeIsReadOnly()
-        {
-            var ItemsList = ViewModelHelper.ItemsList;
+        public void ChangeIsReadOnly() { 
+        //{
+        //    var ItemsList = ViewModelHelper.ItemsList;
 
-            if (ItemsList.Count == 0 || SelectedIndex == 0)
-            {
-                //IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
+        //    if (ItemsList.Count == 0 || SelectedIndex == 0)
+        //    {
+        //        //IsReadOnly.Field["SpeedometerInfoOnDeparture"] = "False";
 
-                if (MainWindowAction == Actions.Add && ItemsList.Count > 0)
-                {
-                    if (DialogItem is Itinerary itinerary)
-                    {
-                        var SpeedometerIWR = ItemsList[ItemsList.Count - 1].SpeedometerInfoWhenReturning;
-                        itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
-                    }
-                }
-            }
-            else
-            {
-                if (SelectedItem is Itinerary itinerary)
-                {
-                    var SpeedometerIWR = ItemsList[SelectedIndex - 1].SpeedometerInfoWhenReturning;
-                    itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
-                }
-            }
+        //        if (MainWindowAction == Actions.Add && ItemsList.Count > 0)
+        //        {
+        //            if (DialogItem is Itinerary itinerary)
+        //            {
+        //                var SpeedometerIWR = ItemsList[ItemsList.Count - 1].SpeedometerInfoWhenReturning;
+        //                itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (SelectedItem is Itinerary itinerary)
+        //        {
+        //            var SpeedometerIWR = ItemsList[SelectedIndex - 1].SpeedometerInfoWhenReturning;
+        //            itinerary.SpeedometerInfoOnDeparture = SpeedometerIWR;
+        //        }
+        //    }
         }
 
         /// <summary>
@@ -107,14 +107,26 @@ namespace PTC_Management.ViewModel
                 {
                     var ItemsList = ViewModelHelper.ItemsList;
 
-                    if (SelectedIndex > 0)
+                    if (SelectedIndex > 0 && ItemsList[SelectedIndex].IdTransport == ItemsList[SelectedIndex - 1].IdTransport)
                     {
+                        if (ItemsList[SelectedIndex - 1].SpeedometerInfoOnDeparture > itinerary.SpeedometerInfoOnDeparture) 
+                        {   
+                            WindowParameters.StatusBarMessage = "Заданное значение ниже показания спидометра предыдущей записи";
+                            return;
+                        }
+                        
                         ItemsList[SelectedIndex - 1].SpeedometerInfoWhenReturning = itinerary.SpeedometerInfoOnDeparture;
                         ItemsList[SelectedIndex - 1].Update();
                     }
 
-                    if (SelectedIndex < ItemsList.Count - 1)
+                    if (SelectedIndex < ItemsList.Count - 1 && ItemsList[SelectedIndex].IdTransport == ItemsList[SelectedIndex + 1].IdTransport)
                     {
+                        if (ItemsList[SelectedIndex + 1].SpeedometerInfoWhenReturning < itinerary.SpeedometerInfoWhenReturning)
+                        {
+                            WindowParameters.StatusBarMessage = "Заданное значение превышает показания спидометра следующей записи";
+                            return;
+                        }
+
                         ItemsList[SelectedIndex + 1].SpeedometerInfoOnDeparture = itinerary.SpeedometerInfoWhenReturning;
                         ItemsList[SelectedIndex + 1].Update();
                     }
@@ -129,6 +141,7 @@ namespace PTC_Management.ViewModel
                     ViewModelHelper.DoActionForList(
                         MainWindowAction, DialogItem.Id, SelectedIndex, (Itinerary)DialogItem);
                 }
+            
         }
 
         /// <summary>
@@ -158,7 +171,9 @@ namespace PTC_Management.ViewModel
                         case Destinations.transport:
                             itinerary.Transport = (Transport)selectWindow.ReturnedItem;
                             itinerary.IdTransport = ((Transport)selectWindow.ReturnedItem).Id;
-
+                            var temp = ViewModelHelper.ItemsList.FindLast(i => i.IdTransport == itinerary.IdTransport);
+                            
+                            itinerary.SpeedometerInfoOnDeparture = temp?.SpeedometerInfoWhenReturning;
                             break;
 
                         default:

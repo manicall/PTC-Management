@@ -52,13 +52,16 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
-            if (DialogItem is MaintanceLog maintance)
-                if (!maintance.GetCanExecute())
-                {
-                    maintance.SetCanExecute();
-                    return;
-                }
+            var maintance = DialogItem as MaintanceLog;
+          
+            if (!maintance.GetCanExecute())
+            {
+                maintance.SetCanExecute();
+                return;
+            }
 
+            // todo check this
+            //if (MainWindowAction != Actions.update) SetMaintenceType();
 
             if (MainWindowAction != Actions.update) SetMaintenceType();
 
@@ -70,6 +73,14 @@ namespace PTC_Management.ViewModel
                     ViewModelHelper.DoActionForList(
                         MainWindowAction, DialogItem.Id, SelectedIndex, (MaintanceLog)DialogItem);
                 }
+
+            if (MainWindowAction == Actions.add)
+            {
+                maintance.Itinerary = new Itinerary();
+                maintance.Itinerary.Date = DateTime.Now;
+
+                RaisePropertyChanged(nameof(DialogItem));
+            }
         }
 
         void SetMaintenceType()
@@ -82,9 +93,8 @@ namespace PTC_Management.ViewModel
             var itemsList = ViewModelHelper.ItemsList;
             var currentML = DialogItem as MaintanceLog;
 
+            currentML.MaintenanceType = "";
 
-
-            // todo работает если не выполняется изменение записи
             var index = GetIndex(itemsList, TO_2);
 
             // не найдено ТО-2
@@ -123,20 +133,32 @@ namespace PTC_Management.ViewModel
                 // ТО-2 еще не нужно проводить
                 else
                 {
-                    index = GetIndex(itemsList, TO_1);
+                    var newIndex = GetIndex(itemsList, TO_1);
 
-                    if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
+                    if (newIndex < index)
+                    {
+                        if (GetRangeSum(itemsList, index) + currentML.Itinerary.Mileage >= 2500)
+                        {
+                            currentML.MaintenanceType = TO_1;
+                        }
+                    }
+                    
+                    else
+                        if (GetRangeSum(itemsList, newIndex) + currentML.Itinerary.Mileage >= 2500)
                     {
                         currentML.MaintenanceType = TO_1;
                     }
+
                 }
             }
         }
 
         int? GetRangeSum(List<MaintanceLog> maintanceLogs, int index)
         {
+            Console.WriteLine("{0} | {1}", index, maintanceLogs.Count - index - 1);
+
             return maintanceLogs
-                .GetRange(index, maintanceLogs.Count - index - 1)
+                .GetRange(index + 1, maintanceLogs.Count - index - 1)
                 .Sum(maintanceLog => maintanceLog.Itinerary.Mileage);
         }
 

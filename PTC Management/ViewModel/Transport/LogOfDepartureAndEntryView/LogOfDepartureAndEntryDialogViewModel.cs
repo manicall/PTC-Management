@@ -30,12 +30,13 @@ namespace PTC_Management.ViewModel
         /// </summary>
         protected override void OnDialogActionCommand(string dialogAction)
         {
-            if (DialogItem is LogOfDepartureAndEntry LogOfDAE)
-                if (!LogOfDAE.GetCanExecute())
-                {
-                    LogOfDAE.SetCanExecute();
-                    return;
-                }
+            var logOfDAE = DialogItem as LogOfDepartureAndEntry;
+
+            if (!logOfDAE.GetCanExecute())
+            {
+                logOfDAE.SetCanExecute();
+                return;
+            }
 
             // выполняет изменения в бд
             if (DoDialogActionCommand(dialogAction))
@@ -45,6 +46,14 @@ namespace PTC_Management.ViewModel
                     ViewModelHelper.DoActionForList(
                         MainWindowAction, DialogItem.Id, SelectedIndex, (LogOfDepartureAndEntry)DialogItem);
                 }
+
+            if (MainWindowAction == Actions.add)
+            {
+                logOfDAE.Itinerary = new Itinerary();
+                logOfDAE.Itinerary.Date = DateTime.Now;
+
+                RaisePropertyChanged(nameof(DialogItem));
+            }
         }
 
         protected override void OnDialogSelectСommand(string destination)

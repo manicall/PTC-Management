@@ -18,9 +18,16 @@
     <ResourceDictionary Source="../../Resources/Templates/DialogTemplates.xaml" />
   </Window.Resources>
 
-  <StackPanel>
-    <ContentControl Content="{Binding CurrentViewModel}" />
-  </StackPanel>
+  <DockPanel>
+    <StatusBar DockPanel.Dock="Bottom">
+      <TextBlock Text="{Binding WindowParameters.StatusBarMessage}" />
+    </StatusBar>
+    <StackPanel>
+
+      <ContentControl Content="{Binding CurrentViewModel}" />
+    </StackPanel>
+    
+  </DockPanel>
 
   <Window.InputBindings>
     <KeyBinding 

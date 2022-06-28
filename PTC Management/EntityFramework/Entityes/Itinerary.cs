@@ -132,9 +132,9 @@ namespace PTC_Management.EntityFramework
         // используется, чтобы поля не подсвечивались при открытии окна
         bool[] canExecute = new bool[3];
 
-        public bool GetCanExecute()
+        public bool GetCanExecute(bool includeGet = true)
         {
-            for (int i = 0; i < canExecute.Length; i++)
+            for (int i = 1; i < canExecute.Length; i++)
             {
                 if (canExecute[i] != true) return false;
             }

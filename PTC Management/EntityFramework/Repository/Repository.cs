@@ -69,7 +69,7 @@ namespace PTC_Management.EntityFramework
                 }
             }
 
-            return list;
+            return list.OrderBy(i => (i as MaintanceLog).IdItinerary).ToList();
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace PTC_Management.EntityFramework
                 }
             }
 
-            return list;
+            return list.OrderBy(i => (i as MaintanceLog).IdItinerary).ToList();
         }
 
         /// <summary>
@@ -118,6 +118,9 @@ namespace PTC_Management.EntityFramework
                         itinerary.Transport.SetFields(Transport.repository.GetSingle(itinerary.IdTransport));
                     }
                 }
+
+
+                return list.OrderBy(i => (i as Itinerary).IdTransport).ToList();
             }
 
             return list;

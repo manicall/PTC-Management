@@ -182,12 +182,10 @@ namespace PTC_Management.ViewModel
 
             CreateTable();
 
-            // todo изменение базы данных
         }
 
         private void OnSelectEmployees()
         {
-            // todo изменять цвет добавленных записей
             var selectWindow = new SelectWindowViewModel(datesList, this);
             if (selectWindow.CanShow) selectWindow.Show();
 
@@ -228,10 +226,8 @@ namespace PTC_Management.ViewModel
                 
             }
 
-            //ScheduleTable.Rows.So
             CreateTable();
             //RaisePropertyChanged(nameof(ScheduleTable));
-            // todo изменение базы данных
         }
 
         void FillDataTable(object item)

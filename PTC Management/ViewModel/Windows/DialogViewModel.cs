@@ -76,6 +76,7 @@ namespace PTC_Management.ViewModel
                     result = DoAction(MainWindowAction);
                     break;
                 case Actions.close:
+                    WindowParameters.StatusBarMessage = "";
                     Close();
                     break;
             }
